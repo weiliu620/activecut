@@ -1,0 +1,36 @@
+\documentclass[fleqn]{article}
+\usepackage{palatino,url} 
+\usepackage{/home/sci/weiliu/haldefs}
+\usepackage{/home/sci/weiliu/notes}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage[authoryear,sort]{natbib}
+
+\begin{document}
+\lecture{}{Notes for Slice Timing and Motion Correction}
+
+Wei Liu\\
+weiliu@sci.utah.edu
+
+\section{Which first}
+\citet{Brett08} says for interleaved sequence, slice timing should be done first. For sequential slicing, some people do motion first but there is no test to justify this.
+\section{When To Slice Timing}
+Current practice is do not slice timing for block designs, and do slice timing for event-related designs. Another study based on the experiment with the slice timing correction tool in SPM99 concluded that for block designs, not using slice timing correction gave a more robust activation than slice timing correction[]. \citet{smith2004S208} suggest that slice timing correction should be performed with motion correction in an integral approach. Actually he refers to the work by \citet{Bannister03}
+
+The choice of reference slice: \citet{Egolf} shows that for sequential slicing, the middle slice should be used as reference slice, and the interpolation error would be mostly in the top and bottom slices, which are usually of least interest. But for 'interleaved' sequence, the choice of reference slice are not straightforward.
+\section{Does it really matter}
+\citet{Zhang2009264} concluded that: 
+\begin{quote}
+ (a) slice timing correction and global intensity normalization have little consistent impact on the fMRI processing pipeline, but spatial smoothing, temporal detrending or high-pass filtering, and motion correction significantly improved pipeline performance across all subjects;
+\end{quote}
+ This article test the preprocessing steps on canonical variate analysis (multivariate analysis). That is to apply various preprocessing steps(slice timing, motion correction) followed by CVA. The author concluded this result is consistent with his another test\citep{Zhang20081242} on GLM-based pipleline. 
+\section{Improvement}
+\citet{Jones2008582} talked the order of slice timing, vollume registration and RETROICOR (models the cardiac and respiratory fluctuations using a Fourier series defined by the phase relative to the cardiac and respiratory cycles, respectively, at the time of image acquisition) on cardiac fMRI images. Their conclusion is for cardiac imaging, slice timing should be the last step. And they have a modified RETROICOR model. This model describe the signal at each voxel as the weighted combination of many slides' contribution. So when doing registration first, a voxel is weighted sum of the contribution of neighbour slides. This method will take into account the slice timing errors introduced by registration. Alghough this method is used on cardiac imaging (because of its periodical I guess), we'll see if we can apply it to brain imaging.
+
+\citet{Bannister03} give a integrated spacial-temporal model for addressing the motion correction and slice timing problem.This is a PhD thesis and there is much information we need to study. Author is also part of the FSL group when he wrote the thesis, and the method was (supposed to) added into FSL. The author believes there is advantage of either doing slice timing first, or doing motion correction first. He argues the two steps should be integrated into one model. Basically, he decomposed the motion betwen volumes into " a set of evenly-spaced rotations about a common axis" \citep{Bannister03}. Also he redifined the cost function, the method of optimization, and the method of interpolation. This may need further study.
+
+
+\bibliographystyle{plainnat}
+\bibliography{all}
+\end{document}
