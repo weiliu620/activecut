@@ -1,0 +1,5 @@
+To do:
+
+1. fig. 4 need to add text and connects to the proposed alg. 
+2. regenerate fig. 2, make it smaller, add arrows to indicate the changes, and add arrow point from trimap to alpha map. try different color of visualizing the 3D trimap. the top staight line is not good try to regenerate. 
+3. fig. 3

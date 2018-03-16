@@ -1,0 +1,24 @@
+	Instructor                Sbj     Numb    Title                   Potential TAs
+      	PARKER, D.                CS      1400    Introduction to CS      Kendal Gifford, Daniel Khoury,  Weiyu Liu
+      	PARKER, D.                CS      1410    Object-Oriented Prog    Junguk Cho,     James Bloom,    Laura Lediaev,  Sarah Hong
+      	JENSEN, P. A.             CS      1410    Object-Oriented Prog    Klemen Simonic, Zach Wilcox,
+	GOPALAKRISHNAN, G.        CS      2100    Discrete Structures     Tony Tuttle,    Charles Jacobsen,       .5 Kevin Bolick,        Amey Desai
+	GOPALAKRISHNAN, G.        CS      3100    Models Of Computation   Bruce Bolick,   Leif Andersen
+	FLETCHER, P. T.           CS      3130    Eng Prob Stats          Nghia Truong,   .5 Evan Young,  .5 Nivedita Viswanath
+	DE ST GERMAIN, H. J.      CS      3500    Software Practice       Ron Romero,     Makito Kano,    Natalee Villa,  Abdullah Alfarrarjeh,   Jason Kanagaratnam
+	JENSEN, P. A.             CS      3810    Computer Organization   Leslie Baker,   Jintack Lim,    Shashanka Krishnaswamy, Ashley Dunn,    Russell Canning
+	DE ST GERMAIN, H. J.      CS      4000    Senior Capstone Design  Christopher Becker
+	HALL, M. W.               CS      4230    Parallel Programming    .5 Nivedita Viswanath
+	REGEHR, J.                CS      4400    Computer Systems        Jithu Joseph,   Ankit Shah,     Alan Berg,      Sarah Spall
+	STOKER, M. L.             CS      4962    Mobile Apps: Android    Kevin Wong
+	RILOFF, E. M.             CS      5340    Natural Language        .5 Ruihong Huang
+	VAN DEN BERG, J.          CS      5350    Machine Learning        Liang He,       Prateep Mukherjee
+	BRUNVAND, E. L.           CS      5710    Digital VLSI Design     Paymon
+	KASERA, S. K.             CS      5958    Network Security        .5 Naveen Dasa Subramanyam
+	PASCUCCI, V.              CS      6150    Advanced Algorithms     Amirali Abdullah
+	KIRBY, R. M. I.           CS      6210    Adv Sci Computing I     .5 Evan Young
+	JOHNSON, D. E.            ME      5250    Prog for Engs           Arun Baskar
+	JOHNSON, D. E.            CS      6370    Motion Planning         .5 NATHAN NELSON
+	LI, F.                    CS      6530    Database Systems        Fei Luo
+	WHITAKER, R. T.           CS      6640    Image Processing        .5 Teng Lu
+	BALASUBRAMONIAN, R.       CS      6810    Computer Architecture   Meysam Taassori
