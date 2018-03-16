@@ -1,0 +1,28 @@
+\beamer@endinputifotherversion {3.26pt}
+\beamer@sectionintoc {1}{Introduction}{6}{0}{1}
+\beamer@subsectionintoc {1}{1}{Processing Pipeline}{8}{0}{1}
+\beamer@subsectionintoc {1}{2}{Existing Methods}{9}{0}{1}
+\beamer@subsectionintoc {1}{3}{Graphical Model and Markov Random Field}{10}{0}{1}
+\beamer@sectionintoc {2}{Pairwise Connectivity with Six Dimensional MRF}{13}{0}{2}
+\beamer@subsectionintoc {2}{1}{Problem Statement}{14}{0}{2}
+\beamer@subsectionintoc {2}{2}{A Six Dimensional MRF model}{15}{0}{2}
+\beamer@subsectionintoc {2}{3}{Statistical Inference}{16}{0}{2}
+\beamer@subsectionintoc {2}{4}{Experiments on Synthetic and Real Data}{20}{0}{2}
+\beamer@sectionintoc {3}{Consistent, Spatially Coherent Multiple Functional Networks}{22}{0}{3}
+\beamer@subsectionintoc {3}{1}{Problem Statement}{23}{0}{3}
+\beamer@subsectionintoc {3}{2}{A MAP framework with MRF prior}{24}{0}{3}
+\beamer@subsectionintoc {3}{3}{MCEM for Statistical Inference}{25}{0}{3}
+\beamer@subsectionintoc {3}{4}{Experiments on Synthetic Data and Real Data}{29}{0}{3}
+\beamer@sectionintoc {4}{Consistent Group Analysis by Hierarchical MRF}{30}{0}{4}
+\beamer@subsectionintoc {4}{1}{A Two-Way Unified Model}{31}{0}{4}
+\beamer@subsectionintoc {4}{2}{An Extended MRF}{32}{0}{4}
+\beamer@subsectionintoc {4}{3}{Gibbs Sampling for Inference}{35}{0}{4}
+\beamer@subsectionintoc {4}{4}{Experiments on Synthetic Data}{36}{0}{4}
+\beamer@subsectionintoc {4}{5}{Cross-Session Consistency}{37}{0}{4}
+\beamer@subsectionintoc {4}{6}{Variability in Bootstrapping}{39}{0}{4}
+\beamer@sectionintoc {5}{Traumatic Brain Injury Image Segmentation with Active Learning}{41}{0}{5}
+\beamer@subsectionintoc {5}{1}{The Problem}{42}{0}{5}
+\beamer@subsectionintoc {5}{2}{The Flowchart}{43}{0}{5}
+\beamer@subsectionintoc {5}{3}{The Model}{44}{0}{5}
+\beamer@subsectionintoc {5}{4}{Experiments}{46}{0}{5}
+\beamer@sectionintoc {6}{Conclusions}{48}{0}{6}

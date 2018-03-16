@@ -1,0 +1,1101 @@
+\documentclass[sansserif, 10pt]{beamer}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{algorithm2e}
+\usepackage{rotating}
+\usepackage{/home/sci/weiliu/haldefs}
+\usepackage{media9}
+\usepackage{tikz}
+
+\usetheme{Warsaw}
+%% \usetheme{Rochester} % square shape. somehow lost the title bar.
+%% \usetheme{Darmstadt} % not really good. 
+%% \usetheme{CambridgeUS} % red, not good
+%% \usetheme{AnnArbor} % yellowish, bad
+%% \usetheme{mytheme}
+
+\useinnertheme{rectangles}
+
+\setbeamertemplate{headline}{} % remove section from header.
+\setbeamertemplate{navigation symbols}{}
+\renewcommand\mathfamilydefault{\rmdefault}
+%% \renewcommand{\inserttotalframenumber}{30}
+\setbeamertemplate{footline}[page number] % add page number
+%% \logo{SCI_logo_mono_trans}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline for section \thesection}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+%% \AtBeginSection[]
+%% {
+%% \begin{frame}<beamer>{Table of Contents}
+%% \tableofcontents[currentsection,currentsubsection, 
+%%     hideothersubsections, 
+%%     sectionstyle=show/shaded,
+%% ]
+%% \end{frame}
+%% }
+
+
+\title[Resting-State Functional MRI Analysis by Graphical Model]{Resting-State
+  Functional MRI Analysis by Graphical Model}
+
+\subtitle{With Applications on Functional Network Estimation}
+\author[W. Liu]{Wei Liu}
+\institute[SCI]{
+  Scientific Computing and Imaging Institute\\
+  University of Utah\\
+  advisor: Tom Fletcher
+}
+\date{\today}
+\titlegraphic{\includegraphics[height=1cm]{sfig/scilogo} \includegraphics[height=1cm]{sfig/Ulogo}}
+\begin{document}
+
+% 1) fMRI measures the blood oxygenation, and indirectly detect the neuronal
+% activity. 2) fMRI have been widely used for the neural basis of the
+% perception, cognition and emotion. 3) traditionally has been focusing on the
+% regions that shows task-related increases in neural activity. 4) rs-fMRI
+% detects the neuronal activity during rest.
+
+% Why interested in resting-state? 1) some regions has greater activity in
+% baseline state than during experimental task (DMN) 2) enhance understanding of
+% neural activity in baseline states. 3) refine interpretation of activation and
+% deactivation.
+
+% mental process. 
+
+% The DMN is only slightly disrupted during passive sensory processing task, but
+% is suspended during cognitively demanding external tasks. 
+
+{% use the curly bracket for the range of the backgroundtemplate. 
+\usebackgroundtemplate{%
+  \includegraphics[width=\paperwidth,height=\paperheight]{sfig/bg_conn1}}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Motivations}
+\begin{frame}
+\frametitle{Motivations}
+\begin{block}{Resting-State fMRI}
+  \begin{itemize}
+  \item Enhance understanding \emph{baseline} state.
+  \item Large energy consumption.
+  \item Matches existing neuro-anatomical systems.
+  \item Reflect increased and decreased activity in task.
+  \item Possible for subjects with mental disorders.
+  %% \item Predict task response as a priori hypothesis.
+  \end{itemize}
+  \end{block}
+\end{frame}
+}
+
+
+\begin{frame}
+\frametitle{A Cloud of Clinical Applications}
+\includegraphics<1>[width=1\textwidth]{sfig/wordcloud}
+\includegraphics<2>[width=1\textwidth]{sfig/rsfmri_usage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Thesis Statement} 
+\begin{block}{Statement}
+  \emph{A multilevel Markov Random Field model improves the reliability of the
+    functional network estimation in rs-fMRI group study by taking into account
+    context information as a prior. The data-driven Bayesian model can jointly
+    estimate the functional networks of both the group and the subjects, as well
+    as drawing inference on the variability of the network maps across
+    subjects. }
+  \end{block}
+
+  \begin{block}{Contributions}
+    \begin{itemize}
+    \item Full pairwise connectivity with spatial coherence.
+    \item Identify consistent, spatially coherent multiple functional networks.
+    \item Hierarchical model for jointly estimattion of group and subject networks.
+    \item Consistency analsyis of the hierarchical model.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Outlines}
+\tableofcontents
+\end{frame}
+
+\section{Introduction}
+
+% what is fMRI and rs-fMRI, properties. 
+\subsection{fMRI Images}
+\begin{frame}
+  \frametitle{Resting-State fMRI (rs-fMRI) }
+  \begin{columns}[c]
+    \begin{column}{5cm}
+
+      \begin{block}{}
+        \begin{itemize}
+        \item Blood oxygen level dependent (BOLD) indirectly measures neuronal
+          activity.
+        \item 3D volumes sampled at each time point.
+        \item Fast scan, but noisy.
+        \item Spatio-temporal dependency.
+        \end{itemize}
+      \end{block}
+      \includegraphics[width=0.8\textwidth]{sfig/4dfmri}
+    \end{column}
+
+    \begin{column}{5cm}
+
+      % the fmri file is 53x63
+      \includemedia[
+        label=vidA,
+        addresource=sfig/fmrimovie.swf,
+        activate=pageopen,
+        width=5.3cm, height=6.3cm,
+        flashvars={
+          source=sfig/fmrimovie.swf
+          &loop=true
+        }
+      ]{}{sfig/fmrimovie.swf}
+    \end{column}
+  \end{columns}
+  \centering
+  \includegraphics[height=0.2\textheight]{backup_figures/brain_seg}
+  \includegraphics[height=0.2\textheight]{backup_figures/grabcut3}    
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Task-based v.s. Resting-State fMRI}
+  \begin{columns}[t]
+    \begin{column}{5cm}
+      \begin{block}{}
+        \begin{itemize}
+        \item Experiment stimulus signal.
+        \item Subjects undertake cognitive tasks.
+        \item General linear model is used for multi-regression analysis between
+          stimulus and BOLD signal of a voxel.
+        \end{itemize}
+      \end{block}
+      \begin{figure}
+        \includegraphics[width=5cm]{sfig/taskfmri}
+        \caption{\tiny M. Fox, Nat. Rev., Neuroscience}
+        \end{figure}
+
+    \end{column}
+
+    \begin{column}{5cm}
+      \begin{block}{}
+        \begin{itemize}
+        \item No experiment paradigm signal.
+        \item Subject stay in scanner. Eyes closed/open to a fixation cross.
+        \item Correlation analysis between two voxels.
+        \end{itemize}
+      \end{block}
+      \begin{figure}
+        \includegraphics[width=5cm]{sfig/corr}
+        \end{figure}
+    \end{column}
+
+  \end{columns}
+\end{frame}
+
+%% %% Un-averaged blood oxygen level dependent (BOLD) time course (magenta) from a
+%% %% region in the primary visual cortex during a simple task paradigm that
+%% %% requires subjects to open and close their eyes. The paradigm is shown in blue
+%% %% (delayed to account for the haemodynamic response). Traditional functional
+%% %% magnetic resonance imaging (fMRI) analysis involves correlating BOLD data
+%% %% with a stimulation time-course across multiple blocks. This in effect
+%% %% averages across each condition and performs a subtraction, minimizing 'noise'
+%% %% in the BOLD signal and highlighting regions that are modulated by the task
+%% %% paradigm. In this case, subtraction of the eyes-closed condition from the
+%% %% eyes-open condition identifies a BOLD signal intensity difference in the
+%% %% primary visual cortex (shown on the right).
+
+\subsection{Processing Pipeline}
+\begin{frame}
+  \frametitle{fMRI Processing Pipeline}
+  \begin{figure}
+    \includegraphics<1>[width = 1\textwidth]{prep/prep}
+    \includegraphics<2>[width = 1\textwidth]{prep/prep2}
+    \end{figure}
+\end{frame}
+
+% various methods for rs-fMRI and network connectivity.
+\subsection{Analysis Methods}
+\begin{frame}
+  \frametitle{Network Analysis Methods}
+  \includegraphics[width=1\textwidth]{sfig/allmethods}
+  
+\end{frame}
+
+%---------------------------------------------
+\section{Graphical Model, Markov Random Field, Sampling and Inference. }
+\subsection{Definitions of graphical model and MRF}
+
+% give various graph, undirected and directed. chain, tree, general graph, chain
+% graph.
+\begin{frame}
+  \frametitle{Graphical Model}
+  \includegraphics[width = 1\textwidth]{sfig/graphs}
+\end{frame}
+
+% relationship of graph and distribution.
+%% \begin{frame}
+%%   \frametitle{Graphical Model and Multivariate Distribution}
+
+%% \end{frame}
+
+\begin{frame}
+\frametitle{Markov Random Field}
+\begin{columns}
+  \begin{column}{3cm}
+    \includegraphics[width=3cm]{sfig/mrf}\\
+    \vspace{5pt}
+    \includegraphics[width=3cm]{sfig/general_mrf}
+  \end{column}
+
+  \begin{column}{7cm}
+
+    \begin{definition}
+      $\mathcal{G} = (\mathcal{V}, \mathcal{E})$: undirected graph.\\
+      $s \in \mathcal{V}$: a node/site in $\mathcal{V}$. \\
+      $X = \{x_1, \dots x_N\}$: a collection of random variables defined on graph $\mathcal{G}$.\\
+      $\mathcal{N}_s$: the set of nodes neighboring $s$. $(r,s) \in \mathcal{E} \Leftrightarrow  r\in \mathcal{N}_s $.
+    \end{definition}
+
+    \begin{definition}
+      A \alert{Markov Random Field} (MRF) is a collection of variables $X$ defined on
+      graph $\mathcal{G}$ if for all $s \in
+      \mathcal{V}$
+      \begin{equation*}
+        P(X_s | X_{\mathcal{V}-s}) = P(X_s | X_{\mathcal{N}_s})
+      \end{equation*}
+    \end{definition}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{MRF and Gibbs Field}
+%% \hfill       \includegraphics[width=0.15\textwidth]{sfig/clique_1}
+
+%% The definition of MRF is a local property. 
+\begin{theorem}[Hammersley-Clifford, 1971]
+  $X$ is an MRF on $\mathcal{G}$ if and only if $X$ obeys Gibbs distribution in
+  the following form
+  \begin{equation*}
+    P(X) = \frac{1}{Z}\exp \left( -\frac{1}{T} U(X) \right),
+  \end{equation*}
+
+  \begin{equation*}
+    U(X) = \sum_{c\in \cC} V_c(X_c).
+  \end{equation*}
+\end{theorem}
+
+$Vc(X_c) = \beta \sum_{(r,s) \in \cV} \psi(x_r, x_s) $: Ising, Potts model.
+\includegraphics[width = 0.8\textwidth]{sfig/clique_examples}
+
+%% Gibbs distribution gives a global property that can be used as a prior
+%% distribution.
+\end{frame}
+
+
+%----------------------------------------------------------
+\begin{frame}
+  \frametitle{Hidden Markov Model: A Generative Model}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{}
+        \begin{itemize}
+          \item $X$ is defined on MRF. 
+          \item $Y$ is assumed to be generated from $X$.
+          \item Inverse problem: Given Y, estimate X.
+          \item Different from structure learning problem. 
+        \end{itemize}
+      \end{block}
+    \end{column}
+
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width = 0.7\textwidth]{sfig/hmm_chain}\\
+      \vspace{5mm}
+      \includegraphics[width=0.7\textwidth]{sfig/hmm}      
+    \end{column}
+  \end{columns}
+
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width = 0.7\textwidth]{sfig/crf}
+      \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{}
+      %%   \begin{itemize}
+        %% \item Other forms exist: conditional random field.
+        %% \item No Bayesian interpretation. 
+        %% \end{itemize}
+
+        Other forms exist: conditional random field, but no Bayesian
+        interpretation.
+      \end{block}
+      \end{column}
+    \end{columns}
+
+\end{frame}
+
+\subsection{Statistical Inference}
+\begin{frame}
+  \frametitle{Statistical Inference}
+
+  \begin{columns}
+    \begin{column}{0.65\textwidth}
+      \begin{block}{Questions}
+        \begin{itemize}
+        \item Given $x_{-s}$ and $Y$, what is $P(x_s)$. 
+        \item $x_s = \argmax P(X|Y)$
+        \item $X^* = \argmax P(X | Y)$.
+        \end{itemize}
+      \end{block}
+
+      \begin{block}{Algorithms}
+        \begin{itemize}
+        \item Exact solutions for simple graphs (trees, chains): sum-product,
+          max-sum, belief propagation.
+        \item No exact solution for general graphs. 
+        \end{itemize}
+      \end{block}
+      \includegraphics<1>[width=0.8\textwidth]{sfig/chaintree}
+      \includegraphics<2>[width=0.8\textwidth]{sfig/chaintree_check}
+    \end{column}
+
+    \begin{column}{0.35\textwidth}
+      \includegraphics<1>[height=0.9\textheight]{sfig/generalgraphs}
+      \includegraphics<2>[height=0.9\textheight]{sfig/generalgraphs_check}
+    \end{column}
+
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Approximate Inference}
+  \includegraphics[width=\textwidth]{sfig/appinference}
+\end{frame}
+
+\subsection{Sampling}
+\begin{frame}
+  \frametitle{Markov Chain Monte Carlo (MCMC) }
+  \begin{block}{}
+    \begin{itemize}
+      \item Whole image as a node. 
+      \item Transition probably depends only on neighboring pixels. 
+    \end{itemize}
+    \end{block}
+  \vspace{10pt}
+  \includegraphics[width=0.8\textwidth]{sfig/imagechain}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Simulation of Ising Model}
+  \begin{figure}[tb]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{/home/sci/weiliu/projects/thesis/figures/math/ising_sim/b08_1000}
+      \caption{$\beta = 0.8$}
+      \label{fig:beta0.8}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{/home/sci/weiliu/projects/thesis/figures/math/ising_sim/b088_500}
+      \caption{$\beta = 0.88$}
+      \label{fig:beta0.88}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{/home/sci/weiliu/projects/thesis/figures/math/ising_sim/b10_1000}
+      \caption{$\beta = 1.0$}
+      \label{fig:beta1.0}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{/home/sci/weiliu/projects/thesis/figures/math/ising_sim/b15_800}
+      \caption{$\beta = 1.5$}
+      \label{fig:beta1.5}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{/home/sci/weiliu/projects/thesis/figures/math/ising_sim/b20_1000}
+      \caption{$\beta = 2.0$}
+      \label{fig:beta2.0}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{/home/sci/weiliu/projects/thesis/figures/math/ising_sim/b088_details}
+      \caption{$\beta = 0.88$ zoomed in}
+      \label{fig:beta0.88details}
+    \end{subfigure}
+    \label{fig:isingsim}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Simulation of Potts Model}
+\begin{figure}[H]
+  \centering 
+  \includegraphics[width=0.3\textwidth]{figures/gibbs/beta10}
+  \includegraphics[width=0.3\textwidth]{figures/gibbs/beta11}
+  \includegraphics[width=0.3\textwidth]{figures/gibbs/beta12}
+  % beta = 1.0, 1.1 and 1.2, and scan 500 burn-ins. 
+\end{figure}
+\centering
+\includemedia[
+  label=vidB,
+  addresource=sfig/gibbs_samples.swf,
+  activate=pageopen,
+  width=4cm, height=4cm,
+  flashvars={
+    source=sfig/gibbs_samples.swf
+    &loop=true
+  }
+]{}{sfig/gibbs_samples.swf}
+% beta = 1.1, burn-in = 300 for the gibbs movie
+
+\end{frame}
+
+\section{Applications}
+\subsection{Pairwise Connectivity with Six Dimensional MRF}
+\begin{frame}
+  \frametitle{Pairwise Connectivity With Spatial Coherence~\cite{liu2010spatialCopy}}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{The Goal}
+        \begin{itemize}
+        \item The Connectivity between each pair of voxels in single subject
+          rs-fMRI.
+        %% \item No Seed region needed.
+        \item Spatial regularization by MRF, without changing signals. 
+        \item Learn the strength of the smoothness from the data.
+        \end{itemize}
+      \end{block}
+      \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=0.9\textwidth]{sfig/pairwise_conn}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pairwise Connectivity With Spatial Coherence: the Model}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{block}{Solution}
+        \begin{itemize}
+        \item MRF defined on 6D graph.
+        \item Pairwise connectivity variable $X\in \{0, 1\}^N$, sample correlation $Y$. 
+        %% \item Add an edge $(x_{ij}, x_{st})$ if any voxels between $i,j$ and
+        %%   $s,t$ are neighbors.
+        \item $(X_{ij}, x_{ik}) \in \cE \Leftrightarrow j\in \cN(k)$.
+          \item $ P(F(y_{ij}) |x_{ij}) \sim \Nor(\mu, \sigma^2)$.
+        %% \item Two class segmentation: no connectivity and connectivity.
+        \item Variational Bayesian inference for  $X$.
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \includegraphics[width=\textwidth]{sfig/6dmrf}
+    \end{column}
+    \end{columns}
+\end{frame}
+
+%% We first construct a synthetic data set consisting of a 100  1
+%% 1-D image, with each pixel a 300-point time course signal. The time course was
+%% constructed with a baseline DC signal of 800, plus additive Gaussian noise of
+%% variance 50. We then added a sine wave signal of frequency 0.2 and amplitude
+%% 20 to two distant regions of the image.
+
+\begin{frame}
+  \frametitle{Experiments}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \includegraphics[]{sfig/m1_syn}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{block}{Simulated data}
+        \begin{itemize}
+          \item Construct 1D image. Connected voxels is added with sine wave
+            signal.
+          \item Spatial smoothing improves results, but increased false positive.
+
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{5pt}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{block}{Real data}
+        \begin{itemize}
+        \item Choose a point in PCC to shown DMN network.
+        \item Implemented on GPU (checkerboard effect).
+        \end{itemize}
+      \end{block}
+
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \includegraphics[width=1.0\textwidth]{sfig/m1_real}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+%% \begin{frame}
+%%   \frametitle{Some Computation Issues}
+%%   \begin{block}{}
+%%     \begin{itemize}
+%%       \item GPU (CUDA) programming.
+%%       \item Checkerboard effects. 
+%%     \end{itemize}
+%%   \end{block}
+%%   \includegraphics[width=0.5\textwidth]{sfig/checkerboard}
+%% \end{frame}
+
+
+%% \begin{frame}
+%% \frametitle{Full Pairwise Connectivity With Spatial Coherence Cont.}
+%%   \begin{columns}[c]
+%%     \begin{column}{10cm}
+%%       \begin{block}{Benefits}
+%%         \begin{itemize}
+%%         \item Show functional system real-time once given a seed.
+%%         \item Spatial coherence without over blurring.
+%%         \end{itemize}
+%%       \end{block}
+        
+%%       \begin{block}{Issues}
+%%         \begin{itemize}
+%%         \item Can only visualize one functional network.
+%%         \item Big Computation cost.
+%%         \end{itemize}
+%%       \end{block}
+%%     \end{column}
+
+%%     \end{columns}
+%% \end{frame}
+%-------------------------------------------------------
+\subsection{Consistent, Spatially Coherent Multiple Functional Networks}
+\begin{frame}
+\frametitle{Consistent, Spatially Coherent Multiple Functional
+  Networks~\cite{liu2011monteCopy} }
+\begin{block}{The Goal}
+  \begin{itemize}
+  \item Partition the brain into multiple functional networks.
+  \item Spatial coherence respected.
+  \item Parameter estimation.
+  \end{itemize}
+\end{block}
+\vspace{10pt}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\textwidth]{sfig/myseg}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Identify Consistent, Spatially Coherent Multiple Functional
+  Networks~\cite{liu2011monteCopy} Cont.}
+
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{sfig/vmf}
+
+      \begin{block}{Solution}
+        \begin{itemize}
+        %% \item Markov prior $P(X) = (1/Z) \exp \left ( -\beta \sum_{(r,s)\in \mathcal{E}} \psi(x_s, x_r)\right )$.
+          \item $X\sim MRF$, $x_s \in \{1, \dots, L\}$
+        \item Likelihood $P(y_s | x_s) = C_p(\kappa_l) \exp (\kappa_l \mu_l^{\top} y_s), y_s \in S^{p-1}$.
+        \item Inference $P(X | Y) \propto P(X) \cdot P(Y|X) $
+        \end{itemize}
+      \end{block}
+      \end{column}
+
+  \begin{column}{0.5\textwidth}
+    \includegraphics[width=1\textwidth]{sfig/genevmf}
+  \end{column}
+\end{columns}
+
+%% \includegraphics[width=0.4\textwidth]{sfig/gen}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Identify Consistent, Spatially Coherent Multiple Functional Networks ~\cite{liu2011monteCopy} Cont.}
+
+\begin{columns}
+  \begin{column}{0.6\textwidth}
+    \begin{block}{Expectation Maximization}
+        $Q(\theta) = \mathbb{E}_{X|Y} [\log P(X,Y;\theta)]$
+    \end{block}
+
+    \begin{block}{Pseudo Likelihood}
+       $ \log P(X^m; \theta) \approx \sum_{s\in \mathcal{V}} \log P(x_s | x_{\mathcal{N}_s};\theta)$
+    \end{block}
+
+    \begin{block}{Parameter Estimation}
+      $\hat \mu_l = \parallel R_l\parallel, R_l = \sum_{s \in \cV_l}^{} y_s $ \\
+      $\hat \kappa_l \approx (pR_l - R^3) / (1 - R^2) $\\
+      $\hat \beta = \argmax_\beta \log P(X; \theta)$ by Newton's method. 
+    \end{block}
+
+    \end{column}
+  \begin{column}{0.4\textwidth}
+    \begin{block}{Monte Carlo Expectation Maximization (MCEM)}
+      \begin{align*}
+        & \mathbb{E}_{X|Y} [\log P(X,Y;\theta)] \\
+        &\approx \frac{1}{M}\sum_m \log P(X^m; \theta)\\
+        & + \log P(Y|X^m; \theta)
+      \end{align*}
+      \includegraphics[width=1\textwidth]{sfig/imagechain_mcmc}
+    \end{block}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Experiments}
+\begin{figure}[H]
+ \begin{center}
+ \begin{tabular}{cccccc}
+      \includegraphics[width=0.12\textwidth]{figures_m2/wholebrain/sub1/axial0028} &
+      \includegraphics[width=0.12\textwidth]{figures_m2/wholebrain/sub1/axial0034} &
+      %% \vspace{0.5pt}
+      \includegraphics[width=0.12\textwidth]{figures_m2/wholebrain/sub2/axial0028} &
+      \includegraphics[width=0.12\textwidth]{figures_m2/wholebrain/sub2/axial0034} &
+      %% \vspace{0.5pt}
+      \includegraphics[width=0.12\textwidth]{figures_m2/wholebrain/sub5/axial0028} &
+      \includegraphics[width=0.12\textwidth]{figures_m2/wholebrain/sub5/axial0034} \\
+
+      \includegraphics[width=0.12\textwidth]{figures_m2/wholebrain/sub1/saggital0029} &
+      \includegraphics[width=0.12\textwidth]{figures_m2/wholebrain/sub1/coronal0029} &
+      %% \vspace{0.5pt}
+
+      \includegraphics[width=0.12\textwidth]{figures_m2/wholebrain/sub2/saggital0029} &
+      \includegraphics[width=0.12\textwidth]{figures_m2/wholebrain/sub2/coronal0029} &
+      %% \vspace{0.5pt}
+      \includegraphics[width=0.12\textwidth]{figures_m2/wholebrain/sub5/saggital0029} &
+      \includegraphics[width=0.12\textwidth]{figures_m2/wholebrain/sub5/coronal0029}\\
+
+      \multicolumn{2}{c}{\small Subject 1} &
+      \multicolumn{2}{c}{\small Subject 2} &
+      \multicolumn{2}{c}{\small Subject 3}
+    \end{tabular}
+  \end{center}
+  \caption {Functional networks detected by the proposed method for 3 subjects
+    overlaid on their T1 images.  The clusters are the visual (cyan), motor
+    (green), executive control (blue), salience (magenta), dorsal attention
+    (yellow), and default mode (red) networks.}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Inter-subject Consistency}
+\begin{figure}
+    \centering
+      \includegraphics[height=0.14\textwidth]{figures_m2/mcem/dmn_a} 
+      \includegraphics[height=0.14\textwidth]{figures_m2/mcem/dmn_s} 
+      \includegraphics[height=0.14\textwidth]{figures_m2/ica_separate/DMN_a} 
+      \includegraphics[height=0.14\textwidth]{figures_m2/ica_separate/DMN_s}
+      \includegraphics[height=0.14\textwidth]{figures_m2/ica_single/dmn_a} 
+      \includegraphics[height=0.14\textwidth]{figures_m2/ica_single/dmn_s} 
+      
+
+
+    \includegraphics[height=0.14\textwidth]{figures_m2/mcem/motor_a} 
+    \includegraphics[height=0.14\textwidth]{figures_m2/mcem/motor_s} 
+    \includegraphics[height=0.14\textwidth]{figures_m2/ica_separate/motor_a} 
+    \includegraphics[height=0.14\textwidth]{figures_m2/ica_separate/motor_s}
+    \includegraphics[height=0.14\textwidth]{figures_m2/ica_single/motor_a} 
+    \includegraphics[height=0.14\textwidth]{figures_m2/ica_single/motor_s} 
+
+
+    \includegraphics[height=0.14\textwidth]{figures_m2/mcem/visual_a} 
+    \includegraphics[height=0.14\textwidth]{figures_m2/mcem/visual_s} 
+    \includegraphics[height=0.14\textwidth]{figures_m2/ica_separate/visual_a} 
+    \includegraphics[height=0.14\textwidth]{figures_m2/ica_separate/visual_s}
+    \includegraphics[height=0.14\textwidth]{figures_m2/ica_single/visual_a} 
+    \includegraphics[height=0.14\textwidth]{figures_m2/ica_single/visual_s} 
+
+
+    \includegraphics[height=0.14\textwidth]{figures_m2/mcem/atten_a} 
+    \includegraphics[height=0.14\textwidth]{figures_m2/mcem/atten_s} 
+    \includegraphics[height=0.14\textwidth]{figures_m2/ica_separate/atten_a} 
+    \includegraphics[height=0.14\textwidth]{figures_m2/ica_separate/atten_s}
+    \includegraphics[height=0.14\textwidth]{figures_m2/ica_single/atten_a} 
+    \includegraphics[height=0.14\textwidth]{figures_m2/ica_single/atten_s} 
+
+  \caption{Comparison of the overlap of the label maps estimated by our MCEM
+    approach, group ICA and single subject ICA on 16 subjects. Left: MCEM
+    methods. Middle: single subject ICA. Right: group ICA. Color map ranges from
+    8 (red) 16 (yellow). }
+\end{figure}
+\end{frame}
+
+
+
+\subsection{Consistent Group analysis by Hierarchical MRF}
+\begin{frame}
+  \frametitle{ Hierarchical Model: a Better Approach~\cite{Liu2012}}
+  \includegraphics[width=\textwidth]{sfig/bidirections}
+  \vspace{1pt}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{block}{Existing Methods}
+        \begin{itemize}
+        \item Bottom-up or top-down. 
+        \item Treat each subject same. 
+        \item Lose fine structures due to spatial smoothing.
+        \item Estimation is one way. 
+        \end{itemize}
+      \end{block}
+    \end{column}
+  
+    \begin{column}{0.6\textwidth}
+      \begin{block}{We Propose}
+        \begin{itemize}
+
+        \item  A hierarchical structure including group and subject. 
+        \item Each subject has its own variance. 
+        \item MRF prior for within- and between-subject constraints.
+        \item Jointly estimate both levels. Group inform subjects as a
+          prior. Subjects feedback into group estimation.
+        \item Bayesian framework. Data driven, parameter estimation.
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Joint Estimation with MRF}
+  \begin{block}{Build a graph}
+    \begin{itemize}
+    \item within-subject piecewise constant constraints.
+    \item Between-subject (between-level) dependency. 
+    \end{itemize}
+  \end{block}
+  \vspace{10pt}
+  \centering
+  \includegraphics<1>[width=0.7\textwidth]{sfig/hier3a}
+  \includegraphics<2>[width=0.7\textwidth]{sfig/abstract_layer}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A Graphical View of the Hierarchical Model}
+  \includegraphics<1>[width=1\textwidth]{sfig/grp1}
+  \includegraphics<2>[width=1\textwidth]{sfig/grp2}
+
+  \begin{block}{Likelihood}
+    $P(y_s | x_s) \sim vMF(\mu, \kappa)$
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Bayesian Inference: Gibbs Sampling}
+  \begin{block}{}
+    \begin{itemize}
+      \item Monte Carlo Sampling used to approximate $\mathbb{E}_{X|Y} [\log
+        P(X,Y;\theta)]$.
+        \item Gibbs sampling also in a multi-level fashion.
+    \end{itemize}
+    \end{block}
+
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \includegraphics[width=1\textwidth]{sfig/hiergibbs2}
+        \caption{Sampling schedule is also hierarchical.}
+        \end{figure}
+      \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \includegraphics[width=1\textwidth]{sfig/voxelgibbs}
+        \caption{At voxel level, sample each data point given other data points within and between subject. }
+        \end{figure}
+    \end{column}
+\end{columns}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{The Algorithm: MCEM Sampling on HMRF Model}
+\begin{algorithm}[H]
+  %% \SetAlgoLined
+  \KwData{Normalized rs-fMRI, initial group label map}
+  \KwResult{MC samples of label maps $\{X^m, m = 1, \dots, M\}$, parameters $\{\beta, \mu, \sigma\}$}
+  \While{$\mathbb{E}_{P(Y|X)}[\log P(Y, X;\theta)]$ not converged}{
+    %% E step\;
+    \Repeat{$B+M$ times}{
+      \lForEach(){$s \in \cV_G$}{
+        Draw sample of $x_s$ from $P(x_s | x_{-s}, y_s;\theta)$
+      }
+      \ForEach(){$j  = 1\dots J$}{
+        \lForEach(){$s \in \cV_j$}{
+        Draw sample of $x_s$ from $P(x_s | x_{-s}, y_s; \theta)$
+        }
+      }
+      Save sample $X^m $ after $B$ burn-ins\;
+    }
+    %% M step\;
+    \ForEach{$l = 1\cdots L$} {
+      Estimate $\{\mu_l, \kappa_l\}$ by maximizing $(1/M)\sum_{m=1}^M\log P (Y|X^m;\theta)$\;
+    }
+    Estimate $\beta$ by maximizing $(1/M)\sum_{m=1}^M\log P (X^m;\theta)$\;
+  }
+\end{algorithm}
+\end{frame}
+
+\begin{frame}
+\frametitle{Synthetic Data: Estimation~\cite{liu2013functional}}
+\includegraphics[width = 1\textwidth]{sfig/allmaps}
+\end{frame}
+
+\begin{frame}
+\frametitle{Synthetic Data: Monte Carlo Test}
+\includegraphics[width = 1\textwidth]{sfig/2level_3smoothing}
+\end{frame}
+
+\begin{frame}
+\frametitle{Synthetic Data: Between-Session consistency}
+\centering
+\includegraphics[width = 1\textwidth]{sfig/boxplot}\\
+\includegraphics[width = 1\textwidth]{sfig/012variance}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bootstrapping: Group Mean Maps}
+\centering
+\includegraphics[width = 1\textwidth]{sfig/grp_mean}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bootstrapping: Group Variance Maps}
+\centering
+\includegraphics[width = 1\textwidth]{sfig/grp_var}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bootstrapping: Subject Mean Maps}
+\centering
+\includegraphics[width = 0.7\textwidth]{sfig/submean}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bootstrapping: Subject Variance Maps}
+\centering
+\includegraphics[width = 1\textwidth]{sfig/sub_var}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Inter-level Links Estimation}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{block}{Bayesian Leave-One-Out Cross-Validation}
+        \begin{itemize}
+          \item $\alpha = \argmax P(Y_t|Y;\alpha, \theta_t)$
+          \item Use average $X_t$ to approximate: $P(Y_t | Y;\alpha, \theta_t) = \int P(Y_t | X_t; \theta_t) P(X_t| Y;\alpha)\, \textrm{d} X_t  \approx (1/M)\sum_m P(Y_t|X_t^m; \alpha, \theta_t), \quad X_t^m \sim P(X_t|Y; \alpha).$
+            \item $X_t$'s are generated within MCEM.
+        \end{itemize}
+      \end{block}
+      
+      \end{column}
+
+    \begin{column}{0.4\textwidth}
+      \includegraphics[width = 0.8\textwidth]{sfig/predictLLvsAlpha}
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Conclusions}
+  \begin{block}{Summary of Contributions}
+    \begin{itemize}
+    \item Pairwise connectivity estimation with MRF regularization.
+    \item Segmentation of fMRI images for multiple network estimation. 
+    \item Group analysis by hierarchical MRF with consistency. 
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Future work}
+    \begin{itemize}
+    \item Group analysis on subjects with large variation (neurosurgery).
+    \item The correlation between functional connectivities (networks) and
+      clinical variables.
+      \end{itemize}
+  \end{block}
+  \vspace{10pt}
+  \includegraphics[width=1\textwidth]{sfig/allsurgery}
+\end{frame}
+
+
+
+
+
+%======================================================
+
+
+%% \subsection{Traumatic Brain Injury Image Segmentation with Active Learning}
+%% \begin{frame}
+%%   \frametitle{Traumatic Brain Injury Image Segmentation with Active Learning: Motivation}
+%%   \begin{block}{}
+%%     \begin{itemize}
+%%       \item No prior knowledge of lesion. 
+%%       \item Multi-modality, longitudinal data. Complex patterns. 
+%%       \item Existing algorithm: high false-positive and false-negative. 
+%%       \item A slight user involvement significantly improves result.
+%%       \item Computer should be active, user will be passive. (less burden).
+%%     \end{itemize}
+%%   \end{block}
+%%   \includegraphics[width=\textwidth]{actlearn_fig/allchannels}
+%% \end{frame}
+
+%% \begin{frame}
+%%   \frametitle{Solution}
+%%   \begin{itemize}
+%%   \item Semi-supervised approach based on graph-cuts. 
+%%   \item Tight control of false positive rate. 
+%%   \item Using MRF to represent soft-constraints: within normal, lesion, and the boundary. 
+%%   \item Compute query score: posterior ratio (logistic ratio)
+%%   \end{itemize}
+
+%%   \begin{figure}
+%%     \includegraphics[width=0.3\textwidth]{actlearn_fig/mri}
+%%     \hspace{10pt}
+%%     \includegraphics[width=0.3\textwidth]{actlearn_fig/seg_nosmooth}
+%%     \hspace{10pt}
+%%     \includegraphics[width=0.3\textwidth]{actlearn_fig/seg_smooth}
+%%   \end{figure}
+%% \end{frame}
+
+%% \begin{frame}
+%%   \frametitle{Active Learn TBI Images. }
+%%   User initialization with a bounding box. 
+%%   \begin{figure}
+%%     \includegraphics[width=0.45\textwidth]{actlearn_fig/gmmbg}
+%%     \hspace{10pt}
+%%     \includegraphics[width=0.45\textwidth]{actlearn_fig/gmmfg}
+%%     \hspace{10pt}
+
+%%   \end{figure}
+%%     Active learn good candidate objects, followed by
+%%     self-training/active-learning.
+%%     \includegraphics[width=1\textwidth]{actlearn_fig/mrf_onquery}
+%% \end{frame}
+
+
+
+%================================================================
+
+
+%% \begin{frame}
+%%   \frametitle{Neighbor System and Cliques}
+%%   \begin{columns}[c]
+%%     \begin{column}{6cm}
+%%       Cliques for a 4-neighbor system.
+%%       \end{column}
+
+%%     \begin{column}{5cm}
+%%       \includegraphics[width=0.9\textwidth]{sfig/clique_1}
+%%     \end{column}
+%%     \end{columns}
+%% \end{frame}
+
+
+%% \begin{frame}
+%%   \frametitle{Bayesian Inference: Gibbs Sampling At Voxel Level}
+%%   \begin{block}{}
+%%     \begin{align*}
+%% &p(x_s | x_{-s},Y) \propto \frac{1}{Z_s}\exp\{-U(x_s | x_{-s})\} \cdot p(y_s | x_s) \\
+%% &= \frac{1}{Z_s}\exp\{-U_p(x_s | x_{\cN_s }, y_s)\} \nonumber\\
+%% & U_p = \alpha\!\sum_{j=1}^J \psi(x_s, x_{\tilde s}^j) + \beta\!\!\sum_{r\in \cN_{s}} \psi(x_s,x_r), \quad \forall s \in \cV_G,\\
+%% & U_p = \alpha \psi(x_s,x_{\tilde s}) + \beta\!\!\sum_{r\in \cN_{s}} \psi (x_s, x_r) - \kappa_l \mu_l\T y_s - \log C_p, \: \forall s \in \cV_H^j.
+%% \end{align*}
+%%     \end{block}
+%%   \includegraphics[width=0.6\textwidth]{sfig/voxelgibbs}
+
+%% \end{frame}
+
+
+\begin{frame}
+  \frametitle{Publications}
+
+  \renewcommand{\refname}{List of Publications}
+  {\scriptsize
+    %% \beamertemplatearticlebibitems
+    \setbeamertemplate{bibliography item}[text]
+    \begin{thebibliography}{}
+    \bibitem[Liu2010]{liu2010spatialCopy}
+      \textbf{W.~Liu}, P.~Zhu, J.~Anderson, D.~Yurgelun-Todd, and P.T. Fletcher.
+      \newblock Spatial Regularization of Functional Connectivity using high-dimensional {M}arkov random fields.
+                \newblock \emph{Medical Image Computing and Computer-Assisted
+                  Intervention--MICCAI 2010}, pages 363--370, 2010.
+
+     \bibitem[Liu2011]{liu2011monteCopy}
+       \textbf{W.~Liu}, S.~Awate, J.~Anderson, D.~Yurgelun-Todd, and P.T. Fletcher.
+       \newblock Monte {C}arlo expectation maximization with hidden {M}arkov
+       models to detect functional networks in resting-state {fMRI}.
+       \newblock \emph{Machine Learning in Medical Imaging}, pages 59--66, 2011.
+
+     \bibitem[Liu2012]{Liu2012}
+       \textbf{W.~Liu}, S.~Awate, and P.T. Fletcher.
+       \newblock Group analysis of resting-state {fMRI} by hierarchical {M}arkov
+       random fields.
+       \newblock \emph{Medical Image Computing and Computer-Assisted Intervention--MICCAI 2012}, pages 189-196, 2012.
+    \end{thebibliography}
+  }
+\vspace{5pt}
+  Under Revision/Review:
+{\scriptsize
+  \setbeamertemplate{bibliography item}[text]
+  \begin{thebibliography}{}
+    \bibitem[Liu2013]{liu2013functional}
+      \textbf{W.~Liu}, S.~Awate, J.~Anderson, and P.T. Fletcher.
+      \newblock A Functional Networks Estimation Method of Resting-State fMRI Using a
+    Hierarchical Markov Random Field.
+    \newblock \emph{NeuroImage}, Under revision.
+
+    \bibitem[Wang2013]{Wang2013active}
+      Bo Wang, \textbf{Wei Liu}, Marcel Prastawa, Andrei Irimia, Paul M. Vespa, Johh D. Van Horn, P. Thomas Fletcher, Guido Gerig.
+      \newblock 4D Active Cut: An Interactive Tool for Pathological Anatomy Modeling
+      \newblock \emph{IEEE International Symposium on Biomedical Imaging (2014)}, under review.
+  \end{thebibliography}
+}
+\end{frame}
+
+\begin{frame}
+  \centering
+  \includegraphics[width=0.5\textwidth]{sfig/dog_brain}\\
+  \vspace{10pt}  
+  Thank you.\\
+  This is the end of the talk.
+\end{frame}
+
+
+\end{document}

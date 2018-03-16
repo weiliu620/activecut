@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+%% \usepackage{bookman}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem*{mythm}{}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage[lined, boxed, linesnumbered, commentsnumbered]{algorithm2e}
+\usepackage{/home/sci/weiliu/haldefs}
+\hypersetup{
+  % bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={OHBM 2012},
+    pdfauthor={Wei Liu},     % author
+    pdfsubject={OHBM 2012},   % subject of the document
+    pdfcreator={Wei Liu},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={OHBM}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks= true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=blue,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\topmargin}{-0.5 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{9 in}
+\setlength{\headsep}{0.5 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+\begin{document}
+\title{OHBM2012 Summary} 
+%% \author{Wei Liu\\ \small{(advisor: Tom Fletcher)} }
+%% \date{\today} 
+\maketitle 
+\hspace{6 pt}
+
+The OHBM is significantly different from MICCAI in that
+\begin{itemize}
+  \item it only focus on human brain's study, rather than MICCAI's surgery and computer intervention study.
+  \item There are more presentations on applications. Many posters just conduct a study with existing methods and tools, and get to a conclusion that is clinically meaningful. Hence some clinical people also showed up on the annual meeting, trying to get updated on their field. 
+  \item Only posters, no formal publications. The meeting is supposed to be a place where people in the community have face-to-face communication.
+  \item no lunch. Only one simple dinner.
+\end{itemize}
+
+Over 2000 posters are shown during the 4-day meeting. They are split into two groups. Group A are shown in day 1 and day2, and group B in day 3 and 4. In group A, even number posters are shown on day 1 and odd number on day 2. Same for group B. This even/odd organization has the benefits that the posters are not too crowded. 
+
+My focus is the category \emph{Modeling and Analysis Methods} in group A. 
+
+For education courses, my original goal is two courses: \emph{The connectome} and \emph{Resting-State brain Networks}. Since each course has some speakers and topics that I'm interested, I need to switch between the courses and sometimes this is not easy when the speakers run overtime. 
+
+Beginning from 2012, all poster authors are encouraged to upload a pdf file of their posters to the OHBM website. However, not all authors did so. Therefore it is good practice to take a photo of the poster that I'm interested. This is also helpful to remind me which posters I've studied among the >2000 posters.
+
+Wald [Connectome course] talks about the processing steps needed for rfMRI, and thinks regression out of whole brain signal introduce more anti-correlation. Caution must be taken to interpret such anti-correlation. The correlation strength is stabilized with acquisition times as brief as 5 minutes. This seems inconsistent with the current study of the dynamics of functional networks.
+
+In [Bullmore, Connectome course], the Structural Equation Modeling or Path Analysis is discussed briefly. Although we are not using this model, I'm interested that this model combines interregional covariances with prior (anatomical) directed network to estimate path coefficients. (This is to study effective connections, so we might not be interested in it anyway. Just put it here as a note).
+
+[Bullmore, Connectome] Also points out that when defining the network node, anatomical parcellations can allow regions to vary in size, thereby biasing connection strength in favor of larger regions.
+
+[Varoquaux, Connectome course] points out the number of ROIs in brain network analysis is best to be ~30. To many regions gives harder statistical problem. A ROI with 10mm radius is good and we need to avoid too small regions. 
+
+[Allen, poster 476A] studies the dynamics of functional connectivity. She uses ICA to extract independent components, then compute correlation matrix from the components with a sliding window. The interesting part is a K-Means clustering is used to cluster the (vectorized) correlation matrix into K clusters, and the cluster center means the \emph{state} that happens across time and subjects.
+
+[Eikeland, poster 496A, photo 0272] uses Maximum information Coefficient (MIC) as the measures of functional connectivity between two independent components. MIC is part of a larger family of maximal information-based nonparametric exploration (MINE) statistics. Eikeland claims the first to apply MIC in functional connectivity study. 
+
+[poster 566A, photo 0275] studies the most common functional connectivities form along direct anatomical connections. The dynamics connectivities that last longer durations generally reply on direct WM connections. 
+
+[poster 562A, photo 0276, also see pdf] studies the method to obtain group functional network from individual subjects networks. The conventional approach is to use a mean or media correlation network. In this work a new method called \emph{exponential random graph modelling} (ERGM) is used to compute group network. It is claimed that the network generated by ERGM  better match the group mean or median of some network metrics.
+
+[poster 23A, photo 0291] use network theory to study the cortical structure and its change in AD. This is not fMRI study but voxel based morphormetry (VBM) study. This might be related to Nikhil's research work. 
+
+[poster 360A, photo 0319] gives a general optimization method that can be used in place of MCMC. The \emph{Bayesian Global Optimization} method is based on Gaussian processes, and can be applied to belief-precision model. Although it may not be applied into my research. The method's relationship with Gaussian process and its Bayesian property is interesting to explore.
+
+[poster 361A, photo 0321] is an extension on ref. [1]. And I find [1] interesting because it discuss that human being's learning behavior is better described by Bayesian models than other theories. (See the Intro section.) I did not read through the poster 361A since it's merely an extension of [1].
+
+[poster 362, photo 0322] is by the author of [1]. Here the author compare four parameter estimation methods including Variational Bayesian and MCMC. 
+
+Sidenodes: it seems that people from ETH very much like the Variational Bayeisian methods. I've see at least 3 posters where the VB methods is used. [poster 366, photo 0326]
+
+[poster 383, photo 0336] use wavelet to study the dynamics of functional network and also the cognitive states.
+
+[poster 386, photo 0337] is an extension of group Lasso method applied on Disease classification. Although their method is applied on structural images, there is possibly that we can use similar idea in functional images. This work is related to Eleanor's work. (This poster is from Dinggang Shen, UNC.)
+
+[poster 415, photo 0344] studies networks from multiple subjects. They uses \emph{Mixed Memembership Block Model} to detect the common network among these networks.
+
+[poster 345, photo 417] use hierarchical clustering method to partition the brain voxels. The similarity metric is defined as the normalized inner product between each pair of tracts.  This work might be lelated to Xiang's DTI tractography .
+
+[poster 478, photo 360] studies if there is any relation between the functional connectivity of two activated clusters and their spatial distance.
+
+Other posters that need attention: 0361, 0363, 0369, 0370, 0374, 0375, 0390, 0391
+
+
+[1] 1. Mathys, C., et al. (2011). A Bayesian foundation for individual learning under uncertainty. Front. Hum. Neurosc., 5: 39.
+
+\bibliographystyle{plainnat} 
+\bibliography{quaref}
+\end{document}

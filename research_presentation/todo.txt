@@ -1,0 +1,6 @@
+- A slice with ICA maps. 
+- A slice with all analysis methods of rs-fMRI.
+- add a slice for Jeff Anderson's work on Autism using fMRI. 
+-- gives a map of subjects maps to show how they are similar but also variable.
+
+
