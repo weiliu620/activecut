@@ -1,0 +1,9 @@
+Highlights:
+
+A hierarchical method for estimating intrinsic functional networks from a group.
+
+Jointly estimate group and subjects in a single graphical model.
+
+Data-driven with Bayesian framework and parameter estimation. 
+
+Higher accuracy, consistency, and more robustness in synthetic and real data.

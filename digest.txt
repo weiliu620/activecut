@@ -1,0 +1,88 @@
+<<<< Digests: >>>>
+-- functional network structure can be revealed by investigating the behavior of the BOLD function.
+-- Areas of task-specific brain activity could be indirectly defined. 
+-- basal activity of the brain.
+-- With resting state fMRI data, it is evident that the brain can be segmented into regions of correlated BOLD signal fluctuations. (Aviv Mezer, cluster analysis of ...)
+-- Spontaneous neural activity.
+-- Conventional fMRI analysis.
+-- A number of signal processing schemes have been suggested for analyzing the resting-state BOLD signal, ranging from simple correlation to spectral decomposition of frequency analysis.
+-- Network approaches have already revealed significant between-subject variability in structural and functional connectivity, so the role of variations in networks for variable cognition and behavior will likely be an intense area of future research. 
+
+-- \cite{10.1371/journal.pone.0044428} has a discussion that simple averaging
+subjects network is not the best way of estimating group network. This can be
+used in our paper as a reference.
+
+-- Previous work on group resting fMRI analysis using ICA (14, 15) simply concatenated individual time-series data from different subjects. By concatenating individual data, the subject-to-subject variance is not modeled as a separate variance component. The tensor-PICA approach used in this study differs in that the analysis simultaneously decomposes all data in three domains: space, subject, and frequency. The advantage of this method is that the between-subject variation is estimated directly as part of the decomposition, enabling consistent between-group as well as within-group analysis to quantify the consistency of these networks. -- "consistent resting state network across health subjects" 
+
+-- Have only a marginal influence on...
+
+-- From "effective connectivity and intersubject variability: using a Multisubject Network to Test Difference and Commonalities" (Dropbox). Previous studies of functional connectivity have deal with subject variability either by analyzing the data from different subjects separately, or pretending the data came from same subject. The hierarchical network prevides additional degree of freedom. The common/shared influence within the group is modeled by a virtual 'group' map. 
+
+-- "an empirical comparison of surface based...group studies in neuroimaging" (dropbox) One challenge is that this comparison is performed in the absense of a ground truch, so it it difficult to characterize the correctness of ...
+
+-- In paper 'ICA by Self Organization Map', there are some discutssions on the assumption of group analysis by concatenation. Need read it and find something useful
+
+-- an alternative computational methodology for statistical inference that is based on variation methods. 
+
+-- Metropolis-Hasting sampling generates a Markov chain whose equilibrium density is the candidate density.
+-- http://web.mit.edu/bcs/nklab/GSS.shtml: The Group-Constrained Subject-Specific (GSS) method is designed to algorithmically discover functional regions of interest (fROIs) that are activated systematically across subjects.
+-- This experiment demonstrates that 
+-- The second experiment quantified the performance of 
+
+
+
+
+
+<<<< Random Thoughts >>>>
+-- Need to talk a little about the "resting state" is actually not resting. Search google bookmark for a blog talking this issue.
+
+-- Need 17 network results. 
+-- Need to talk about why ICC does not apply to our experiments? the within session error vs between session error, a relative metric. 
+-- Need a method (such as cross-validation) for the value of alpha parameter.
+-- Do we need to add the conversion from bayesian network to MRF network, i.e. the moralizatoin etc?
+-- Mention that a much smaller spatial smoothing kernel is needed for the data used in MRF.
+-- mention the weakness of the algorithm: slow.
+-- plot the parameter estimation, and the objective function of EM. 
+
+-- Read Yeo's paper.
+-- Read Dropbox topics of consistency test.
+-- ICC can be used for posterior map?
+
+-- Issue: Session1 and 2 are month apart, but 2 and 3 are just 45 minutes apart. We
+do not take into account such time intervals.
+
+-- The goal of our work is not to obtain a best estimates of the group, but a best estimates of the subject map under the hierarchical structure. 
+
+
+
+
+% voxel-based vs ROI/object-based.
+
+%% discuss the consistency of various networks. DMN and visual are more consistent,
+%% etc. Can also be discussed on results section.
+
+%% K-Means over-fitting? More iterations give larger variance of bootstrap samples,
+%% at least for some clusters.
+
+ %% N-Cuts vs K-Means: bias vs variance??
+
+%% Computation cost, GPU computing, sampling efficiency, convergence test
+
+% MCMC convergence.
+
+% May reference "An algorithmic method for functionally defining regions of
+% interest in the ventral visual pathway", which constrain the subject's
+% statistics by a group.
+
+
+<<<< papers I need to cite: >>>>
+
+-- Gael:
+-- Thirion:
+-- hartvig and Jensen: "spatial mixture modelling of fMRI data", early application of MRF on fMRI data.
+-- Polina Golland: 
+-- Aviv Mezer: "Cluster analysis of resting-sttate fMRI time series", for clustering.
+
+
+rubust
+reproducible

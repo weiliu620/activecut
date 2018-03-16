@@ -1,0 +1,39 @@
+\documentclass[fleqn]{article}
+\usepackage{palatino,url} 
+%\usepackage{charter}
+%\usepackage{mathptmx}
+%\usepackage{utopia}
+\usepackage{/home/sci/weiliu/haldefs}
+\usepackage{/home/sci/weiliu/notes}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage[authoryear,sort]{natbib}
+
+\begin{document}
+\lecture{}{Research Notes}
+
+Wei Liu\\
+weiliu@sci.utah.edu
+
+\section{Randome Field Theory}
+\citet{Kiebel1999} use residuaal map based on the design matrix, so this is not we need. We do not use design matrix when we compute correlation on resting data, so there is no stimulus or design matrix at all. 
+
+Now look at \citet{Cao99thegeometry}. This paper is one of the core papers talking about applying random field theory in computing correaltion. But this is 30 pages without a lot of theory and will take much time to understand.
+
+\citet{tom_nonpar} and some other paper by same author\citep{tom_rft_meg, tom_nonstat, tom_fwe} talked about using permuation test to find the activated functional area. They have a Matlab-based software SnPM for that. This need further study, and can be a research direction or final project topic.
+
+Further reading of \citet{tom_nonpar} indicated that their permuation method is also applied to block design, not the resting state. But I think we don't have to constrain ourself in resting state imaging when using permuation method. Let's first see what happens if we use permutation method on block designed tata.
+
+The author said this permutation method only applis to small computation cost imaging problem. Is it because nonparametric method take more computation time \dots
+
+restricted randomization and unrestricted randomization???
+
+\section{Field Map}
+
+\citet{Elliott20041005} is for fieldmap, and have refered some useful articles.
+
+
+\bibliographystyle{plainnat}
+\bibliography{/home/sci/weiliu/myproj/all}
+\end{document}

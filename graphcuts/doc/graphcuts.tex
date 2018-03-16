@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+ 
+\usepackage{/home/sci/weiliu/haldefs}
+\usepackage{/home/sci/weiliu/notes}
+\usepackage{/home/sci/weiliu/projects/lwdefs}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{textcomp}
+
+\usepackage{subfigure}
+\usepackage{hyperref}
+\usepackage{/home/sci/weiliu/packages/breakurl/breakurl}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{natbib}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{color}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Technical report: Graph cuts on Markov Random Field},    % title
+    pdfauthor={Wei Liu},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Wei Liu},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={fMRI, markov random field, Graph-cuts}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks= true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+\begin{document}
+\title{Techical Report: Markov Random Field on fMRI connectivity}
+\author{Wei Liu}
+\maketitle
+
+This is a short notes for recent experiments of graph-cuts on Markov Random Field.
+
+\section{Graph-cuts}
+A few things about Graph-cuts: 1) For two-class problem, the Graph-cuts can achieve a global minimum of the energy function. 2) Energy function need some conditions in order to use graph-cuts.
+
+Even Graph-cuts method can be used in our algorithm's framework, there is still the problem of memory usage. This is because for $n$ gray matter voxels, we need $n^2$ vertex in the graph, and need at most $O(n^2)$ edges. Even vertex can be saved in single bit, edges have to be floating point.
+
+\section{Experiments}
+\begin{figure}
+\centering
+\subfigure[True binary, $\sigma = 0.2$]{\includegraphics[width=0.3\textwidth]{figures/t02}} 
+\subfigure[observed noise, $\sigma = 0.2$]{\includegraphics[width=0.3\textwidth]{figures/o02}} 
+\subfigure[recovered, $\sigma = 0.2$]{\includegraphics[width=0.3\textwidth]{figures/r02}} \\
+\subfigure[True binary, $\sigma = 2.0$]{\includegraphics[width=0.3\textwidth]{figures/t20}} 
+\subfigure[observed noise, $\sigma = 2.0$]{\includegraphics[width=0.3\textwidth]{figures/o20}} 
+\subfigure[recovered, $\sigma = 2.0$]{\includegraphics[width=0.3\textwidth]{figures/r20}} \\
+\subfigure[True binary, $\sigma = 5.0$]{\includegraphics[width=0.3\textwidth]{figures/t50}} 
+\subfigure[observed noise, $\sigma = 5.0$]{\includegraphics[width=0.3\textwidth]{figures/o50}} 
+\subfigure[recovered, $\sigma = 5.0$]{\includegraphics[width=0.3\textwidth]{figures/r50}} \\
+\caption{test on different noise level. First column is true binary labeled image of $0$ and $1$. Second column is the observed noise image $\vec y = \vec x + \mathcal{N}(0, \sigma^2)$. Third column is recoved binary label image. We see when noise level is high, the recovered image is less accurate.}
+\label{fig1}
+\end{figure}
+
+\begin{tabular} {l | r | r}
+ & $\mat E$(recovered) = $\mat E_{smooth} + \mat E_{data}$ & $\mat E$(true) = $\mat E_{smooth} + \mat E_{data}$ \\
+$\sigma = 0.2$ & -97022 = (-52788) + (-44234) &  -97022 = (-52788) + (-44234) \\
+$\sigma = 2.0$ & -6603 = (-54452) + (47849) &  -5328 = (-53121) + (47793) \\
+$\sigma = 5.0$ & 29377 = (-55012) + (84390) &  31125 = (-53036) + (84161) \\
+\end{tabular}
+
+\begin{figure}[ht]
+\centering
+\subfigure[true]{\includegraphics[width=0.24\textwidth]{figures/t50}}
+\subfigure[with noise]{\includegraphics[width=0.24\textwidth]{figures/o50}}
+\subfigure[recovered, $\beta = 0.7$]{\includegraphics[width=0.24\textwidth]{figures/r50}}
+\subfigure[recovered, $\beta = 0.5$]{\includegraphics[width=0.24\textwidth]{figures/r50b05}}\\
+\subfigure[recovered, $\beta = 0.4$]{\includegraphics[width=0.24\textwidth]{figures/r50b04}}
+\subfigure[recovered, $\beta = 0.3$]{\includegraphics[width=0.24\textwidth]{figures/r50b03}}
+\subfigure[recovered, $\beta = 0.2$]{\includegraphics[width=0.24\textwidth]{figures/r50b02}}
+\subfigure[recovered, $\beta = 0.15$]{\includegraphics[width=0.24\textwidth]{figures/r50b015}}
+\caption{Test recover label image with different smoothness parameter $\beta$. The true binary image is generated with $\beta = 0.7$, $\sigma = 5$ (really big noise). The Graph-cuts algorithm use $\sigma = 0.5$ and various choice of $\beta$. We see when using Graph-cuts for segmentation, $\beta = 0.7$ can not give good results. And less $\beta$ gives better recovered image. This is probably because when adding high level Gaussian noise, the image becomes less smooth, and using original $\beta = 0.7$ is not a good match for noised image. That is saying, even Graph-cuts is able to obtain global optimum of the energy function, it depends heavily on the parameters. }
+\end{figure} 
+\bibliographystyle{plainnat}
+\bibliography{/home/sci/weiliu/projects/zotero}
+\end{document}

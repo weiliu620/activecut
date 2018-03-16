@@ -1,0 +1,2 @@
+proportion should be init'd at begining of gmmodel.cxx. 
+

@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="corr_overlay.svg"
+   inkscape:export-filename="/home/sci/weiliu/projects/hmrf_journal/manuscript/supp/figures/corr_overlay/corr_overlay.png"
+   inkscape:export-xdpi="600"
+   inkscape:export-ydpi="600">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="441.22086"
+     inkscape:cy="697.56317"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1030"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2985" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <image
+       y="32.362183"
+       x="20"
+       id="image3065"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub05676/visual.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="32.362183"
+       x="250"
+       id="image3127"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub05676/motor.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="32.362183"
+       x="480"
+       id="image3173"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub05676/atten.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="314.36218"
+       x="20"
+       id="image3235"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub05676/salience.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="313.11218"
+       x="250"
+       id="image3297"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub05676/executive.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="314.36218"
+       x="482"
+       id="image3359"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub05676/dmn.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="112.36218"
+       x="20"
+       id="image3475"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub08224/visual.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="112.36218"
+       x="250"
+       id="image3537"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub08224/motor.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="112.36218"
+       x="480"
+       id="image3583"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub08224/atten.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="393.11218"
+       x="20"
+       id="image3645"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub08224/salience.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="394.36218"
+       x="250"
+       id="image3707"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub08224/executive.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="393.11218"
+       x="482"
+       id="image3769"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub08224/dmn.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="191.61218"
+       x="20"
+       id="image3866"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub08889/visual.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="191.61218"
+       x="250"
+       id="image3928"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub08889/motor.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="191.61218"
+       x="480"
+       id="image3974"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub08889/atten.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="473.11218"
+       x="20"
+       id="image4103"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub08889/salience.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="473.11218"
+       x="250"
+       id="image4165"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub08889/executive.png"
+       height="78.75"
+       width="200" />
+    <image
+       y="473.11218"
+       x="482"
+       id="image4227"
+       xlink:href="file:///home/sci/weiliu/projects/hmrf_journal/revision2/corr/overlay_map/sub08889/dmn.png"
+       height="78.75"
+       width="200" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="40"
+       y="282.36218"
+       id="text4230"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4232"
+         x="40"
+         y="282.36218">visual (33, -93, 15)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="260"
+       y="282.36218"
+       id="text4234"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4236"
+         x="260"
+         y="282.36218">motor (-3, -18, 51)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="480"
+       y="282.36218"
+       id="text4238"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4240"
+         x="480"
+         y="282.36218">dorsal attentive (-9, -72, 48)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="40"
+       y="574.36218"
+       id="text4242"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4244"
+         x="40"
+         y="574.36218">salience (-50, -8, 2)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="240"
+       y="574.36218"
+       id="text4246"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4248"
+         x="240"
+         y="574.36218">executive control (0, -24, 45)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="492"
+       y="574.36218"
+       id="text4250"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4252"
+         x="492"
+         y="574.36218">default mode (-6, -66, 27)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-92.362183"
+       y="14"
+       id="text4254"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan4256"
+         x="-92.362183"
+         y="14">sub1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-162.36218"
+       y="14"
+       id="text4258"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan4260"
+         x="-162.36218"
+         y="14">sub2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-252.36218"
+       y="14"
+       id="text4262"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan4264"
+         x="-252.36218"
+         y="14">sub3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-372.36218"
+       y="14"
+       id="text4266"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan4268"
+         x="-372.36218"
+         y="14">sub1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-453.53992"
+       y="14"
+       id="text4270"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan4272"
+         x="-453.53992"
+         y="14">sub2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-533.61462"
+       y="14"
+       id="text4274"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan4276"
+         x="-533.61462"
+         y="14">sub3</tspan></text>
+    <image
+       y="-160"
+       x="592.36218"
+       id="image3087"
+       xlink:href="data:image/png;base64,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
+F99k31XluzSIAAAAAElFTkSuQmCC
+"
+       height="100"
+       width="10"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="50"
+       y="622.36218"
+       id="text3090"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3092"
+         x="50"
+         y="622.36218">0.05</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="145"
+       y="622.36218"
+       id="text3094"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3096"
+         x="145"
+         y="622.36218">0.2</tspan></text>
+  </g>
+</svg>

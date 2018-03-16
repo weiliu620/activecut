@@ -1,0 +1,1 @@
+submean_th0.1 is thresholded at 0.1. so the th0.1.png and th0.png file should save the figure with different thresholding. And the submean.png is just a copy of the  previous two file, depending on which one I finally choose.

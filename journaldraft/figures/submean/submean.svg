@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg4818"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="submean.svg"
+   inkscape:export-filename="/home/sci/weiliu/projects/journaldraft/figures/submean/submean_th0.png"
+   inkscape:export-xdpi="75"
+   inkscape:export-ydpi="75">
+  <defs
+     id="defs4820" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.24748737"
+     inkscape:cx="990.61369"
+     inkscape:cy="-341.22934"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1280"
+     inkscape:window-height="977"
+     inkscape:window-x="1680"
+     inkscape:window-y="26"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4826" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4823">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#000000;fill-opacity:0.22340429;stroke:none"
+       id="rect5866"
+       width="282.85724"
+       height="174.28575"
+       x="-642.85712"
+       y="2875.2195"
+       ry="46.22691" />
+    <image
+       y="-427.63782"
+       x="-680"
+       id="image5151"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/kmeans_sub05676_01.png"
+       height="510"
+       width="400" />
+    <image
+       y="-427.63782"
+       x="-280"
+       id="image5213"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/kmeans_sub05676_02.png"
+       height="510"
+       width="400" />
+    <image
+       y="-427.63782"
+       x="120"
+       id="image5291"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/kmeans_sub05676_03.png"
+       height="510"
+       width="400" />
+    <image
+       y="92.362183"
+       x="-680"
+       id="image5353"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/kmeans_sub05676_04.png"
+       height="510"
+       width="400" />
+    <image
+       y="92.362183"
+       x="-280"
+       id="image5447"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/kmeans_sub05676_06.png"
+       height="510"
+       width="400" />
+    <image
+       y="92.362183"
+       x="120"
+       id="image5509"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/kmeans_sub05676_07.png"
+       height="510"
+       width="400" />
+    <image
+       y="-427.63782"
+       x="560"
+       id="image5625"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/ncuts_sub05676_01.png"
+       height="510"
+       width="400" />
+    <image
+       y="-427.63782"
+       x="960"
+       id="image5687"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/ncuts_sub05676_02.png"
+       height="510"
+       width="400" />
+    <image
+       y="-427.63782"
+       x="1360"
+       id="image5749"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/ncuts_sub05676_03.png"
+       height="510"
+       width="400" />
+    <image
+       y="92.362183"
+       x="560"
+       id="image5811"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/ncuts_sub05676_04.png"
+       height="510"
+       width="400" />
+    <image
+       y="92.362183"
+       x="960"
+       id="image5873"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/kmeans_sub05676_06.png"
+       height="510"
+       width="400" />
+    <image
+       y="92.362183"
+       x="1360"
+       id="image5935"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/ncuts_sub05676_07.png"
+       height="510"
+       width="400"
+       inkscape:export-xdpi="75"
+       inkscape:export-ydpi="75" />
+    <image
+       y="-427.63782"
+       x="1800"
+       id="image5981"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/groupmrf_sub05676_01.png"
+       height="510"
+       width="400" />
+    <image
+       y="-427.63782"
+       x="2200"
+       id="image6043"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/groupmrf_sub05676_02.png"
+       height="510"
+       width="400" />
+    <image
+       y="-427.63782"
+       x="2600"
+       id="image6105"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/groupmrf_sub05676_03.png"
+       height="510"
+       width="400" />
+    <image
+       y="92.362183"
+       x="1800"
+       id="image6167"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/groupmrf_sub05676_04.png"
+       height="510"
+       width="400" />
+    <image
+       y="92.362183"
+       x="2200"
+       id="image6229"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/groupmrf_sub05676_06.png"
+       height="510"
+       width="400" />
+    <image
+       y="92.362183"
+       x="2600"
+       id="image6291"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub05676/groupmrf_sub05676_07.png"
+       height="510"
+       width="400" />
+    <image
+       y="652.36218"
+       x="-680"
+       id="image6439"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/kmeans_sub08224_01.png"
+       height="510"
+       width="400" />
+    <image
+       y="652.36218"
+       x="-280"
+       id="image6517"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/kmeans_sub08224_02.png"
+       height="510"
+       width="400" />
+    <image
+       y="652.36218"
+       x="120"
+       id="image6579"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/kmeans_sub08224_03.png"
+       height="510"
+       width="400" />
+    <image
+       y="1172.3622"
+       x="-680"
+       id="image6641"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/kmeans_sub08224_04.png"
+       height="510"
+       width="400" />
+    <image
+       y="1172.3622"
+       x="-280"
+       id="image6703"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/kmeans_sub08224_06.png"
+       height="510"
+       width="400" />
+    <image
+       y="1172.3622"
+       x="120"
+       id="image6765"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/kmeans_sub08224_07.png"
+       height="510"
+       width="400" />
+    <image
+       y="652.36218"
+       x="560"
+       id="image6827"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/ncuts_sub08224_01.png"
+       height="510"
+       width="400" />
+    <image
+       y="652.36218"
+       x="960"
+       id="image6889"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/ncuts_sub08224_02.png"
+       height="510"
+       width="400" />
+    <image
+       y="652.36218"
+       x="1360"
+       id="image6951"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/ncuts_sub08224_03.png"
+       height="510"
+       width="400" />
+    <image
+       y="1172.3622"
+       x="560"
+       id="image7029"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/ncuts_sub08224_04.png"
+       height="510"
+       width="400" />
+    <image
+       y="1172.3622"
+       x="960"
+       id="image7107"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/ncuts_sub08224_06.png"
+       height="510"
+       width="400" />
+    <image
+       y="1172.3622"
+       x="1360"
+       id="image7169"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/ncuts_sub08224_07.png"
+       height="510"
+       width="400" />
+    <image
+       y="652.36218"
+       x="1800"
+       id="image7215"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/groupmrf_sub08224_01.png"
+       height="510"
+       width="400" />
+    <image
+       y="652.36218"
+       x="2200"
+       id="image7277"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/groupmrf_sub08224_02.png"
+       height="510"
+       width="400" />
+    <image
+       y="652.36218"
+       x="2600"
+       id="image7339"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/groupmrf_sub08224_03.png"
+       height="510"
+       width="400" />
+    <image
+       y="1172.3622"
+       x="1800"
+       id="image7401"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/groupmrf_sub08224_04.png"
+       height="510"
+       width="400" />
+    <image
+       y="1172.3622"
+       x="2200"
+       id="image7463"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/groupmrf_sub08224_06.png"
+       height="510"
+       width="400" />
+    <image
+       y="1172.3622"
+       x="2600"
+       id="image7525"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08224/groupmrf_sub08224_07.png"
+       height="510"
+       width="400" />
+    <image
+       y="1732.3622"
+       x="-680"
+       id="image7622"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/kmeans_sub08889_01.png"
+       height="510"
+       width="400" />
+    <image
+       y="1732.3622"
+       x="-280"
+       id="image7684"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/kmeans_sub08889_02.png"
+       height="510"
+       width="400" />
+    <image
+       y="1732.3622"
+       x="120"
+       id="image7746"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/kmeans_sub08889_03.png"
+       height="510"
+       width="400" />
+    <image
+       y="2252.3623"
+       x="-680"
+       id="image7808"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/kmeans_sub08889_04.png"
+       height="510"
+       width="400" />
+    <image
+       y="2252.3623"
+       x="-280"
+       id="image7932"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/kmeans_sub08889_06.png"
+       height="510"
+       width="400" />
+    <image
+       y="2252.3623"
+       x="120"
+       id="image7994"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/kmeans_sub08889_07.png"
+       height="510"
+       width="400" />
+    <image
+       y="1732.3622"
+       x="560"
+       id="image8056"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/ncuts_sub08889_01.png"
+       height="510"
+       width="400" />
+    <image
+       y="1732.3622"
+       x="960"
+       id="image8134"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/ncuts_sub08889_02.png"
+       height="510"
+       width="400" />
+    <image
+       y="1732.3622"
+       x="1360"
+       id="image8196"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/ncuts_sub08889_03.png"
+       height="510"
+       width="400" />
+    <image
+       y="2252.3623"
+       x="560"
+       id="image8258"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/ncuts_sub08889_04.png"
+       height="510"
+       width="400" />
+    <image
+       y="2252.3623"
+       x="960"
+       id="image8382"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/ncuts_sub08889_06.png"
+       height="510"
+       width="400" />
+    <image
+       y="2252.3623"
+       x="1360"
+       id="image8444"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/ncuts_sub08889_07.png"
+       height="510"
+       width="400" />
+    <image
+       y="1732.3622"
+       x="1800"
+       id="image8490"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/groupmrf_sub08889_01.png"
+       height="510"
+       width="400" />
+    <image
+       y="1732.3622"
+       x="2200"
+       id="image8552"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/groupmrf_sub08889_02.png"
+       height="510"
+       width="400" />
+    <image
+       y="1732.3622"
+       x="2600"
+       id="image8614"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/groupmrf_sub08889_03.png"
+       height="510"
+       width="400" />
+    <image
+       y="2252.3623"
+       x="1800"
+       id="image8676"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/groupmrf_sub08889_04.png"
+       height="510"
+       width="400" />
+    <image
+       y="2252.3623"
+       x="2200"
+       id="image8789"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/groupmrf_sub08889_06.png"
+       height="510"
+       width="400" />
+    <image
+       y="2252.3623"
+       x="2600"
+       id="image8851"
+       xlink:href="file:///home/sci/weiliu/bootstrap/figures/submean/sub08889/groupmrf_sub08889_07.png"
+       height="510"
+       width="400" />
+    <text
+       xml:space="preserve"
+       style="font-size:144px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-1020"
+       y="132.36218"
+       id="text8854"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8856"
+         x="-1020"
+         y="132.36218"
+         style="font-size:100px">sub1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:144px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-1020"
+       y="1212.3622"
+       id="text8858"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8860"
+         x="-1020"
+         y="1212.3622"
+         style="font-size:100px">sub2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:144px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-1020"
+       y="2292.3623"
+       id="text8862"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8864"
+         x="-1020"
+         y="2292.3623"
+         style="font-size:100px">sub3</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8870"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Arial;font-style:normal;font-weight:normal;font-size:144px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:Arial"><flowRegion
+         id="flowRegion8872"><rect
+           id="rect8874"
+           width="68.571426"
+           height="645.71429"
+           x="-182.85715"
+           y="-1770.495" /></flowRegion><flowPara
+         id="flowPara8876" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:64px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-302.85715"
+       y="-581.92352"
+       id="text8878"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8880" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-320"
+       y="-536.20923"
+       id="text8886"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8888"
+         x="-320"
+         y="-536.20923"
+         style="font-size:100px">K-Means</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="1000"
+       y="-536.25806"
+       id="text8890"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8892"
+         x="1000"
+         y="-536.25806"
+         style="font-size:100px">N-Cuts</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="2234.2856"
+       y="-535.03735"
+       id="text8894"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8896"
+         x="2234.2856"
+         y="-535.03735"
+         style="font-size:100px">HMRF</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:40, 40;stroke-dashoffset:0"
+       id="rect8933"
+       width="1239.9998"
+       height="1080"
+       x="-706"
+       y="-467.63782"
+       ry="80" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:40,40;stroke-dashoffset:0"
+       id="rect8933-9"
+       width="1240"
+       height="1080"
+       x="534"
+       y="-467.63782"
+       ry="80" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:40,40;stroke-dashoffset:0"
+       id="rect8933-0"
+       width="1240"
+       height="1080"
+       x="1774"
+       y="-467.63782"
+       ry="80" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:30,30;stroke-dashoffset:0"
+       id="rect8933-8"
+       width="1239.9998"
+       height="1080.0001"
+       x="-706"
+       y="612.36218"
+       ry="80" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:40,40;stroke-dashoffset:0"
+       id="rect8933-9-3"
+       width="1240"
+       height="1080.0001"
+       x="534"
+       y="612.36218"
+       ry="80" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:40,40;stroke-dashoffset:0"
+       id="rect8933-0-6"
+       width="1240"
+       height="1080"
+       x="1774"
+       y="612.36218"
+       ry="79.999992" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:40,40;stroke-dashoffset:0"
+       id="rect8933-1"
+       width="1240"
+       height="1080.0001"
+       x="-706"
+       y="1692.3622"
+       ry="80" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:30,30;stroke-dashoffset:0"
+       id="rect8933-9-2"
+       width="1240"
+       height="1080"
+       x="534"
+       y="1692.3622"
+       ry="79.999992" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:40,40;stroke-dashoffset:0"
+       id="rect8933-0-5"
+       width="1240"
+       height="1080"
+       x="1774"
+       y="1692.3622"
+       ry="79.999992" />
+    <image
+       y="-2882.7859"
+       x="3123.7195"
+       id="image9823"
+       xlink:href="file:///home/sci/weiliu/projects/journaldraft/figures/autumn_bar.png"
+       height="977"
+       width="80"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="3297.1379"
+       y="2684.7688"
+       id="text9826"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan9828" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:144px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="1921.0942"
+       y="3061.9116"
+       id="text9838"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan9840"
+         x="1921.0942"
+         y="3061.9116">0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:144px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="2864.9321"
+       y="3062.7322"
+       id="text9842"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan9844"
+         x="2864.9321"
+         y="3062.7322">1</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:6.45509052;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:25.82036114, 25.82036114;stroke-dashoffset:0"
+       id="rect8933-0-69"
+       width="1187.8378"
+       height="469.77826"
+       x="-667.47131"
+       y="2823.9033"
+       ry="34.798389" />
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-600.15851"
+       y="2944.269"
+       id="text5830"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5832"
+         x="-600.15851"
+         y="2944.269">visual</tspan><tspan
+         sodipodi:role="line"
+         x="-600.15851"
+         y="3034.269"
+         id="tspan5834">z=6</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-279.07367"
+       y="2939.0449"
+       id="text5836"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5838"
+         x="-279.07367"
+         y="2939.0449">motor</tspan><tspan
+         sodipodi:role="line"
+         x="-279.07367"
+         y="3029.0449"
+         id="tspan5840">z=51</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="104.69989"
+       y="2929.29"
+       id="text5842"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5844"
+         x="104.69989"
+         y="2929.29">attentive</tspan><tspan
+         sodipodi:role="line"
+         x="104.69989"
+         y="3019.29"
+         id="tspan5846">z=48</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-627.54681"
+       y="3139.4019"
+       id="text5848"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5850"
+         x="-627.54681"
+         y="3139.4019">salience</tspan><tspan
+         sodipodi:role="line"
+         x="-627.54681"
+         y="3229.4019"
+         id="tspan5852">x=6</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-277.40015"
+       y="3136.0544"
+       id="text5854"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5856"
+         x="-277.40015"
+         y="3136.0544">exec. ctrl</tspan><tspan
+         sodipodi:role="line"
+         x="-277.40015"
+         y="3226.0544"
+         id="tspan5858">y=18</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="101.3526"
+       y="3147.4829"
+       id="text5860"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5862"
+         x="101.3526"
+         y="3147.4829">DMN</tspan><tspan
+         sodipodi:role="line"
+         x="101.3526"
+         y="3237.4829"
+         id="tspan5864">z=27</tspan></text>
+    <rect
+       style="fill:#000000;fill-opacity:0.22340429;stroke:none"
+       id="rect5866-1"
+       width="282.85724"
+       height="174.28575"
+       x="-638.57147"
+       y="3082.3623"
+       ry="46.22691" />
+    <rect
+       style="fill:#000000;fill-opacity:0.22340429;stroke:none"
+       id="rect5866-9"
+       width="360.00009"
+       height="174.28575"
+       x="-324.28577"
+       y="2882.3621"
+       ry="46.22691" />
+    <rect
+       style="fill:#000000;fill-opacity:0.22340429;stroke:none"
+       id="rect5866-3"
+       width="368.57153"
+       height="174.28575"
+       x="-321.42862"
+       y="3073.7908"
+       ry="46.22691" />
+    <rect
+       style="fill:#000000;fill-opacity:0.22340429;stroke:none"
+       id="rect5866-5"
+       width="311.42868"
+       height="174.28575"
+       x="92.857117"
+       y="2876.6479"
+       ry="46.22691" />
+    <rect
+       style="fill:#000000;fill-opacity:0.22340429;stroke:none"
+       id="rect5866-4"
+       width="320.00009"
+       height="174.28575"
+       x="89.999947"
+       y="3073.7908"
+       ry="46.22691" />
+  </g>
+</svg>

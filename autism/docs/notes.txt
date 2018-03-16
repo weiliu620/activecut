@@ -1,0 +1,23 @@
+I can use lasso to select variables and linear regression.
+
+The autism brain imaging data exchange: towards a large-scale evaluation of the intrinsic brain architecture in autism
+Neurodevelopmental disorders: New brain imaging measure for early diagnosis of autism
+
+- write the Anderson's seed as a image file and check it. 
+- batch_process each subject.
+- compute ROI signal and compute connectivity.
+- preprocess the features (selection, regression of age etc)
+
+-- Note the paper of Meier "The group lasso for logistric regression". Before
+   hierarchical settings, we can use group lasso for the data from all
+   sites. There is a grplasso package in R from the same author.
+
+There are 3 options with different level of difficulty: 1) Group lasso, without
+hierarchy. 2) Define the classification as a lienar regression problem (refer to
+Hastie book, either ch 4 or ch 18). Solving the subject sparse offset is
+easy. Soving the group coefficients set is hard. Need to rederive the Lasso
+solution. 3) Use logistic regression. Solving subject gamma offset is not
+straightforard but doable (I've derived the formula. Can fit into IRLS solver),
+but solving the group parameter is extremely hard, but still doable. Need to
+re-derive the logistic lasso formular, and can not re-use the IRLS solver. 
+

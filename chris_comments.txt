@@ -1,0 +1,8 @@
+-- sec 1: ... and hence interfere the estimation of the group...
+-- sec 1: ... one need a model...(just delete of)
+-- Both group and subject networks are jointly...(rewrite it)
+subsection gibbs sampling, \forall is a math notation. 
+
+data is used as singular. 
+
+line 800 the 'regress out' make no sense...but keep it.

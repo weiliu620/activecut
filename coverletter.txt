@@ -1,0 +1,14 @@
+Dear editors,
+
+Please find the attached manuscript submitted to NeuroImage for publication. This is the initial submission. The manuscript introduces a new method for estimating human brain's functional network from a group of subjects' resting state functional MRI data. The method defines a hierarchical structure of the network maps that takes into account the similarity and variation between the subjects in the same group. This is a response to the challenges of analyzing the large dataset in the recent human connectome project (HCP). As stated in the article "HCP: a data acquisition perspective" by D.C. Van Essen, a key objective is to understand inter-individual variability of brain circuits...rather than merely aiming to determine the average, or typical connectivity in healthy adults.  In this work, we use a Bayesian framework that can estimate both the average functional network map, and individual subject's map. The method also integrates the within-subject spatial constraints in the same model, and estimate the parameters in a data-driven fashion. 
+
+We believe the method will be an interesting alternative to the standard independent component analysis method, particularly for people studying large data sets from multiple sources. 
+
+Thank you for the consideration,
+
+Sincerely,
+Wei Liu
+Scientific Computing and Imaging Institute,
+University of Utah
+
+

@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800px"
+   height="600px"
+   id="svg3327"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="sub_mean.svg"
+   inkscape:export-filename="/home/sci/weiliu/projects/journaldraft/figures/varmap/sub_mean.png"
+   inkscape:export-xdpi="75"
+   inkscape:export-ydpi="75">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.42426407"
+     inkscape:cx="-183.40138"
+     inkscape:cy="-298.81795"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:window-width="1680"
+     inkscape:window-height="1028"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       id="grid3413"
+       type="xygrid" />
+  </sodipodi:namedview>
+  <defs
+     id="defs3329" />
+  <metadata
+     id="metadata3332">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1"
+     id="layer1">
+    <image
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_kmeans_mean_01.png"
+       id="image3491"
+       x="-1280"
+       y="-1100" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_kmeans_mean_02.png"
+       id="image3639"
+       x="-1280"
+       y="-800.00006" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_kmeans_mean_03.png"
+       id="image3639-5"
+       x="-1280"
+       y="-500.00003" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_kmeans_mean_04.png"
+       id="image3639-3"
+       x="-1280"
+       y="-209.99997" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_kmeans_mean_06.png"
+       id="image3639-8"
+       x="-1280"
+       y="83.999969" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_kmeans_mean_07.png"
+       id="image3639-9"
+       x="-1280"
+       y="383.99994" />
+    <image
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_ncuts_mean_01.png"
+       id="image3491-1"
+       x="-400"
+       y="-1100" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_ncuts_mean_02.png"
+       id="image3639-7"
+       x="-400"
+       y="-800.00006" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_ncuts_mean_03.png"
+       id="image3639-5-9"
+       x="-400"
+       y="-500.00003" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_ncuts_mean_04.png"
+       id="image3639-3-2"
+       x="-400"
+       y="-209.99997" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_ncuts_mean_06.png"
+       id="image3639-8-1"
+       x="-400"
+       y="83.999969" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_ncuts_mean_07.png"
+       id="image3639-9-4"
+       x="-400"
+       y="383.99994" />
+    <image
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_groupmrf_mean01.png"
+       id="image3491-4"
+       x="520"
+       y="-1100" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_groupmrf_mean02.png"
+       id="image3639-54"
+       x="520"
+       y="-800.00006" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_groupmrf_mean03.png"
+       id="image3639-5-98"
+       x="520"
+       y="-500.00003" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_groupmrf_mean04.png"
+       id="image3639-3-6"
+       x="520"
+       y="-209.99997" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_groupmrf_mean06.png"
+       id="image3639-8-7"
+       x="520"
+       y="83.999969" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub05676_groupmrf_mean07.png"
+       id="image3639-9-2"
+       x="520"
+       y="383.99994" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text4553"
+       y="-1120"
+       x="-1000"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         y="-1120"
+         x="-1000"
+         id="tspan4555"
+         sodipodi:role="line">K-Means</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4557"
+       y="-1120"
+       x="-160"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         y="-1120"
+         x="-160"
+         id="tspan4559"
+         sodipodi:role="line">N-Cuts</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4561"
+       y="-1120"
+       x="760"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         y="-1120"
+         x="760"
+         id="tspan4563"
+         sodipodi:role="line">groupmrf</tspan></text>
+    <image
+       width="40"
+       height="488.5"
+       xlink:href="file:///home/sci/weiliu/projects/journaldraft/figures/autumn_bar.png"
+       id="image3088"
+       x="1378.1829"
+       y="1971.9797" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text3091"
+       y="2406.4775"
+       x="1447.8181"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         y="2406.4775"
+         x="1447.8181"
+         id="tspan3093"
+         sodipodi:role="line">0</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3095"
+       y="2033.9999"
+       x="1440"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         y="2033.9999"
+         x="1440"
+         id="tspan3097"
+         sodipodi:role="line">1</tspan></text>
+    <text
+       inkscape:export-ydpi="75"
+       inkscape:export-xdpi="75"
+       inkscape:export-filename="/home/sci/weiliu/projects/journaldraft/figures/varmap/text3089.png"
+       sodipodi:linespacing="125%"
+       id="text3025"
+       y="-1000.0001"
+       x="-1560"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         style="font-size:64px"
+         y="-1000.0001"
+         x="-1560"
+         id="tspan3027"
+         sodipodi:role="line">x = -3</tspan><tspan
+         style="font-size:64px"
+         id="tspan3029"
+         y="-920.00006"
+         x="-1560"
+         sodipodi:role="line">y = -78</tspan><tspan
+         style="font-size:64px"
+         id="tspan3031"
+         y="-840.00006"
+         x="-1560"
+         sodipodi:role="line">z = 6</tspan></text>
+    <text
+       inkscape:export-ydpi="75"
+       inkscape:export-xdpi="75"
+       inkscape:export-filename="/home/sci/weiliu/projects/journaldraft/figures/varmap/text3089.png"
+       sodipodi:linespacing="125%"
+       id="text3033"
+       y="-730.00006"
+       x="-1560"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         style="font-size:64px"
+         y="-730.00006"
+         x="-1560"
+         id="tspan3035"
+         sodipodi:role="line">x = -3</tspan><tspan
+         style="font-size:64px"
+         id="tspan3037"
+         y="-650.00006"
+         x="-1560"
+         sodipodi:role="line">y = -18</tspan><tspan
+         style="font-size:64px"
+         id="tspan3039"
+         y="-570.00006"
+         x="-1560"
+         sodipodi:role="line">z = 51</tspan></text>
+    <text
+       inkscape:export-ydpi="75"
+       inkscape:export-xdpi="75"
+       inkscape:export-filename="/home/sci/weiliu/projects/journaldraft/figures/varmap/text3089.png"
+       sodipodi:linespacing="125%"
+       id="text3041"
+       y="-457.14285"
+       x="-1551.4286"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         style="font-size:64px"
+         y="-457.14285"
+         x="-1551.4286"
+         id="tspan3043"
+         sodipodi:role="line">x = -3</tspan><tspan
+         style="font-size:64px"
+         id="tspan3045"
+         y="-377.14285"
+         x="-1551.4286"
+         sodipodi:role="line">y = 15</tspan><tspan
+         style="font-size:64px"
+         id="tspan3047"
+         y="-297.14285"
+         x="-1551.4286"
+         sodipodi:role="line">z = 48</tspan></text>
+    <flowRoot
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       id="flowRoot3049"
+       xml:space="preserve"
+       transform="translate(-1280,-1092.3622)"><flowRegion
+         id="flowRegion3051"><rect
+           y="52.362183"
+           x="-285.71429"
+           height="200"
+           width="185.71428"
+           id="rect3053" /></flowRegion><flowPara
+         id="flowPara3055" /></flowRoot>    <flowRoot
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       id="flowRoot3057"
+       xml:space="preserve"
+       transform="translate(-1280,-1092.3622)"><flowRegion
+         id="flowRegion3059"><rect
+           y="158.07646"
+           x="-225.71428"
+           height="94.285713"
+           width="128.57143"
+           id="rect3061" /></flowRegion><flowPara
+         id="flowPara3063" /></flowRoot>    <text
+       inkscape:export-ydpi="75"
+       inkscape:export-xdpi="75"
+       inkscape:export-filename="/home/sci/weiliu/projects/journaldraft/figures/varmap/text3089.png"
+       sodipodi:linespacing="125%"
+       id="text3065"
+       y="-160.00003"
+       x="-1560"
+       style="font-size:64px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         y="-160.00003"
+         x="-1560"
+         id="tspan3067"
+         sodipodi:role="line">x = 0</tspan><tspan
+         id="tspan3069"
+         y="-80.000031"
+         x="-1560"
+         sodipodi:role="line">y = 12</tspan><tspan
+         id="tspan3071"
+         y="-3.0517578e-05"
+         x="-1560"
+         sodipodi:role="line">z = 24</tspan></text>
+    <text
+       inkscape:export-ydpi="75"
+       inkscape:export-xdpi="75"
+       inkscape:export-filename="/home/sci/weiliu/projects/journaldraft/figures/varmap/text3089.png"
+       sodipodi:linespacing="125%"
+       id="text3081"
+       y="193.99994"
+       x="-1560"
+       style="font-size:64px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         y="193.99994"
+         x="-1560"
+         id="tspan3083"
+         sodipodi:role="line">x = 0</tspan><tspan
+         id="tspan3085"
+         y="273.99994"
+         x="-1560"
+         sodipodi:role="line">y = 21</tspan><tspan
+         id="tspan3087"
+         y="353.99994"
+         x="-1560"
+         sodipodi:role="line">z = 24</tspan></text>
+    <text
+       inkscape:export-ydpi="75"
+       inkscape:export-xdpi="75"
+       sodipodi:linespacing="125%"
+       id="text3089"
+       y="463.99994"
+       x="-1560"
+       style="font-size:64px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         y="463.99994"
+         x="-1560"
+         id="tspan3091"
+         sodipodi:role="line">x = -6</tspan><tspan
+         id="tspan3094"
+         y="543.99994"
+         x="-1560"
+         sodipodi:role="line">y = -66</tspan><tspan
+         id="tspan3096"
+         y="623.99994"
+         x="-1560"
+         sodipodi:role="line">z = 27</tspan></text>
+    <image
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_kmeans_mean_01.png"
+       id="image3491-48"
+       x="-1280"
+       y="760" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_kmeans_mean_02.png"
+       id="image3639-4"
+       x="-1280"
+       y="1059.9999" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_kmeans_mean_03.png"
+       id="image3639-5-6"
+       x="-1280"
+       y="1360" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_kmeans_mean_04.png"
+       id="image3639-3-5"
+       x="-1280"
+       y="1650" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_kmeans_mean_06.png"
+       id="image3639-8-0"
+       x="-1280"
+       y="1944" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_kmeans_mean_07.png"
+       id="image3639-9-8"
+       x="-1280"
+       y="2244" />
+    <image
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_ncuts_mean_01.png"
+       id="image3491-1-2"
+       x="-399.99994"
+       y="760" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_ncuts_mean_02.png"
+       id="image3639-7-0"
+       x="-399.99994"
+       y="1059.9999" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_ncuts_mean_03.png"
+       id="image3639-5-9-2"
+       x="-399.99994"
+       y="1360" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_ncuts_mean_04.png"
+       id="image3639-3-2-1"
+       x="-399.99994"
+       y="1650" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_ncuts_mean_06.png"
+       id="image3639-8-1-7"
+       x="-399.99994"
+       y="1944" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_ncuts_mean_07.png"
+       id="image3639-9-4-7"
+       x="-399.99994"
+       y="2244" />
+    <image
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_groupmrf_mean01.png"
+       id="image3491-4-1"
+       x="520.00006"
+       y="760" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_groupmrf_mean02.png"
+       id="image3639-54-3"
+       x="520.00006"
+       y="1059.9999" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_groupmrf_mean03.png"
+       id="image3639-5-98-1"
+       x="520.00006"
+       y="1360" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_groupmrf_mean04.png"
+       id="image3639-3-6-3"
+       x="520.00006"
+       y="1650" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_groupmrf_mean06.png"
+       id="image3639-8-7-1"
+       x="520.00006"
+       y="1944" />
+    <image
+       style="fill:none;stroke:none"
+       width="796"
+       height="300"
+       xlink:href="file:///usr/sci/scratch/weiliu/NYU_test_retest/bootstrap/figures/all_comp_cropped/sub08224_groupmrf_mean07.png"
+       id="image3639-9-2-6"
+       x="520.00006"
+       y="2244" />
+    <text
+       inkscape:export-ydpi="75"
+       inkscape:export-xdpi="75"
+       inkscape:export-filename="/home/sci/weiliu/projects/journaldraft/figures/varmap/text3089.png"
+       sodipodi:linespacing="125%"
+       id="text3025-3"
+       y="859.99988"
+       x="-1560"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         style="font-size:64px"
+         y="859.99988"
+         x="-1560"
+         id="tspan3027-6"
+         sodipodi:role="line">x = -3</tspan><tspan
+         style="font-size:64px"
+         id="tspan3029-1"
+         y="939.99988"
+         x="-1560"
+         sodipodi:role="line">y = -78</tspan><tspan
+         style="font-size:64px"
+         id="tspan3031-5"
+         y="1019.9999"
+         x="-1560"
+         sodipodi:role="line">z = 6</tspan></text>
+    <text
+       inkscape:export-ydpi="75"
+       inkscape:export-xdpi="75"
+       inkscape:export-filename="/home/sci/weiliu/projects/journaldraft/figures/varmap/text3089.png"
+       sodipodi:linespacing="125%"
+       id="text3033-6"
+       y="1129.9999"
+       x="-1560"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         style="font-size:64px"
+         y="1129.9999"
+         x="-1560"
+         id="tspan3035-8"
+         sodipodi:role="line">x = -3</tspan><tspan
+         style="font-size:64px"
+         id="tspan3037-6"
+         y="1209.9999"
+         x="-1560"
+         sodipodi:role="line">y = -18</tspan><tspan
+         style="font-size:64px"
+         id="tspan3039-7"
+         y="1289.9999"
+         x="-1560"
+         sodipodi:role="line">z = 51</tspan></text>
+    <text
+       inkscape:export-ydpi="75"
+       inkscape:export-xdpi="75"
+       inkscape:export-filename="/home/sci/weiliu/projects/journaldraft/figures/varmap/text3089.png"
+       sodipodi:linespacing="125%"
+       id="text3041-3"
+       y="1402.8572"
+       x="-1551.4286"
+       style="font-size:72px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         style="font-size:64px"
+         y="1402.8572"
+         x="-1551.4286"
+         id="tspan3043-4"
+         sodipodi:role="line">x = -3</tspan><tspan
+         style="font-size:64px"
+         id="tspan3045-2"
+         y="1482.8572"
+         x="-1551.4286"
+         sodipodi:role="line">y = 15</tspan><tspan
+         style="font-size:64px"
+         id="tspan3047-3"
+         y="1562.8572"
+         x="-1551.4286"
+         sodipodi:role="line">z = 48</tspan></text>
+    <text
+       inkscape:export-ydpi="75"
+       inkscape:export-xdpi="75"
+       inkscape:export-filename="/home/sci/weiliu/projects/journaldraft/figures/varmap/text3089.png"
+       sodipodi:linespacing="125%"
+       id="text3065-9"
+       y="1700"
+       x="-1560"
+       style="font-size:64px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         y="1700"
+         x="-1560"
+         id="tspan3067-0"
+         sodipodi:role="line">x = 0</tspan><tspan
+         id="tspan3069-0"
+         y="1780"
+         x="-1560"
+         sodipodi:role="line">y = 12</tspan><tspan
+         id="tspan3071-5"
+         y="1860"
+         x="-1560"
+         sodipodi:role="line">z = 24</tspan></text>
+    <text
+       inkscape:export-ydpi="75"
+       inkscape:export-xdpi="75"
+       inkscape:export-filename="/home/sci/weiliu/projects/journaldraft/figures/varmap/text3089.png"
+       sodipodi:linespacing="125%"
+       id="text3081-5"
+       y="2054"
+       x="-1560"
+       style="font-size:64px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         y="2054"
+         x="-1560"
+         id="tspan3083-2"
+         sodipodi:role="line">x = 0</tspan><tspan
+         id="tspan3085-5"
+         y="2134"
+         x="-1560"
+         sodipodi:role="line">y = 21</tspan><tspan
+         id="tspan3087-9"
+         y="2214"
+         x="-1560"
+         sodipodi:role="line">z = 24</tspan></text>
+    <text
+       inkscape:export-ydpi="75"
+       inkscape:export-xdpi="75"
+       sodipodi:linespacing="125%"
+       id="text3089-5"
+       y="2324"
+       x="-1560"
+       style="font-size:64px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       xml:space="preserve"><tspan
+         y="2324"
+         x="-1560"
+         id="tspan3091-9"
+         sodipodi:role="line">x = -6</tspan><tspan
+         id="tspan3094-3"
+         y="2404"
+         x="-1560"
+         sodipodi:role="line">y = -66</tspan><tspan
+         id="tspan3096-4"
+         y="2484"
+         x="-1560"
+         sodipodi:role="line">z = 27</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:64px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-1840"
+       y="-200"
+       id="text4810"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4812"
+         x="-1840"
+         y="-200"
+         style="font-size:72px">sub1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:64px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="-1840"
+       y="1560"
+       id="text4814"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4816"
+         x="-1840"
+         y="1560"
+         style="font-size:72px">sub2</tspan></text>
+  </g>
+</svg>

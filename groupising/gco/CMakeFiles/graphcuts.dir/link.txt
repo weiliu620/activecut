@@ -1,0 +1,2 @@
+/usr/bin/ar cr libgraphcuts.a  CMakeFiles/graphcuts.dir/GCoptimization.cpp.o CMakeFiles/graphcuts.dir/graph.cpp.o CMakeFiles/graphcuts.dir/LinkedBlockList.cpp.o CMakeFiles/graphcuts.dir/maxflow.cpp.o
+/usr/bin/ranlib libgraphcuts.a

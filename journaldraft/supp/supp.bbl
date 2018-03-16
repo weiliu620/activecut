@@ -1,0 +1,33 @@
+\begin{thebibliography}{2}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Article
+\bibitem[{Seeley et~al.(2007)Seeley, Menon, Schatzberg, Keller, Glover, Kenna,
+  Reiss and Greicius}]{seeley2007dissociable}
+\bibinfo{author}{Seeley, W.W.}, \bibinfo{author}{Menon, V.},
+  \bibinfo{author}{Schatzberg, A.F.}, \bibinfo{author}{Keller, J.},
+  \bibinfo{author}{Glover, G.H.}, \bibinfo{author}{Kenna, H.},
+  \bibinfo{author}{Reiss, A.L.}, \bibinfo{author}{Greicius, M.D.},
+  \bibinfo{year}{2007}.
+\newblock \bibinfo{title}{Dissociable intrinsic connectivity networks for
+  salience processing and executive control}.
+\newblock \bibinfo{journal}{The Journal of {N}euroscience}
+  \bibinfo{volume}{27}, \bibinfo{pages}{2349--2356}.
+%Type = Article
+\bibitem[{Van~Dijk et~al.(2010)Van~Dijk, Hedden, Venkataraman, Evans, Lazar and
+  Buckner}]{van2010intrinsic}
+\bibinfo{author}{Van~Dijk, K.R.}, \bibinfo{author}{Hedden, T.},
+  \bibinfo{author}{Venkataraman, A.}, \bibinfo{author}{Evans, K.C.},
+  \bibinfo{author}{Lazar, S.W.}, \bibinfo{author}{Buckner, R.L.},
+  \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Intrinsic functional connectivity as a tool for human
+  connectomics: theory, properties, and optimization}.
+\newblock \bibinfo{journal}{Journal of neurophysiology} \bibinfo{volume}{103},
+  \bibinfo{pages}{297--321}.
+
+\end{thebibliography}

@@ -1,0 +1,3 @@
+now I have 3 components but that does not guarantee the smoothness term work. Need double check the mrf works.
+
+-- Write a function to extract the connectivity given a seed. save it as a file. 

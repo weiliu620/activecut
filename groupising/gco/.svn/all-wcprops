@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/confield/!svn/ver/239/branches/groupising/gco
+END
+energy.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/confield/!svn/ver/238/branches/groupising/gco/energy.h
+END
+block.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/confield/!svn/ver/238/branches/groupising/gco/block.h
+END
+GCoptimization.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/confield/!svn/ver/238/branches/groupising/gco/GCoptimization.cpp
+END
+graph.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/confield/!svn/ver/238/branches/groupising/gco/graph.cpp
+END
+LinkedBlockList.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/confield/!svn/ver/238/branches/groupising/gco/LinkedBlockList.h
+END
+GCoptimization.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/confield/!svn/ver/238/branches/groupising/gco/GCoptimization.h
+END
+graph.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/confield/!svn/ver/238/branches/groupising/gco/graph.h
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/confield/!svn/ver/238/branches/groupising/gco/CMakeLists.txt
+END
+LinkedBlockList.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/confield/!svn/ver/238/branches/groupising/gco/LinkedBlockList.cpp
+END
+maxflow.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/confield/!svn/ver/238/branches/groupising/gco/maxflow.cpp
+END
