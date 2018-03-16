@@ -1,0 +1,597 @@
+\documentclass[a4paper]{llncs}
+
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+
+\usepackage{url}
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+  \noindent\keywordname\enspace\ignorespaces#1}
+
+%%%%%% Added by Wei Liu %%%%%%%
+\usepackage{amsmath}
+\usepackage[vlined,ruled]{algorithm2e}
+\usepackage{lwdefs}
+\usepackage{multirow}
+%%%%%% End of Added by Wei Liu %%%%%%%
+
+
+\begin{document}
+
+\mainmatter  % start of an individual contribution
+
+\title{Monte Carlo Expectation Maximization with Hidden Markov Models to Detect Functional Networks in Resting-State fMRI}
+
+\maketitle
+
+
+\begin{abstract}
+We propose a novel Bayesian framework for partitioning the cortex into
+distinct functional networks based on resting-state fMRI. Spatial
+coherence within the network clusters is modeled using a hidden Markov
+random field prior. The normalized time series data, which lie on a
+high-dimensional sphere, are modeled with a mixture of von
+Mises-Fisher distributions. To estimate the parameters of this model,
+we maximize the posterior using a Monte Carlo Expectation Maximization
+(MCEM) algorithm in which the intractable expectation over all
+possible labelings is approximated using Monte Carlo integration. We
+show that MCEM solutions on synthetic data are superior to those
+computed using a mode approximation of the expectation step. Finally,
+we demonstrate on real fMRI data that our method is able to identify
+visual, motion, attention and default mode networks with considerable
+consistency between subjects.
+\end{abstract}
+
+\section{Introduction}
+Resting-state functional MRI (fMRI) is a powerful technique for
+understanding the underlying functional interactions in the resting
+brain. To obtain the data, a sequence of images are taken while
+subjects lay quietly with their eyes closed or passively watching a
+stimulus.  The technique is critical for the diagnosis and clinical
+treatment of many cognitive disorders, such as Alzheimer's disease
+(AD) and Autism \cite{fox2010clinical}. In resting-state fMRI, the
+temporal correlation between voxels are used for detecting their
+connectivity. The standard procedure is to select a region of interest
+(ROI) and find the correlation between the average signal of the ROI
+and other voxels in the brain.  The correlations are usually
+thresholded so only those voxels with significant correlations to ROI
+are shown. Recent methods use Independent Component Analysis (ICA) to
+find the components of interest \cite{beckmann2005tensorial}, and use
+a ad-hoc method to manually choose those with specific property. Like
+other methods that use seed regions, this procedure does not give the
+full view of the brain connectivity and tends to introduce human
+subjective bias. Another branch of research uses clustering technique
+to automatically partition the brain by their functionality. An
+similarity metric is defined by correlation \cite{Golland2007} or by
+frequency coherence \cite{thirion2006detection} and then clustering
+method like K-means or spectral clustering  are used to obtain a
+disjoint partition map of the brain.
+
+We introduce a new data-driven method along the data clustering
+research line to find the functional homogeneous brain regions. Given
+the fMRI time series, the algorithm returns a label map where voxels
+with same labels have large Pearson correlations. Users do not need
+give seed voxels or seed regions, and there is no ad-hoc thresholding
+on the correlation. In our approach, the time series are projected to
+a unit sphere by normalization.  We use mixtures of von Mises-Fisher
+(vMF) distribution \cite{banerjee2006clustering} to model these
+directional data on the high-dimensional sphere. Each component of the
+mixture model corresponds to a homogeneous spatial region with
+similar functional patterns.
+
+Our contribution is to use Markov Random Field as a prior
+\cite{liu2010spatial,descombes_spatio-temporal_1998} and use Monte
+Carlo Expectation-Maximization (MCEM) to solve the combinatorial
+optimization problem. We use a natural assumption that functional
+homogeneous regions should be spatially coherent. Previous
+correlation-based or clustering methods disregard voxel's spatial
+information.  Instead, we take into account a voxel's spatially
+adjacent neighbors' patterns when making decision on its functional
+patterns, and use Markov Random Field (MRF) to model this
+dependency. In a Bayesian framework we estimate the posterior
+probability of the label map given the time series data. Since this
+combinatorial optimization problem does not have closed form solution,
+we use Monte Carlo Expectation-Maximization (MCEM) to approximate
+it. The stochastic property of MCEM make it possible to explore a
+large solution space, and it performs better than the standard mode
+approximation method like iterated conditional modes (ICM).
+
+%The next section gives introduction of our models, including MRF prior
+%and von Mises-Fisher distribution as a conditional likelihood. Section
+%\ref{sec:mcem} talks about MCEM, sampling from posterior and parameter
+%estimation. We give experiments in Section \ref{sec:exp} and conclude
+%at Section \ref{sec:conc}.
+
+\section {Hidden Markov Models of Functional Networks}
+\label{sec:models}
+
+% Bayesian, prior, likelihood
+
+We use a Bayesian statistical framework to identify functionally-connected
+regions of the gray matter in fMRI data. We formulate a generative model, which
+first generates a configuration of functionally-connected regions in the brain,
+followed by an fMRI time series for each voxel based on its region. We employ an
+MRF prior to model region configurations, represented via unknown, or
+\emph{hidden}, labels. Given a region, we assume that the fMRI time series,
+normalized to zero mean and unit length, are drawn from a von Mises-Fisher
+likelihood.
+
+% notation: indices, labels
+
+Let $\cS = \{1, \ldots, N\}$ be the set of indices for all gray-matter
+voxels. We assume that the number of regions $L$ is a known free
+parameter. Let $\cL = \{1, 2, \cdots, L\}$ be the set of labels, one
+for each region. We denote a 3D label map for functionally-connected
+regions as a vector $\mat z = (z_1,\dots, z_N), z_i \in \cL$. Let $\cZ
+= \cL^N$ be the set of all possible $\mat z$ configurations.
+
+\subsection{Markov Prior Model}
+
+
+Physiologically, the label map $\mat z$ should be piecewise
+smooth. Thus, we use the \emph{Potts} MRF~\cite{LiBook} to model $\mat
+z$:
+\begin{equation*}
+  P(\mat z)
+  =
+  \frac
+  {1}
+  {C}
+  \exp
+  \Bigg(\!-\beta
+  \sum_i
+  \sum_{j \in \cN_i}
+  T (z_i \neq z_j)
+  \Bigg),
+\end{equation*}
+where $T$ is $1$ if its argument is true and $0$ otherwise; $\cN_{i}$
+is the set of neighbors of $i$ as defined by the neighborhood system
+underlying the MRF; $\beta > 0$ is a model parameter controlling
+label-map smoothness; $C$ is a normalization constant that is the sum
+of $P(\mat z)$ over all possible configuration of $\mat z$. The
+Markov-Gibbs equivalence~\cite{LiBook} implies that the conditional
+distribution of $z_i$ at site $i$ is:
+\begin{equation}
+  \label{eq:mrfprior}
+  P(z_i | \mat z_{-i})
+  =
+  P(z_i | z_{\cN_i})
+  =
+  \frac
+  {
+    \exp \left( -\beta \sum_{j \in \cN_i} T(z_i \neq z_j) \right)
+  }
+  {
+    \sum_{l \in \cL} \exp \left( -\beta \sum_{j \in \cN_i}T(l \neq z_j) \right)
+  },
+\end{equation}
+where $\mat z_{-i}$ is the collection of all variables in $\mat z$
+excluding site $z_i$.
+
+
+\subsection {Likelihood Model}
+
+
+% normalization
+
+To identify functionally homogeneous regions, the time series at each voxel are
+normalized to zero mean and unit length. One interesting fact is after
+normalization, the sample correlation between two time series is equal to their
+inner product on the sphere. Thus, to find regions with high correlated voxels
+is equivalent to find regions in which the normalized time series have larger
+inner products. On the sphere, two data points with small shortest path will
+have large inner product, and hence have large Pearson correlation in original
+space. So we re-formulate the problem of finding clusters of voxels with higher
+correlations, to the problem of finding clusters on sphere that has small
+shortest path, or big inner products.
+
+% likelihood
+
+We use the notation $\mat x = \{ (\vec x_1, \dots, \vec x_N)\, |\,
+\vec x_i \in S^{p-1} \}$ to denote the set of \emph{normalized} time
+series. Observe that given $\mat z \in \cZ$, the random vectors $\vec
+x_i$, for different $i$, are independent. Thus, the likelihood $\log
+P(\mat x | \mat z) = \sum_{i \in \cS} \log P (\vec x_i | z_i)$. We
+model the emission function $P(\vec x_i | z_i)$ using the von
+Mises-Fisher distribution:
+\begin{equation}
+  f (\vec x_i;\vec \mu_l, \kappa_l | z_i = l)
+  =
+  C_p(\kappa_l)
+  \exp
+  \left(\kappa_l \vec \mu_l^T \vec x_i\right),
+  \quad
+  \vec x_i \in S^{p-1},
+  \quad
+  l \in {\cL}
+  \label{eq:vmf}
+\end{equation}
+where, for the cluster labeled $l$, $\vec \mu_l$ is the mean
+direction, $\kappa_l \geq 0$ is the \emph{concentration parameter},
+and the normalization constant $C_p(\kappa) = {\kappa^{\frac{p}{2} -
+    1}}/\{{(2\pi)^{\frac{p}{2}} I_{\frac{p}{2}-1}(\kappa)}\}$, where
+$I_\nu$ denotes the modified Bessel function of the first kind with
+order $\nu$. The larger the $\kappa$, the greater is the density
+concentrated around the mean direction. Since \eqref{eq:vmf} depends
+on $\vec x$ only by $\vec \mu^T \vec x$, the vMF distribution is
+unimodal and rotationally symmetric around $\vec \mu$.
+
+% 'prior' on kappa
+
+In the Bayesian framework, we also define distributions on
+parameters. We assume that $\forall l \in \cL$, $\kappa_l \sim
+\cN(\mu_{\kappa}, \sigma_{\kappa}^2)$ with hyperparameters
+$\mu_{\kappa}$ and $\sigma_{\kappa}^2$ that can be set
+empirically. This prior enforces constraints that the clusters should
+not have extremely high or low concentration parameters. We carefully
+choose hyperparameter values to ensure that the results are not very
+sensitive to the hyperparameter values.
+
+
+\section{Monte Carlo EM}
+\label{sec:mcem}
+
+
+To estimate the model parameters and the hidden labels, we use a
+stochastic variant of expectation maximization (EM) called Monte Carlo
+EM (MCEM)~\cite{wei1990monte}. The standard EM algorithm maximizes the
+expectation of the log-likelihood of joint pdf of $\mat x$ and the
+latent variable $\mat z$ with respect to the posterior probability
+$P(\mat z | \mat x)$, i.e. $\mathbb{E}_{P(\mat z| \mat x)} [\log
+  P(\mat x, \mat z; \vec \theta)]$. The combinatorial number of
+configurations for $\mat z$ makes this expectation intractable. Thus, we
+use Monte Carlo simulation to approximate this expectation as
+\begin{equation}
+  \widetilde Q(\vec \theta; \mat x, \mat z)
+  \approx
+  \frac
+  {1}
+  {M}
+  \sum_{m=1}^{M}
+    \log
+    P (\mat z^m; \beta)
+    +
+    \log
+    P (\mat x | \mat z^m; \vec \theta_L),
+  \label{eq:mcemq}
+\end{equation}
+where $\mat z^m$ is a sample from $P(\mat z | \mat x)$, $\vec \theta_L = \{\vec
+\mu_l, \kappa_l : l \in \cL\}$ is the parameter vector of the likelihood, and
+$\vec \theta=\{\beta, \vec \theta_L\}$ is the full parameter vector of the
+model. Computing the MRF prior in \eqref{eq:mcemq} is still intractable due to
+the normalization constant, and we instead use a pseudo-likelihood
+approximation, which gives
+\begin{align*}
+  \widetilde Q
+  &
+  \approx
+  \frac{1}{M}
+  \sum_{m=1}^{M}
+  \sum_{i \in \cS}
+  \log P(z_i | z_{\cN_i}; \beta)
+  +
+  \frac{1}{M}
+  \sum_{m=1}^{M}
+  \sum_{i \in \cS}
+  \log
+  P(\vec x_i | z_i; \vec \theta_L)
+  =
+  \widetilde Q_P
+  +
+  \widetilde Q_L.
+\end{align*}
+We use $\widetilde Q_P$ to denote the log-pseudo-likelihood of the prior
+distribution, and use $\widetilde Q_L$ to denote the log-likelihood
+distribution.
+
+
+\subsection{Sampling from the Posterior}
+
+
+Given the observed data $\mat x$ and parameter value $\vec \theta =
+\{\beta, \vec \theta_L \}$, we sample from the posterior
+distribution $P(\mat z | \mat x; \vec \theta)$ using Metropolis
+sampling. We define the posterior energy, to be minimized, as the
+negative log of the posterior distribution $P(z_i | \vec x_i)$. Thus,
+Bayes rule implies:
+\begin{equation}
+  U( z_i = l| \mat x)
+  =
+   \beta \sum_{j \in \cN_i} T(z_i \neq z_j)
+    -
+    \log C_p(\kappa_l)
+    -
+    \kappa_l \vec \mu_l^T \vec x_i
+  + \mathrm{const},
+  \label{eq:sample}
+\end{equation}
+which is the sum of the prior energy, the conditional energy, and a
+parameter-independent quantity. Then, given a current configuration
+$\mat z^n$ Metropolis sampling generates a new candidate label map $\mat w$ as
+follows: (i) draw a new label $l'$ at site $i$ with uniform
+distribution; $\mat w$ has value $l'$ at site $i$, with other sites
+remaining the same as $\mat z^n$; (ii) compute the change of energy
+$\Delta U(\mat w) = U(\mat w | \mat x) - U( \mat z^n | \mat x) = U(z_i
+= l'| \mat x) - U(z_i = l | \mat x)$; (iii) accept candidate $\mat w$
+as $\mat z^{n+1}$ with probability $\min (1, \exp \{ -\Delta U(\mat w)
+\})$; (iv) after a sufficiently long burn-in period, generate a sample of size $M$
+from the posterior distribution $P(\mat z| \mat x)$.
+
+
+\subsection{Parameter Estimation}
+
+
+\textbf {Estimate $\vec \theta_L$:} By maximizing $\widetilde Q_L$
+with the constraint $\norm{\vec \mu_l} = 1$ we get
+\begin{equation}
+  R_l = \sum_{m=1}^{M}\sum_{i \in \cS_l}^{} \vec x_i, \qquad \hat {\vec \mu}_l = \frac{R_l}{\norm{R_l}},
+  \label{eq:mlmu}
+\end{equation}
+where $S_l = \{ i \in \cS: z_i = l\}$ is the set of data points in cluster
+$l$. We have no \emph{a priori} knowledge for $\vec \mu_l$, so a maximum
+likelihood estimation in \eqref{eq:mlmu} is the best we can do. For $\kappa_l$
+we use a Gaussian prior, $\kappa_l \sim N(\mu_\kappa, \sigma_\kappa)$, and we
+maximize the posterior distribution $P(\kappa_l | \mat x, \mat z^1, \dots, \mat
+z^M) $.  Since $\widetilde Q_L$ is not dependent on $\kappa$, we only need to
+maximize $\widetilde Q_L(\kappa_l) + \log P(\kappa_l; \mu_{\kappa},
+\sigma_{\kappa}^2)$ and get
+\begin{equation}
+  A_p(\hat \kappa_l) + \frac{\hat \kappa_l - \mu_{\kappa}}{N_l\sigma_{\kappa}^2} = R_l,
+  \label{eq:estkappa}
+\end{equation}
+where $A_p(\hat \kappa_l) = I_{\frac{p}{2}} (\hat \kappa_l) /
+I_{\frac{p}{2}-1} (\hat \kappa_l)$ and $N_l = |\cS_l|$ is the number
+of data points in cluster $l$. Because \eqref{eq:estkappa} contains
+the ratio of two modified Bessel functions, an analytic solution is
+unavailable and we have to resort to a numerical solution. We use
+Newton's method for solving $g(\hat \kappa_l) = A_p(\hat \kappa_l)
+-(\hat \kappa_l - \mu_{\kappa}) / (N_l\sigma_{\kappa}^2) - R_l= 0$;
+the derivative of $A_p(\hat \kappa_l)$ is
+\begin{align*}
+  A_p(\hat \kappa_l)' = 1 - A_p(\hat \kappa_l)^2 - \frac{p-1}{\hat \kappa_l} A_p(\hat \kappa_l).
+\end{align*}
+The choice of initial value for Newton's algorithm depends on the
+strength of the prior on $\kappa_l$ (i.e. the $\sigma_{\kappa}$
+value). For a noninformative prior, $\hat \kappa_l = (pR_l - R^3) / (1
+- R^2)$ is a good approximation to the maximum likelihood estimate
+\cite{banerjee2006clustering} and forms a good initial value. On the
+other hand, for a strong prior, a reasonable initial value is the
+current value of $\kappa_l$.
+
+
+\textbf{Estimate $\beta$:} To estimate $\beta$, we again rely on Newton's method
+to find the solution numerically. The derivatives $\partial \widetilde Q_P
+/ \partial \beta$ and $\partial^2 \widetilde Q_P / \partial \beta^2$ for the
+pseudo-likelihood approximation of the MRF prior are easily computed.
+
+\begin{algorithm}[hbt]
+  % \DontPrintSemicolon
+  \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+  \Input{Preprocessed 4D fMRI data; number of clusters}
+  \Output{labeled functional region map}
+
+  Initialization: Run K-means clustering a few times and choose $\mat z$ with the smallest sum-of-square errors; estimate $\vec \theta_L$ and set
+  $\beta$ to a small value\;
+
+  \While{EM not converged}{
+    \textbf{E step: } Given current $\vec \theta$,
+    \For{$m \leftarrow 1$ \KwTo $M$}{
+      \lForEach{$i \in \cS$} {
+        Draw sample $z_i^m$ from $P( z_i|\mat x)$ using \eqref{eq:sample}\;
+      }
+    }
+    \textbf{M step: } Given $(\mat z^1,\dots, \mat z^M)$, estimate $\beta$ and $\vec \theta_L$\;
+    Estimate labels using iterated conditional modes, using the current estimates for $\beta$ and $\vec \theta_L$ \;
+  }
+
+  \caption{MCEM-ICM Algorithm for Hidden-MRF Model Estimation}
+  \label{alg:mcem}
+\end{algorithm}
+
+
+\subsection{MCEM-Based Algorithm for Hidden-MRF Model Estimation}
+
+
+Given the methods for sampling and parameter estimation, we estimated
+the hidden-MRF model by iteratively using (i) MCEM to learn model
+parameters and (ii) using iterated conditional modes (ICM) to compute
+optimal region labels. In the expectation (E) step, we draw samples
+from the posterior $P(\mat z | \mat x)$, given current estimates for
+parameters $\vec \theta$. In the maximization (M) step, we use these
+samples to update estimates for the parameters $\vec \theta$. After EM
+converges, we use ICM to estimate the optimal region labels using the
+current estimate for $\vec \theta$. Algorithm \ref{alg:mcem} describes
+this procedure.
+
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.18\textwidth]{figures/synthetic/true}
+  \includegraphics[width=0.18\textwidth]{figures/synthetic/obs}
+  \includegraphics[width=0.18\textwidth]{figures/synthetic/sphere1}
+  \includegraphics[width=0.18\textwidth]{figures/synthetic/label_icm}
+  \includegraphics[width=0.18\textwidth]{figures/synthetic/label_mc}
+  \caption{Synthetic example. From left to right is true labels, first
+    time point of observed time series, time series plot on sphere,
+    label map estimate by ICM, label map estimate by MCEM.}
+  \label{fig:toy}
+\end{figure}
+
+
+\section{Experiments}
+\label{sec:exp}
+<<<<<<< .mine
+We first generate a low dimensional synthetic data to compare our MCEM
+algorithm with widely used ICM method \cite{zhang2002segmentation},
+which is same with our algorithm \ref{alg:mcem} except that the
+sampling step is replaced by ICM. The $64\times 64$ true label image
+is generated by sampling from MRF with $\beta = 2$. Given the label
+map, we generate vMF samples of length 3, and use a ring-shape
+mask. The results is shown in figure \ref{fig:toy}.
+=======
+>>>>>>> .r152
+
+<<<<<<< .mine
+{\bf Resting-State fMRI.} Next we tested our method on real data from
+healthy control subjects in a resting-state fMRI study. BOLD EPI
+images (TR= 2.0 s, TE = 28 ms, GRAPPA acceleration factor = 2, 40
+slices at 3 mm slice thickness, 64 x 64 matrix, 240 volumes) were
+acquired on a Siemens 3 Tesla Trio scanner with 12-channel head coil
+during the resting state, eyes open. The data was motion corrected by
+SPM software, registered to T2 and T1 structural images and spatially
+smoothed by a $6\times 6\times 6$ Gaussian filter.  We used a gray matter mask
+from an SPM tissue segmentation so that only gray matter voxels are
+counted in the connectivity analysis. The data is then further
+processed by WhitField-Gabrieli's \texttt{conn} software to regress
+out signals from ventricles and white matter, which have high degree
+of physiological artefact. Also a bandpass filter is used to remove
+frequency component below 0.01 Hz and above 0.1 Hz. We then project
+the data onto the unit sphere by subtracting the mean of each time
+series and divide by each time series norm. The data is now ready
+for MCEM algorithm to estimate the labels. For the priors of parameter
+$\kappa$, we set $\mu_{\kappa} = 400$. Since the number of data points
+in each cluster are large, we need use a small $\sigma_{\kappa} =
+0.5$. The number of clusters still need user's input. Here wet set it
+to 8.
+=======
+>>>>>>> .r152
+
+We first simulate low-dimensional fMRI data (2D 64$\times$64 image domain; 3 timepoints) to compare the (i)~proposed method, that combines MCEM-based
+parameter estimation and ICM~\cite{zhang2002segmentation}, with (ii)~the conventional approach that couples maximum-a-posteriori parameter estimation
+with ICM. We use a ring-shaped mask to resemble a gray-matter 2D mask. Within this gray-matter mask, we simulate a label map by sampling from a MRF
+having $\beta = 2$. Given the label map, we simulate vMF samples (on a sphere in 3 dimensions). Figure~\ref{fig:toy} shows the results.
+
+{\bf Resting-State fMRI:} We evaluated the proposed method on real data, from healthy control subjects, in a resting-state fMRI study. BOLD EPI images
+(TR = 2.0 s, TE = 28 ms, GRAPPA acceleration factor = 2, 40 slices at 3 mm slice thickness, 64 x 64 matrix, 240 volumes) were acquired on a Siemens 3
+Tesla Trio scanner with 12-channel head coil during the resting state (subjects' eyes were open). The data was motion corrected by SPM
+software~\cite{SPM} and registered to T2 and T1 structural MR images. We used a gray matter mask from an SPM tissue segmentation so that only gray
+matter voxels are counted in the connectivity analysis. The data is then further processed by Susan WhitField-Gabrieli's \texttt{conn} software to
+regress out signals from the ventricles and white matter, which have a high degree of physiological artefacts. We use a bandpass filter to remove
+frequency components below 0.01 Hz and above 0.1 Hz. We then project the data onto the unit sphere by subtracting the mean of each time series and
+dividing by magnitude of the resulting time series. We then apply the proposed method to estimate the labels. For the priors of parameter $\kappa$, we
+set $\mu_{\kappa} = 400$. Since the number of data points in each cluster are relatively large, we set $\sigma_{\kappa} = 0.5$ (note that this allows
+the estimate for cluster concentrations $\kappa_l$ estimates to vary from 200-600). The number of clusters $L$ is a user-defined parameter; we set it
+to 8.
+
+Figure~\ref{fig:wholebrain} shows the optimal label maps, produced by the proposed method, on three subjects (processed independently). We note that
+among the 8 clusters, one cluster, with the largest $\kappa$ value, always has the most number of voxels that are not in the regions of interest. This
+cluster corresponds to background regions with least connectivity and is not shown in the figure. Among the clusters shown, we can identify the
+visual, motor, attention~\cite{fox2005human}, and default mode network~\cite{raichle2001}, all in a single label map. We found that changing the
+number of clusters, although leading to different label maps, preserves most of the regions of interest corresponding to the prominent functional
+connections. For instance, setting the number of cluster to 4 or 6, also produces optimal label maps containing the aforementioned four widely-known
+functional networks (not shown in figure).
+
+\begin{figure}[!t]
+ \begin{center}
+    \begin{tabular}{cccccc}
+      \includegraphics[width=0.15\textwidth]{figures/wholebrain/sub1/axial0028} &
+      \includegraphics[width=0.15\textwidth]{figures/wholebrain/sub1/axial0034} &
+      \vspace{0.5pt}
+      \includegraphics[width=0.15\textwidth]{figures/wholebrain/sub2/axial0028} &
+      \includegraphics[width=0.15\textwidth]{figures/wholebrain/sub2/axial0034} &
+      \vspace{0.5pt}
+      \includegraphics[width=0.15\textwidth]{figures/wholebrain/sub5/axial0028} &
+      \includegraphics[width=0.15\textwidth]{figures/wholebrain/sub5/axial0034} \\
+      
+      \includegraphics[width=0.15\textwidth]{figures/wholebrain/sub1/saggital0029} &
+      \includegraphics[width=0.15\textwidth]{figures/wholebrain/sub1/coronal0029} &
+      \vspace{0.5pt}
+      
+      \includegraphics[width=0.15\textwidth]{figures/wholebrain/sub2/saggital0029} &
+      \includegraphics[width=0.15\textwidth]{figures/wholebrain/sub2/coronal0029} &
+      \vspace{0.5pt}
+      \includegraphics[width=0.15\textwidth]{figures/wholebrain/sub5/saggital0029} &
+      \includegraphics[width=0.15\textwidth]{figures/wholebrain/sub5/coronal0029}\\
+      
+      \multicolumn{2}{c}{Subject 1} &
+      \multicolumn{2}{c}{Subject 2} &
+      \multicolumn{2}{c}{Subject 3}
+    \end{tabular}
+  \end{center}
+  \caption {Functional connections detected by the proposed method for 3 subjects overlaid on their T1 images.  Four images on the left: axial view at
+    slice $z=28$ shows default network in red; axial view at slice $z=34$ shows motor and attention network in green and yellow; saggital view at
+    $x=29$; coronal view at $y=29$ shows another attention network separate from dorsal attention in pink. }
+  \label{fig:wholebrain}
+\end{figure}
+
+<<<<<<< .mine
+Our next experiment finds the consistency of the label map across
+multi-subjects, and compare our results with ICA. We use Calhoun's
+Group ICA (GIFT v1.3c) toolbox and use the same preprocessed data by
+SPM. For comparison purpose we only show one of the clusters at medial
+prefrontal cortex (MPFC) and posterior cingulate cortex (PCC), known
+as default mode network (DMN) \cite{raichle2001}. We choose 8 clusters
+since it can identify all network without introducing too many
+spurious regions. Figure \ref{fig:multisub} whows the results of our
+MCEM method and ICA. ICA tends to split the DMN into two components,
+one with PCC and another with MPFC. It is not clear whether this is
+because ICA can not detect DMN for single subject, or because there is
+less connectivity between PCC and MPFC. In our MCEM method, DMN is
+identified in all 3 subjects. Note we're not claim our algorithm
+outperforms GroupICA that combines multi-subjects component, and our
+algorithm can be extended to include information from other subjects.
+=======
+The next experiment evaluates the consistency of the label map across multiple subjects, and compares our results with ICA. For comparison, we only
+show one of the clusters at the medial prefrontal cortex (MPFC) and the posterior cingulate cortex (PCC), known as the default mode network
+(DMN)~\cite{raichle2001}. We choose 8 clusters because it can identify the major functional networks. The results in figure \ref{fig:multisub} show
+the consistency of label map in all 3 subjects. It is interesting that ICA tends to split the DMN into two components, one with PCC and another with
+MPFC. It is unclear whether this is because ICA can not detect DMN for single subjects or because there is less connectivity between PCC and MPFC. In
+the proposed method, the DMN is identified consistently in all three subjects.
+
+>>>>>>> .r152
+\begin{figure}[hbt]
+  \begin{center}
+    \begin{tabular}{llcccc}\footnotesize
+      \includegraphics[width=0.14\textwidth]{figures/test1/sub1_pcc1a} &
+      \includegraphics[width=0.14\textwidth]{figures/test1/sub1_pcc1s} &
+      \vspace{0.8pt}
+      \includegraphics[width=0.14\textwidth]{figures/ica2/c9_sub1a} &
+      \includegraphics[width=0.14\textwidth]{figures/ica2/c9_sub1s} &
+      \vspace{0.5pt}
+      \includegraphics[width=0.14\textwidth]{figures/ica2/c13_sub1a} &
+      \includegraphics[width=0.14\textwidth]{figures/ica2/c13_sub1s} \\
+
+
+      \includegraphics[width=0.14\textwidth]{figures/test1/sub2_pcc1a} &
+      \includegraphics[width=0.14\textwidth]{figures/test1/sub2_pcc1s} &
+      \vspace{0.8pt}
+      \includegraphics[width=0.14\textwidth]{figures/ica2/c9_sub2a} &
+      \includegraphics[width=0.14\textwidth]{figures/ica2/c9_sub2s} &
+      \vspace{0.5pt}
+      \includegraphics[width=0.14\textwidth]{figures/ica2/c13_sub2a} &
+      \includegraphics[width=0.14\textwidth]{figures/ica2/c13_sub2s} \\
+
+      \includegraphics[width=0.14\textwidth]{figures/test1/sub5_pcc1a} &
+      \includegraphics[width=0.14\textwidth]{figures/test1/sub5_pcc1s} &
+      \vspace{0.8pt}
+      \includegraphics[width=0.14\textwidth]{figures/ica2/c9_sub5a} &
+      \includegraphics[width=0.14\textwidth]{figures/ica2/c9_sub5s} &
+      \vspace{0.5pt}
+      \includegraphics[width=0.14\textwidth]{figures/ica2/c13_sub5a} &
+      \includegraphics[width=0.14\textwidth]{figures/ica2/c13_sub5s}\\
+
+      \multicolumn{2}{c}{ MCEM Method} &
+      \multicolumn{2}{c}{ICA comp. 9} &
+      \multicolumn{2}{c}{ICA comp. 13}
+    \end{tabular}
+  \end{center}
+  \caption{Label map for the default mode network of 3 subjects along with ICA components. Axial and sagittal views are overlaid on each subject's T1
+    image transformed into standard (MNI152) space. Each row is one subject. Left: label map estimated by the proposed method. Middle: component 9 of
+    ICA. Right: component 13 of ICA.}
+  \label{fig:multisub}
+\end{figure}
+
+
+\section{Conclusion}
+We apply MRF as spatial regularization to find a functional label map
+of fmri images, and use Monte Carlo EM to approximate the posterior
+solution in a Bayesian framework. Future work include extend to group
+analysis , and use non-parametric Bayesian method to estimate number
+of clusters, and we may consider dimension reduction on the
+hypersphere.
+\label{sec:conc}
+
+\bibliographystyle{splncs03}
+\bibliography{reference}
+\end{document}

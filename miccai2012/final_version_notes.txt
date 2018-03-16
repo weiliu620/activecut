@@ -1,0 +1,22 @@
+Major fixes:
+-- Fix the typo in equation (2).
+-- Rephase algorithm 1 to make it clear that the samples are drawn consecutively after burn-in period, and the sampling is from posterior P(Y|X; theta).
+-- mu_alpha and sigma_alpha, as hyperprior, is given manually and does not have significant impact on the model. (page 5, section 3, Hierarchcial MRF algorithm using MCEM)
+-- Mentioned that the paper of Ng. bypasses the need for one-to-one voxel correspondence across subjects.
+
+Minor fixes:
+-- add ^m at the first setense of pseudo-likelihood subsection (bottom of page 4) to amke it clear the variable Y is actually a sample.
+-- In synthetic example, rephase to make it clear the N-cuts and K-Means have different assumptions on the data.
+
+-- fixed the typo in the 1st equation on page 3.
+-- the likelihood term is summed over H, instead of over S.
+-- initialization: as said in the original paper, reasonable initial label map are required. 
+-- Give the Gaussian filter's kernel size for spatial smoothing.
+-- Fix the caption in figure 3. z = -8 should be x = -8.
+
+
+not addressed:
+-- Rand index definition: for limited space, We didn't add definition of rand index. But I rephase it to make it clear that Rand Index measures the different between two clussterings.
+-- The definition of Z in MRF prior is mentioned in pseudo likelihood section: Z is the partition function.
+-- the paper [i] is not added in the reference because of space limit, though we fully agree that [i] is the first work that integrates group information into intro-subject functional network detection.
+

@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2010)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: quanswer_weiliu.aux
+The style file: plainnat.bst
+Database file #1: quaref.bib
+I was expecting a `,' or a `}'---line 149 of file quaref.bib
+ :   
+ :   volume={7},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty publisher in huettel2004functional
+Warning--empty year in huettel2004functional
+Warning--empty year in huettel2004functional
+Warning--empty journal in kay1998fundamentals
+Warning--empty year in kay1998fundamentals
+Warning--empty year in kay1998fundamentals
+You've used 26 entries,
+            2773 wiz_defined-function locations,
+            748 strings with 8586 characters,
+and the built_in function-call counts, 11113 in all, are:
+= -- 975
+> -- 559
+< -- 25
++ -- 194
+- -- 168
+* -- 863
+:= -- 1708
+add.period$ -- 76
+call.type$ -- 26
+change.case$ -- 125
+chr.to.int$ -- 26
+cite$ -- 58
+duplicate$ -- 546
+empty$ -- 976
+format.name$ -- 209
+if$ -- 2315
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 34
+newline$ -- 136
+num.names$ -- 104
+pop$ -- 288
+preamble$ -- 1
+purify$ -- 107
+quote$ -- 0
+skip$ -- 397
+stack$ -- 0
+substring$ -- 447
+swap$ -- 48
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 246
+warning$ -- 6
+while$ -- 110
+width$ -- 0
+write$ -- 332
+(There was 1 error message)

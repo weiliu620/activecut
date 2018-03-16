@@ -1,0 +1,21 @@
+-- add clinical motivation in chap 1.
+
+-- citations. (books)
+
+-- lesion segmentation as a preprocessing step of fMRI analysis.
+
+-- talk about the similarity criteria. ICC rand index etc.
+
+-- The convergence of sampling. Need reference.
+
+-- Discuss why it is not feasible to define a group distribution on top of subject distribution and still have MRF on the group.  Dirichlet distribution. 
+
+-- in 6dmrf model, the there are 2 modes in the mixture, which is similar to the mixture model used for task based data. 
+
+-- add Woolrich "mixture models with adaptive spatial regularization...." to the related work chapter, MRF section. 
+
+-- abstract.
+
+
+
+

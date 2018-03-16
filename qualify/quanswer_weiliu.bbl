@@ -1,0 +1,160 @@
+\begin{thebibliography}{26}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Barbu and Zhu(2005)]{barbu2005generalizing}
+A.~Barbu and S.C. Zhu.
+\newblock Generalizing swendsen-wang to sampling arbitrary posterior
+  probabilities.
+\newblock \emph{Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 27\penalty0 (8):\penalty0 1239--1253, 2005.
+
+\bibitem[Basser et~al.(2000)Basser, Pajevic, Pierpaoli, Duda, and
+  Aldroubi]{basser2000vivo}
+P.J. Basser, S.~Pajevic, C.~Pierpaoli, J.~Duda, and A.~Aldroubi.
+\newblock In vivo fiber tractography using dt-mri data.
+\newblock \emph{Magnetic resonance in medicine}, 44\penalty0 (4):\penalty0
+  625--632, 2000.
+
+\bibitem[Bulu{\=e} et~al.(2010)Bulu{\=e}, Gilbert, and
+  Budak]{buluē2010solving}
+A.I. Bulu{\=e}, J.R. Gilbert, and C.~Budak.
+\newblock Solving path problems on the gpu.
+\newblock \emph{Parallel Computing}, 36\penalty0 (5-6):\penalty0 241--253,
+  2010.
+
+\bibitem[Buxton et~al.(1998)Buxton, Wong, and Frank]{buxton1998dynamics}
+R.B. Buxton, E.C. Wong, and L.R. Frank.
+\newblock Dynamics of blood flow and oxygenation changes during brain
+  activation: the balloon model.
+\newblock \emph{Magnetic Resonance in Medicine}, 39\penalty0 (6):\penalty0
+  855--864, 1998.
+
+\bibitem[Campbell et~al.(2005)Campbell, Siddiqi, Rymar, Sadikot, and
+  Pike]{campbell2005flow}
+J.S.W. Campbell, K.~Siddiqi, V.V. Rymar, A.F. Sadikot, and G.B. Pike.
+\newblock Flow-based fiber tracking with diffusion tensor and q-ball data:
+  validation and comparison to principal diffusion direction techniques.
+\newblock \emph{NeuroImage}, 27\penalty0 (4):\penalty0 725--736, 2005.
+
+\bibitem[Cooper and Frieze(1999)]{cooper1999mixing}
+C.~Cooper and A.M. Frieze.
+\newblock Mixing properties of the swendsen-wang process on classes of graphs.
+\newblock \emph{Random Structures and Algorithms}, 15\penalty0 (3-4):\penalty0
+  242--261, 1999.
+
+\bibitem[Cormen(2001)]{cormen2001introduction}
+T.H. Cormen.
+\newblock \emph{Introduction to algorithms}.
+\newblock The MIT press, 2001.
+
+\bibitem[Gelman and Rubin(1992)]{gelman1992inference}
+A.~Gelman and D.B. Rubin.
+\newblock Inference from iterative simulation using multiple sequences.
+\newblock \emph{Statistical science}, 7\penalty0 (4):\penalty0 457--472, 1992.
+
+\bibitem[Gibbs(2000)]{gibbs2000bounding}
+A.L. Gibbs.
+\newblock Bounding the convergence time of the gibbs sampler in bayesian image
+  restoration.
+\newblock \emph{Biometrika}, 87\penalty0 (4):\penalty0 749--766, 2000.
+
+\bibitem[Grimmett(2006)]{grimmett2006random}
+G.~Grimmett.
+\newblock \emph{The random-cluster model}, volume 333.
+\newblock Springer Verlag, 2006.
+
+\bibitem[Harish and Narayanan(2007)]{harish2007accelerating}
+P.~Harish and P.~Narayanan.
+\newblock Accelerating large graph algorithms on the gpu using cuda.
+\newblock \emph{High Performance Computing--HiPC 2007}, pages 197--208, 2007.
+
+\bibitem[Huber(2003)]{huber2003bounding}
+M.~Huber.
+\newblock A bounding chain for swendsen-wang.
+\newblock \emph{Random Structures \& Algorithms}, 22\penalty0 (1):\penalty0
+  43--59, 2003.
+
+\bibitem[Huettel et~al.()Huettel, Song, and McCarthy]{huettel2004functional}
+S.A. Huettel, A.W. Song, and G.~McCarthy.
+\newblock \emph{Functional magnetic resonance imaging}, volume~1.
+
+\bibitem[Johnson(1996)]{johnson1996studying}
+V.E. Johnson.
+\newblock Studying convergence of markov chain monte carlo algorithms using
+  coupled sample paths.
+\newblock \emph{Journal of the American Statistical Association}, pages
+  154--166, 1996.
+
+\bibitem[Kay()]{kay1998fundamentals}
+S.M. Kay.
+\newblock Fundamentals of statistical signal processing, volume i: Estimation
+  theory.
+
+\bibitem[Kleinberg(2006)]{kleinberg2006algorithm}
+J.~Kleinberg.
+\newblock \emph{Algorithm design}.
+\newblock Pearson Education India, 2006.
+
+\bibitem[Lewin(2003)]{lewin2003functional}
+J.S. Lewin.
+\newblock Functional mri: An introduction to methods.
+\newblock \emph{Journal of Magnetic Resonance Imaging}, 17\penalty0
+  (3):\penalty0 383--383, 2003.
+
+\bibitem[Mori et~al.(1999)Mori, Crain, Chacko, and Van~Zijl]{mori1999three}
+S.~Mori, B.J. Crain, VP~Chacko, and P.~Van~Zijl.
+\newblock Three-dimensional tracking of axonal projections in the brain by
+  magnetic resonance imaging.
+\newblock \emph{Annals of neurology}, 45\penalty0 (2):\penalty0 265--269, 1999.
+
+\bibitem[Nepomniaschaya and Dvoskina(2000)]{nepomniaschaya2000simple}
+A.S. Nepomniaschaya and M.A. Dvoskina.
+\newblock A simple implementation of dijkstra's shortest path algorithm on
+  associative parallel processors.
+\newblock \emph{Fundamenta Informaticae}, 43\penalty0 (1):\penalty0 227--243,
+  2000.
+
+\bibitem[Noll et~al.(2001)]{noll2001primer}
+D.C. Noll et~al.
+\newblock A primer on mri and functional mri.
+\newblock \emph{Techical Report, University of Michigan, Ann Arbor, USA}, 2001.
+
+\bibitem[Poynton et~al.(2005)Poynton, Lal, Ratnanather, Mori, Boatman, and
+  Miller]{poynton2005probabilistic}
+C.~Poynton, R.~Lal, JT~Ratnanather, S.~Mori, D.~Boatman, and MI~Miller.
+\newblock Probabilistic tracking of fiber pathways using dynamic programming.
+\newblock In \emph{11th Annu. Meeting Org. Human Brain Mapp., Toronto, ON,
+  Canada}, 2005.
+
+\bibitem[Robert and Casella(2004)]{robert2004monte}
+C.P. Robert and G.~Casella.
+\newblock \emph{Monte Carlo statistical methods}.
+\newblock Springer Verlag, 2004.
+
+\bibitem[Rubinstein and Kroese(2008)]{rubinstein2008simulation}
+R.Y. Rubinstein and D.P. Kroese.
+\newblock \emph{Simulation and the Monte Carlo method}, volume 707.
+\newblock Wiley-interscience, 2008.
+
+\bibitem[Stroman(2011)]{stroman2011essentials}
+P.W. Stroman.
+\newblock \emph{Essentials of Functional MRI}.
+\newblock CRC Press, 2011.
+
+\bibitem[Winkler(2003)]{winkler2003image}
+G.~Winkler.
+\newblock \emph{Image analysis, random fields and Markov chain Monte Carlo
+  methods: a mathematical introduction}, volume~27.
+\newblock Springer Verlag, 2003.
+
+\bibitem[Zalesky(2008)]{zalesky2008dt}
+A.~Zalesky.
+\newblock Dt-mri fiber tracking: a shortest paths approach.
+\newblock \emph{Medical Imaging, IEEE Transactions on}, 27\penalty0
+  (10):\penalty0 1458--1471, 2008.
+
+\end{thebibliography}

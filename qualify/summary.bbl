@@ -1,0 +1,67 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Butts(2009)]{butts2009revisiting}
+C.T. Butts.
+\newblock Revisiting the foundations of network analysis.
+\newblock \emph{Science}, 325\penalty0 (5939):\penalty0 414, 2009.
+
+\bibitem[Deco et~al.(2010)Deco, Jirsa, and McIntosh]{deco2010emerging}
+G.~Deco, V.K. Jirsa, and A.R. McIntosh.
+\newblock Emerging concepts for the dynamical organization of resting-state
+  activity in the brain.
+\newblock \emph{Nature Reviews Neuroscience}, 12\penalty0 (1):\penalty0 43--56,
+  2010.
+
+\bibitem[Liu et~al.(2010)Liu, Zhu, Anderson, Yurgelun-Todd, and
+  Fletcher]{SCI:Liu2010a}
+W.~Liu, P.~Zhu, J.S. Anderson, D.~Yurgelun-Todd, and P.T. Fletcher.
+\newblock Spatial regularization of functional connectivity using
+  high-dimensional markov random fields.
+\newblock \emph{MICCAI 2010}, 14:\penalty0 363--370, 2010.
+\newblock URL
+  \url{http://sci.utah.edu/publications/liu10/MRF_connectivity_miccai2010.pdf}.
+
+\bibitem[Liu et~al.(2011)Liu, Awate, Anderson, Yurgelun-Todd, and
+  Fletcher]{SCI:Liu2011a}
+W.~Liu, Suyash~P. Awate, J.S. Anderson, D.~Yurgelun-Todd, and P.T. Fletcher.
+\newblock Monte carlo expectation maximization with hidden markov models to
+  detect functional networks in resting-state fmri.
+\newblock \emph{Machine Learning and Medical Imaging Workshop in MICCAI}, 2011.
+\newblock URL
+  \url{http://www.sci.utah.edu/~weiliu/publications/mcem_weiliu_miccai2011.pdf}.
+
+\bibitem[Margulies et~al.(2010)Margulies, Bottger, Long, Lv, Kelly, Schafer,
+  Goldhahn, Abbushi, Milham, Lohmann, et~al.]{margulies2010resting}
+D.S. Margulies, J.~Bottger, X.~Long, Y.~Lv, C.~Kelly, A.~Schafer, D.~Goldhahn,
+  A.~Abbushi, M.P. Milham, G.~Lohmann, et~al.
+\newblock Resting developments: a review of fmri post-processing methodologies
+  for spontaneous brain activity.
+\newblock \emph{Magnetic Resonance Materials in Physics, Biology and Medicine},
+  pages 1--19, 2010.
+
+\bibitem[Raichle et~al.(2001)Raichle, MacLeod, Snyder, Powers, Gusnard, and
+  Shulman]{raichle2001}
+M.~E. Raichle, A.~M. MacLeod, A.~Z. Snyder, W.~J. Powers, D.~A. Gusnard, and
+  G.~L. Shulman.
+\newblock A default mode of brain function.
+\newblock \emph{PNAS}, 98\penalty0 (2):\penalty0 676--682, 2001.
+
+\bibitem[Varoquaux et~al.(2010)Varoquaux, Gramfort, Poline, and
+  Thirion]{varoquaux2010brain}
+G.~Varoquaux, A.~Gramfort, J.B. Poline, and B.~Thirion.
+\newblock Brain covariance selection: better individual functional connectivity
+  models using population prior.
+\newblock \emph{Arxiv preprint arXiv:1008.5071}, 2010.
+
+\bibitem[Yuan and Lin(2006)]{yuan2006model}
+M.~Yuan and Y.~Lin.
+\newblock Model selection and estimation in regression with grouped variables.
+\newblock \emph{Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, 68\penalty0 (1):\penalty0 49--67, 2006.
+
+\end{thebibliography}

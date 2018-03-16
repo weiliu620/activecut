@@ -1,0 +1,698 @@
+\chapter{Background and Related Works}
+\label{chap:bg}
+% This chapter will cover: Effect of preprocessing. SPM smoothing, Random field
+% theory for enforcing smoothing.
+
+% a very high level overview.
+Human brain is organized into distributed functional modules that work
+independently but also interact with each other during cognitive activity. There
+appears two principles of functional organization: functional integration and
+functional specialization~\cite{friston2007statistical}. The functional
+specialization assumes the modules that process a particular cognitive activity
+can be localized to a anatomical region in the brain. In functional
+specialization, one studies the relationship of specific anatomical regions and
+the cognitive activity. However, the brain regions or functional modules do not
+work alone. They interact with each other in a complex and dynamic
+way. Functional integration focuses on such interactions.
+
+% what will be covered in this chapter.
+This chapter provides background information of the current research of the
+exploration of brain's functional network using rs-fMRI. I will begin with the
+relationship between brain activity and fMRI, and give the definitions of
+functional connectivity and functional network. Then I will survey various
+classes of methods for estimating the functional connectivity and the
+networks.
+
+%% Brain network organization, anatomical/functional connectivity, fmri BOLD,
+%% oxygen, task, resting-state, functional network
+\section{Resting-State Functional Network}
+% the interaction: anatomical connectivity and functional connectivity. 
+The interaction between various brain's functional modules can be represented by
+the connectivity between anatomical regions. Two sets of MRI techniques are
+widely used for mapping the \emph{in vivo} human's brain connectivity. Diffusion
+MRI, or more specifically, diffusion tensor imaging (DTI), as a structural
+imaging technique, detects the anisotropy of the neural axons in the brain's
+white matter by measuring the diffusion of water molecules. Such anisotropy is
+used for identifying the anatomical connectivities between two regions in the
+brain's white matter~\cite{jirsa2007handbook}. functional MRI (fMRI) imaging
+instead serves to explore the functional links between two regions of interest
+in brain's gray matter. The functional connections are the actual flow of
+information that go through the anatomical links represented by the
+DTI. Researchers have shown the correlation between the anatomical and
+functional connections. Such correlation is a indication that functional
+connectivity is physically constrained, and modulated by the structural
+connectivity~\cite{honey2009predicting}. However functional and structural
+connectivity are not exactly equal, suggesting the dynamic characteristics of
+the functional patterns depending on the brain's state. The work in this thesis
+is focused on the functional connectivity.
+
+% fmri intro, BOLD, oxygen, task-based. 
+The blood oxygenation level-dependent (BOLD) signal of fMRI detects the
+locations of increased neuro activity by measuring the blood oxygen levels at
+consecutive time points. the change of oxygen consumption in the blood indicates
+that the corresponding regions consume more energy, and hence in a more active
+neural activity compared to baseline state. Because of the resolution of fMRI is
+much higher than the single cell or neuron, the BOLD signal reflects the energy
+demands of neuro population that fire together with a common functional
+purpose~\cite{huettel2004functional, jezzard2003functional}. Besides fMRI, other
+techniques are also used for mapping brain's functions. They differ in terms of
+both their temporal and spatial resolution. In general, electrophysiological
+methods, such as electroencephalography (EEG) or the associated magnetic version
+magnetoencephalography (MEG) records the neural events in real time, hence have
+relatively high temporal resolution. On the other hand, fMRI and positron
+emission tomography (PET) detect the change of blood flow due to neuronal
+information processing, and have high spatial resolution (1-5 mm) but lower
+temporal resolution because of the delayed haemodynamic changes.
+
+% functional connectivity and functional network.
+fMRI is initially discovered as a tool to map the brain's activity for subjects
+under specific cognitive task. One compares the BOLD signal at a specific region
+in the brain with the paradigm task signal. Because of the nature of the
+haemodynamics of the blood, the paradigm task signal is the convolution of the
+original paradigm function (for example a boxcar function) with the haemodynamic
+response function (HRF). Later, people found that the BOLD signals can be used
+not only to detect the functional patterns in stimulus-guided experiments, but
+also to explore the co-activation of the brain when there is no cognitive task
+on the subjects~\cite{biswal1995functional}. In such experiments, the primary
+goal is to identify the functional connectivity between regions of the
+brain. Functional connectivity is defined as the temporal dependence of neuronal
+activity patterns of spatially remote (or anatomically separated) brain
+regions~\cite{friston1994functional, worsley_analysis_1995,
+  friston1994analysis}. The temporal dependence is typically measured by the
+linear correlation across all time points. Although the temporal correlation
+within the BOLD signal of single region or voxel violates the independence
+assumption of the time point samples, this temporal correlation is often safely
+ignored. Alternatively, one also identify functional connectivity by
+transforming the signals into frequency domain and compute the coherence of two
+signals at curtain frequency band. This is equivalent to band pass filtering the
+original BOLD signal and compute the linear correlation~\cite{cordes2000mapping,
+  cordes2001frequencies}.
+
+
+% Define a functional network. 
+The pairwise correlation or coherence only measure the functional connectivity
+between regions as a local measurement. As the whole brain is organized as a
+complex system with many such pairwise interactions, it is of interests to find
+out those regions with similar patterns of neuronal activity. A functional
+network, or functional system (hereafter used interchangeably), is a collection
+of separate anatomical regions that have similar patterns of activity measured
+by BOLD signal. The regions within a functional system may have direct or
+indirect information flow among them. Together the system serve one or more
+cognitive tasks. An anatomical region may participate in different functional
+system under different cognitive tasks.
+
+%% [ Various levels. Task, resting, Cognitive disease. Mental disorder. Low
+%% frequency. Correlation.
+The correlated fluctuation of multiple brain regions not only happens in
+stimulus-evoked experiments, but also in experiments where the participants rest
+passively without any cognitive activity. Therefore, the resting-state fMRI
+(rs-fMRI) becomes a powerful tool for probing such intrinsic activity in a
+resting-brain~\cite{raichle2001, fox2007spontaneous}. The original name of the
+rs-fMRI is not accurate, since the brain are not in a true resting state even
+without any cognitive activity. The resting-brain consumes about 20 percent of
+the whole body's energy, while it only have about 5 percent of the body
+mass~\cite{fox2005human}. The study of the functional organization of brain
+under rest provides new insights of how functional connectivity relates to the
+cognitive psychology and neurodegenerative diseases.  Because the pathologic
+conditions appear to be reflected by the interactions within or between the
+functional system, the rs-fMRI study also holds valuable diagnostic and
+prognostic information towards various neurological or psychiatric diseases
+including Alzheimer's disease, depression and
+schizophrenia\cite{fox2007spontaneous, greicius2007resting,
+  greicius2003functional}, etc. The reason of this spontaneous activity is
+largely unknown, although some reasonably postulate that it is a predictive
+intrinsic response to the unknown events in the outside
+environment~\cite{deco2010emerging}.
+
+% preprocessing. motion correction. global signal regression? slice timing
+% correction, nuisance parameter regression (GM, WM, CSF), registration.
+\section{Preprocessing fMRI Data}
+Due to the noise and artifacts in fMRI data, multiple preprocessing steps are
+typically taken before the real analysis starts. The preprocessing steps include
+motion correction, slice timing correction, spatial and temporal filtering,
+registration between structural images and functional images, and registration
+to the standard template, removing physiological noise, etc.
+
+Because of subject's head movement during the scan, the volumes at various time
+points are usually not perfectly aligned. A rigid body registration is usually
+done between the volumes at different time point, with either the first volume
+or the middle volume as a reference. This is called motion correction. After
+correction, the same voxel index is assumed to map to same brain structure
+across all time points, although the correction is often not perfect. The motion
+correction parameters of each volume are often used as independent variables for
+a regression in order to remove the motion effect. The first few time point are
+usually discarded in case the scanner is not in a stationary state.
+
+Slice timing correction is needed because each slice of fMRI volume is not
+scanned at the same time. Figure \ref{fig:slicetiming} shows the shifted time of
+scan for different slices, and the method of interpolation.  The shifted time
+will give sub-optimal experiment results during the analysis, especially for the
+event-based experiments. One typically use a interpolation step to obtain a
+volume in which all slices are at the same time point. Care must be taken for
+the ordering of the slices as it is scanner dependent.
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/c2/slicetiming}
+  \caption{Slice timing correction. The data at temporally adjacent slices are
+    resampled and interpolated to obtain a data point at the same time with the
+    reference slices.}
+  \label{fig:slicetiming}
+\end{figure}
+
+Because of the physiological process of the BOLD signal, most of the interesting
+information is concentrated at the low frequency range of the signal (0.01 --
+0.1 Hz). The temporal band-pass filter is usually applied to remove the very low
+frequency (below 0.01 Hz) and higher frequency (above 0.1 Hz). Also, due to the
+spatial process of the fMRI data acquisition, neighboring voxels typically have
+similar signal patterns. The statistical parametric mapping
+method~\cite{friston2007statistical} makes use of this spatial dependency by
+applying a spatial Gaussian filter, and further enforces the smoothness of the
+signal on spatial domain. This filtering increases the SNR, but inevitably
+discards finer patterns with size smaller than the smoothing kernel. Chapter
+\ref{chap:method1} and Chapter \ref{chap:method2} will discuss more principal
+methods that model this spatial dependency with no spatial smoothing, or very
+small, conservative smoothing.
+
+In order to report the experiment results in a standard way such that others can
+understand, the structural images and functional images are both registered to a
+standard template, such as MNI 152
+template~\footnote{\url{http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009}}. The
+functional images are first registered to structural images of the same subject
+by a rigid body transformation. The structural images is then transformed to the
+standard template by affine transformation. Because of the plasticity of the
+brain anatomy, the registration of subject's structural image may need
+non-linear transformation to register to the
+template~\cite{jenkinson2012fsl}. After the structural images are registered to
+the template, the functional images will also be brought to the template
+space. The last step is the nuisance parameter regression. the nuisance
+parameters include the six motion correction parameters that are estimated in
+previous motion correction step, and also the mean signal of the white matter
+and cerebrospinal fluid (CSF). The motion correction parameters are taken into
+account because even the fMRI data is motion corrected at the first step of
+preprocessing, the motion may still have impact on the estimation of GLM model
+of task-based fMRI, or the correlation for the rs-fMRI. The mean of white matter
+and CSF is regressed out as they are assumed to consist of physiological
+noise. Since there is no information for the physiological signal such as heart
+beating and breathing, and the mean of white matter and CSF is used as
+surrogates for such confounding signals.
+
+With all the preprocessing steps above, the data is ready for analysis. It is
+noted that the above preprocessing steps may vary depending on the specific
+experiments. For example, the slice timing shifting is not a severe issue for
+rs-fMRI analysis and can be skipped. Besides, sometimes the preprocessing steps
+may not have consistent impact on the fMRI processing pipeline. For example,
+Zhang~\cite{zhang2009evaluation} pointed out that slice timing correction and
+global intensity normalization have little consistent impact, but spatial
+smoothing, temporal detrending, high-pass filtering and motion correction
+significantly improves the pipeline performance across all subjects.
+
+\section{Related Methods for Analyzing Functional Networks}
+The temporal dependence of the spatial regions can be represented in multiple
+ways. Depending on if one is interested in a specific region or a full brain's
+functional patterns, one can choose from seed-based method or full brain
+method. For the method that explore the full brain, there are methods that
+define the region of interest (ROIs) and build a functional network by
+estimating the edges of the graph with nodes defined by the ROIs. Also the
+parcellation defines an image segmentation problem where the regions with higher
+functional connectivities are grouped into a single cluster. In this section, I
+will give a short survey of various methods, show their advantages and
+disadvantages, and the similarities and differences with our methods.
+
+\subsection{Seed Based Methods}
+There are various ways of representations of functional networks depending on
+the specific experiment goal. A straightforward yet statistically powerful
+method is to compute the correlation between \emph{a priori} given seed regions
+and every other regions in the brain~\cite{biswal1995functional,
+  buckner2008brain, buckner2009cortical}. The correlation values are typically
+Fisher transformed in order to meet the normal distribution assumption in the
+following hypothesis test. Those transformed correlation values with $p$ value
+less than certain threshold are regarded as the existence of the functional
+connectivity. All voxels or regions that are functionally connected to the seed
+regions belong to the same functional system. The seed-based methods are useful
+when user asks a straightforward question, and knows what functional system is
+of interest. The result is easy to interpret compared to other more complex
+methods.  The advantage of seed-based methods is its simplicity and relatively
+ease of extending to multiple subjects. One just computes the average
+correlations across subjects for a given pair of regions. When users are
+interested in the connectivity to multiple regions, they can define more than
+one seed.
+
+However, it also has the limit that the user has to know in advance the
+seed. The seed as \emph{a priori} information is an advantage when it accurately
+represents the functional patterns of interests. However, a functional system
+can not be identified if the seed region falls out of the system.  Despite the
+limit, it is used in many works, sometimes with better visualization by dynamic
+moving the seed and showing the real-time functional system associated with the
+current seed region~\cite{yeo2011organization}.
+
+\subsection{ICA and Other Decomposition Methods}
+Because of functional networks are in a large scale over the whole brain, and in
+a distributed manner, multi-variate analysis is a better way of exploring the
+full brain's functional organization. A large class of multi-variate methods use
+the signal-decomposition concept from the signal processing community, and
+decompose the BOLD signal at each region or voxel into various independent
+components, each of which as part of one functional system. The signal and the
+weight coefficients of these independent signals represent how much of the
+current voxel belongs to certain functional network component. One widely
+accepted method in this class is the independent component analysis (ICA). ICA
+was originally introduced in signal processing field to separate various source
+of signals from samples of mixed signals, and later was applied to rc-fMRI
+data~\cite{nggroup2012, beckmann2005tensorial, damoiseaux2006consistent}. The
+central limit theorem states the sum of two independent signals is more like
+Gaussian then any of the original signals. Therefore maximizing the
+non-Gaussianity gives us the original independent components. Besides the
+maximization of non-Gaussianity, the independent can also be estimated by
+minimization of mutual information, or by maximum
+likelihood~\cite{hyvarinen2000independent}.
+
+There are two varieties when applying to ICA to rs-fMRI dataset. Spatial ICA
+assume all the voxel intensities at certain time point as one mixed signal
+sample. Therefore the mixed signals are independent across all spatial
+voxels. Alternatively, temporal ICA treats each BOLD time series at a voxel a
+mixed signal, hence the source signals are independent across the time
+point~\cite{calhoun2001spatial}. Notice the functional maps we are interested in
+is the rows of source signal matrix $S$ for spatial ICA, and is the weight
+coefficients matrix $\tilde A$ for temporal ICA (see Figure \ref{fig:c2ica} for
+an illustration). Because of the large number of voxels compared to number of
+time points, the spatial ICA is typically used for rs-fMRI analysis. Compared to
+seed-based methods, ICA is purely data-driven, and can identify networks over
+the whole brain, including the already well-know cognitive processing systems
+such as motor~\cite{biswal1995functional},
+visual~\cite{damoiseaux2006consistent}, attention~\cite{fox2006spontaneous}
+executive control and salience network~\cite{seeley2007dissociable,
+  seeley2009neurodegenerative}.
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/c2/ica}
+  \caption{Spatial ICA v.s. temporal ICA for BOLD series of length $T$ at $N$
+    voxels.  In spatial ICA, all the voxel intensity at a single time point is
+    assumed a mixed signal of $P$ independent signals. And there are $T$ such
+    mixed signals. The decomposition is in the form of $X = A\cdot S$, where A
+    is the weight coefficients and each row of $S$ is the independent source
+    signal.  We are interested in the $S$ since each row is regarded as a
+    functional component. In temporal ICA, the BOLD time series of each voxel is
+    the mixed signals, and there are $N$ such mixed signals. The decomposition
+    is $\tilde X = \tilde A \cdot \tilde S$, with $\tilde A$ the weights, and
+    rows in $\tilde S$ the independent signal. Here we are interested in the
+    columns of $\tilde A$ as they are regarded as representations of the
+    functional networks.  }
+  \label{fig:c2ica}
+\end{figure}
+
+However, because ICA need to estimate both the independent components and mixing
+coefficients, it is a significantly more difficult task. Before applying ICA,
+the data usually need a whitening step with principal component analysis, and is
+thus rotated such that it has unit variance in terms of the covariance matrix,
+and greatly simplifies the ICA problem. The estimated independent components are
+usually z transformed, and thresholded for visualization purpose. Because the
+resting-state brain functional patterns are unpredictable, the output
+independent components need to be visually inspected in order to identify
+physiologically meaningful components. The iterative optimization also
+introduces variability between multiple runs of ICA with different initial
+state. In addition, the dimensional in the PCA preprocessing step is typically
+chosen arbitrarily, adding more variation of the results. A recent test on the
+reliability of ICA~\cite{zuo2010reliable} shows how the choice of the dimension
+and the number of components have impact on the consistency of the results.
+
+\subsection{Segmentation-based Methods}
+The functional networks estimated from ICA are represented by continuous numbers
+and have to be normalized to z score and thresholded to give a binary map. The
+thresholding add ambiguity to the consistency of the results. An alternative
+class of methods explore the functional patterns by defining it as a image
+segmentation problem. It can be also viewed as a data clustering
+problem. However, since the data points are indeed voxels in the fMRI images,
+the spatial context information is also useful for the clustering. Therefore, we
+name this class of methods as image segmentation, to indicate the possible usage
+of spatial information. Once the fMRI images are segmented into various disjoint
+set of regions, the voxels in the same regions have higher correlation, and
+hence believed to be functionally connected. Compared to ICA, the segmentation
+problem typically has a binary map for each functional network, i.e. clusters,
+although some soft segmentation methods exist. The methods used for segmentation
+include hierarchical clustering~\cite{salvador2005neurophysiological,
+  cohen2008defining, cordes2002hierarchical, bellec2010multi}, partitioning
+clustering~\cite{bellec2010multi} and spectral clustering
+methods~\cite{van2008normalized, craddock2012whole}. The early works of fMRI
+image segmentation~\cite{cordes2002hierarchical} are limited to a few slices due
+to the computation cost. Even within a few slices, the segmentation method is
+still able to identify the major functional components, and they shows that the
+results are robust to the confounds due to the subject motion and physiological
+noise. One interesting property of the hierarchical clustering technique is the
+potential of detecting the hierarchy of the brain's functional
+organization. Since the brain's functional patterns are widely believed to be
+also hierarchical~\cite{yeo2011organization}, a computational method will be
+very useful if it can naturally identify the sub-clusters within certain
+cluster. Notice that the hierarchical clustering method is different from the
+\emph{hierarchical MRF} method in the following chapter. The former builds a
+hierarchy on the clusters, while our method builds the hierarchy on the group and
+subjects' functional network maps.
+
+Among the segmentation methods, Mezer et. al~\cite{mezer2009cluster} uses the
+windowed Fourier transform and the spectrum below 0.2 Hz on the frequency
+domain, as well as the BOLD time series in the original image domain as features
+for the K-Means clustering. To test if the clusters estimated by K-Means is
+significantly different, they use a repeated measure ANOVA test between each
+pair of clusters. The experiments in Mezer's work found strong links between the
+functional patterns and the tissue architecture, suggesting the possibility that
+the rs-fMRI signal may includes the contributions from physiological and
+artifact noise factors that can not be easily separated. In Figure
+\ref{fig:coherence}, we did a simple experiments for using spectral coherence as
+the similarity measures and use spectral methods for segmentation. From the
+figure, we can identify the visual area (the green) and the functional regions
+at temporal lobes (blue). Since we define each voxel as a node on the graph, the
+similarity matrix's computation takes long time. The example here uses only 10 z
+slices for illustration.
+
+% small k vs big k (parcellation). spectral clustering, and also give a figure
+% from my image lunch talk. Also mention our methods.
+
+% Difficulties of defining the nodes of the graph. Choosing ROI is hard (ref:
+% Jonathan D. Power for choosing nodes, functional parcellation 200 (cadmeron?). 
+The number of clusters in the segmentation problem is a difficult problem of
+model selection. Most of the methods use 7 clusters since it has a good match
+with the existing cognitive network
+configuration~\cite{yeo2011organization}. Other choice are possible if the goal
+is to identify the functional patterns at a finer scale. Another situation of
+choosing large number of clusters lies in the goal of finer parcellation in the
+local scale. In a local parcellation, only the locally coherent functional
+regions are grouped into same cluster. The remote functional regions may not be
+grouped into same cluster even they belong to the same functional
+network~\cite{mezer2009cluster}. This is similar to the super-pixel approach
+widely used in the computer vision community~\cite{levinshtein2009turbopixels,
+  achanta2012slic}, where people group similar pixels in to small regions as a
+preprocessing step. The grouping procedure is conservative such that only the
+spatially neighboring pixels are grouped. The super-pixels are used for the
+higher level image understanding problem in order to save computation time. One
+example of such functional network parcellation is
+Thiron~\cite{thirion2006dealing}, where the primary goal is to find spatially
+coherent clusters that are connected. Therefore, the spatially remote regions
+cannot be classified into same cluster. The advantage of such parcellation is
+the small regions modeled as groups of voxels better represent true regions of
+activity in task-based fMRI data, and is less sensitive to the mis-registration
+across subjects. It also reduce the multiple comparison problem that is typically
+found in the statistical parametric mapping method. Thiron et. al. uses a
+spectral clustering approach that use multidimensional scaling (MDS)
+representation of the dataset, and the C-Means method for clustering. The method
+is able to estimate a spatial coherent group clustering from the subject
+parcellations. Another example of finer parcellation is Craddock
+et. al~\cite{craddock2012whole}. The goal of this work is to evaluate the
+suitability of a few parcellation scheme on a group of subjects rs-fMRI data. The
+authors use normalized cut method~\cite{shi2000normalized} to segment the brain
+into large number of spatial and functional homogeneous regions. A graph is
+defined by only adding edges between spatial neighbors, with the weights on
+edges defined by the linear correlation between BOLD signals. That means the
+functionally homogeneous voxels may be in different clusters if they are not
+spatially adjacent. Since the number of clusters in their experiments is
+relative large (50 - 400), the estimated parcellation map will not be easily
+interpreted as functional networks, but will be used for further analysis. For
+group parcellation, Craddock et. al. use a second level group clustering similar
+to the work of Van den Heuvel~\cite{van2008normalized}. The estimated adjacency
+matrix estimated from subject parcellation were averaged across subjects, and
+the average matrix was used for a second level normalized cut algorithm.
+
+The segmentation of functional network is not necessarily limited on rs-fMRI
+data. It can also be used for the task-based fMRI. The work of Michel
+et. al~\cite{michel2012supervised} is one example in this range. Michel uses a
+generalized hierarchical clustering based on Ward algorithm to build a tree of
+hierarchical clusters. The leaves of the tree is individual voxels, and the root
+includes all voxels. The author computed the optimal pruning of the tree by fit
+the average signals of the leaves at each pruning depth to a general linear
+model. the clusters of optimal trees are able to predict the behavior
+variables. Varoquaux from the same research group use the method's of Michel
+et. al.~\cite{michel2012supervised} for solving a active region detection
+problem of task-based fMRI data~\cite{varoquaux2012small}. While the goal of
+Michel et. al. is to identify the functional network patterns using the
+supervised clustering method with clinical variables, the goal of
+Varoquaux~\cite{varoquaux2012small} is to detection of active regions when the
+observation is small and number of predictors are large. By grouping spatially
+adjacent voxels with similar BOLD signals into cluster and use the cluster as
+the independent variables, the author solve the problem of large number of
+predictors, and can identify voxels more than the number of observations.
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=0.3\textwidth]{figures/math/coherence/a}
+  \includegraphics[width=0.3\textwidth]{figures/math/coherence/s}
+  \includegraphics[width=0.3\textwidth]{figures/math/coherence/c}
+  \caption{Segmentation map of a rs-fMRI volume. The spectral coherence between
+    0.01 to 0.1 Hz is used for similarity between pairs of voxels. A spectral
+    clustering method~\cite{von2007tutorial} is used for dimension reduction
+    followed by a K-Means clustering. We choose 12 clusters and 10 slices on z
+    direction to save computation time. }
+  \label{fig:coherence}
+\end{figure}
+
+Some of methods we proposed in Chapter \ref{chap:method2} and \ref{chap:method3}
+belong to the class of segmentation. However, we defined the additional
+structures based on the spatial context information, and the inter-subject
+coherence assumption, so the model is more complex than the above works,
+therefore need more advanced statistical inference methods.
+
+\subsection{Methods Based on Graph Theory}
+Functional networks can also be represented by graph~\cite{bullmore2009complex,
+  achard2006resilient, sporns2004organization}. The developments of our
+understanding of the complex systems, and the increasing availability of large
+datasets of systems has led to a insight that these complex systems share
+similar behavior that can be represented by the same
+parameters\cite{bullmore2009complex}. To build an abstract graph from the fMRI
+data, one typically choose some ROIs as the node of the graph, and estimate the
+existence or lack of edges between the nodes. The signal on each node is
+computed by averaging the BOLD signals of all the voxels within certain radius
+of the ROI, usually a few millimeters (see figure ~\ref{fig:brain_graph} for an
+illustration). The edge is estimated by computing the linear correlation or the
+frequency coherence between two ROIs. Once the functional network is represented
+by a graph, a rich class of methods in graph theory can be used to explore the
+global property of the graph. For example, the high degree of a node indicates
+its role as a hub in the network, and the distribution of the degrees are used
+to explore the vulnerability of the graph when some \emph{hubs} are removed from
+the network. Various measures of the network topology are estimated from the
+graph to explore the similarity and difference between brain's functional
+network and other complex network such as social network and wireless
+network. The graph property can also be used to explore how the functional
+system is configured to allow maximum flow of information with the minimal
+wiring. For example, the \emph{small-worldness} attribute is shared by many
+real-world networks including brain's functional network, and it is hypothesized
+that the small-worldness is chosen by evolution for high efficiency of
+information transfer between nodes at low connection
+cost~\cite{achard2006resilient, bullmore2009complex, bullmore2012economy}.
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/c2/brain_graph}
+  \caption{Using graph to represent functional networks. A series ROI are chosen
+    based on what question to ask, the signal at each ROI is computed by
+    averaging the BOLD signal signals of all voxels within the sphere. The edge
+    of the graph is estimated using the similarity of the signal between the
+    ROIs. }
+  \label{fig:brain_graph}
+\end{figure}
+
+The network estimation results heavily depend on how we define the nodes of the
+graph. Nodes should be defined as a brain regions with homogeneous functional
+and anatomical patterns. The comparison of functional and structural networks is
+meaningful only when they share the same definition of graph
+nodes~\cite{rubinov2010complex}. Due the limits on the available methods and
+computation resources of estimating networks with continuous edge weights,
+typically one constructs a binary network by thresholding the similarity
+matrix. How to choose the optimal thresholding parameter is an open
+questions. More importantly, there is no principal method for combing the
+networks from a group of subjects.
+
+\subsection{Group Analysis}
+%% [Group of subjects. Variation and shared information. resting-state intrinsic
+%% cognition. 1000 connectomes. ]
+
+The analysis fMRI data is challenging, due to the scanner noise, physiological
+noise such as blood vessel and heart beat, subject's head motion. Sometimes
+subjects have random thoughts even instructed not thinking anything specifically
+during the data acquisition. The functional connectivity and network estimation
+is still not accurate and consistent even various preprocessing techniques are
+used. On the other hand, because rs-fMRI experiments have much lower requirement
+to the patient subjects or control subjects compared to a paradigm design
+experiments, it is possible to collect the rs-fMRI data from a big group of
+subjects. the functional networks detected by either model-based methods such as
+seed-based correlation, or data-driven methods such as ICA, are highly
+reproducible across participants and scans. The more accurate and consistent
+functional networks can be estimated by using the statistical power of the group
+analysis. With the initiative of 1000 Functional Connectomes Project, large
+cohort of data are available for researchers to explore the relationship of
+functional networks to the subjects age, gender etc.
+
+% seed-based methods extend to grp analysis.
+Compared with single-subject analysis, the methods for multiple-subject
+functional network analysis are not yet established. The seed-based methods
+typically compute the correlation or regression coefficients between regions
+independently for each subject. The correlations or regression coefficients are
+treated as a statistics of each subjects, and go into a second level
+analysis. The second level can be either fixed-effect analysis, or a
+random-effect analysis with a standard hypothesis testing. The population-based
+z-score maps have to be corrected for multiple comparisons~\cite{fox2005human}.
+
+% group ICA
+Group ICA is used as an extension of single-subject ICA in order to seek a set
+of independent components shared across multiple
+subjects~\cite{calhoun2001spatial}. In a typical group ICA study, all subjects
+are registered to a common atlas and assumed to share a common spatial component
+map but have distinct time courses. The BOLD signals from all subjects are
+concatenated temporally, followed by a single subject ICA. The subject component
+maps are then obtained by a back-reconstruction procedure. 
+
+Alternatively, single-subject ICA is applied on each subject first, and a group
+summary is estimated from the estimates of subject functional patterns. Some
+methods that we have introduced as segmentation-based
+approach~\cite{bellec2010multi,craddock2012whole} are in this range. If the ICA
+is used for estimating the spatial patterns at subject level, it is not
+straightforward to conglomerate the spatial maps of multiple subjects and derive
+a optimal set of group maps. This is because the component maps of subjects are
+not perfectly in align with each other, and it is difficult to find the
+correspondence between subject A's component $i$ and subject B's component
+$j$. To solve this problem, Esposito et. al.~\cite{esposito2005independent}
+proposed a \emph{self organizing} method for the group map estimation. A series
+of spatial component maps are estimated by regular ICA method for each subjects,
+and these maps are all put in a single pool, and the similarity between each
+pair of component map in this pool is defined and computed. Then, the author did
+a clustering on the pool of component maps. The cluster center of the maps is
+believed to be the group component map. Neither of the above approaches
+iteratively refine group (or subject) maps once the subjects (or group) maps are
+estimated.
+
+Varoquaux et. al.~\cite{varoquaux2010group} gives a extension of ICA for group
+analysis. The author defines a generative model, in which the subjects component
+maps are assumed to be generated from a group component map. In particular, the
+subject map is a weighted group map with additive noise term, and the observed
+BOLD signal of each subject is a linear combination of subject's components with
+additive noise. The estimation takes two steps. At subject level, each subject's
+data is decomposed by principal component analysis and obtain a estimate of the
+subject component map. At group level, the author use canonical correlation
+analysis (CCA) to find a common subspace among the estimated subject component
+maps. Such an approach is in the class of \emph{bottom-up} methods that we
+introduced in Figure \ref{fig:bidirections}, since the group component map
+estimate is not used to iteratively refine the subject estimation. Besides,
+there seems a discrepancy between the group map definition and estimation. That
+is, the author did not give any justification that CCA gives an optimal estimate
+of the generate model defined on group level.
+
+Another interesting work of Varoquaux et. al~\cite{varoquaux2011multi} uses
+dictionary learning for the group analysis. Dictionary learning is in the class
+of linear signal decomposition, with ICA as a special case. In this work, the
+author again defined a generative model, where the observed subject data matrix
+is the product of the loading matrix (i.e. the weighting coefficients) and a
+signal matrix (also called the code in the dictionary). The loading matrix is
+the subject specific spatial map, and is generated from a population spatial map
+with an additive noise term. The objective function can be written as a
+non-hierarchical form, and is the function of the subject component map and
+group component map. The optimization is done by an coordinate descent
+approach. Overall, the model is similar to what we will propose in Chapter
+\ref{chap:method3} in that a hierarchical map is defined and estimated. In
+addition, it is different from previous work~\cite{varoquaux2010group} as the
+group and subject maps are estimated iteratively in the coordinate descent
+framework. So, Varoquaux's this method is indeed a counterpart of our
+hierarchical Markov random field model, but in the linear signal decomposition
+fields.
+
+% talk about tensor ICA, and the tensor decomposition method such as
+% multi-linear...
+
+% assumption of the group study. challenges of group study.
+Despite the promising future of using large population for studying the
+functional network and its relationship to underlining structural patten, the
+group study also poses new challenges when putting all datasets together. The
+folding patterns of the cortical surface, and the structure and size of brain
+regions are all different across individual subjects. Because of such structural
+variation, the inter-subject registration is often not accurate enough to map
+same anatomical structures to same coordinates in standard space. This may be
+due to the imperfect co-registration algorithm itself, and also due to the
+difference of individual subjects cortical structures. Even the anatomical
+structures are aligned among multiple subjects, the functional patterns of each
+subject are not exactly same. Although numerous studies have shown the
+relationship of the functional connectivity is related to the structural
+connectivity~\cite{honey2009predicting,hermundstad2013structural,
+  honey2007network}, it is less well know how and to what extent this
+relationship is reflected by the variation of functional connectivity.
+
+\subsection{MRF and Spatial Constraints}
+%% \cite{michel2012supervised} spatial constrained clustering. and other papers
+%% in this group.
+Because of the univariate characteristic of the statistic parametric mapping
+(SPM)~\cite{friston2007statistical} method, the spatial context information is
+not taken into account in the model. That is, if one arbitrarily permute the
+voxels location in the brain, the resulted activation map in a task-based
+experiment does not change, i.e. the original activated voxels are still
+activated. To take the spatial information into account, one typically force the
+spatial homogeneity by applying a Gaussian filter on the spatial domain as a
+preprocessing step. The filter increase the signal-to-noise (SNR) ratio but
+inevitably has a blurring effect that sometimes result in the loss of finer
+structures of the functional patterns. 
+
+Markov random field (MRF) as a principal method of modeling spatial context
+prior has been brought into image processing fields by
+Geman~\cite{geman1984stochastic}. The first application of MRF to fMRI analysis
+is by Descombes et. al.~\cite{descombes_spatio-temporal_1998}. Although this is
+an early work of MRF's application, we give some details of their work because
+of its novelty. In their work, the author proposed to use MRF for two
+purposes. First, they used a spatio-temporal MRF to restore the noisy BOLD
+signal instead of a general temporal filter and spatial Gaussian filter. Second,
+the restored BOLD signal is compared with the stimulus haemodynamic response
+function for detecting the activation map, which is modeled by a spatial
+MRF. For the first goal of BOLD signal restoration, the authors defined a graph,
+whose nodes or voxels have 12 neighbors --- 8 as the spatial neighbors, and 4 as
+temporal neighbors. A hidden continuous variable is defined at each node of each
+time point to represent the true BOLD signal's intensity. To preserve the
+discontinuity, another line process MRF is defined on the dual lattice to model
+the existence or lack of edge between spatial neighbors. The statistical
+inference of this spatio-temporal MRF is solved by simulated annealing (SA). For
+activity detection, a second MRF was defined on the activation variables, and
+the MRF only included spatial neighbors. Although the work was applied on the
+fMRI data in paradigm design, the concept of spatial regularization and Bayesian
+method is also applicable to the rs-fMRI data.
+
+Another early work of Hartvig et. al.~\cite{hartvig2000spatial} aims at the
+using the spatial context information for activation detection of task-based
+fMRI experiments. The author's inductive bias is the activation region should
+not be too big or to small. According to this assumption, they define a hidden
+activation variable taking value in $\{-1, 0, 1\}$ to represent negative-active,
+no-activation, and activation state. And the estimated activation coefficients
+from the standard SPM are assume to be Gaussian given the hidden variable is
+no-activation, and Gamma distribution given the hidden variable is
+activated. The prior distribution of a small set of neighboring voxels' hidden
+variables are defined to reflect the inductive bias, and the goal is to estimate
+the posterior of the hidden activation variable given the observed activation
+coefficients from SPM. Hartvig's model is not MRF strictly speaking, though the
+model represent author's assumption of the spatial context.
+
+A recent work of application of MRF to task-based fMRI data is by Ou
+et. al.~\cite{ou2010combining}. In their work, the authors define a MRF on the
+activation variables, and the MRF prior favors spatially coherent activated
+regions. The conditional probability of the observed data is defined by a
+general linear model (GLM) with the hidden activation variables as
+parameters. One important characteristics of Ou's work is the parameter
+estimation, including both the GLM's parameter and the MRF's parameter. The
+author defined the MRF prior such that the the samples draw from the prior agree
+with the spatial properties of the true activation map in fMRI
+experiments. Therefore they used the frequency counts to set the pairwise
+potentials with an additional parameter to control the overall \emph{sharpness}
+of the joint component of the prior. This method is similar to the work of
+Boykov et. al.~\cite{boykov2001interactive} and Rother
+et. al.~\cite{rother2004grabcut}, where a parameter is estimate from the data by
+counting over the whole image. The additional parameter is also estimated from
+the data in simulated experiments. It is noted Ou's method is for single
+subject.
+
+Penny et. al~\cite{penny2005bayesian} define a MRF on the regression
+coefficients of the general linear model on a task-based experiment. Because the
+regression coefficients are continuous, the author model the prior distribution
+by the multivariate Gaussian distribution, with precision matrix represented by
+a Laplacian operator. This Laplacian operator penalizes differences between
+neighboring voxel's coefficients. In the generative model, the sample of this
+prior distribution can be generated by first draw independent samples from
+Gaussian, and then applying the Laplacian operator mapping.
+
+Overall, the methods of functional network estimations has been from the basic
+seed-based approach, to more advanced multivariate, full brain analysis, and
+from single subject analysis, to a pooled summary of multiple subject analysis,
+to the more complex joint analysis of both population and individuals. In the
+following chapters, I will introduce our contribution to the methods by
+combining MRF and hierarchical model. It should be noted that the more complex
+method will achieve better results only when the model fits the data well, and
+th statistical inference will successfully the optimum or reasonably approximate
+the optimum solution.
+

@@ -1,0 +1,394 @@
+\documentclass[a4paper]{llncs}
+
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+
+\usepackage{url}
+%% \urldef{\mailsa}\path|{alfred.hofmann, ursula.barth, ingrid.haas, frank.holzwarth,|
+%% \urldef{\mailsb}\path|anna.kramer, leonie.kunz, christine.reiss, nicole.sator,|
+%% \urldef{\mailsc}\path|erika.siebert-cole, peter.strasser, lncs}@springer.com|    
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+%%%%%% Added by Wei Liu %%%%%%%
+\usepackage{amsmath}
+\usepackage[vlined,ruled]{algorithm2e}
+%\usepackage[small,it]{caption} 
+\usepackage{lwdefs}
+%%%%%% End of Added by Wei Liu %%%%%%%
+
+
+\begin{document}
+
+\mainmatter  % start of an individual contribution
+
+% first the title is needed
+\title{Clustering Functional Patterns of Resting-State fcMRI in a Monte-Carlo EM framework}
+
+% a short form should be given in case it is too long for the running head
+% \titlerunning{Clustering fcMRI with MCEM}
+
+% the name(s) of the author(s) follow(s) next
+%
+% NB: Chinese authors should write their first names(s) in front of
+% their surnames. This ensures that the names appear correctly in
+% the running heads and the author index.
+%
+% \author{Some authors}
+%
+% \authorrunning{Some author running}
+% (feature abused for this document to repeat the title also on left hand pages)
+
+% the affiliations are given next; don't give your e-mail address
+% unless you accept that it will be published
+
+%
+% NB: a more complex sample for affiliations and the mapping to the
+% corresponding authors can be found in the file "llncs.dem"
+% (search for the string "\mainmatter" where a contribution starts).
+% "llncs.dem" accompanies the document class "llncs.cls".
+%
+
+% \toctitle{Lecture Notes in Computer Science}
+% \tocauthor{Some author}
+\maketitle
+
+
+\begin{abstract}
+We propose a new framework for detecting the functional connectivity
+of the human brain in resting state fcMRI. By transforming the data to
+a sphere, we build the relationship between the Pearson correlation of
+time series and their shortest path on the sphere. This makes it
+possible to use a mixture of von Mises-Fisher model to find the
+clusters of voxels with similar pattern of activity. The model also
+takes into account the spatial priors by using Markov Random Field,
+and we use Monte Carlo Expectation-Maximization to estimate the
+cluster labels and learn parameters iteratively. We show how our
+algorithm works for synthetic data, and on \emph{in vivo} data of 10
+subjects. We identify consistent inter-subjects patterns for the
+default mode network, and our results are also consistent with
+previous publications.
+\end{abstract}
+
+\section{Introduction}
+Functional connectivity MRI (fcMRI) analysis is widely used to detect
+the activity pattern in human brain's network. In resting-state fMRI,
+the temporal correlation between voxels are used for detecting their
+connectivity. The standard procedure is to select a region of interest
+(ROI) and find the correlation between the average of the ROI and
+other voxels in the brain.  The correlation will usually be
+thresholded so only those voxels with significant correlations to ROI
+are shown.
+
+Recent methods use Independent Component Analysis to find the
+components of interest, and use a ad-hoc method to manually choose
+those that have specific frequency property. Like other method that
+use seed regions, it does not give the full view of the brain
+connectivity and tends to introduce human subjective bias.
+
+We introduce a new method to find the functional homogeneous brain
+regions. Given the fcMRI time series, the algorithms gives a label map
+where voxels with same labels have large Pearson correlations. These
+voxels can be a connected component or spatially separate. Users do
+not need gives seed voxels or seed regions, and there is no ad-hoc
+thresholding. In our approach, the time series are projected to a unit
+sphere by normalization. On the sphere, two data points with small
+shortest path will have large inner product, and hence have large
+Pearson correlation in original space. So we re-formulate the problem
+of finding clusters of voxels with higher correlations, to the problem
+of finding clusters on sphere that has small shortest path, or big
+inner products. Because von Mises-Fisher (vMF) distribution is the
+counterpart on the sphere, of the Multivariate Gaussian distribution
+on Euclidean space, we use vMF to model these directional data on the
+sphere. Since the distribution of data points on spheres have multiple
+components, naturally we use mixture of vMF to model the data. 
+
+Traditional correlation-based methods do not take into account voxel's
+spatial information, which means a voxel's connectivity with seed
+remains unchanged given its arbitrary spatial location. This is
+conceptually hard to believe. Instead, we take into account a voxels
+spatial neighborhood when make decision on its functional patterns,
+and use Markov Random Field (MRF) to model this dependency. A Bayesian
+framework is given to estimate the posterior probability of label map
+given time series data. And we use Monte-Carlo
+Expectation-Maximization to solve this combinatorial optimization
+problem.
+
+The next section gives introduction of our models, including MRF prior
+and von Mises-Fisher distribution as a conditional likelihood. Section
+\ref{sec:mcem} talks about MCEM, sampling from posterior and parameter
+estimation. We give experiments in Section \ref{sec:exp} and conclude
+at Section \ref{sec:conc}.
+
+
+\section{The Models}
+\label{sec:models}
+We use a Bayesian framework for estimating functional connected
+regions where we estimate the posterior distribution of the labels of
+the regions with same patterns, conditioned on the fMRI data.  Let
+$\mat z$ be the functional connected region's label map, and $\cZ$ be
+the set of all possible configurations of $\mat z$ so that $\cZ = \{
+\mat z = (z_1,\dots, z_N) | z_i \in \cL, i \in \cS\}$, where $\cS$ the
+set of indices of all voxels and $\cL = \{1, 2, \dots, L\}$ be the set
+of labels.
+
+\subsection{Markov Prior}
+The natural assumption of the functional label map is they should
+consist of piecewise smooth regions. We apply MRF on
+$\mat z$ to regularize this spatial smoothness. Specifically we use
+\emph{Potts} model defined as
+\begin{equation*}
+  P(\mat z) = \frac{1}{C}\exp \{ -\beta \sum_{(i,j) \in \cE}T(z_i \neq z_j\}),
+\end{equation*}
+where $T$ is $1$ if its argument is true and $0$ otherwise. $\cE$ is
+the set of voxel pairs that are spatial neighbors, and $\beta > 0$ means
+the model favors constant smooth region. $C$ is a normalization
+constant and is the sum over all possible configuration of $\mat z$.
+Because of the Markov-Gibbs equivalence, the conditional distribution
+of $z_i$ at site $i$ is,
+\begin{equation*}
+  P(z_i | \mat z_{-i}) = P(z_i | z_{\cN_i}) = \frac{\exp \{ -\beta \sum_{j \in \cN_i}T(z_i \neq z_j) \}}{\sum_{l \in \cL} \exp \{ -\beta \sum_{j \in \cN_i}T(l \neq z_j)\}},
+\end{equation*}
+where $\mat z_{-i}$ is the collection of all the variables in $\mat z$
+excluding site $z_i$, and $\cN_{i}$ is the set of neighbors of
+$z_i$. 
+
+\subsection{Likelihood Model}
+Before giving the likelihood model, we explain why we project the time
+course data to the unit sphere. Our goal is to identify functional
+homogeneous region in which voxels have high Pearson
+correlation. Because the sample correlation is define as $\rho (\vec
+x, \vec y) = \frac{\sum_{}(x_i - \bar x)(y_i - \bar
+  y)}{\sqrt{\sum_{}(x_i - \bar x)^2 \sum_{} (y_i - \bar y)^2}}$, where
+$\bar x= \frac{1}{p}\sum_{i}^px_i$ and $\bar y=
+\frac{1}{p}\sum_{i}^p y_i$. Since the mean and magnitude of a single time
+series do not have any effect on the correlation value, we can
+normalize the data by $\tilde x = (\vec x - \bar x) / \norm {\vec x -
+  \bar x}$. Now the data are on $p-1$ sphere and $\rho(\vec x, \vec y)
+= \vec x\T \vec y$. Thus to find a cluster of voxels that  have small
+pairwise inner product is equivalent to find a region in which voxels
+have large correlations.
+
+ We use $\mat x =(\vec x_1, \dots, \vec x_N) |\vec x_i \in S^{p-1}, i
+ \in \cS $ to denote the observed time series that already projected
+ on the sphere, where $S^{p-1}$ is $p-1$ sphere. To define likelihood
+ $P(\mat x | \mat z)$, we notice that given $\mat z \in \cZ$, the
+ random vector $\vec x_i$ is independent, i.e. $\log P(\mat x | \mat
+ z) = \sum_{i\in \cS} \log P(x_i | z_i)$. we assume the emission
+ function $P(x_i | z_i)$ follows the von Mises-Fisher
+ distribution \cite{banerjee2006clustering}, defined as
+\begin{equation}
+  f(\vec x_i;\vec \mu_l, \kappa_l | z_i = l) = C_p(\kappa_l) \exp (\kappa_l \vec \mu_l\T \vec x),
+  \quad \vec x_i \in S^{p-1}, \quad l \in {\cL}
+  \label{eq:vmf}
+\end{equation}
+where $\norm{\vec \mu} = 1$ is called the \emph{mean direction}, and
+$\kappa \geq 0$ is called the \emph{concentration parameter}. The
+larger the $\kappa$, the greater the density is concentrated around
+the mean direction. Since \eqref{eq:vmf} depends on $\vec x$ only by
+$\vec \mu\T \vec x$, the vMF is unimodal and rotationally symmetric to
+$\vec \mu$. The normalization constant $C_p(\kappa)$ is given as $
+C_p(\kappa) = {\kappa^{\frac{p}{2} - 1}}/\{{(2\pi)^{\frac{p}{2}}
+  I_{\frac{p}{2}-1}(\kappa)}\}$, where $I_\nu$ denotes the modified
+Bessel function of the first kind and order $\nu$. When $p = 2$, the
+vMF distribution reduces to von Mises distribution, which gives the
+distribution of points on a circle $S^1$.
+
+In the Bayesian framework we also define distributions on parameters.
+We assume for all $l \in \cL$, $\kappa_l \sim \cN(\mu_{\kappa},
+\sigma_{\kappa}^2)$ with hyperparameters $\mu_{\kappa}$ and
+$\sigma_{\kappa}^2$. Note the $\mu_{\kappa}$ here is different with
+vMF's mean direction vector $\vec \mu$ on the sphere. This will gives
+the model our prior knowledge that the clusters should not be too big
+(which gives small $\kappa$) or to small (which gives big
+$\kappa$). The hyperparameters are given empirically. We also note
+that even under various values of hyperparameters, the regions found
+are consistent, meaning the results do not depend much on the
+hyperparameters. for $\mu_{\kappa}$ we assume a non-informative
+diffuse prior.
+
+\section{Monte-Carlo EM}
+\label{sec:mcem}
+We use a stochastic variant of Expectation-Maximization called
+Monte-Carlo EM (MCEM) \cite{wei1990monte} to estimate the model
+parameters as well as detecting the homogeneous region labels.  The
+standard EM algorithm maximizes the expectation of log-likelihood of
+joint pdf of $\mat x$ and the latent variable $\mat z$ with respect to
+the posterior probability $P(\mat z | \mat x)$,
+i.e. $\mathbb{E}_{P(\mat z| \mat x)} [\log (P(\mat x, \mat z; \vec
+  \theta))]$ Because there is combinatorial number of configuration
+$\mat z$, this expectation value is intractable. We instead use MCEM
+approximation of this expectation, defined as
+\begin{equation}
+  \widetilde Q(\vec \theta; \mat x, \mat z) = \frac{1}{M}\sum_{m=1}^{M} \left \{ \log P(\mat z^m; \vec \theta_{r}) + \log P(\mat x | \mat z^m; \vec \theta_{t})\right \}, 
+\label{eq:mcemq}
+\end{equation}
+where $\mat z^m$ is a sample from $P(\mat z | \mat x)$, and $\vec
+\theta_r = \{ \beta\}$ and $\vec \theta_t = \{\vec \mu_l, \kappa_l, l
+\in \cL\}$ are parameters of prior and conditional distribution
+respectively. Given the MRF priors and using pseudo likelihood
+approximation, \eqref{eq:mcemq} can be written as
+\begin{align*}
+  \widetilde Q &= \frac{1}{M}\sum_{m=1}^{M} \sum_{i \in \cS} \log P(z_i | z_{\cN_i}; \vec \theta_r) + \frac{1}{M}\sum_{m=1}^{M}\sum_{i \in \cS} \log P(\vec x_i | z_i; \vec \theta_t) = \widetilde Q_r + \widetilde Q_t. 
+\end{align*}
+We use $\widetilde Q_r$ to denote the log-likelihood of prior
+distribution, and use $\widetilde Q_t$ to denote log-likelihood of
+conditional distribution.
+
+\subsection{Sampling From Posterior}
+Given the observed data $\mat x$ and parameter value $\vec \theta =
+\{\vec \theta_r, \vec \theta_t \}$, we want to draw samples from the
+posterior distribution $P(\mat z | \mat x; \vec \theta)$. This can be
+achieved by Metropolis Sampling. Define posterior energy of $z_i$ as
+the negative log of the posterior distribution $P(z_i | \vec x_i)$,
+from Bayesian rule, the posterior energy can be written as
+\begin{equation}
+U( z_i = l| \mat x) = \{\beta \sum_{j \in \cN_i} T(z_i \neq z_j)  \}  + \left \{ -\log(C_p(\kappa_l)) - \kappa_l \vec \mu_l \T \vec x_i \right \} + \mathrm{const}
+\label{eq:sample}
+\end{equation}
+which is the sum of prior energy and conditional energy plus a constant. Then in Metropolis Sampling, given current configuration $\mat z^n$, generate a new sample $\mat w$ by drawing a new label $l'$ at site $i$ with uniform distribution. $\mat w$ has value $l'$ at site $i$, and other sites are same as $\mat z^n$. Then we compute the change of energy $\Delta U(\mat w) = U(\mat w | \mat x) - U( \mat z^n | \mat x) = U(z_i = l'| \mat x) - U(z_i = l | \mat x)$, and accept candidate $\mat w$ as $\mat z^{n+1}$ with probability $\min (1, \exp \{ -\Delta U(\mat w) \})$. After some burn-in period, we take $M$ consecutive samples and they are from posterior distribution $P(\mat z| \mat x)$.
+
+\subsection{Parameter Estimation}
+\textbf{Estimate $\vec \theta_t$:
+}By maximizing $\widetilde Q_t$ with the constraint $\vec \mu_l\T \vec
+\mu_l = 1$ we get
+\begin{equation}
+  R_l = \sum_{m=1}^{M}\sum_{\{i \in \cS: z_i  = l\}}^{} \vec x_i, \qquad \hat {\vec \mu}_l = \frac{R_l}{\norm{R_l}}.
+  \label{eq:mlmu}
+\end{equation}
+We do not have any \emph{a prior} knowledge for $\vec \mu_l$ so a
+Maximum Likelihood estimation in \eqref{eq:mlmu} is the best we can
+do. For estimating $\kappa_l$, we maximize the
+posterior distribution $P(\kappa_l | \mat x, \mat z^1, \dots, \mat z^M) $.
+Since $\widetilde Q_r$ is not dependent on $\kappa$, we only need
+maximize $\widetilde Q_t(\kappa_l) + \log \cN(\kappa_l; \mu_{\kappa},
+\sigma_{\kappa}^2)$ and get
+\begin{equation}
+  A_p(\hat \kappa_l) + \frac{\hat \kappa_l - \mu_{\kappa}}{N_l\sigma_{\kappa}^2} = R_l,
+  \label{eq:estkappa}
+\end{equation}
+where $A_p(\hat \kappa_l) = I_{\frac{p}{2}} (\hat \kappa_l) /
+I_{\frac{p}{2}-1} (\hat \kappa_l)$. Because \eqref{eq:estkappa} has
+the ratio of two modified Bessel functions, a analytic solution is
+unavailable and we have to resort to numerical solution. Here we use
+Newton's method for solving $g(\hat \kappa_l) = A_p(\hat \kappa_l)  -(\hat \kappa_l - \mu_{\kappa}) / (N_l\sigma_{\kappa}^2) - R_l= 0$, as the derivative of $A_p(\hat \kappa_l)$ is given as
+\begin{align*}
+  A_p(\hat \kappa_l)' = 1 - A_p(\hat \kappa_l)^2 - \frac{p-1}{\hat \kappa_l} A_p(\hat \kappa_l)
+\end{align*}
+The initial value is given either by approximation $\hat \kappa_l = (pR_l  - R^3) / (1 - R^2)$ or by current value, depending on how strong the prior is on $\kappa_l$ (i.e. the $\sigma_{\kappa}$ value).
+
+\textbf{Estimate $\vec \theta_r$:} To estimate $\vec \theta_r  = \{\beta\}$ we again need Newton Method to find numerical solution. Since $\partial \widetilde Q_r / \partial \beta$ and $\partial^2 \widetilde Q_r / \partial \beta^2$ can be easily computed, the $\beta$ that maximizes $\widetilde Q_r$ can be found by finding the zero-crossings of $\partial \widetilde Q_r / \partial \beta$.
+
+\subsection{MCEM Algorithm}
+Given the sampling and parameter estimation method, we can use MCEM to compute the region labels and learn the parameters in an iterative way. In Expectation (E) step we draw samples from posterior $P(\mat z | \mat x)$ given parameter set $\vec \theta$. In Maximization (M) step we use these samples to estimate parameters. After EM converges, we use independent Conditional Mode to estimate the final region labels based on current samples. The algorithm is given in algorithm \ref{alg:mcem}.
+\begin{algorithm}[hbt]
+%  \DontPrintSemicolon
+  \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+  \Input{Preprocessd 4D fMRI data; Number of clusters}
+  \Output{labeled functional region map}
+  Initialization:  Run K-means clustering a few times and choose $\mat z$ with smallest sum-of-square errors;   Estimate $\vec \theta_t$ and set $\beta$ to a small value\;
+
+  \While{EM not converge}{
+    \textbf{E step: } Given current $\vec \theta$,
+    \For{$m \leftarrow 1$ \KwTo $M$}{
+      \lForEach{$i \in \cS$} {
+        draw sample $z_i^m$ from $P( z_i|\mat x)$ by \eqref{eq:sample}\;
+        }
+    }
+    \textbf{M step: } Given $(\mat z^1,\dots, \mat z^M)$, estimate $\vec \theta_r$ and $\vec \theta_t$\;
+    Estimate labels by ICM\;
+  }
+
+  \caption{MCEM algorithm}
+  \label{alg:mcem}
+\end{algorithm}
+
+
+\section{Experiments}
+\label{sec:exp}
+%% synthetic data: We first generate a low dimensional synthetic data
+to compare our MCEM algorithm with standard Independent Conditional
+Mode (ICM) method \cite{zhang2002segmentation}. The true label image
+is generated by sampling from MRF with $\beta = 2$.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.15\textwidth]{figures/synthetic/true}
+  \includegraphics[width=0.15\textwidth]{figures/synthetic/obs}
+  \includegraphics[width=0.15\textwidth]{figures/synthetic/label_icm}
+  \includegraphics[width=0.15\textwidth]{figures/synthetic/label_mc}
+  \caption{Synthetic example. From left to right: true labels; First
+    time point of observed time series; Labels estimate by ICM; Labels
+    estimate by MCEM.}
+  \label{fig:toy}
+\end{figure}
+
+\noindent {\bf Resting-State fMRI.} Next we tested our method on real data from
+healthy control subjects in a resting-state fMRI study. BOLD EPI images (TR= 2.0
+s, TE = 28 ms, GRAPPA acceleration factor = 2, 40 slices at 3 mm slice
+thickness, 64 x 64 matrix, 240 volumes) were acquired on a Siemens 3 Tesla Trio
+scanner with 12-channel head coil during the resting state, eyes open. The data
+was motion corrected by SPM software and registered to a T2 structural image. We
+used a gray matter mask from an SPM tissue segmentation so that only gray matter
+voxels are counted in the connectivity analysis. 
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.20\textwidth]{figures/wholebrain/sub1/aview} 
+  \includegraphics[width=0.20\textwidth]{figures/wholebrain/sub1/sview} 
+  \includegraphics[width=0.20\textwidth]{figures/wholebrain/sub1/cview} 
+  \includegraphics[width=0.20\textwidth]{figures/wholebrain/sub1/3dview} 
+  \caption{Whole brain segmentation}
+  \label{fig:wholebrain}
+\end{figure}
+\begin{figure}[htb]
+  \begin{center}
+  \begin{tabular}{cccccccc}\footnotesize
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub1_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub2_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub3_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub4_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1a} \\
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub1_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub2_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub3_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub4_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1s} \\
+      \scriptsize{sub1} &&&&&&&\scriptsize sub8\\
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub1_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub2_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub3_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub4_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1a} & 
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1a} \\
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub1_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub2_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub3_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub4_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1s} &
+      \includegraphics[width=0.12\textwidth]{figures/test1/sub5_pcc1s} \\
+      \scriptsize sub9 &&&&&&&\scriptsize sub16
+    \end{tabular}
+  \end{center}
+  \caption{This is my test}
+\end{figure}
+
+
+\section{Conclusion}
+\label{sec:conc}
+
+\bibliographystyle{splncs03} 
+\bibliography{reference}
+\end{document}

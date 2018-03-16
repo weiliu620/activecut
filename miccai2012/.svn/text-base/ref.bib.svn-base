@@ -1,0 +1,111 @@
+@article{calhoun2001spatial,
+  title={Spatial and temporal independent component analysis of functional MRI data containing a pair of task-related waveforms},
+  author={Calhoun, VD and Adali, T. and Pearlson, GD and Pekar, JJ},
+  journal={HBM},
+  volume={13},
+  number={1},
+  pages={43--53},
+  year={2001},
+  publisher={Wiley Online Library}
+}
+
+@article{van2008normalized,
+  title={Normalized cut group clustering of resting-state FMRI data},
+  author={Van Den Heuvel, M. and Mandl, R. and Pol, H.H.},
+  journal={PLoS One},
+  volume={3},
+  number={4},
+  pages={e2001},
+  year={2008},
+  publisher={Public Library of Science}
+}
+
+@article{bellec2010multi,
+  title={Multi-level bootstrap analysis of stable clusters in resting-state fMRI},
+  author={Bellec, P. and Rosa-Neto, P. and Lyttelton, O.C. and Benali, H. and Evans, A.C.},
+  journal={Neuroimage},
+  volume={51},
+  number={3},
+  pages={1126--1139},
+  year={2010},
+  publisher={Elsevier}
+}
+
+@inproceedings{varoquaux2011multi,
+  title={Multi-subject dictionary learning to segment an atlas of brain spontaneous activity},
+  author={Varoquaux, G. and Gramfort, A. and Pedregosa, F. and Michel, V. and Thirion, B.},
+  booktitle={Information Processing in Medical Imaging},
+  pages={562--573},
+  year={2011},
+  organization={Springer}
+}
+
+@inproceedings{ng2010group,
+  title={Group MRF for fMRI activation detection},
+  author={Ng, B. and Abugharbieh, R. and Hamarneh, G.},
+  booktitle={Computer Vision and Pattern Recognition (CVPR), 2010 IEEE Conference on},
+  pages={2887--2894},
+  year={2010},
+  organization={IEEE}
+}
+
+@article{beckmann2005tensorial,
+  title={Tensorial extensions of independent component analysis for multisubject FMRI analysis},
+  author={Beckmann, C.F. and Smith, S.M.},
+  journal={Neuroimage},
+  volume={25},
+  number={1},
+  pages={294--311},
+  year={2005},
+  publisher={Elsevier}
+}
+
+@article{esposito2005independent,
+  title={Independent component analysis of fMRI group studies by self-organizing clustering},
+  author={Esposito, F. and Scarabino, T. and Hyvarinen, A. and Himberg, J. and Formisano, E. and Comani, S. and Tedeschi, G. and Goebel, R. and Seifritz, E. and Di Salle, F.},
+  journal={Neuroimage},
+  volume={25},
+  number={1},
+  pages={193--205},
+  year={2005},
+  publisher={Elsevier}
+}
+
+@article{shi2000normalized,
+  title={Normalized cuts and image segmentation},
+  author={Shi, J. and Malik, J.},
+  journal={Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  volume={22},
+  number={8},
+  pages={888--905},
+  year={2000},
+  publisher={IEEE}
+}
+
+@article{descombes1998spatio,
+  title={Spatio-temporal fMRI analysis using Markov random fields},
+  author={Descombes, X. and Kruggel, F. and Von Cramon, D.Y.},
+  journal={Medical Imaging, IEEE Transactions on},
+  volume={17},
+  number={6},
+  pages={1028--1039},
+  year={1998},
+  publisher={IEEE}
+}
+
+@article{liu2010spatial,
+  title={Spatial regularization of functional connectivity using high-dimensional Markov random fields},
+  author={Liu, W. and Zhu, P. and Anderson, J. and Yurgelun-Todd, D. and Fletcher, P.},
+  journal={MICCAI 2010},
+  pages={363--370},
+  year={2010},
+  publisher={Springer}
+}
+
+@INPROCEEDINGS{5074650,
+author={Golland, P. and Lashkari, D. and Venkataraman, A.},
+booktitle={42nd Asilomar Conference on Signals, Systems and Computers}, title={Spatial patterns and functional profiles for discovering structure in {fMRI} data},
+year=2008,
+month=Oct.,
+pages={1402 -1409},
+ISSN={1058-6393},}

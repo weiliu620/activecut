@@ -1,0 +1,15 @@
+Review 1: 1. Our method is Bayesian because we assume a Markov random field prior on the label map and find the maximum a posteriori estimation of the labels. Moreover, we define hyperpriors on parameters. All these lead to a Bayesian method.
+
+2. We first assume a flat prior on /kappa, estimate /kappa's from data, and use the estimates to set hyperparameters (similar to empirical Bayesian approach). We'll add this in the paper.
+
+3. The neighborhood of a voxel is defined as usual: 6 spatially adjacent voxels in 3D space. 
+
+5. For ICA, we choose 16 components. The component map is converted to a z score and thresholded at 1.0. Indeed, scattered regions will happen no matter what threshold is used, as ICA does not take into account voxels' spatial locations. Even spatial ICA by the definition of Calhoun (HBM. 2001), finds spatially independent time courses but does not find spatially smooth component maps. But we agree that "The ICA results shows the disadvantage of ignoring spatial information" is inaccurate. We'll correct it.
+
+Review 3: This work is related to the work of Golland and Lashkari, '08, which we referenced. However, ours is different in that 1) We use a MRF for spatial regularization and this makes (not costly) MCEM necessary. 2) We use von Mise-Fisher distribution on time series while Golland ('08) uses it on the regression coefficients of General Linear Model.
+
+Selecting umber of components is a model selection problem and is not the focus of our work. The quality of the algorithm can be seen from the 4 functional networks found on single subject (fig. 2) , which is better than ICA on single subject. We validate results by manually checking the label map as people usually do for resting-state fMRI.
+
+We choose 3 time points because they are easy to visualize on a sphere in 3D space. The test on synthetic data aimed to show MCEM outperforms a mode approximation method (ICM here), not to compare MRF with spatial smoothing, which is already done in reference [8] of the paper. That's why we didn't do spatial smoothing.
+
+Common concerns on validation: we have had results for all 16 subjects and only show 3 because of space limit. Many authors report functional networks on group ICA, while our method finds them on a single subject. It's un-comparable between our single subject result and group ICA which uses more information. Our approach naturally extends to group analysis by hierarchical Bayesian and we are currently working on it.

@@ -1,0 +1,1664 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/TeX Live for opensuse.org) (format=pdflatex 2013.10.19)  19 APR 2014 13:54
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**MyThesis.tex
+(./MyThesis.tex
+LaTeX2e <2011/06/27>
+Babel <3.9f> and hyphenation patterns for 78 languages loaded.
+(./uuthesis.cls
+Document Class: uuthesis 1998/04/01 v1.3 University of Utah Thesis Class
+Document Style `uuthesis2e'. Version 1.8d - 6 Apr 1996
+(./Chicago.clo) (/usr/share/texmf/tex/latex/base/size11.clo
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+Using 11pt option
+Option 11pt uses 5pt for 'tiny': microfilm needs 2mm.
+\footheight=\dimen102
+\numberofappendices=\count79
+\c@part=\count80
+\c@chapter=\count81
+\@titlesize=\dimen103
+\@maxsize=\dimen104
+\c@figure=\count82
+\c@table=\count83
+\descriptionmargin=\dimen105
+\minilength=\skip41
+\c@oldchapter=\count84
+\c@oldtocdepth=\count85
+) (/usr/share/texmf/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texmf/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks14
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (./thesis.sty
+\c@thrm=\count86
+)
+(/usr/share/texmf/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+(/usr/share/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texmf/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texmf/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texmf/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texmf/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen106
+\Gin@req@width=\dimen107
+)
+(/usr/share/texmf/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+(/usr/share/texmf/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip42
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texmf/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks16
+\ex@=\dimen108
+))
+(/usr/share/texmf/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen109
+)
+(/usr/share/texmf/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count88
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count89
+\leftroot@=\count90
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count91
+\DOTSCASE@=\count92
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen110
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count93
+\c@MaxMatrixCols=\count94
+\dotsspace@=\muskip11
+\c@parentequation=\count95
+\dspbrk@lvl=\count96
+\tag@help=\toks17
+\row@=\count97
+\column@=\count98
+\maxfields@=\count99
+\andhelp@=\toks18
+\eqnshift@=\dimen111
+\alignsep@=\dimen112
+\tagshift@=\dimen113
+\tagwidth@=\dimen114
+\totwidth@=\dimen115
+\lineht@=\dimen116
+\@envbody=\toks19
+\multlinegap=\skip43
+\multlinetaggap=\skip44
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/share/texmf/tex/latex/lm/lmodern.sty
+Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+)
+(/usr/share/texmf/tex/latex/base/flafter.sty
+Package: flafter 2000/07/23 v1.2i Standard LaTeX floats after reference (FMi)
+)
+(/usr/share/texmf/tex/latex/tools/afterpage.sty
+Package: afterpage 1995/10/27 v1.08 After-Page Package (DPC)
+\AP@output=\toks21
+\AP@partial=\box28
+\AP@footins=\box29
+) (./haldefs.sty
+(/usr/share/texmf/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
+)
+(/usr/share/texmf/tex/latex/amscls/amsthm.sty
+Package: amsthm 2004/08/06 v2.20
+\thm@style=\toks22
+\thm@bodyfont=\toks23
+\thm@headfont=\toks24
+\thm@notefont=\toks25
+\thm@headpunct=\toks26
+\thm@preskip=\skip45
+\thm@postskip=\skip46
+\thm@headsep=\skip47
+\dth@everypar=\toks27
+LaTeX Info: Redefining \qed on input line 283.
+)
+\c@mytheorem=\count100
+\c@myproposition=\count101
+\c@mydefinition=\count102
+\c@mycorollary=\count103
+\c@myexample=\count104
+\c@myexercise=\count105
+)
+(/usr/share/texmf/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2013/01/06 v5.00 algorithms environments
+\c@AlgoLine=\count106
+
+(/usr/share/texmf/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texmf/tex/latex/tools/xspace.sty
+Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
+)
+(/usr/share/texmf/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+********************************************************
+Package `algorithm2e' Release 5.0 -- january 06 2013 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (cfiorio@um2.fr)
+********************************************************
+\skiptotal=\skip48
+\skiplinenumber=\skip49
+\skiprule=\skip50
+\skiphlne=\skip51
+\skiptext=\skip52
+\skiplength=\skip53
+\algomargin=\skip54
+\skipalgocfslide=\skip55
+\algowidth=\dimen117
+\inoutsize=\dimen118
+\inoutindent=\dimen119
+\interspacetitleruled=\dimen120
+\interspacealgoruled=\dimen121
+\interspacetitleboxruled=\dimen122
+\algocf@inoutbox=\box30
+\algocf@inputbox=\box31
+\AlCapSkip=\skip56
+\AlCapHSkip=\skip57
+\algoskipindent=\skip58
+\algocf@nlbox=\box32
+\algocf@hangingbox=\box33
+\algocf@untilbox=\box34
+\algocf@skipuntil=\skip59
+\algocf@capbox=\box35
+\algoheightruledefault=\skip60
+\algoheightrule=\skip61
+\algotitleheightruledefault=\skip62
+\algotitleheightrule=\skip63
+\c@algocfline=\count107
+\c@algocfproc=\count108
+\c@algocf=\count109
+\algocf@algoframe=\box36
+\algocf@algobox=\box37
+) (/usr/share/texmf/tex/latex/algorithms/algorithmic.sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+\c@ALC@unique=\count110
+\c@ALC@line=\count111
+\c@ALC@rem=\count112
+\c@ALC@depth=\count113
+\ALC@tlm=\skip64
+\algorithmicindent=\skip65
+)
+(/usr/share/texmf/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/share/texmf/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen123
+\captionmargin@=\dimen124
+\captionwidth=\dimen125
+\caption@tempdima=\dimen126
+\caption@indent=\dimen127
+\caption@parindent=\dimen128
+\caption@hangindent=\dimen129
+\abovecaptionskip=\skip66
+\belowcaptionskip=\skip67
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+)
+
+Package caption Warning: Unsupported document class (or package) detected,
+(caption)                usage of the caption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = \long macro:#1#2-> \vskip \captionlineski
+p \baselineskip =\captionlineskip \setbox \@tempboxa \hbox {{#1}. #2}\ifdim \wd
+ \@tempboxa >\hsize \unhbox \@tempboxa \par \else \hbox to \hsize {\box \@tempb
+oxa \hfil }\fi .
+\c@ContinuedFloat=\count114
+) (/usr/share/texmf/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+\c@subfigure=\count115
+\c@subtable=\count116
+)
+\c@mydef=\count117
+\c@section=\count118
+\c@subsection=\count119
+\c@paragraph=\count120
+\c@subsubsection=\count121
+ (./MyThesis.aux
+(./chap1.aux) (./chap2.aux) (./math.aux) (./method1.aux) (./method2.aux)
+(./method3.aux) (./discussion.aux))
+\openout1 = `MyThesis.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 94.
+ (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+(/usr/share/texmf/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count122
+\scratchdimen=\dimen130
+\scratchbox=\box38
+\nofMPsegments=\count123
+\nofMParguments=\count124
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count125
+\MPscratchDim=\dimen131
+\MPnumerator=\count126
+\makeMPintoPDFobject=\count127
+\everyMPtoPDFconversion=\toks29
+) (/usr/share/texmf/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texmf/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texmf/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texmf/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texmf/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/share/texmf/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/share/texmf/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/share/texmf/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/share/texmf/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texmf/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: Incompatible package detected (regarding \caption).
+(caption)             \caption = macro:-> \ifcaptionON \refstepcounter \@captyp
+e \fi \@dblarg {\@caption \@captype }.
+Package caption Info: Incompatible package detected (regarding \@caption).
+(caption)             \@caption = \long macro:#1[#2]#3->\par \ifcaptionON \addc
+ontentsline {\csname ext@#1\endcsname }{#1} {\protect \numberline {\csname the#
+1\endcsname }{\ignorespaces #2}} \fi \begingroup \@parboxrestore \normalsize \@
+makecaption {\csname fnum@#1\endcsname }{\ignorespaces #3}\par \endgroup .
+
+
+Package caption Warning: Forced redefinition of \caption since the
+(caption)                unsupported(!) package option `compatibility=false'
+(caption)                was given.
+See the caption package documentation for explanation.
+
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 97.
+(/usr/share/texmf/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 97.
+
+
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 97.
+
+
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 97.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 97.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 97.
+LaTeX Font Info:    Try loading font information for U+msa on input line 97.
+
+(/usr/share/texmf/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 97.
+
+(/usr/share/texmf/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+lasy on input line 97.
+
+(/usr/share/texmf/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+Title.
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 98.
+
+(/usr/share/texmf/tex/latex/lm/omslmr.fd
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 98.
+
+Copyright.
+[1] (./abstract.tex)
+Abstract.
+[2] [3] (./MyThesis.toc [4]
+Underfull \hbox (badness 2951) in paragraph at lines 53--53
+ [][] []\OT1/lmr/bx/n/10.95 CONSISTENT AND SPA-TIALLY CO-HER-ENT FUNC-TIONAL 
+ []
+
+[5])
+\tf@toc=\write3
+\openout3 = `MyThesis.toc'.
+
+
+Contents.
+[6]
+List of Figures.
+(./MyThesis.lof [7] [8] [9] [10])
+\tf@lof=\write4
+\openout4 = `MyThesis.lof'.
+
+ [11] (./acknowledge.tex)
+Acknowledgments.
+[12]
+\openout2 = `chap1.aux'.
+
+ (./chap1.tex
+CHAPTER 1.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 4.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 4.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 4.
+[1
+
+
+] [2] [3] [4]
+<figures/c1/bidirections.pdf, id=65, 1562.2282pt x 381.78125pt>
+File: figures/c1/bidirections.pdf Graphic file (type pdf)
+
+<use figures/c1/bidirections.pdf>
+Package pdftex.def Info: figures/c1/bidirections.pdf used on input line 199.
+(pdftex.def)             Requested size: 390.25534pt x 95.36934pt.
+) [5] [6 <./figures/c1/bidirections.pdf>]
+\openout2 = `chap2.aux'.
+
+
+(./chap2.tex
+CHAPTER 2.
+[7
+
+
+
+] [8] [9] [10]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 200.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 200.
+ [11]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 243.
+ [12] [13] [14] [15] [16] [17] [18] [19] [20] [21]
+<figures/math/coherence/a.png, id=137, 538.01pt x 442.65375pt>
+File: figures/math/coherence/a.png Graphic file (type png)
+
+<use figures/math/coherence/a.png>
+Package pdftex.def Info: figures/math/coherence/a.png used on input line 689.
+(pdftex.def)             Requested size: 130.08731pt x 107.02931pt.
+
+<figures/math/coherence/s.png, id=139, 537.00626pt x 442.65375pt>
+File: figures/math/coherence/s.png Graphic file (type png)
+
+<use figures/math/coherence/s.png>
+Package pdftex.def Info: figures/math/coherence/s.png used on input line 690.
+(pdftex.def)             Requested size: 130.08731pt x 107.22519pt.
+
+<figures/math/coherence/c.png, id=140, 537.00626pt x 442.65375pt>
+File: figures/math/coherence/c.png Graphic file (type png)
+
+<use figures/math/coherence/c.png>
+Package pdftex.def Info: figures/math/coherence/c.png used on input line 691.
+(pdftex.def)             Requested size: 130.08731pt x 107.22519pt.
+
+<figures/c2/brain_graph.png, id=141, 952.5186pt x 563.706pt>
+File: figures/c2/brain_graph.png Graphic file (type png)
+
+<use figures/c2/brain_graph.png>
+Package pdftex.def Info: figures/c2/brain_graph.png used on input line 702.
+(pdftex.def)             Requested size: 390.25534pt x 230.95752pt.
+
+<figures/c2/slicetiming.pdf, id=142, 472.82635pt x 171.60464pt>
+File: figures/c2/slicetiming.pdf Graphic file (type pdf)
+
+<use figures/c2/slicetiming.pdf>
+Package pdftex.def Info: figures/c2/slicetiming.pdf used on input line 713.
+(pdftex.def)             Requested size: 390.25534pt x 141.6384pt.
+
+<figures/c2/ica.pdf, id=143, 481.8pt x 283.06819pt>
+File: figures/c2/ica.pdf Graphic file (type pdf)
+ <use figures/c2/ica.pdf>
+Package pdftex.def Info: figures/c2/ica.pdf used on input line 722.
+(pdftex.def)             Requested size: 346.89731pt x 203.81325pt.
+)
+[22] [23 <./figures/math/coherence/a.png> <./figures/math/coherence/s.png> <./f
+igures/math/coherence/c.png> <./figures/c2/brain_graph.png>] [24 <./figures/c2/
+slicetiming.pdf> <./figures/c2/ica.pdf
+
+pdfTeX warning: pdflatex (file ./figures/c2/ica.pdf): PDF inclusion: multiple p
+dfs with page group included in a single page
+>]
+\openout2 = `math.aux'.
+
+ (./math.tex
+CHAPTER 3.
+[25
+
+
+
+] [26]
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 122.
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 122.
+ [27] [28] [29] [30]
+Overfull \hbox (7.76418pt too wide) in paragraph at lines 270--285
+[]\OT1/lmr/m/n/10.95 The ad-van-tage of Metropo-lis sam-pling method is we do n
+ot need to sam-ple from $\OML/lmm/m/it/10.95 P\OT1/lmr/m/n/10.95 (\OML/lmm/m/it
+/10.95 x[]\OMS/lmsy/m/n/10.95 j\OML/lmm/m/it/10.95 x[]\OT1/lmr/m/n/10.95 )$.
+ []
+
+[31] [32] [33] [34
+
+] [35] [36] [37] [38] [39] [40
+
+] [41] [42
+
+] [43] [44] [45]
+[46] [47] [48] [49] [50] [51] [52] [53]
+Title Error: (30.65787pt too wide)
+Page 54, Title="Variational inference with EM a.k.a mean field theory"
+
+[54] <figures/math/markov_chain.pdf, id=276, 211.003pt x 23.48514pt>
+File: figures/math/markov_chain.pdf Graphic file (type pdf)
+
+<use figures/math/markov_chain.pdf>
+Package pdftex.def Info: figures/math/markov_chain.pdf used on input line 1317.
+
+(pdftex.def)             Requested size: 211.00249pt x 23.48508pt.
+
+<figures/math/mrf.pdf, id=277, 449.68pt x 290.20921pt>
+File: figures/math/mrf.pdf Graphic file (type pdf)
+
+<use figures/math/mrf.pdf>
+Package pdftex.def Info: figures/math/mrf.pdf used on input line 1323.
+(pdftex.def)             Requested size: 173.44534pt x 111.9368pt.
+
+<figures/math/general_graph.pdf, id=278, 369.77733pt x 204.84341pt>
+File: figures/math/general_graph.pdf Graphic file (type pdf)
+
+<use figures/math/general_graph.pdf>
+Package pdftex.def Info: figures/math/general_graph.pdf used on input line 1325
+.
+(pdftex.def)             Requested size: 173.44534pt x 96.08263pt.
+
+<figures/math/imagechain.pdf, id=279, 490.82355pt x 301.24397pt>
+File: figures/math/imagechain.pdf Graphic file (type pdf)
+
+<use figures/math/imagechain.pdf>
+Package pdftex.def Info: figures/math/imagechain.pdf used on input line 1336.
+(pdftex.def)             Requested size: 216.81pt x 133.06717pt.
+
+<figures/math/ising_sim/b08_1000.png, id=280, 256.96pt x 256.96pt>
+File: figures/math/ising_sim/b08_1000.png Graphic file (type png)
+
+<use figures/math/ising_sim/b08_1000.png>
+Package pdftex.def Info: figures/math/ising_sim/b08_1000.png used on input line
+ 1350.
+(pdftex.def)             Requested size: 130.08731pt x 130.08723pt.
+
+<figures/math/ising_sim/b088_500.png, id=281, 256.96pt x 256.96pt>
+File: figures/math/ising_sim/b088_500.png Graphic file (type png)
+
+<use figures/math/ising_sim/b088_500.png>
+Package pdftex.def Info: figures/math/ising_sim/b088_500.png used on input line
+ 1357.
+(pdftex.def)             Requested size: 130.08731pt x 130.08723pt.
+
+<figures/math/ising_sim/b10_1000.png, id=282, 256.96pt x 256.96pt>
+File: figures/math/ising_sim/b10_1000.png Graphic file (type png)
+
+<use figures/math/ising_sim/b10_1000.png>
+Package pdftex.def Info: figures/math/ising_sim/b10_1000.png used on input line
+ 1364.
+(pdftex.def)             Requested size: 130.08731pt x 130.08723pt.
+
+<figures/math/ising_sim/b15_800.png, id=283, 256.96pt x 256.96pt>
+File: figures/math/ising_sim/b15_800.png Graphic file (type png)
+
+<use figures/math/ising_sim/b15_800.png>
+Package pdftex.def Info: figures/math/ising_sim/b15_800.png used on input line 
+1371.
+(pdftex.def)             Requested size: 130.08731pt x 130.08723pt.
+
+<figures/math/ising_sim/b20_1000.png, id=284, 256.96pt x 256.96pt>
+File: figures/math/ising_sim/b20_1000.png Graphic file (type png)
+
+<use figures/math/ising_sim/b20_1000.png>
+Package pdftex.def Info: figures/math/ising_sim/b20_1000.png used on input line
+ 1378.
+(pdftex.def)             Requested size: 130.08731pt x 130.08723pt.
+
+<figures/math/ising_sim/b088_details.png, id=285, 593.46423pt x 573.90883pt>
+File: figures/math/ising_sim/b088_details.png Graphic file (type png)
+
+<use figures/math/ising_sim/b088_details.png>
+Package pdftex.def Info: figures/math/ising_sim/b088_details.png used on input 
+line 1385.
+(pdftex.def)             Requested size: 130.08731pt x 125.7962pt.
+
+<figures/math/potts_sim/b088.png, id=286, 128.48pt x 128.48pt>
+File: figures/math/potts_sim/b088.png Graphic file (type png)
+
+<use figures/math/potts_sim/b088.png>
+Package pdftex.def Info: figures/math/potts_sim/b088.png used on input line 140
+0.
+(pdftex.def)             Requested size: 130.08731pt x 130.09703pt.
+
+<figures/math/potts_sim/b12.png, id=287, 128.48pt x 128.48pt>
+File: figures/math/potts_sim/b12.png Graphic file (type png)
+
+<use figures/math/potts_sim/b12.png>
+Package pdftex.def Info: figures/math/potts_sim/b12.png used on input line 1405
+.
+(pdftex.def)             Requested size: 130.08731pt x 130.09703pt.
+
+<figures/math/potts_sim/b20.png, id=288, 128.48pt x 128.48pt>
+File: figures/math/potts_sim/b20.png Graphic file (type png)
+
+<use figures/math/potts_sim/b20.png>
+Package pdftex.def Info: figures/math/potts_sim/b20.png used on input line 1410
+.
+(pdftex.def)             Requested size: 130.08731pt x 130.09703pt.
+
+<figures/math/sw/gibbs1.png, id=289, 334.24875pt x 321.2pt>
+File: figures/math/sw/gibbs1.png Graphic file (type png)
+
+<use figures/math/sw/gibbs1.png>
+Package pdftex.def Info: figures/math/sw/gibbs1.png used on input line 1422.
+(pdftex.def)             Requested size: 130.08731pt x 125.01263pt.
+
+<figures/math/sw/gibbs2.png, id=290, 334.24875pt x 321.2pt>
+File: figures/math/sw/gibbs2.png Graphic file (type png)
+
+<use figures/math/sw/gibbs2.png>
+Package pdftex.def Info: figures/math/sw/gibbs2.png used on input line 1423.
+(pdftex.def)             Requested size: 130.08731pt x 125.01263pt.
+
+<figures/math/sw/gibbs3.png, id=291, 334.24875pt x 321.2pt>
+File: figures/math/sw/gibbs3.png Graphic file (type png)
+
+<use figures/math/sw/gibbs3.png>
+Package pdftex.def Info: figures/math/sw/gibbs3.png used on input line 1424.
+(pdftex.def)             Requested size: 130.08731pt x 125.01263pt.
+
+<figures/math/sw/sw1.png, id=292, 334.24875pt x 321.2pt>
+File: figures/math/sw/sw1.png Graphic file (type png)
+
+<use figures/math/sw/sw1.png>
+Package pdftex.def Info: figures/math/sw/sw1.png used on input line 1429.
+(pdftex.def)             Requested size: 130.08731pt x 125.01263pt.
+
+<figures/math/sw/sw2.png, id=293, 334.24875pt x 321.2pt>
+File: figures/math/sw/sw2.png Graphic file (type png)
+
+<use figures/math/sw/sw2.png>
+Package pdftex.def Info: figures/math/sw/sw2.png used on input line 1430.
+(pdftex.def)             Requested size: 130.08731pt x 125.01263pt.
+
+<figures/math/sw/sw3.png, id=294, 334.24875pt x 321.2pt>
+File: figures/math/sw/sw3.png Graphic file (type png)
+
+<use figures/math/sw/sw3.png>
+Package pdftex.def Info: figures/math/sw/sw3.png used on input line 1431.
+(pdftex.def)             Requested size: 130.08731pt x 125.01263pt.
+
+<figures/math/hmm.pdf, id=295, 461.0601pt x 396.15565pt>
+File: figures/math/hmm.pdf Graphic file (type pdf)
+
+<use figures/math/hmm.pdf>
+Package pdftex.def Info: figures/math/hmm.pdf used on input line 1446.
+(pdftex.def)             Requested size: 216.81pt x 186.28989pt.
+
+<figures/math/annealing.pdf, id=296, 343.14677pt x 131.10654pt>
+File: figures/math/annealing.pdf Graphic file (type pdf)
+
+<use figures/math/annealing.pdf>
+Package pdftex.def Info: figures/math/annealing.pdf used on input line 1455.
+(pdftex.def)             Requested size: 260.17464pt x 99.40993pt.
+
+<figures/math/graphcuts.pdf, id=297, 139.17886pt x 113.25044pt>
+File: figures/math/graphcuts.pdf Graphic file (type pdf)
+
+<use figures/math/graphcuts.pdf>
+Package pdftex.def Info: figures/math/graphcuts.pdf used on input line 1465.
+(pdftex.def)             Requested size: 216.81pt x 176.4263pt.
+
+<figures/math/gc/obs.png, id=298, 334.24875pt x 321.2pt>
+File: figures/math/gc/obs.png Graphic file (type png)
+
+<use figures/math/gc/obs.png>
+Package pdftex.def Info: figures/math/gc/obs.png used on input line 1481.
+(pdftex.def)             Requested size: 130.08731pt x 125.01263pt.
+
+<figures/math/gc/truth_marked.pdf, id=299, 267.39899pt x 256.96pt>
+File: figures/math/gc/truth_marked.pdf Graphic file (type pdf)
+
+<use figures/math/gc/truth_marked.pdf>
+Package pdftex.def Info: figures/math/gc/truth_marked.pdf used on input line 14
+86.
+(pdftex.def)             Requested size: 130.08731pt x 125.00969pt.
+
+<figures/math/gc/rec.png, id=300, 334.24875pt x 321.2pt>
+File: figures/math/gc/rec.png Graphic file (type png)
+
+<use figures/math/gc/rec.png>
+Package pdftex.def Info: figures/math/gc/rec.png used on input line 1491.
+(pdftex.def)             Requested size: 130.08731pt x 125.01263pt.
+
+<figures/math/gc/hist.pdf, id=301, 1287.81125pt x 346.29375pt>
+File: figures/math/gc/hist.pdf Graphic file (type pdf)
+
+<use figures/math/gc/hist.pdf>
+Package pdftex.def Info: figures/math/gc/hist.pdf used on input line 1498.
+(pdftex.def)             Requested size: 346.89731pt x 93.27863pt.
+
+<figures/math/paraest.pdf, id=302, 321.39313pt x 226.446pt>
+File: figures/math/paraest.pdf Graphic file (type pdf)
+
+<use figures/math/paraest.pdf>
+Package pdftex.def Info: figures/math/paraest.pdf used on input line 1510.
+(pdftex.def)             Requested size: 130.08731pt x 91.65483pt.
+
+<figures/math/coding.pdf, id=303, 196.80222pt x 68.35538pt>
+File: figures/math/coding.pdf Graphic file (type pdf)
+
+<use figures/math/coding.pdf>
+Package pdftex.def Info: figures/math/coding.pdf used on input line 1520.
+(pdftex.def)             Requested size: 260.17464pt x 90.37537pt.
+
+<figures/discussion/ising.png, id=304, 896.951pt x 614.295pt>
+File: figures/discussion/ising.png Graphic file (type png)
+
+<use figures/discussion/ising.png>
+Package pdftex.def Info: figures/discussion/ising.png used on input line 1528.
+(pdftex.def)             Requested size: 303.53267pt x 207.88269pt.
+) [55] [56 <./figures/math/markov_chain.pdf> <./figures/math/mrf.pdf> <./figure
+s/math/general_graph.pdf
+
+pdfTeX warning: pdflatex (file ./figures/math/general_graph.pdf): PDF inclusion
+: multiple pdfs with page group included in a single page
+> <./figures/math/imagechain.pdf
+
+pdfTeX warning: pdflatex (file ./figures/math/imagechain.pdf): PDF inclusion: m
+ultiple pdfs with page group included in a single page
+>] [57 <./figures/math/ising_sim/b08_1000.png (PNG copy)> <./figures/math/ising
+_sim/b088_500.png (PNG copy)> <./figures/math/ising_sim/b10_1000.png (PNG copy)
+> <./figures/math/ising_sim/b15_800.png (PNG copy)> <./figures/math/ising_sim/b
+20_1000.png (PNG copy)> <./figures/math/ising_sim/b088_details.png> <./figures/
+math/potts_sim/b088.png (PNG copy)> <./figures/math/potts_sim/b12.png (PNG copy
+)> <./figures/math/potts_sim/b20.png (PNG copy)>] [58 <./figures/math/sw/gibbs1
+.png> <./figures/math/sw/gibbs2.png> <./figures/math/sw/gibbs3.png> <./figures/
+math/sw/sw1.png> <./figures/math/sw/sw2.png> <./figures/math/sw/sw3.png> <./fig
+ures/math/hmm.pdf>] [59 <./figures/math/annealing.pdf> <./figures/math/graphcut
+s.pdf
+
+pdfTeX warning: pdflatex (file ./figures/math/graphcuts.pdf): PDF inclusion: mu
+ltiple pdfs with page group included in a single page
+>] [60 <./figures/math/gc/obs.png> <./figures/math/gc/truth_marked.pdf> <./figu
+res/math/gc/rec.png> <./figures/math/gc/hist.pdf> <./figures/math/paraest.pdf
+
+pdfTeX warning: pdflatex (file ./figures/math/paraest.pdf): PDF inclusion: mult
+iple pdfs with page group included in a single page
+> <./figures/math/coding.pdf
+
+pdfTeX warning: pdflatex (file ./figures/math/coding.pdf): PDF inclusion: multi
+ple pdfs with page group included in a single page
+>] [61 <./figures/discussion/ising.png>]
+\openout2 = `method1.aux'.
+
+ (./method1.tex
+CHAPTER 4.
+[62
+
+
+
+] [63] [64] [65]
+Title Error: (2.6017pt too wide)
+Page 66, Title="Estimation via expectation maximization"
+
+[66]
+Overfull \hbox (16.42503pt too wide) detected at line 300
+[][] 
+ []
+
+[67] [68] [69] [70]
+<figures/method1/fmrislice.png, id=414, 447.22377pt x 521.85663pt>
+File: figures/method1/fmrislice.png Graphic file (type png)
+
+<use figures/method1/fmrislice.png>
+Package pdftex.def Info: figures/method1/fmrislice.png used on input line 444.
+(pdftex.def)             Requested size: 111.48492pt x 130.08731pt.
+
+<figures/method1/corrmap.png, id=415, 350.29694pt x 405.04814pt>
+File: figures/method1/corrmap.png Graphic file (type png)
+
+<use figures/method1/corrmap.png>
+Package pdftex.def Info: figures/method1/corrmap.png used on input line 451.
+(pdftex.def)             Requested size: 112.49818pt x 130.08731pt.
+
+<figures/method1/corrmap_th.png, id=416, 379.20494pt x 400.84639pt>
+File: figures/method1/corrmap_th.png Graphic file (type png)
+
+<use figures/method1/corrmap_th.png>
+Package pdftex.def Info: figures/method1/corrmap_th.png used on input line 459.
+
+(pdftex.def)             Requested size: 123.06076pt x 130.08731pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 460--460
+[]\OT1/lmr/m/n/10 (c) |The cor-re-la-tion map
+ []
+
+<figures/method1/6dmrf.pdf, id=417, 344.27835pt x 409.71968pt>
+File: figures/method1/6dmrf.pdf Graphic file (type pdf)
+
+<use figures/method1/6dmrf.pdf>
+Package pdftex.def Info: figures/method1/6dmrf.pdf used on input line 470.
+(pdftex.def)             Requested size: 216.81pt x 258.02473pt.
+
+<figures/method1/checkerboard.pdf, id=418, 171.94283pt x 101.57802pt>
+File: figures/method1/checkerboard.pdf Graphic file (type pdf)
+
+<use figures/method1/checkerboard.pdf>
+Package pdftex.def Info: figures/method1/checkerboard.pdf used on input line 48
+4.
+(pdftex.def)             Requested size: 216.81pt x 128.08661pt.
+
+<figures/method1/newtoy/trueConn.png, id=419, 100.375pt x 100.375pt>
+File: figures/method1/newtoy/trueConn.png Graphic file (type png)
+
+<use figures/method1/newtoy/trueConn.png>
+Package pdftex.def Info: figures/method1/newtoy/trueConn.png used on input line
+ 500.
+(pdftex.def)             Requested size: 130.08731pt x 130.1061pt.
+
+<figures/method1/newtoy/corrNoSmooth.png, id=420, 100.375pt x 100.375pt>
+File: figures/method1/newtoy/corrNoSmooth.png Graphic file (type png)
+
+<use figures/method1/newtoy/corrNoSmooth.png>
+Package pdftex.def Info: figures/method1/newtoy/corrNoSmooth.png used on input 
+line 507.
+(pdftex.def)             Requested size: 130.08731pt x 130.1061pt.
+
+Underfull \hbox (badness 3514) in paragraph at lines 508--508
+[]\OT1/lmr/m/n/10 (b) |cor-re-la-tion of orig-i-nal,
+ []
+
+<figures/method1/newtoy/SampleCorr.png, id=421, 100.375pt x 100.375pt>
+File: figures/method1/newtoy/SampleCorr.png Graphic file (type png)
+
+<use figures/method1/newtoy/SampleCorr.png>
+Package pdftex.def Info: figures/method1/newtoy/SampleCorr.png used on input li
+ne 514.
+(pdftex.def)             Requested size: 130.08731pt x 130.1061pt.
+
+<figures/method1/newtoy/threholdCorrRaw.png, id=422, 100.375pt x 100.375pt>
+File: figures/method1/newtoy/threholdCorrRaw.png Graphic file (type png)
+
+<use figures/method1/newtoy/threholdCorrRaw.png>
+Package pdftex.def Info: figures/method1/newtoy/threholdCorrRaw.png used on inp
+ut line 521.
+(pdftex.def)             Requested size: 130.08731pt x 130.1061pt.
+
+Underfull \hbox (badness 5175) in paragraph at lines 522--522
+[]\OT1/lmr/m/n/10 (d) |con-nec-tiv-ity based on
+ []
+
+
+<figures/method1/newtoy/threholdCorrSmoothed.png, id=423, 100.375pt x 100.375pt
+>
+File: figures/method1/newtoy/threholdCorrSmoothed.png Graphic file (type png)
+ <use figures/method1/newtoy/threholdCorrSmoothed.png>
+Package pdftex.def Info: figures/method1/newtoy/threholdCorrSmoothed.png used o
+n input line 528.
+(pdftex.def)             Requested size: 130.08731pt x 130.1061pt.
+
+Underfull \hbox (badness 6157) in paragraph at lines 529--529
+[]\OT1/lmr/m/n/10 (e) |con-nec-tiv-ity based on
+ []
+
+<figures/method1/newtoy/newpost_sym2.png, id=424, 100.375pt x 100.375pt>
+File: figures/method1/newtoy/newpost_sym2.png Graphic file (type png)
+
+<use figures/method1/newtoy/newpost_sym2.png>
+Package pdftex.def Info: figures/method1/newtoy/newpost_sym2.png used on input 
+line 535.
+(pdftex.def)             Requested size: 130.08731pt x 130.1061pt.
+
+<figures/method1/invivo1/r1.png, id=425, 534.49687pt x 564.60938pt>
+File: figures/method1/invivo1/r1.png Graphic file (type png)
+
+<use figures/method1/invivo1/r1.png>
+Package pdftex.def Info: figures/method1/invivo1/r1.png used on input line 554.
+
+(pdftex.def)             Requested size: 130.08731pt x 137.41298pt.
+
+Underfull \hbox (badness 1418) in paragraph at lines 555--555
+[]\OT1/lmr/m/n/10 (a) |Sub1: cor-re-la-tion map
+ []
+
+<figures/method1/invivo1/r1_smooth.png, id=426, 534.49687pt x 564.60938pt>
+File: figures/method1/invivo1/r1_smooth.png Graphic file (type png)
+
+<use figures/method1/invivo1/r1_smooth.png>
+Package pdftex.def Info: figures/method1/invivo1/r1_smooth.png used on input li
+ne 561.
+(pdftex.def)             Requested size: 130.08731pt x 137.41298pt.
+
+Underfull \hbox (badness 1275) in paragraph at lines 562--562
+[]\OT1/lmr/m/n/10 (b) |Sub1: cor-re-la-tion map
+ []
+
+<figures/method1/invivo1/r1_mrf.png, id=427, 534.49687pt x 564.60938pt>
+File: figures/method1/invivo1/r1_mrf.png Graphic file (type png)
+
+<use figures/method1/invivo1/r1_mrf.png>
+Package pdftex.def Info: figures/method1/invivo1/r1_mrf.png used on input line 
+568.
+(pdftex.def)             Requested size: 130.08731pt x 137.41298pt.
+
+<figures/method1/invivo1/r2.png, id=428, 534.49687pt x 564.60938pt>
+File: figures/method1/invivo1/r2.png Graphic file (type png)
+
+<use figures/method1/invivo1/r2.png>
+Package pdftex.def Info: figures/method1/invivo1/r2.png used on input line 575.
+
+(pdftex.def)             Requested size: 130.08731pt x 137.41298pt.
+
+Underfull \hbox (badness 1275) in paragraph at lines 576--576
+[]\OT1/lmr/m/n/10 (d) |Sub2: cor-re-la-tion map
+ []
+
+<figures/method1/invivo1/r2_smooth.png, id=429, 534.49687pt x 565.36218pt>
+File: figures/method1/invivo1/r2_smooth.png Graphic file (type png)
+
+<use figures/method1/invivo1/r2_smooth.png>
+Package pdftex.def Info: figures/method1/invivo1/r2_smooth.png used on input li
+ne 582.
+(pdftex.def)             Requested size: 130.08731pt x 137.59619pt.
+
+Underfull \hbox (badness 1565) in paragraph at lines 583--583
+[]\OT1/lmr/m/n/10 (e) |Sub2: cor-re-la-tion map
+ []
+
+<figures/method1/invivo1/r2_mrf.png, id=430, 534.49687pt x 564.60938pt>
+File: figures/method1/invivo1/r2_mrf.png Graphic file (type png)
+
+<use figures/method1/invivo1/r2_mrf.png>
+Package pdftex.def Info: figures/method1/invivo1/r2_mrf.png used on input line 
+589.
+(pdftex.def)             Requested size: 130.08731pt x 137.41298pt.
+
+<figures/method1/invivo2/R1_corr_nosmooth.png, id=431, 534.49687pt x 564.60938p
+t>
+File: figures/method1/invivo2/R1_corr_nosmooth.png Graphic file (type png)
+ <use figures/method1/invivo2/R1_corr_nosmooth.png>
+Package pdftex.def Info: figures/method1/invivo2/R1_corr_nosmooth.png used on i
+nput line 606.
+(pdftex.def)             Requested size: 130.08731pt x 137.41298pt.
+
+<figures/method1/invivo2/R1_corr_smooth.png, id=432, 534.49687pt x 564.60938pt>
+File: figures/method1/invivo2/R1_corr_smooth.png Graphic file (type png)
+<use figures/method1/invivo2/R1_corr_smooth.png>
+Package pdftex.def Info: figures/method1/invivo2/R1_corr_smooth.png used on inp
+ut line 613.
+(pdftex.def)             Requested size: 130.08731pt x 137.41298pt.
+
+<figures/method1/invivo2/R1_mrf.png, id=433, 534.49687pt x 564.60938pt>
+File: figures/method1/invivo2/R1_mrf.png Graphic file (type png)
+
+<use figures/method1/invivo2/R1_mrf.png>
+Package pdftex.def Info: figures/method1/invivo2/R1_mrf.png used on input line 
+620.
+(pdftex.def)             Requested size: 130.08731pt x 137.41298pt.
+
+<figures/method1/invivo2/R2_corr_nosmooth.png, id=434, 534.49687pt x 564.60938p
+t>
+File: figures/method1/invivo2/R2_corr_nosmooth.png Graphic file (type png)
+ <use figures/method1/invivo2/R2_corr_nosmooth.png>
+Package pdftex.def Info: figures/method1/invivo2/R2_corr_nosmooth.png used on i
+nput line 627.
+(pdftex.def)             Requested size: 130.08731pt x 137.41298pt.
+
+<figures/method1/invivo2/R2_corr_smooth.png, id=435, 534.49687pt x 564.60938pt>
+File: figures/method1/invivo2/R2_corr_smooth.png Graphic file (type png)
+<use figures/method1/invivo2/R2_corr_smooth.png>
+Package pdftex.def Info: figures/method1/invivo2/R2_corr_smooth.png used on inp
+ut line 634.
+(pdftex.def)             Requested size: 130.08731pt x 137.41298pt.
+
+Underfull \hbox (badness 1881) in paragraph at lines 635--635
+[]\OT1/lmr/m/n/10 (e) |sub2: cor-re-la-tion with
+ []
+
+<figures/method1/invivo2/R2_mrf.png, id=436, 534.49687pt x 564.60938pt>
+File: figures/method1/invivo2/R2_mrf.png Graphic file (type png)
+
+<use figures/method1/invivo2/R2_mrf.png>
+Package pdftex.def Info: figures/method1/invivo2/R2_mrf.png used on input line 
+641.
+(pdftex.def)             Requested size: 130.08731pt x 137.41298pt.
+) [71] [72 <./figures/method1/fmrislice.png> <./figures/method1/corrmap.png (PN
+G copy)> <./figures/method1/corrmap_th.png> <./figures/method1/6dmrf.pdf>] [73 
+<./figures/method1/checkerboard.pdf> <./figures/method1/newtoy/trueConn.png (PN
+G copy)> <./figures/method1/newtoy/corrNoSmooth.png (PNG copy)> <./figures/meth
+od1/newtoy/SampleCorr.png (PNG copy)> <./figures/method1/newtoy/threholdCorrRaw
+.png (PNG copy)> <./figures/method1/newtoy/threholdCorrSmoothed.png (PNG copy)>
+ <./figures/method1/newtoy/newpost_sym2.png (PNG copy)>] [74 <./figures/method1
+/invivo1/r1.png (PNG copy)> <./figures/method1/invivo1/r1_smooth.png (PNG copy)
+> <./figures/method1/invivo1/r1_mrf.png (PNG copy)> <./figures/method1/invivo1/
+r2.png (PNG copy)> <./figures/method1/invivo1/r2_smooth.png (PNG copy)> <./figu
+res/method1/invivo1/r2_mrf.png (PNG copy)>] [75 <./figures/method1/invivo2/R1_c
+orr_nosmooth.png (PNG copy)> <./figures/method1/invivo2/R1_corr_smooth.png (PNG
+ copy)> <./figures/method1/invivo2/R1_mrf.png (PNG copy)> <./figures/method1/in
+vivo2/R2_corr_nosmooth.png (PNG copy)> <./figures/method1/invivo2/R2_corr_smoot
+h.png (PNG copy)> <./figures/method1/invivo2/R2_mrf.png (PNG copy)>]
+\openout2 = `method2.aux'.
+
+ (./method2.tex
+CHAPTER 5.
+[76
+
+
+
+]
+LaTeX Font Info:    Try loading font information for OT1+lmss on input line 50.
+
+ (/usr/share/texmf/tex/latex/lm/ot1lmss.fd
+File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Title Error: (39.59222pt too wide)
+Page 77, Title="Hidden Markov models of functional networks"
+
+[77] [78] [79] [80] [81] [82]
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 384
+.
+ (/usr/share/texmf/tex/latex/lm/ot1lmtt.fd
+File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+[83] [84] <figures/method2/vmf.pdf, id=613, 89.63579pt x 80.84007pt>
+File: figures/method2/vmf.pdf Graphic file (type pdf)
+
+<use figures/method2/vmf.pdf>
+Package pdftex.def Info: figures/method2/vmf.pdf used on input line 463.
+(pdftex.def)             Requested size: 130.08731pt x 117.33595pt.
+
+<figures/method2/sphere1.png, id=614, 376.40625pt x 364.36125pt>
+File: figures/method2/sphere1.png Graphic file (type png)
+
+<use figures/method2/sphere1.png>
+Package pdftex.def Info: figures/method2/sphere1.png used on input line 470.
+(pdftex.def)             Requested size: 130.08731pt x 125.92714pt.
+
+<figures/method2/genevmf.pdf, id=615, 398.81465pt x 428.97174pt>
+File: figures/method2/genevmf.pdf Graphic file (type pdf)
+
+<use figures/method2/genevmf.pdf>
+Package pdftex.def Info: figures/method2/genevmf.pdf used on input line 480.
+(pdftex.def)             Requested size: 216.81pt x 233.19913pt.
+
+<figures/method2/synthetic/true.png, id=616, 391.4625pt x 391.4625pt>
+File: figures/method2/synthetic/true.png Graphic file (type png)
+
+<use figures/method2/synthetic/true.png>
+Package pdftex.def Info: figures/method2/synthetic/true.png used on input line 
+493.
+(pdftex.def)             Requested size: 82.38885pt x 82.38873pt.
+
+<figures/method2/synthetic/obs.png, id=617, 391.4625pt x 391.4625pt>
+File: figures/method2/synthetic/obs.png Graphic file (type png)
+
+<use figures/method2/synthetic/obs.png>
+Package pdftex.def Info: figures/method2/synthetic/obs.png used on input line 4
+98.
+(pdftex.def)             Requested size: 82.38885pt x 82.38873pt.
+
+<figures/method2/synthetic/label_icm.png, id=618, 391.4625pt x 391.4625pt>
+File: figures/method2/synthetic/label_icm.png Graphic file (type png)
+
+<use figures/method2/synthetic/label_icm.png>
+Package pdftex.def Info: figures/method2/synthetic/label_icm.png used on input 
+line 503.
+(pdftex.def)             Requested size: 82.38885pt x 82.38873pt.
+
+<figures/method2/synthetic/label_mc.png, id=619, 391.4625pt x 391.4625pt>
+File: figures/method2/synthetic/label_mc.png Graphic file (type png)
+
+<use figures/method2/synthetic/label_mc.png>
+Package pdftex.def Info: figures/method2/synthetic/label_mc.png used on input l
+ine 508.
+(pdftex.def)             Requested size: 82.38885pt x 82.38873pt.
+
+<figures/method2/wholebrain/sub1/axial0028.png, id=620, 334.24875pt x 321.2pt>
+File: figures/method2/wholebrain/sub1/axial0028.png Graphic file (type png)
+
+<use figures/method2/wholebrain/sub1/axial0028.png>
+Package pdftex.def Info: figures/method2/wholebrain/sub1/axial0028.png used on 
+input line 520.
+(pdftex.def)             Requested size: 65.04034pt x 62.49896pt.
+
+<figures/method2/wholebrain/sub1/axial0034.png, id=621, 334.24875pt x 321.2pt>
+File: figures/method2/wholebrain/sub1/axial0034.png Graphic file (type png)
+
+<use figures/method2/wholebrain/sub1/axial0034.png>
+Package pdftex.def Info: figures/method2/wholebrain/sub1/axial0034.png used on 
+input line 521.
+(pdftex.def)             Requested size: 65.04034pt x 62.49896pt.
+
+<figures/method2/wholebrain/sub1/saggital0029.png, id=622, 334.24875pt x 321.2p
+t>
+File: figures/method2/wholebrain/sub1/saggital0029.png Graphic file (type png)
+ <use figures/method2/wholebrain/sub1/saggital0029.png>
+Package pdftex.def Info: figures/method2/wholebrain/sub1/saggital0029.png used 
+on input line 522.
+(pdftex.def)             Requested size: 65.04034pt x 62.49896pt.
+
+<figures/method2/wholebrain/sub1/coronal0029.png, id=623, 334.24875pt x 321.2pt
+>
+File: figures/method2/wholebrain/sub1/coronal0029.png Graphic file (type png)
+ <use figures/method2/wholebrain/sub1/coronal0029.png>
+Package pdftex.def Info: figures/method2/wholebrain/sub1/coronal0029.png used o
+n input line 523.
+(pdftex.def)             Requested size: 65.04034pt x 62.49896pt.
+
+<figures/method2/wholebrain/sub2/axial0028.png, id=624, 334.24875pt x 321.2pt>
+File: figures/method2/wholebrain/sub2/axial0028.png Graphic file (type png)
+
+<use figures/method2/wholebrain/sub2/axial0028.png>
+Package pdftex.def Info: figures/method2/wholebrain/sub2/axial0028.png used on 
+input line 525.
+(pdftex.def)             Requested size: 65.04034pt x 62.49896pt.
+
+<figures/method2/wholebrain/sub2/axial0034.png, id=625, 334.24875pt x 321.2pt>
+File: figures/method2/wholebrain/sub2/axial0034.png Graphic file (type png)
+
+<use figures/method2/wholebrain/sub2/axial0034.png>
+Package pdftex.def Info: figures/method2/wholebrain/sub2/axial0034.png used on 
+input line 526.
+(pdftex.def)             Requested size: 65.04034pt x 62.49896pt.
+
+<figures/method2/wholebrain/sub2/saggital0029.png, id=626, 334.24875pt x 321.2p
+t>
+File: figures/method2/wholebrain/sub2/saggital0029.png Graphic file (type png)
+ <use figures/method2/wholebrain/sub2/saggital0029.png>
+Package pdftex.def Info: figures/method2/wholebrain/sub2/saggital0029.png used 
+on input line 527.
+(pdftex.def)             Requested size: 65.04034pt x 62.49896pt.
+
+<figures/method2/wholebrain/sub2/coronal0029.png, id=627, 334.24875pt x 321.2pt
+>
+File: figures/method2/wholebrain/sub2/coronal0029.png Graphic file (type png)
+ <use figures/method2/wholebrain/sub2/coronal0029.png>
+Package pdftex.def Info: figures/method2/wholebrain/sub2/coronal0029.png used o
+n input line 528.
+(pdftex.def)             Requested size: 65.04034pt x 62.49896pt.
+
+<figures/method2/wholebrain/sub5/axial0028.png, id=628, 334.24875pt x 321.2pt>
+File: figures/method2/wholebrain/sub5/axial0028.png Graphic file (type png)
+
+<use figures/method2/wholebrain/sub5/axial0028.png>
+Package pdftex.def Info: figures/method2/wholebrain/sub5/axial0028.png used on 
+input line 530.
+(pdftex.def)             Requested size: 65.04034pt x 62.49896pt.
+
+<figures/method2/wholebrain/sub5/axial0034.png, id=629, 334.24875pt x 321.2pt>
+File: figures/method2/wholebrain/sub5/axial0034.png Graphic file (type png)
+
+<use figures/method2/wholebrain/sub5/axial0034.png>
+Package pdftex.def Info: figures/method2/wholebrain/sub5/axial0034.png used on 
+input line 531.
+(pdftex.def)             Requested size: 65.04034pt x 62.49896pt.
+
+<figures/method2/wholebrain/sub5/saggital0029.png, id=630, 334.24875pt x 321.2p
+t>
+File: figures/method2/wholebrain/sub5/saggital0029.png Graphic file (type png)
+ <use figures/method2/wholebrain/sub5/saggital0029.png>
+Package pdftex.def Info: figures/method2/wholebrain/sub5/saggital0029.png used 
+on input line 532.
+(pdftex.def)             Requested size: 65.04034pt x 62.49896pt.
+
+<figures/method2/wholebrain/sub5/coronal0029.png, id=631, 334.24875pt x 321.2pt
+>
+File: figures/method2/wholebrain/sub5/coronal0029.png Graphic file (type png)
+ <use figures/method2/wholebrain/sub5/coronal0029.png>
+Package pdftex.def Info: figures/method2/wholebrain/sub5/coronal0029.png used o
+n input line 533.
+(pdftex.def)             Requested size: 65.04034pt x 62.49896pt.
+
+<figures/method2/mcem/dmn_a.png, id=632, 303.1325pt x 329.23pt>
+File: figures/method2/mcem/dmn_a.png Graphic file (type png)
+
+<use figures/method2/mcem/dmn_a.png>
+Package pdftex.def Info: figures/method2/mcem/dmn_a.png used on input line 551.
+
+(pdftex.def)             Requested size: 55.89362pt x 60.70653pt.
+
+<figures/method2/mcem/dmn_s.png, id=633, 384.43625pt x 296.10625pt>
+File: figures/method2/mcem/dmn_s.png Graphic file (type png)
+
+<use figures/method2/mcem/dmn_s.png>
+Package pdftex.def Info: figures/method2/mcem/dmn_s.png used on input line 552.
+
+(pdftex.def)             Requested size: 78.80994pt x 60.70653pt.
+
+<figures/method2/ica_separate/DMN_a.png, id=634, 303.1325pt x 329.23pt>
+File: figures/method2/ica_separate/DMN_a.png Graphic file (type png)
+
+<use figures/method2/ica_separate/DMN_a.png>
+Package pdftex.def Info: figures/method2/ica_separate/DMN_a.png used on input l
+ine 553.
+(pdftex.def)             Requested size: 55.89362pt x 60.70653pt.
+
+<figures/method2/ica_separate/DMN_s.png, id=635, 384.43625pt x 296.10625pt>
+File: figures/method2/ica_separate/DMN_s.png Graphic file (type png)
+
+<use figures/method2/ica_separate/DMN_s.png>
+Package pdftex.def Info: figures/method2/ica_separate/DMN_s.png used on input l
+ine 554.
+(pdftex.def)             Requested size: 78.80994pt x 60.70653pt.
+
+<figures/method2/ica_single/dmn_a.png, id=636, 303.1325pt x 329.23pt>
+File: figures/method2/ica_single/dmn_a.png Graphic file (type png)
+
+<use figures/method2/ica_single/dmn_a.png>
+Package pdftex.def Info: figures/method2/ica_single/dmn_a.png used on input lin
+e 555.
+(pdftex.def)             Requested size: 55.89362pt x 60.70653pt.
+
+<figures/method2/ica_single/dmn_s.png, id=637, 384.43625pt x 296.10625pt>
+File: figures/method2/ica_single/dmn_s.png Graphic file (type png)
+
+<use figures/method2/ica_single/dmn_s.png>
+Package pdftex.def Info: figures/method2/ica_single/dmn_s.png used on input lin
+e 556.
+(pdftex.def)             Requested size: 78.80994pt x 60.70653pt.
+
+<figures/method2/mcem/motor_a.png, id=638, 303.1325pt x 329.23pt>
+File: figures/method2/mcem/motor_a.png Graphic file (type png)
+
+<use figures/method2/mcem/motor_a.png>
+Package pdftex.def Info: figures/method2/mcem/motor_a.png used on input line 56
+3.
+(pdftex.def)             Requested size: 55.89362pt x 60.70653pt.
+
+<figures/method2/mcem/motor_s.png, id=639, 384.43625pt x 296.10625pt>
+File: figures/method2/mcem/motor_s.png Graphic file (type png)
+
+<use figures/method2/mcem/motor_s.png>
+Package pdftex.def Info: figures/method2/mcem/motor_s.png used on input line 56
+4.
+(pdftex.def)             Requested size: 78.80994pt x 60.70653pt.
+
+<figures/method2/ica_separate/motor_a.png, id=640, 303.1325pt x 329.23pt>
+File: figures/method2/ica_separate/motor_a.png Graphic file (type png)
+
+<use figures/method2/ica_separate/motor_a.png>
+Package pdftex.def Info: figures/method2/ica_separate/motor_a.png used on input
+ line 565.
+(pdftex.def)             Requested size: 55.89362pt x 60.70653pt.
+
+<figures/method2/ica_separate/motor_s.png, id=641, 384.43625pt x 296.10625pt>
+File: figures/method2/ica_separate/motor_s.png Graphic file (type png)
+
+<use figures/method2/ica_separate/motor_s.png>
+Package pdftex.def Info: figures/method2/ica_separate/motor_s.png used on input
+ line 566.
+(pdftex.def)             Requested size: 78.80994pt x 60.70653pt.
+
+<figures/method2/ica_single/motor_a.png, id=642, 303.1325pt x 329.23pt>
+File: figures/method2/ica_single/motor_a.png Graphic file (type png)
+
+<use figures/method2/ica_single/motor_a.png>
+Package pdftex.def Info: figures/method2/ica_single/motor_a.png used on input l
+ine 567.
+(pdftex.def)             Requested size: 55.89362pt x 60.70653pt.
+
+<figures/method2/ica_single/motor_s.png, id=643, 384.43625pt x 296.10625pt>
+File: figures/method2/ica_single/motor_s.png Graphic file (type png)
+
+<use figures/method2/ica_single/motor_s.png>
+Package pdftex.def Info: figures/method2/ica_single/motor_s.png used on input l
+ine 568.
+(pdftex.def)             Requested size: 78.80994pt x 60.70653pt.
+
+<figures/method2/mcem/visual_a.png, id=644, 303.1325pt x 329.23pt>
+File: figures/method2/mcem/visual_a.png Graphic file (type png)
+
+<use figures/method2/mcem/visual_a.png>
+Package pdftex.def Info: figures/method2/mcem/visual_a.png used on input line 5
+75.
+(pdftex.def)             Requested size: 55.89362pt x 60.70653pt.
+
+<figures/method2/mcem/visual_s.png, id=645, 384.43625pt x 296.10625pt>
+File: figures/method2/mcem/visual_s.png Graphic file (type png)
+
+<use figures/method2/mcem/visual_s.png>
+Package pdftex.def Info: figures/method2/mcem/visual_s.png used on input line 5
+76.
+(pdftex.def)             Requested size: 78.80994pt x 60.70653pt.
+
+<figures/method2/ica_separate/visual_a.png, id=646, 303.1325pt x 329.23pt>
+File: figures/method2/ica_separate/visual_a.png Graphic file (type png)
+
+<use figures/method2/ica_separate/visual_a.png>
+Package pdftex.def Info: figures/method2/ica_separate/visual_a.png used on inpu
+t line 577.
+(pdftex.def)             Requested size: 55.89362pt x 60.70653pt.
+
+<figures/method2/ica_separate/visual_s.png, id=647, 384.43625pt x 296.10625pt>
+File: figures/method2/ica_separate/visual_s.png Graphic file (type png)
+
+<use figures/method2/ica_separate/visual_s.png>
+Package pdftex.def Info: figures/method2/ica_separate/visual_s.png used on inpu
+t line 578.
+(pdftex.def)             Requested size: 78.80994pt x 60.70653pt.
+
+<figures/method2/ica_single/visual_a.png, id=648, 303.1325pt x 329.23pt>
+File: figures/method2/ica_single/visual_a.png Graphic file (type png)
+
+<use figures/method2/ica_single/visual_a.png>
+Package pdftex.def Info: figures/method2/ica_single/visual_a.png used on input 
+line 579.
+(pdftex.def)             Requested size: 55.89362pt x 60.70653pt.
+
+<figures/method2/ica_single/visual_s.png, id=649, 384.43625pt x 296.10625pt>
+File: figures/method2/ica_single/visual_s.png Graphic file (type png)
+
+<use figures/method2/ica_single/visual_s.png>
+Package pdftex.def Info: figures/method2/ica_single/visual_s.png used on input 
+line 580.
+(pdftex.def)             Requested size: 78.80994pt x 60.70653pt.
+
+<figures/method2/mcem/atten_a.png, id=650, 303.1325pt x 329.23pt>
+File: figures/method2/mcem/atten_a.png Graphic file (type png)
+
+<use figures/method2/mcem/atten_a.png>
+Package pdftex.def Info: figures/method2/mcem/atten_a.png used on input line 58
+7.
+(pdftex.def)             Requested size: 55.89362pt x 60.70653pt.
+
+<figures/method2/mcem/atten_s.png, id=651, 384.43625pt x 296.10625pt>
+File: figures/method2/mcem/atten_s.png Graphic file (type png)
+
+<use figures/method2/mcem/atten_s.png>
+Package pdftex.def Info: figures/method2/mcem/atten_s.png used on input line 58
+8.
+(pdftex.def)             Requested size: 78.80994pt x 60.70653pt.
+
+<figures/method2/ica_separate/atten_a.png, id=652, 303.1325pt x 329.23pt>
+File: figures/method2/ica_separate/atten_a.png Graphic file (type png)
+
+<use figures/method2/ica_separate/atten_a.png>
+Package pdftex.def Info: figures/method2/ica_separate/atten_a.png used on input
+ line 589.
+(pdftex.def)             Requested size: 55.89362pt x 60.70653pt.
+
+<figures/method2/ica_separate/atten_s.png, id=653, 384.43625pt x 296.10625pt>
+File: figures/method2/ica_separate/atten_s.png Graphic file (type png)
+
+<use figures/method2/ica_separate/atten_s.png>
+Package pdftex.def Info: figures/method2/ica_separate/atten_s.png used on input
+ line 590.
+(pdftex.def)             Requested size: 78.80994pt x 60.70653pt.
+
+<figures/method2/ica_single/atten_a.png, id=654, 303.1325pt x 329.23pt>
+File: figures/method2/ica_single/atten_a.png Graphic file (type png)
+
+<use figures/method2/ica_single/atten_a.png>
+Package pdftex.def Info: figures/method2/ica_single/atten_a.png used on input l
+ine 591.
+(pdftex.def)             Requested size: 55.89362pt x 60.70653pt.
+
+<figures/method2/ica_single/atten_s.png, id=655, 384.43625pt x 296.10625pt>
+File: figures/method2/ica_single/atten_s.png Graphic file (type png)
+
+<use figures/method2/ica_single/atten_s.png>
+Package pdftex.def Info: figures/method2/ica_single/atten_s.png used on input l
+ine 592.
+(pdftex.def)             Requested size: 78.80994pt x 60.70653pt.
+) [85] [86 <./figures/method2/vmf.pdf> <./figures/method2/sphere1.png> <./figur
+es/method2/genevmf.pdf
+
+pdfTeX warning: pdflatex (file ./figures/method2/genevmf.pdf): PDF inclusion: m
+ultiple pdfs with page group included in a single page
+>] [87 <./figures/method2/synthetic/true.png (PNG copy)> <./figures/method2/syn
+thetic/obs.png (PNG copy)> <./figures/method2/synthetic/label_icm.png (PNG copy
+)> <./figures/method2/synthetic/label_mc.png (PNG copy)> <./figures/method2/who
+lebrain/sub1/axial0028.png> <./figures/method2/wholebrain/sub1/axial0034.png> <
+./figures/method2/wholebrain/sub1/saggital0029.png> <./figures/method2/wholebra
+in/sub1/coronal0029.png> <./figures/method2/wholebrain/sub2/axial0028.png> <./f
+igures/method2/wholebrain/sub2/axial0034.png> <./figures/method2/wholebrain/sub
+2/saggital0029.png> <./figures/method2/wholebrain/sub2/coronal0029.png> <./figu
+res/method2/wholebrain/sub5/axial0028.png> <./figures/method2/wholebrain/sub5/a
+xial0034.png> <./figures/method2/wholebrain/sub5/saggital0029.png> <./figures/m
+ethod2/wholebrain/sub5/coronal0029.png>] [88 <./figures/method2/mcem/dmn_a.png>
+ <./figures/method2/mcem/dmn_s.png> <./figures/method2/ica_separate/DMN_a.png> 
+<./figures/method2/ica_separate/DMN_s.png> <./figures/method2/ica_single/dmn_a.
+png> <./figures/method2/ica_single/dmn_s.png> <./figures/method2/mcem/motor_a.p
+ng> <./figures/method2/mcem/motor_s.png> <./figures/method2/ica_separate/motor_
+a.png> <./figures/method2/ica_separate/motor_s.png> <./figures/method2/ica_sing
+le/motor_a.png> <./figures/method2/ica_single/motor_s.png> <./figures/method2/m
+cem/visual_a.png> <./figures/method2/mcem/visual_s.png> <./figures/method2/ica_
+separate/visual_a.png> <./figures/method2/ica_separate/visual_s.png> <./figures
+/method2/ica_single/visual_a.png> <./figures/method2/ica_single/visual_s.png> <
+./figures/method2/mcem/atten_a.png> <./figures/method2/mcem/atten_s.png> <./fig
+ures/method2/ica_separate/atten_a.png> <./figures/method2/ica_separate/atten_s.
+png> <./figures/method2/ica_single/atten_a.png> <./figures/method2/ica_single/a
+tten_s.png>]
+\openout2 = `method3.aux'.
+
+ (./method3.tex
+CHAPTER 6.
+[89
+
+
+
+] [90] [91] [92]
+Title Error: (28.38913pt too wide)
+Page 93, Title="Hierarchical MRF For modeling group fMRI"
+
+[93] [94] [95] [96] [97] [98] [99] [100] [101] [102] [103] [104] [105] [106]
+[107] [108] <figures/method3/grp2.pdf, id=751, 460.36993pt x 586.13315pt>
+File: figures/method3/grp2.pdf Graphic file (type pdf)
+
+<use figures/method3/grp2.pdf>
+Package pdftex.def Info: figures/method3/grp2.pdf used on input line 927.
+(pdftex.def)             Requested size: 173.44534pt x 220.82791pt.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `p') on input line 939.
+
+<figures/method3/hier3a.pdf, id=752, 544.83904pt x 359.3528pt>
+File: figures/method3/hier3a.pdf Graphic file (type pdf)
+
+<use figures/method3/hier3a.pdf>
+Package pdftex.def Info: figures/method3/hier3a.pdf used on input line 941.
+(pdftex.def)             Requested size: 216.81pt x 142.99832pt.
+
+<figures/method3/hiergibbs2.pdf, id=753, 420.60675pt x 286.46828pt>
+File: figures/method3/hiergibbs2.pdf Graphic file (type pdf)
+
+<use figures/method3/hiergibbs2.pdf>
+Package pdftex.def Info: figures/method3/hiergibbs2.pdf used on input line 953.
+
+(pdftex.def)             Requested size: 216.81pt x 147.66612pt.
+
+<figures/method3/voxelgibbs.pdf, id=754, 231.18245pt x 111.47653pt>
+File: figures/method3/voxelgibbs.pdf Graphic file (type pdf)
+
+<use figures/method3/voxelgibbs.pdf>
+Package pdftex.def Info: figures/method3/voxelgibbs.pdf used on input line 962.
+
+(pdftex.def)             Requested size: 216.81pt x 104.5498pt.
+
+<figures/method3/allmaps.png, id=755, 373.1541pt x 167.9073pt>
+File: figures/method3/allmaps.png Graphic file (type png)
+
+<use figures/method3/allmaps.png>
+Package pdftex.def Info: figures/method3/allmaps.png used on input line 971.
+(pdftex.def)             Requested size: 433.62pt x 195.12871pt.
+
+<figures/method3/2level_3smoothing.pdf, id=756, 1115.16624pt x 859.21pt>
+File: figures/method3/2level_3smoothing.pdf Graphic file (type pdf)
+
+<use figures/method3/2level_3smoothing.pdf>
+Package pdftex.def Info: figures/method3/2level_3smoothing.pdf used on input li
+ne 980.
+(pdftex.def)             Requested size: 433.62pt x 334.09416pt.
+
+<figures/method3/boxplot.pdf, id=757, 866.23625pt x 360.34625pt>
+File: figures/method3/boxplot.pdf Graphic file (type pdf)
+
+<use figures/method3/boxplot.pdf>
+Package pdftex.def Info: figures/method3/boxplot.pdf used on input line 996.
+(pdftex.def)             Requested size: 433.62pt x 180.38162pt.
+
+<figures/method3/012variance.png, id=758, 770.88pt x 231.264pt>
+File: figures/method3/012variance.png Graphic file (type png)
+
+<use figures/method3/012variance.png>
+Package pdftex.def Info: figures/method3/012variance.png used on input line 100
+6.
+(pdftex.def)             Requested size: 433.62pt x 130.08568pt.
+
+<figures/method3/grp_mean.png, id=759, 770.88pt x 519.3804pt>
+File: figures/method3/grp_mean.png Graphic file (type png)
+
+<use figures/method3/grp_mean.png>
+Package pdftex.def Info: figures/method3/grp_mean.png used on input line 1019.
+(pdftex.def)             Requested size: 433.62pt x 292.15074pt.
+
+<figures/method3/grp_var.png, id=760, 770.88pt x 502.0356pt>
+File: figures/method3/grp_var.png Graphic file (type png)
+
+<use figures/method3/grp_var.png>
+Package pdftex.def Info: figures/method3/grp_var.png used on input line 1029.
+(pdftex.def)             Requested size: 433.62pt x 282.39433pt.
+
+<figures/method3/submean.png, id=761, 770.88pt x 745.8264pt>
+File: figures/method3/submean.png Graphic file (type png)
+
+<use figures/method3/submean.png>
+Package pdftex.def Info: figures/method3/submean.png used on input line 1037.
+(pdftex.def)             Requested size: 433.62pt x 419.52632pt.
+
+<figures/method3/sub_var.png, id=762, 770.88pt x 532.8708pt>
+File: figures/method3/sub_var.png Graphic file (type png)
+
+<use figures/method3/sub_var.png>
+Package pdftex.def Info: figures/method3/sub_var.png used on input line 1047.
+(pdftex.def)             Requested size: 433.62pt x 299.73907pt.
+
+<figures/method3/predictLLvsAlpha.pdf, id=763, 504.88625pt x 504.88625pt>
+File: figures/method3/predictLLvsAlpha.pdf Graphic file (type pdf)
+
+<use figures/method3/predictLLvsAlpha.pdf>
+Package pdftex.def Info: figures/method3/predictLLvsAlpha.pdf used on input lin
+e 1057.
+(pdftex.def)             Requested size: 216.81pt x 216.8118pt.
+) [109] [110 <./figures/method3/grp2.pdf> <./figures/method3/hier3a.pdf
+
+pdfTeX warning: pdflatex (file ./figures/method3/hier3a.pdf): PDF inclusion: mu
+ltiple pdfs with page group included in a single page
+>] [111 <./figures/method3/hiergibbs2.pdf> <./figures/method3/voxelgibbs.pdf
+
+pdfTeX warning: pdflatex (file ./figures/method3/voxelgibbs.pdf): PDF inclusion
+: multiple pdfs with page group included in a single page
+> <./figures/method3/allmaps.png>] [112 <./figures/method3/2level_3smoothing.pd
+f>] [113 <./figures/method3/boxplot.pdf> <./figures/method3/012variance.png>]
+[114 <./figures/method3/grp_mean.png>] [115 <./figures/method3/grp_var.png>]
+[116 <./figures/method3/submean.png>] [117 <./figures/method3/sub_var.png> <./f
+igures/method3/predictLLvsAlpha.pdf>]
+\openout2 = `discussion.aux'.
+
+ (./discussion.tex
+CHAPTER 7.
+[118
+
+
+
+] [119] [120] [121] [122] [123] [124] [125] [126]) [127] (./MyThesis.bbl
+[128
+
+] [129] [130] [131] [132] [133] [134] [135] [136] [137]
+Underfull \hbox (badness 2205) in paragraph at lines 940--946
+[]\OT1/lmr/m/sc/10.95 Yeo, B., Krienen, F., Sepul-cre, J., Sabuncu, M., Lashkar
+i, D.,
+ []
+
+) [138] (./MyThesis.aux (./chap1.aux) (./chap2.aux) (./math.aux) (./method1.aux
+) (./method2.aux) (./method3.aux) (./discussion.aux)) ) 
+Here is how much of TeX's memory you used:
+ 6842 strings out of 493315
+ 107326 string characters out of 6145890
+ 191806 words of memory out of 5000000
+ 9981 multiletter control sequences out of 15000+600000
+ 79759 words of font info for 90 fonts, out of 8000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 38i,16n,39p,1066b,540s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/
+enc/dvips/lm/lm-rmsc.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/u
+sr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/share/texmf/fonts/enc/dvips
+/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/te
+xmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/amsfo
+nts/cm/cmmi10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
+/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf/fon
+ts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf/fonts/type1/public/amsf
+onts/cm/cmmib10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+</usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf/fo
+nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/lm
+/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texm
+f/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lme
+x10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fo
+nts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pf
+b></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/typ
+e1/public/lm/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></us
+r/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/publ
+ic/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/tex
+mf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
+o10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fo
+nts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pf
+b></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/typ
+e1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/symbols/m
+sam10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on MyThesis.pdf (151 pages, 4010635 bytes).
+PDF statistics:
+ 1009 PDF objects out of 1200 (max. 8388607)
+ 601 compressed objects within 7 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 576 words of extra memory for PDF output out of 10000 (max. 10000000)
+

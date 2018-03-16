@@ -1,0 +1,137 @@
+\documentclass[11pt,Chicago]{uuthesis}
+\pdfpagewidth 8.5in
+\pdfpageheight 11.0in
+%\pdfpagewidth=\paperwidth
+%\pdfpageheight=\paperheight
+
+\usepackage{amssymb}
+\usepackage{thesis}
+\usepackage{graphicx}
+\usepackage{url}
+%% \usepackage{hyperref}
+\usepackage{amsmath}
+%% \usepackage{palatino}
+%% \usepackage{charter}
+\usepackage{lmodern}
+% The packages 'flafter' and 'afterpage' will aid figure placement
+\usepackage{flafter}
+\usepackage{afterpage}
+
+\usepackage{haldefs}
+%% \usepackage{natbib}
+\usepackage{amsthm}
+\usepackage[vlined,ruled]{algorithm2e}
+\usepackage{algorithmic}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+\newtheorem{mydef}{Definition}
+\theoremstyle{definition}
+
+%% \hypersetup{
+%%   bookmarks=true,         % show bookmarks bar?
+%%     %% unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+%%     %% pdftoolbar=true,        % show Acrobat’s toolbar?
+%%     %% pdfmenubar=true,        % show Acrobat’s menu?
+%%     %% pdffitwindow=false,     % window fit to page when opened
+%%     %% pdfstartview={FitH},    % fits the width of the page to the window
+%%     pdftitle={Resting State Functional MRI Analysis by Graphical Model},
+%%     pdfauthor={Wei Liu},     % author
+%%     pdfsubject={Ph.D. Dissertation},   % subject of the document
+%%     pdfcreator={Wei Liu},   % creator of the document
+%%     pdfproducer={Wei Liu}, % producer of the document
+%%     pdfkeywords={Ph.D. thesis, functional MRI, connectivity}, % list of keywords
+%%     pdfnewwindow=true,      % links in new window
+%%     colorlinks= true,       % false: boxed links; true: colored links
+%%     linkcolor=blue,          % color of internal links
+%%     citecolor=blue,        % color of links to bibliography
+%%     filecolor=magenta,      % color of file links
+%%     urlcolor=cyan           % color of external links
+%% }
+
+% Make sure subfigures have parentheses around them everywhere
+%\renewcommand\thesubfigure{(\alph{subfigure})}
+% Make sure subfigures have parentheses around them everywhere
+%\renewcommand\thesubfigure{(\alph{subfigure})}
+
+\usepackage{lscape}
+%\usepackage{diagram}
+%\usepackage{tgrind}
+\let \tenrm = \rm 		% This is used in fig*.tex
+%\includeonly{}                    % Only front matter and back matter
+%\includeonly{chap1}               %  plus chapter 1
+%\includeonly{chap2}                %  plus chapter 2
+%\includeonly{chap3}                %  plus chapter 3
+%\includeonly{appA}                %  plus chapter 3
+%\includeonly{chap1,chap2,chap3,chap4}   %  plus all chapters
+%\includeonly{chap1,chap2,chap3,chap4,appA}   %  plus all chapters & appendix
+%
+%\tracingstats=2                % show TeX memory usage
+\title{Resting State Functional MRI Analysis by Graphical Model}
+\author{Wei Liu}
+\thesistype{dissertation}
+\graduatedean{David Kieda}
+\department{School of Computing}
+\degree{Doctor of Philosophy} 
+\departmentchair{Al Davis}
+\committeechair{P. Thomas Fletcher}
+\firstreader{Jeffrey S. Anderson}
+\secondreader{Suyash P. Awate}
+\thirdreader{Guido Gerig}
+\fourthreader{Tolga Tasdizen}
+\chairtitle{Professor} 
+\submitdate{November 2013}
+\copyrightyear{2013}
+% Chapter is one level, section and subsection are the next two levels.
+\fourlevels
+\dedication{To my wife, Pei}
+\inputpicturetrue  % By Jeff McGough. See uuguide and private thesis.sty
+%\inputpicturefalse % To NOT produce pictures, uncomment this line
+\begin{document}
+%% Comment out items by inserting a percent % character
+\frontmatterformat
+\titlepage
+\copyrightpage
+\committeeapproval
+\readingapproval
+\preface{abstract}{Abstract}
+%% \dedicationpage
+
+%% \begin{epigraph}
+%%   The art of relationship is all in appreciation.
+%% \begin{flushright} -- Pei \par\end{flushright}
+%% \end{epigraph}
+
+\setcounter{tocdepth}{4}    %How many levels to include in TOC
+\addtocontents{toc}{\protect\sloppy}    %Keeps long chapters within page # margins
+\tableofcontents
+\listoffigures
+%% \listoftables
+\listofalgorithms
+%
+% Optional front page, made from source "notation.tex".
+% If you don't need it, then don't use it.
+%
+%\optionalfront{Notation and Symbols}{\input{notation.tex}}
+%% \preface{acknowledge}{Acknowledgments}
+\maintext       % Start normal page numbering. Parts and chapters follow.
+%% \include{chap1}
+%% \include{chap2}
+\include{math}
+%% \include{method1}
+%% \include{method2}
+%% \include{method3}
+%% \include{discussion}
+\numberofappendices=1   % Set 0 for none, else number of appendices.
+\appendix       				% Chapters and sections are now appendix style
+%
+% The choice of bibliography style is a major decision, jointly made
+% by you, your thesis advisor and the thesis editor. Common choices are
+% "siam", "acm", "amsplain", "plain", "chicago".
+%
+
+%Uncomment and use desired bibliography style
+\bibliographystyle{acm}
+%% \bibliographystyle{plain}
+\bibliography{myref}
+\end{document}

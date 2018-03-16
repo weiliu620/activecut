@@ -1,0 +1,67 @@
+% the packages i need
+
+% mathcal letters
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+
+% some definitions
+%\newcommand{\defeq}{=^{\hspace{-2.9mm}\textsf{\tiny def}}}
+\newcommand{\defeq}{\triangleq}
+\newcommand{\order}{\cO}
+\newcommand{\ud}{\textrm{d}}
+\renewcommand{\|}{\textrm{~}\arrowvert\textrm{~}}
+\newcommand{\dbar}{\textrm{~}\arrowvert\arrowvert\textrm{~}}
+\newcommand{\bars}{\textrm{~}\arrowvert\arrowvert\textrm{~}}
+\renewcommand{\;}{\textrm{~}{\boldsymbol ;}\textrm{~}}
+\newcommand{\by}{\sim}
+\newcommand{\impl}{\Longrightarrow}
+\newcommand{\fto}{\rightarrow}
+\newcommand{\from}{\leftarrow}
+\newcommand{\restricted}{\upharpoonright}
+\newcommand{\inv}{^{-1}}
+\newcommand{\pinv}{^{\dagger}}
+\renewcommand{\brack}[1]{\left\{\begin{array}{ll}#1\end{array}\right.}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\mat}[1]{\text{\bf #1}}
+\newcommand{\missing}{\bullet}
+\newcommand{\T}{{}^\top}
+\newcommand{\TT}{^\top}
+%\newcommand{\inv}{{}^{-1}}
+\newcommand{\prop}{\varpropto}
+%\newcommand{\norm}[1]{\left\vert\left\vert #1 \right\vert\right\vert}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+%\newcommand{\card}[1]{\left\vert #1 \right\vert}
+
+
+\newcommand{\p}[1]{p\left(#1\right)}
+\newcommand{\pprime}[1]{p'\left(#1\right)}
+\newcommand{\pleft}[1]{p\left(#1\right.}
+\newcommand{\pright}[1]{p\left.#1\right)}
+
+\newcommand{\prob}[1]{\mathcal{P}\left\{{#1}\right\}}
+

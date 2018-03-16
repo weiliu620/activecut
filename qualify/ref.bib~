@@ -1,0 +1,32 @@
+@article{margulies2010resting,
+  title={Resting developments: a review of fMRI post-processing methodologies for spontaneous brain activity},
+  author={Margulies, D.S. and Bottger, J. and Long, X. and Lv, Y. and Kelly, C. and Schafer, A. and Goldhahn, D. and Abbushi, A. and Milham, M.P. and Lohmann, G. and others},
+  journal={Magnetic Resonance Materials in Physics, Biology and Medicine},
+  pages={1--19},
+  year={2010},
+  publisher={Springer}
+}
+
+
+@Article{SCI:Liu2010a,
+  author =    "W. Liu and P. Zhu and J.S. Anderson and D.
+              Yurgelun-Todd and P.T. Fletcher",
+  title =     "Spatial Regularization of Functional Connectivity
+              Using High-Dimensional Markov Random Fields",
+  journal =   "MICCAI 2010",
+  volume =    "14",
+  pages =     "363--370",
+  year =      "2010",
+  pmid =      "20879336",
+  url =       "http://sci.utah.edu/publications/liu10/MRF_connectivity_miccai2010.pdf",
+}
+
+@Article{SCI:Liu2011a,
+  author =    "W. Liu and Suyash P. Awate and J.S. Anderson and D.
+              Yurgelun-Todd and P.T. Fletcher",
+  title =     "Monte Carlo Expectation Maximization with Hidden Markov Models to Detect Functional Networks in Resting-State fMRI",
+  journal =   "Machine Learning and Medical Imaging Workshop in MICCAI, to appear",
+  year =      "2011",
+  url =       "http://www.sci.utah.edu/~weiliu/publications/mcem_weiliu_miccai2011.pdf",
+}
+

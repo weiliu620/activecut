@@ -1,0 +1,202 @@
+\begin{thebibliography}{27}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Fox and Raichle(2007)]{fox2007spontaneous}
+M.D. Fox and M.E. Raichle.
+\newblock Spontaneous fluctuations in brain activity observed with functional
+  magnetic resonance imaging.
+\newblock \emph{Nature Reviews Neuroscience}, 8\penalty0 (9):\penalty0
+  700--711, 2007.
+
+\bibitem[Mikl et~al.(2008)Mikl, Mare{\v{c}}ek, Hlu{\v{s}}t{\'\i}k,
+  Pavlicov{\'a}, Drastich, Chlebus, Br{\'a}zdil, and Krupa]{mikl2008effects}
+M.~Mikl, R.~Mare{\v{c}}ek, P.~Hlu{\v{s}}t{\'\i}k, M.~Pavlicov{\'a},
+  A.~Drastich, P.~Chlebus, M.~Br{\'a}zdil, and P.~Krupa.
+\newblock Effects of spatial smoothing on fmri group inferences.
+\newblock \emph{Magnetic resonance imaging}, 26\penalty0 (4):\penalty0
+  490--503, 2008.
+
+\bibitem[Van Den~Heuvel et~al.(2008)Van Den~Heuvel, Mandl, and
+  Pol]{van2008normalized}
+M.~Van Den~Heuvel, R.~Mandl, and H.H. Pol.
+\newblock Normalized cut group clustering of resting-state {FMRI} data.
+\newblock \emph{PLoS One}, 3\penalty0 (4):\penalty0 e2001, 2008.
+
+\bibitem[Craddock et~al.(2011)Craddock, James, Holtzheimer~III, Hu, and
+  Mayberg]{craddock2011whole}
+R.C. Craddock, G.A. James, P.E. Holtzheimer~III, X.P. Hu, and H.S. Mayberg.
+\newblock A whole brain {fMRI} atlas generated via spatially constrained
+  spectral clustering.
+\newblock \emph{Human brain mapping}, 2011.
+
+\bibitem[Calhoun et~al.(2001{\natexlab{a}})Calhoun, Adali, Pearlson, and
+  Pekar]{calhoun2001method}
+VD~Calhoun, T.~Adali, GD~Pearlson, and JJ~Pekar.
+\newblock A method for making group inferences from functional mri data using
+  independent component analysis.
+\newblock \emph{Human brain mapping}, 14\penalty0 (3):\penalty0 140--151,
+  2001{\natexlab{a}}.
+
+\bibitem[Friston et~al.(2007)Friston, Ashburner, Kiebel, Nichols, and
+  Penny]{friston2007statistical}
+K.J. Friston, J.T. Ashburner, S.J. Kiebel, T.E. Nichols, and W.D. Penny.
+\newblock Statistical {P}arametric {M}apping: The analysis of functional brain
+  images.
+\newblock \emph{Statistical Parametric Mapping The Analysis of Functional Brain
+  Images}, 8, 2007.
+
+\bibitem[Raichle et~al.(2001)Raichle, MacLeod, Snyder, Powers, Gusnard, and
+  Shulman]{raichle2001}
+M.~E. Raichle, A.~M. MacLeod, A.~Z. Snyder, W.~J. Powers, D.~A. Gusnard, and
+  G.~L. Shulman.
+\newblock A default mode of brain function.
+\newblock \emph{PNAS}, 98\penalty0 (2):\penalty0 676--682, 2001.
+
+\bibitem[Smith(2012)]{Smith20121257}
+Stephen~M. Smith.
+\newblock The future of fmri connectivity.
+\newblock \emph{NeuroImage}, 62\penalty0 (2):\penalty0 1257 -- 1266, 2012.
+
+\bibitem[Worsley and Friston(1995)]{worsley_analysis_1995}
+K.~J. Worsley and K.~J. Friston.
+\newblock Analysis of {fMRI} time-series revisited--again.
+\newblock \emph{Neuroimage}, 2\penalty0 (3):\penalty0 173--181, 1995.
+
+\bibitem[Margulies et~al.(2010)Margulies, Bottger, Long, Lv, Kelly, Schafer,
+  Goldhahn, Abbushi, Milham, Lohmann, et~al.]{margulies2010resting}
+D.S. Margulies, J.~Bottger, X.~Long, Y.~Lv, C.~Kelly, A.~Schafer, D.~Goldhahn,
+  A.~Abbushi, M.P. Milham, G.~Lohmann, et~al.
+\newblock Resting developments: a review of fmri post-processing methodologies
+  for spontaneous brain activity.
+\newblock \emph{Magnetic Resonance Materials in Physics, Biology and Medicine},
+  pages 1--19, 2010.
+
+\bibitem[Fox et~al.(2005)Fox, Snyder, Vincent, Corbetta, Van~Essen, and
+  Raichle]{fox2005human}
+M.D. Fox, A.Z. Snyder, J.L. Vincent, M.~Corbetta, D.C. Van~Essen, and M.E.
+  Raichle.
+\newblock {The human brain is intrinsically organized into dynamic,
+  anticorrelated functional networks}.
+\newblock \emph{PNAS}, 102\penalty0 (27):\penalty0 9673, 2005.
+
+\bibitem[Calhoun et~al.(2001{\natexlab{b}})Calhoun, Adali, Pearlson, and
+  Pekar]{calhoun2001spatial}
+VD~Calhoun, T.~Adali, GD~Pearlson, and JJ~Pekar.
+\newblock Spatial and temporal independent component analysis of functional
+  {MRI} data containing a pair of task-related waveforms.
+\newblock \emph{HBM}, 13\penalty0 (1):\penalty0 43--53, 2001{\natexlab{b}}.
+
+\bibitem[Ou and Golland(2005)]{ou_spatial_2005}
+Wanmei Ou and Polina Golland.
+\newblock From spatial regularization to anatomical priors in {fMRI} analysis.
+\newblock \emph{{I}nformation in {M}edical {I}maging}, pages 88--100, 2005.
+
+\bibitem[Descombes et~al.(1998{\natexlab{a}})Descombes, Kruggel, and
+  Cramon]{descombes_spatio-temporal_1998}
+X.~Descombes, F.~Kruggel, and {D.Y.}~Von Cramon.
+\newblock Spatio-temporal {fMRI} analysis using {M}arkov random fields.
+\newblock \emph{Medical Imaging, {IEEE} Trans.}, 17\penalty0 (6):\penalty0
+  1028--1039, 1998{\natexlab{a}}.
+\newblock ISSN 0278-0062.
+\newblock \doi{10.1109/42.746636}.
+
+\bibitem[Descombes et~al.(1998{\natexlab{b}})Descombes, Kruggel, and von
+  Cramon]{descombes_fmri_1998}
+Xavier Descombes, Frithjof Kruggel, and D.~Yves von Cramon.
+\newblock {fMRI} signal restoration using a {spatio-temporal} {M}arkov random
+  field preserving transitions.
+\newblock \emph{{NeuroImage}}, 8\penalty0 (4):\penalty0 340--349, November
+  1998{\natexlab{b}}.
+\newblock ISSN 1053-8119.
+\newblock \doi{10.1006/nimg.1998.0372}.
+
+\bibitem[Woolrich et~al.(2004)Woolrich, Jenkinson, Brady, and
+  Smith]{woolrich_fully_2004}
+{M.W.} Woolrich, M.~Jenkinson, {J.M.} Brady, and {S.M.} Smith.
+\newblock {F}ully {B}ayesian {spatio-temporal} modeling of {fMRI} data.
+\newblock \emph{Medical Imaging, {IEEE} Transactions on}, 23\penalty0
+  (2):\penalty0 213--231, 2004.
+\newblock ISSN 0278-0062.
+\newblock \doi{10.1109/TMI.2003.823065}.
+
+\bibitem[Cosman et~al.(2004)Cosman, Fisher, and Wells]{cosman_exact_2004}
+E.~R. Cosman, J.~W. Fisher, and W.~M. Wells.
+\newblock Exact {MAP} activity detection in {fMRI} using a {GLM} with an
+  {I}sing spatial prior.
+\newblock In \emph{MICCAI}, pages 703–--710, 2004.
+
+\bibitem[Golland et~al.(2008)Golland, Lashkari, and Venkataraman]{5074650}
+P.~Golland, D.~Lashkari, and A.~Venkataraman.
+\newblock Spatial patterns and functional profiles for discovering structure in
+  {fMRI} data.
+\newblock In \emph{42nd Asilomar Conference on Signals, Systems and Computers},
+  pages 1402 --1409, October 2008.
+
+\bibitem[Thirion et~al.(2006)Thirion, Dodel, and Poline]{thirion2006detection}
+B.~Thirion, S.~Dodel, and J.B. Poline.
+\newblock {Detection of signal synchronizations in resting-state fMRI
+  datasets}.
+\newblock \emph{Neuroimage}, 29\penalty0 (1):\penalty0 321--327, 2006.
+\newblock ISSN 1053-8119.
+
+\bibitem[Banerjee et~al.(2006)Banerjee, Dhillon, Ghosh, and
+  Sra]{banerjee2006clustering}
+A.~Banerjee, I.S. Dhillon, J.~Ghosh, and S.~Sra.
+\newblock {Clustering on the unit hypersphere using von Mises-Fisher
+  distributions}.
+\newblock \emph{J. Machine Learning Res.}, 6\penalty0 (2):\penalty0 1345, 2006.
+\newblock ISSN 1532-4435.
+
+\bibitem[Ng et~al.(2012)Ng, McKeown, and Abugharbieh]{nggroup2012}
+B.~Ng, M.J. McKeown, and R.~Abugharbieh.
+\newblock Group replicator dynamics: A novel group-wise evolutionary approach
+  for sparse brain network detection.
+\newblock \emph{IEEE TMI}, 31\penalty0 (3):\penalty0 576 --585, 2012.
+\newblock ISSN 0278-0062.
+\newblock \doi{10.1109/TMI.2011.2173699}.
+
+\bibitem[Bellec et~al.(2010)Bellec, Rosa-Neto, Lyttelton, Benali, and
+  Evans]{bellec2010multi}
+P.~Bellec, P.~Rosa-Neto, O.C. Lyttelton, H.~Benali, and A.C. Evans.
+\newblock Multi-level bootstrap analysis of stable clusters in resting-state
+  {fMRI}.
+\newblock \emph{Neuroimage}, 51\penalty0 (3):\penalty0 1126--1139, 2010.
+
+\bibitem[Ng et~al.(2010)Ng, Abugharbieh, and Hamarneh]{ng2010group}
+B.~Ng, R.~Abugharbieh, and G.~Hamarneh.
+\newblock Group {MRF} for {fMRI} activation detection.
+\newblock In \emph{CVPR 2010}, pages 2887--2894. IEEE, 2010.
+
+\bibitem[Varoquaux et~al.(2011)Varoquaux, Gramfort, Pedregosa, Michel, and
+  Thirion]{varoquaux2011multi}
+G.~Varoquaux, A.~Gramfort, F.~Pedregosa, V.~Michel, and B.~Thirion.
+\newblock Multi-subject dictionary learning to segment an atlas of brain
+  spontaneous activity.
+\newblock In G{\'a}bor Sz{\'e}kely and Horst Hahn, editors, \emph{IPMI}, volume
+  6801, pages 562--573. Springer, 2011.
+
+\bibitem[Cowles and Carlin(1996)]{cowles1996markov}
+M.K. Cowles and B.P. Carlin.
+\newblock Markov chain monte carlo convergence diagnostics: a comparative
+  review.
+\newblock \emph{Journal of the American Statistical Association}, pages
+  883--904, 1996.
+
+\bibitem[H{\"a}ggstr{\"o}m and Nelander(1999)]{haggstrom1999exact}
+O.~H{\"a}ggstr{\"o}m and K.~Nelander.
+\newblock On exact simulation of markov random fields using coupling from the
+  past.
+\newblock \emph{Scandinavian Journal of Statistics}, pages 395--411, 1999.
+
+\bibitem[Propp and Wilson(1996)]{propp1996exact}
+J.G. Propp and D.B. Wilson.
+\newblock Exact sampling with coupled markov chains and applications to
+  statistical mechanics.
+\newblock \emph{Random structures and Algorithms}, 9\penalty0 (1-2):\penalty0
+  223--252, 1996.
+
+\end{thebibliography}

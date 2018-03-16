@@ -1,0 +1,134 @@
+\relax 
+\@writefile{toc}{\contentsline {chapter}{\numberline {4.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0\uppercase {Full Pairwise Connectivity With Spatial Coherence}}{62}}
+\@writefile{toc}{\contentsline {groupheader}{\vspace {-22pt}}{62}}
+\@writefile{loa}{\addvspace {10\p@ }}
+\newlabel{chap:method1}{{4}{62}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Motivation}{62}}
+\citation{worsley_analysis_1995}
+\citation{ou_spatial_2005}
+\citation{descombes_spatio-temporal_1998}
+\citation{descombes_fmri_1998}
+\citation{woolrich_fully_2004}
+\citation{cosman_exact_2004}
+\citation{li_markov_2009}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Methods}{64}}
+\newlabel{sec:methods}{{4.2}{64}}
+\newlabel{eq:posterior}{{4.1}{64}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Markov prior}{64}}
+\citation{besag_spatial_1974}
+\citation{mller_multivariate_2001}
+\newlabel{eq:A1}{{4.3}{65}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Likelihood model}{65}}
+\citation{geman1984stochastic}
+\citation{li_markov_2009}
+\citation{besag_spatial_1974}
+\newlabel{eq:emission}{{4.4}{66}}
+\newlabel{eq:likelihood}{{4.5}{66}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Estimation via expectation maximization}{66}}
+\newlabel{sec:algorithm}{{4.3}{66}}
+\newlabel{eq:2}{{4.6}{67}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}GPU implementation}{67}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Results}{68}}
+\newlabel{sec:results}{{4.4}{68}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Synthetic data}{68}}
+\newlabel{sec:m1syn}{{4.4.1}{68}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {5}{\ignorespaces MAP estimation by EM\relax }}{69}}
+\newlabel{alg:1}{{5}{69}}
+\citation{raichle2001default}
+\citation{yeo2011organization}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Resting-state fMRI}{70}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Discussion}{70}}
+\newlabel{fig:fmrislice}{{4.1a}{72}}
+\newlabel{sub@fig:fmrislice}{{a}{72}}
+\newlabel{fig:corrmap}{{4.1b}{72}}
+\newlabel{sub@fig:corrmap}{{b}{72}}
+\newlabel{fig:corrmap_th}{{4.1c}{72}}
+\newlabel{sub@fig:corrmap_th}{{c}{72}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces An example of correlation map with a seed in the default model network on the rs-fMRI data set.\relax }}{72}}
+\newlabel{fig:conexample}{{4.1}{72}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces MRF prior of the connectivity variables. Each node of the graph represents a pairwise connectivity variable between voxel $i$ and $j$. An edge is added between two nodes $x_{ij}$ and $x_{ik}$ if $k$ is the neighbor of voxel $j$. The graph where the MRF is defined is twice the dimensions of the original image domain, i.e., six dimensions. Given the hidden variable $X$, the observed sample correlation values are assumed to be generated from a Gaussian distribution with unknown parameter $\mathcal  {N}(y_{ij} | x_{ij}; \mu , \sigma ^2)$. \relax }}{72}}
+\newlabel{fig:6dmrf}{{4.2}{72}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Ideally the update of each voxel is independent of other voxels in order to be used on the GPU. In our Gibbs sampling, although the sampling of each voxel depends on its neighbors, the order of the voxels being updated does not matter. Upon convergence, the image will be a sample of the target Gibbs distribution. However, numerically, the sampling tends to be stuck in this local minimum of checkerboard image. At the current state, each voxel has a neighbor with a different state, and the sampling flips the color of all voxels in the next stage.\relax }}{73}}
+\newlabel{fig:checkerboard}{{4.3}{73}}
+\newlabel{fig:6dconn1}{{4.4a}{73}}
+\newlabel{sub@fig:6dconn1}{{a}{73}}
+\newlabel{fig:6dconn2}{{4.4b}{73}}
+\newlabel{sub@fig:6dconn2}{{b}{73}}
+\newlabel{fig:6dconn3}{{4.4c}{73}}
+\newlabel{sub@fig:6dconn3}{{c}{73}}
+\newlabel{fig:6dconn4}{{4.4d}{73}}
+\newlabel{sub@fig:6dconn4}{{d}{73}}
+\newlabel{fig:6dconn5}{{4.4e}{73}}
+\newlabel{sub@fig:6dconn5}{{e}{73}}
+\newlabel{fig:6dconn6}{{4.4f}{73}}
+\newlabel{sub@fig:6dconn6}{{f}{73}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Test on synthetic data.}}{73}}
+\newlabel{fig:6dconn}{{4.4}{73}}
+\newlabel{fig:invivo11}{{4.5a}{74}}
+\newlabel{sub@fig:invivo11}{{a}{74}}
+\newlabel{fig:invivo12}{{4.5b}{74}}
+\newlabel{sub@fig:invivo12}{{b}{74}}
+\newlabel{fig:invivo13}{{4.5c}{74}}
+\newlabel{sub@fig:invivo13}{{c}{74}}
+\newlabel{fig:invivo14}{{4.5d}{74}}
+\newlabel{sub@fig:invivo14}{{d}{74}}
+\newlabel{fig:invivo15}{{4.5e}{74}}
+\newlabel{sub@fig:invivo15}{{e}{74}}
+\newlabel{fig:invivo16}{{4.5f}{74}}
+\newlabel{sub@fig:invivo16}{{f}{74}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces  Threshold correlation mapand Posterior Connectivity map between seed voxel and the current slice, overlaid to T2 image. (a) Subject 1: correlation without smoothing. (b) Subject 1: correlation with smoothing. (c) Subject 1: posterior estimated from MRF. (d) Subject 2: correlation without smoothing. (e) Correlation without smoothing. (f) Posterior estimated from MRF. \relax }}{74}}
+\newlabel{fig:invivo1}{{4.5}{74}}
+\newlabel{fig:invivo21}{{4.6a}{75}}
+\newlabel{sub@fig:invivo21}{{a}{75}}
+\newlabel{fig:invivo22}{{4.6b}{75}}
+\newlabel{sub@fig:invivo22}{{b}{75}}
+\newlabel{fig:invivo23}{{4.6c}{75}}
+\newlabel{sub@fig:invivo23}{{c}{75}}
+\newlabel{fig:invivo24}{{4.6d}{75}}
+\newlabel{sub@fig:invivo24}{{d}{75}}
+\newlabel{fig:invivo25}{{4.6e}{75}}
+\newlabel{sub@fig:invivo25}{{e}{75}}
+\newlabel{fig:invivo26}{{4.6f}{75}}
+\newlabel{sub@fig:invivo26}{{f}{75}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces Correlation map and posterior connectivity map between seed voxel and slice containing the seed. (a) Subject 1: correlation without smoothing. (b) Subject 1: correlation with smoothing. (c) Subject 1: posterior estimated from MRF. (d) Subject 2: correlation without smoothing. (e) Correlation without smoothing. (f) Posterior estimated from MRF. \relax }}{75}}
+\newlabel{fig:invivo2}{{4.6}{75}}
+\@setckpt{method1}{
+\setcounter{page}{76}
+\setcounter{equation}{6}
+\setcounter{enumi}{0}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{4}
+\setcounter{figure}{6}
+\setcounter{table}{0}
+\setcounter{oldchapter}{0}
+\setcounter{oldtocdepth}{0}
+\setcounter{thrm}{0}
+\setcounter{parentequation}{0}
+\setcounter{mytheorem}{0}
+\setcounter{myproposition}{0}
+\setcounter{mydefinition}{0}
+\setcounter{mycorollary}{0}
+\setcounter{myexample}{0}
+\setcounter{myexercise}{0}
+\setcounter{AlgoLine}{0}
+\setcounter{algocfline}{5}
+\setcounter{algocfproc}{5}
+\setcounter{algocf}{5}
+\setcounter{ALC@unique}{6}
+\setcounter{ALC@line}{6}
+\setcounter{ALC@rem}{6}
+\setcounter{ALC@depth}{0}
+\setcounter{ContinuedFloat}{0}
+\setcounter{subfigure}{6}
+\setcounter{subtable}{0}
+\setcounter{mydef}{3}
+\setcounter{section}{5}
+\setcounter{subsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subsubsection}{0}
+}

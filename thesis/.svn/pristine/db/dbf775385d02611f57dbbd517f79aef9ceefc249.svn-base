@@ -1,0 +1,51 @@
+In this thesis I study the functional connectivity of the human brain by the
+resting-state functional magnetic resonance imaging (rs-fMRI). The functional
+MRI measures the change of oxygen consumption level in the blood vessel, hence
+indirectly detects the brain's neuro activity. When there is no external
+stimuli, one uses rs-fMRI to detect the brain's spontaneous activity. The study
+of the intrinsic brain activity is an important step to explore human brain's
+functional organization and dynamics, and to understand the difference of the
+functional patterns of normal people and patients with mental disorder, such as
+attention deficit hyperactivity disorder and autism spectrum disorders.
+
+The goal of thesis is to robust estimate the functional connectivities between
+spatially remote regions or voxels in the brain's gray matter. Throughout the
+thesis work, we extensively use graphical model and Markov random field (MRF) to
+model the spatial correlation and the inter-subject dependency of the
+connectivity or network label variables. Graphical model gives a mapping between
+a multivariate distribution and a graph. The conditional independence between
+variables are often what we are interested in, and can be read out by inspecting
+the graph. By carefully defining the nodes and the edges with their weights on
+the graph, we build the soft-constraints as the prior information into the graph
+structure. By the Bayesian method, the statistical inference now becomes to
+compute the posterior distribution, or its modes given the observed data, with
+the prior defined by the distribution represented by the graph.
+
+The statistical inference is a combinatorial problem when the variables defined
+on the nodes are discrete. The inference of marginal distribution of nodes on
+simple graph structure such as a chain or a tree can be solved exactly. For
+general MRF the problem can not be solved in polynomial time. We explored
+various approximated optimization methods such as variational inference, graph
+cuts, and Markov chain Monte Carlo sampling (MCMC).
+
+We applied the random field model to three related problems. In the first
+problem, the goal is to detect the pairwise connectivity between gray matter
+voxels in a single subject rs-fMRI dataset. We define a six dimensional graph to
+represent our prior that two voxels are more likely to be connected if their
+spatial neighbors are connected. The posterior mean of the connectivity
+variables are estimated by the variational inference, also known as mean field
+theory in statistical physics. The method proves to outperform spatial smoothing
+at detecting finer patterns of brain activity. Our second work aims to identify
+multiple functional systems simultaneously. Here we define a Potts model, a
+special case of MRF on the network label variables, and define von Mises-Fisher
+distribution on the normalized fMRI signal. The inference is significant more
+difficult than the binary classification in previous problem. We use MCMC to
+draw samples from the posterior distribution of network labels. In the third
+application, we extend the graph to multiple subject scenario. By building a
+graph including both the population level's network map and the subjects maps,
+we defined a hierarchical model which has richer structure than single subject
+model, and captures the shared properties and also the variation among the
+subjects. All the applications use Bayesian philosophy, and is data-driven by
+estimating parameters from the data. The experiments shows that by the the
+regularization of MRF, the functional network maps we estimated are more
+accurate, and more consistent across sessions.

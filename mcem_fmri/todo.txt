@@ -1,0 +1,55 @@
+- when save nii file, also save png file, for 2d image.
+
+
+- Would be good to get a histogram of the images.
+- Rejection rate of Metropolis. (low)
+- Monte Carlo Analysis: Repeat MCEM, say 100, times. Each time, generate label image, add noise, estimate parameters, get classification rate. Compare MCEM with ICM? (high)
+
+- add a argument to golden-section function, for the relative error.
+-- kmeans ++
+-- Find a better stop criteria for EM.
+-- The more number of clusters, the slow is the Metropolis? how many burnin do we need for specific numClusters?
+-- save to png file by filtering.
+-- neighborhood iterator. (might be complicatd).
+-- add a prior to parameters.
+-- If I use this method to segmentation of MRI, is it ok to assume emission function as P(d_i | f_i), i.e. d_i is independent of other labels except f_i? See page 453 of PRML book.
+-- Use N chain instead of one chain. (high)
+-- Use vector container for mu and sigma. (high)
+-- Change MCModel::print() to better name. (low)
+
+-- my own prog to mask image.
+
+-- The conditional log likelihood is positive number, which is weird.
+-- Fisher criteria in kmeans.
+-- icmEstep naychange > a number.
+-- Bessel function when computing normalization constant.
+-- what will happen if a cluster does not get any point?
+-- on real data, all samples are same, this is strange.
+-- save png file for a slice. Standalone program.
+-- hard constraint on parameter kappa.
+
+done:
+-- no burn-in for ICM, use convergence(stop) criteria.
+-- Find a profiler tool for running time of each function.
+-- how about graph-cuts in E step?
+- Compare with ICM for percentage of correct classification, parameters, etc. (high)
+-- An annealing procedure?
+- Make sure random generator should be initialized once, and initialized with a fixed value for debugging. (high)
+- Compute 2nd derivative and use Newton-Raphson method for estimating beta. Check the condition, and if 2nd derivative is negative, go back to gradient descent. (high)
+- One step Newton method in estimating beta at M step. (low)
+
+- Use 4 labels instead of 5. (high)
+- At end of EM, we know the parameters, and can just choose a label that maximize P(f | d). That is icm. 
+- numScan and burnin should be parameters of segimage.
+- Sort the labels so small labels have small mean.
+- Init sigma with a more data-driven value.
+-- when joint likelihood begins decreasing, it's time to increase mc samples.
+- Estimate beta on true label image. (low).
+- Save estimated parameter (beta, mu and sigma) in each EM iteration into a file, for visualization. 
+- Split the creat true image and emission process.
+-- ICM on nChain after M step.
+-- At end of EM, run ICM on each n Chain. Pick the one with max joint likelihood. 
+
+
+======================
+temp asfkjdsaf ksajdfkasdfj sakfjaskfdjaskf kjs dfk sadkjf

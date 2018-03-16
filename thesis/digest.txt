@@ -1,0 +1,32 @@
+
+% func connectivity does not directly meature aantomic connectivity, but it is
+% sufficiently constrained by anatomy. rc-fMRI is perticular useful for large
+% distributed systems (see jijk: Intrinsic func connec as a tool for human
+% connectomics: theory...).
+
+% func connectivity can also be used to infer anatomical connectivities, since
+  the latter can not be on living human. also talk about DTI.
+
+% Biswal (1995) first demostrate the potential of fcMRI using intrinsic activity
+% correlations. see dijk paper for this part.
+% comprehensive, and noninvasively explore the functional network structure.
+
+
+
+% complex system is often model as a graph (see other phd thesis on the complex
+% network).
+
+See woodriche "multilevel linear modelling...". For task-based analysis,
+hierarchical model can be used. However, the hierarchy of rs-fMRI study remains
+unclear.
+
+
+The clique potential is a non-negative function defined on the r.v.'s in the
+clique.
+
+notes: need to give a long intro of SPM and spatial smoothing in the background
+chapter.
+
+plate notation for graphical model: page 321 of (ML-PP)
+
+functional architecture, consistent, larege scale spatial patterns of coherent signal

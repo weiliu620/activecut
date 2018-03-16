@@ -1,0 +1,173 @@
+@article{mori1999three,
+  title={Three-dimensional tracking of axonal projections in the brain by magnetic resonance imaging},
+  author={Mori, S. and Crain, B.J. and Chacko, VP and Van Zijl, P.},
+  journal={Annals of neurology},
+  volume={45},
+  number={2},
+  pages={265--269},
+  year={1999},
+  publisher={Wiley Online Library}
+}
+
+@article{mori2002fiber,
+  title={Fiber tracking: principles and strategies--a technical review},
+  author={Mori, S. and van Zijl, P.},
+  journal={NMR in Biomedicine},
+  volume={15},
+  number={7-8},
+  pages={468--480},
+  year={2002},
+  publisher={Wiley Online Library}
+}
+
+@article{mori2002imaging,
+  title={Imaging cortical association tracts in the human brain using diffusion-tensor-based axonal tracking},
+  author={Mori, S. and Kaufmann, W.E. and Davatzikos, C. and Stieltjes, B. and Amodei, L. and Fredericksen, K. and Pearlson, G.D. and Melhem, E.R. and Solaiyappan, M. and Raymond, G.V. and others},
+  journal={Magnetic resonance in medicine},
+  volume={47},
+  number={2},
+  pages={215--223},
+  year={2002},
+  publisher={Wiley Online Library}
+}
+
+@article{campbell2005flow,
+  title={Flow-based fiber tracking with diffusion tensor and q-ball data: validation and comparison to principal diffusion direction techniques},
+  author={Campbell, J.S.W. and Siddiqi, K. and Rymar, V.V. and Sadikot, A.F. and Pike, G.B.},
+  journal={NeuroImage},
+  volume={27},
+  number={4},
+  pages={725--736},
+  year={2005},
+  publisher={Elsevier}
+}
+
+
+@article{basser2000vivo,
+  title={In vivo fiber tractography using DT-MRI data},
+  author={Basser, P.J. and Pajevic, S. and Pierpaoli, C. and Duda, J. and Aldroubi, A.},
+  journal={Magnetic resonance in medicine},
+  volume={44},
+  number={4},
+  pages={625--632},
+  year={2000},
+  publisher={Wiley Online Library}
+}
+
+
+@article{zalesky2008dt,
+  title={DT-MRI fiber tracking: a shortest paths approach},
+  author={Zalesky, A.},
+  journal={Medical Imaging, IEEE Transactions on},
+  volume={27},
+  number={10},
+  pages={1458--1471},
+  year={2008},
+  publisher={IEEE}
+}
+
+@article{iturria2007characterizing,
+  title={Characterizing brain anatomical connections using diffusion weighted MRI and graph theory},
+  author={Iturria-Medina, Y. and Canales-Rodriguez, EJ and Melie-Garcia, L. and Valdes-Hernandez, PA and Martinez-Montes, E. and Alem{\'a}n-G{\'o}mez, Y. and S{\'a}nchez-Bornot, JM},
+  journal={Neuroimage},
+  volume={36},
+  number={3},
+  pages={645--660},
+  year={2007},
+  publisher={Elsevier}
+}
+
+@inproceedings{poynton2005probabilistic,
+  title={Probabilistic tracking of fiber pathways using dynamic programming},
+  author={Poynton, C. and Lal, R. and Ratnanather, JT and Mori, S. and Boatman, D. and Miller, MI},
+  booktitle={11th Annu. Meeting Org. Human Brain Mapp., Toronto, ON, Canada},
+  year={2005}
+}
+
+@book{kleinberg2006algorithm,
+  title={Algorithm design},
+  author={Kleinberg, J.},
+  year={2006},
+  publisher={Pearson Education India}
+}
+
+@book{cormen2001introduction,
+  title={Introduction to algorithms},
+  author={Cormen, T.H.},
+  year={2001},
+  publisher={The MIT press}
+}
+
+
+@book{robert2004monte,
+  title={Monte Carlo statistical methods},
+  author={Robert, C.P. and Casella, G.},
+  year={2004},
+  publisher={Springer Verlag}
+}
+
+@book{winkler2003image,
+  title={Image analysis, random fields and Markov chain Monte Carlo methods: a mathematical introduction},
+  author={Winkler, G.},
+  volume={27},
+  year={2003},
+  publisher={Springer Verlag}
+}
+
+@book{grimmett2006random,
+  title={The random-cluster model},
+  author={Grimmett, G.},
+  volume={333},
+  year={2006},
+  publisher={Springer Verlag}
+}
+
+@book{rubinstein2008simulation,
+  title={Simulation and the Monte Carlo method},
+  author={Rubinstein, R.Y. and Kroese, D.P.},
+  volume={707},
+  year={2008},
+  publisher={Wiley-interscience}
+}
+
+@article{barbu2005generalizing,
+  title={Generalizing Swendsen-Wang to sampling arbitrary posterior probabilities},
+  author={Barbu, A. and Zhu, S.C.},
+  journal={Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  volume={27},
+  number={8},
+  pages={1239--1253},
+  year={2005},
+  publisher={IEEE}
+}
+
+
+@article{kay1998fundamentals,
+  title={Fundamentals of statistical signal processing, Volume I: Estimation theory},
+  author={Kay, S.M.},
+  publisher={Prentice Hall}
+  volume={7},
+  year={1998}
+}
+
+@article{buxton1998dynamics,
+  title={Dynamics of blood flow and oxygenation changes during brain activation: the balloon model},
+  author={Buxton, R.B. and Wong, E.C. and Frank, L.R.},
+  journal={Magnetic Resonance in Medicine},
+  volume={39},
+  number={6},
+  pages={855--864},
+  year={1998},
+  publisher={Wiley Online Library}
+}
+
+@article{gelman1992inference,
+  title={Inference from iterative simulation using multiple sequences},
+  author={Gelman, A. and Rubin, D.B.},
+  journal={Statistical science},
+  volume={7},
+  number={4},
+  pages={457--472},
+  year={1992},
+  publisher={Institute of Mathematical Statistics}
+}

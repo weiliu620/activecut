@@ -1,0 +1,54 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+
+\bibitem{banerjee2006clustering}
+Banerjee, A., Dhillon, I., Ghosh, J., Sra, S.: {Clustering on the unit
+  hypersphere using von Mises-Fisher distributions}. J. Machine Learning Res.
+  6(2),  1345 (2006)
+
+\bibitem{beckmann2005tensorial}
+Beckmann, C., Smith, S.: {Tensorial extensions of independent component
+  analysis for multisubject fMRI analysis}. Neuroimage  25(1),  294--311 (2005)
+
+\bibitem{descombes_spatio-temporal_1998}
+Descombes, X., Kruggel, F., Cramon, D.V.: Spatio-temporal {fMRI} analysis using
+  {M}arkov random fields. {IEEE} Trans. on Medical Imaging  17(6),  1028--1039
+  (1998)
+
+\bibitem{fox2010clinical}
+Fox, M., Greicius, M.: {Clinical Applications of Resting State Functional
+  Connectivity}. Frontiers in systems neuroscience  4 (2010)
+
+\bibitem{5074650}
+Golland, P., Lashkari, D., Venkataraman, A.: Spatial patterns and functional
+  profiles for discovering structure in {fMRI} data. In: 42nd Asilomar
+  Conference on Signals, Systems and Computers. pp. 1402 --1409 (2008)
+
+\bibitem{LiBook}
+Li, S.Z.: Markov random field modeling in computer vision. Springer (1995)
+
+\bibitem{liu2010spatial}
+Liu, W., Zhu, P., Anderson, J., Yurgelun-Todd, D., Fletcher, P.: {Spatial
+  regularization of functional connectivity using high-dimensional Markov
+  random fields}. MICCAI 2010 pp. 363--370 (2010)
+
+\bibitem{raichle2001}
+Raichle, M.E., MacLeod, A.M., Snyder, A.Z., Powers, W.J., Gusnard, D.A.,
+  Shulman, G.L.: A default mode of brain function. PNAS  98(2),  676--682
+  (2001)
+
+\bibitem{thirion2006detection}
+Thirion, B., Dodel, S., Poline, J.: {Detection of signal synchronizations in
+  resting-state fMRI datasets}. Neuroimage  29(1),  321--327 (2006)
+
+\bibitem{wei1990monte}
+Wei, G., Tanner, M.: {A Monte Carlo implementation of the EM algorithm and the
+  poor man's data augmentation algorithms}. Journal of the American Statistical
+  Association  85(411),  699--704 (1990)
+
+\bibitem{connwebsite}
+Whitfield-Gabrieli, S.: conn {M}atlab toolbox.
+  \url{http://web.mit.edu/swg/software.htm} (Mar 2011)
+
+\end{thebibliography}

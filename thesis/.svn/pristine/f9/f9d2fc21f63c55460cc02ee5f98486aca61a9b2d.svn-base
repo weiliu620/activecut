@@ -1,0 +1,248 @@
+\chapter{Introduction}
+\label{chap1}
+\section{Problem Statement}
+Human brain is organized into distributed functional modules that work
+independently for specific cognitive tasks, and also interact with each
+other. It has been shown that the spontaneous fluctuation of the blood
+oxygenation dependent (BOLD) signal, as measured by functional magnetic
+resonance imaging (fMRI), is a valuable data source for delineating the
+functional network organization. More recently, the spontaneous activity of
+human brain gains more attention because of its potential of helping understand
+the \emph{baseline} patterns of cognitive activity as well as the cause of some
+cognitive diseases. Resting-state fMRI (rs-fMRI) is accordingly widely used for
+exploring such activities.
+
+The analysis of rs-fMRI data is a challenging task, due to the scanner noise,
+physiological noise, head motion, and subject's random thoughts during data
+acquisition. 
+
+Single
+subject's data is often contaminated with noise of various sources, and its
+results are typically unreliable and inconsistent for the statistical inference
+of the whole population's intrinsic activity patterns.  On the other hand,
+combining data from multiple subjects and jointly estimating the common
+functional networks is more robust. In group analysis of rs-fMRI data, one
+typically assumes that all subjects in the group share common functional
+connectivity patterns, These group networks can be estimated more accurately
+because the noise introduced in each subject is canceled by averaging. In
+practice, it is a major challenge to summarize the consistent patterns across
+subjects, as each subject's network patterns appear similar but have slight
+variation due to the anatomical and functional difference across subjects.
+
+Recent years has seen substantial interest in estimating functional networks of
+individual subjects during group analysis. An accurate estimate of an
+individual's network is an important step towards understanding of
+brain-behavior relationships on a per-subject basis. The inter-subject variation
+must be accounted for in order to obtain a good estimation of the networks of
+individual subjects as well as the group.  Current
+methods~\cite{yeo2011organization,damoiseaux2006consistent} either do not
+estimate individual functional network maps, or not have an explicit statistical
+model on the inter-subject variations~\cite{calhoun2001method,
+  calhoun2001spatial}.  Among the methods that do estimate subject functional
+networks, some have one or more of the drawbacks:
+
+First, some methods map a common group functional network by concatenating the
+BOLD signal from all subjects. By doing this, one implicitly assumes that the
+voxels across subjects map to the same anatomical structure after
+coregistration, and share the same functional connectivity patterns. These
+assumptions are often violated due to the anatomical inhomogeneity between
+subjects, and also due to the imperfect alignment of the existing coregistration
+routine. In addition, the simple concatenation does not take into account the
+possible different variance across subjects. In particular, some participants
+may experience spontaneous, but active cognition during the scan even in the
+resting-state. These activity modulate each subject's functional network in a
+different way and to a different extent, and hence tamper the estimation of the
+group's functional networks. Such subject-specific confounding factors are less
+likely to be negligible by simple averaging compared to other sources of noise
+such as scanner noise, subject motion and coregistration.
+
+Second, group analysis are often conducted in a \emph{one way} procedure. In
+some scenarios~\cite{van2008normalized,craddock2012whole,greicius2004default,
+  greicius2007resting,seeley2009neurodegenerative,mohammadi2009changes}, each
+subject's functional network is estimated independently, and a group map is
+simply summarized by averaging the subjects' connectivity maps. The estimates of
+subject maps by these procedures do not use other subjects' information and are
+robust to noise. The group summary map extracted from these subject maps is
+hence sub-optimal. In other scenarios~\cite{calhoun2001method}, a group map is
+estimated first from the concatenated data, then is back-reconstructed to obtain
+the subject network maps. More recently, the subject network maps are estimated
+from the averaged group map using a dual regression
+approach~\cite{filippini2009distinct,beckmann2009group}. Such methods treat
+voxel intensity from all subjects the same way for group map estimation,
+ignoring that they may have subject specific variances. Both class of approaches
+do not iteratively refine the initial group or subject estimates, and the
+estimation of one subject's connectivity does not benefit from the information
+obtained from other subjects. Figure \ref{fig:bidirections} gives an
+illustration of the various methods and their order of estimations.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/c1/bidirections}
+  \caption{The order of estimation of various methods in group analysis.}
+  \label{fig:bidirections}
+\end{figure}
+
+Last, spatial smoothing is often used during preprocessing in order to address
+the issue of imperfect inter-subject alignment. While spatially blurring the
+time series increases the signal-to-noise ratio, the choice of the smoothing
+kernel size has a big impact on the estimated functional maps. Over-smoothing
+inevitably results in the loss of fine structures of the functional maps. In
+practice, the random field theory of statistical parametric mapping (SPM)
+\cite{friston2007statistical} requires the smoothing kernel even larger than the
+anticipated region of interest. One need a model that uses the spatial
+dependency and the inter-subject similarity of the rs-fMRI signals, without
+losing the finer details of the functional patterns.
+
+A data-driven, unified probabilistic framework will help solving the above
+issues. The model should integrate both group's and subjects' connectivity
+variables into this model. One can make inference from the posterior
+distribution of the variables in both subject and group levels given the
+observed BOLD signal.
+
+This thesis presents a series of statistical methods for identification of the
+functional networks by using the rs-fMRI data. All the methods aim to model the
+spatial dependency within a single subject in a principal way without the naive
+spatial smoothing, and model the inter-subject similarity and variations for a
+more accurate group and subject network estimation. The main mathematical tools
+are Markov random fields (MRF), graphical model and Bayesian method, and I use
+various methods including Markov chain Monte Carlo (MCMC) sampling and
+variational inference for solving the statistical inference problem in the high
+dimensional space.
+
+%% \section{Problem Statement}
+%% The analysis of rs-fMRI data is a challenging task, due to the scanner noise,
+%% physiological noise, head motion, and subject's random thoughts during data
+%% acquisition. Various techniques are proposed to address these issue. Among them,
+%% (1) spatial smoothing is used to increase the signal-to-noise ratio, and (2)
+%% group analysis is used to increase the statistical power by estimating an
+%% average functional network and to allow comparisons between groups. Both
+%% approaches have drawbacks that are to be elaborated in the next two paragraphs.
+%% In my work I address the issues concerning the above two aspects, with the focus
+%% on the latter.
+
+%% In conventional functional connectivity studies, the spatial regularities of the
+%% connectivity are enforced by applying a smoothing filter as a preprocessing
+%% step. Depending on the noise level and the number of subjects in a group study,
+%% optimal kernel width of the filter may vary~\cite{mikl2008effects}. In current
+%% state-of-art processing pipeline, the kernel size is arbitrarily given a value
+%% ranging from 4mm to 10mm. This may introduce over-smoothing and pose difficulty
+%% in identifying connections between small regions, or introduce under-smoothing
+%% resulting in insufficient noise reduction. Moreover, the sub-optimal choice of
+%% the smoothing parameters can change the result drastically. There needs to be a
+%% statistical method that explicitly models the spatial smoothness of the
+%% connectivity patterns. The model should be data-driven in that the parameters
+%% are estimated from the fMRI images data under study.
+
+%% In the group analysis, subjects may exhibit similar but not exactly same
+%% spontaneous BOLD fluctuation. Current group studies typically first identify
+%% each subject's connectivity separately regardless of other subjects, and then
+%% estimate a \emph{pooled} summary of the group connectivity
+%% map~\cite{van2008normalized,craddock2011whole}, or estimate group map first and
+%% then back-reconstruct the subject network map~\cite{calhoun2001method}.  Such
+%% approaches are sub-optimal, since estimation of one subject's connectivity does
+%% not benefit from other subjects. From a Bayesian  point of view, once
+%% the population distribution is known, it can help each subject's estimation as a
+%% prior. Subjects network estimates also gives feedback on group estimation.  We
+%% need a data-driven, unified probabilistic framework and put the connectivity
+%% variables of both group and subjects jointly into this model. Inference can be
+%% made from the posterior of the variables in both (subject and group) levels
+%% given the observed time series data.
+
+%% Furthermore, the full Bayesian model provides us an opportunity to study the
+%% variability of the functional network by inference of the posterior. Besides the
+%% traditional variance and confidence interval analysis, the mode of spatial
+%% variability can be inferred from multivariate analysis. For the first time, to
+%% our best knowledge, it would be possible to visualize how functional homogeneous
+%% regions change along the principal direction of their posterior variability, and
+%% compare these change across subjects.
+
+
+% Goal of this thesis.
+\section{Thesis Statement}
+Here is the statement of this thesis:
+\begin{center}
+\parbox{5in}{\emph{A multilevel Markov Random Field model improves the
+    reliability of the functional network estimation in rs-fMRI group study by
+    taking into account context information as a prior. The data-driven Bayesian
+    model can jointly estimate both population and subjects' connectivity
+    networks, as well as drawing inference on the uncertainty in the estimation,
+    and on the variability across subjects. }}
+\end{center}
+
+\noindent The phrase \emph{Context} has two meanings: 1) The functional patterns
+of human brain is spatially coherent. Neighboring voxels have larger probability
+of being in the same functional network. 2) The network that a voxel belongs to
+in one subjects is dependant on the networks of the same voxels in other
+subjects. The patterns of functional networks from the rs-fMRI study are to some
+extent shared by multiple subjects, while the variability across subjects must
+be taken into account.
+
+By \emph{reliability} I mean the decrease in the variance of the functional
+networks that we estimate with different subsets of all subjects. The reliable
+estimates will be closer to the true network in simulation test, where we know
+the true answer.
+
+To test our statement, we propose the following contributions:
+\begin{itemize}
+  \item \textbf{Full Pairwise Connectivity With Spatial Coherence.} I propose a
+    method that estimates pairwise functional connectivity in the whole brain of
+    a single subject, without \emph{a priori} knowledge of the seed region. The
+    model needs to take into account the spatial context information, and learn
+    the strength of the coherence from the data.
+
+  \item \textbf{Identify Consistent, Spatially Coherent Multiple Functional
+    Networks.} I propose a data-driven, generative model that can cluster the
+    gray matter voxels of single subject's brain into disjoint multiple
+    functional networks, while respecting the spatial coherence of the voxels.
+
+  \item \textbf{Hierarchical Model For Group Study.} I propose a hierarchical
+    model that can estimate functional networks from a group of subjects. The
+    model will estimate an overall group's network map as well as individual
+    subjects network maps at the same time. When Clustering the voxels into
+    different networks, spatial neighbors both within and across subjects will
+    be used in a prior of a Bayesian framework. The variability of each
+    subject's connectivity due to noise and artifact will be reduced to the
+    extent that is to be determined automatically from the data.
+
+  \item \textbf{Variability of Resting-State Functional Network. } Based on the
+    hierarchical MRF model proposed above, I will draw inference on the variance
+    and the confidence intervals of the functional network. I will test the
+    variability of the network by using a subset of the data and perform
+    bootstrap sampling. I also plan to explore and visualize the modes of
+    spatial variability of the functional network patterns.
+\end{itemize}
+
+\section{Outline and Contributions}
+The remainder of the thesis is organized in the following chapters. 
+
+In chapter \ref{chap:bg}, I will give a survey of the methods of modeling the
+brain's functional connectivities using rs-fMRI, as well as the statistical
+inference methods.
+
+Chapter \ref{chap:math} gives a general introduction of the mathematical tools
+that will be used in the following chapters. The tools includes the definition
+of the graph, graphical models, sampling methods and variational methods for
+solving the problem on the graph.
+
+Chapter \ref{chap:method1} will discover the first method than estimate a single
+subject's functional system. This chapter is an application of the graphical
+model and Markov random field that we introduce in chapter \ref{chap:math}. In
+this particular case, the MRF is in a high dimensional space. And we use
+variational inference to solve the problem. The inference is implemented on
+graphical processing unit (GPU) to speed up such a problem with $N^2$
+complexity.
+
+Chapter \ref{chap:method2} applies the graphical model in a different
+settings. Here the model is defined on the voxels in original image domain
+instead of on a higher dimensional domain in previous chapter. Together with a
+mixture model and Bayesian method, we estimate all functional systems of a
+single subject dataset with spatial regularization.
+
+Chapter 6 extends the concept of the graph to multiple subjects, and aims a
+multi-level analysis with a group of rs-fMRI data. Both group and subject
+functional networks are estimated with higher accuracy than standard
+methods. This chapter will also cover the validation of the hierarchical model
+Besides the estimation accuracy, we focus on the consistency of the method
+across multiple sessions, and also under data perturbation.
+
+Chapter 7 concludes the thesis with a general discussion, and also the future
+work.

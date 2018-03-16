@@ -1,0 +1,388 @@
+\chapter{General Discussion}
+\label{chap:alldiscussion}
+% talk about tensor ICA, and the tensor decomposition method such as
+% multilinear...
+
+% talk about covariance matrix estimation method, and how to generalize to group
+% subjects: 1) group lasso, and 2) hierarchical sparsity. structural learning is
+% to learn the graph structure.
+
+% effective connectivity. 
+
+% impaired subjects. neurosurgery.subjects can be analyzed by graph methods.
+
+% talk about sparsity methods, sparse inverse covariance estimation, and also
+%  Varoquaux's small sample brain mapping: sparse recovery on spatially
+%  correlated designs with ....
+
+%  more than 2 clique in MRF? talk about the pros/cons in the general discussion.
+
+% read hierarchical model books and discuss it. 
+
+In this chapter I will give a summary of the thesis work, with some discussions
+on the models we have used. I will also discuss the possible extension of our
+models in the future, and other general promising approaches of rs-fMRI study.
+
+\section{Summary of Thesis Work}
+The analysis of functional connectivity and functional networks of human brain
+can happen at various level. At microscopic level, the analysis can be performed
+on the single neuron and the axon. In a higher level, we can use fMRI to
+indirectly detect the neuronal activity by measuring the change of oxygen
+consumption. the BOLD signal detected by fMRI is an average effect of many neuro
+activity. To understand the full brain network patterns, one need to even
+extract the signal in a even higher level. The class of methods by graph theory
+extract ROIs from the brain volume. Such model is easy to understand, at the
+price of discarding the information at the regions where no ROI is chosen.
+
+% per Tom's request, have a comparison for all the methods.
+We tackle the problem at the voxel level in order to use as much information as
+possible. Different from the standard independent component analysis approach to
+decompose the signal into linear combinations of \emph{source} signals
+corresponding to various functional systems, we define the functional network
+estimation as a segmentation problem. Although the first applications of Chapter
+\ref{chap:method1} seems different from a stand segmentation problem, it is
+indeed a binary classification problem on the data residing in a high
+dimensional space.
+
+Here I give a briefly comparison the three methods that we discussed in Chapter
+\ref{chap:method1}, \ref{chap:method2} and \ref{chap:method3}. The pairwise
+connectivity estimation method in Chapter \ref{chap:method1} is a lower level
+information extraction compared to other methods. The algorithm aims to estimate
+the functional connectivities between voxel pairs, without knowledge of the
+functional system. Because the connectivity variables we are interested in only
+have two states: connected or not connected, we deal with a unsupervised binary
+classification problem. We define a model similar to the standard Gaussian
+mixture (GMM) model, and estimate the posterior of the hidden variables. Our
+model is different from the regular GMM in that we define a prior distribution
+on the hidden variables, the connectivity. The prior distribution is indeed a
+MRF, or equivalently, Gibbs distribution, defined on a high-dimensional graph to
+represent our knowledge on the spatial soft constraints. The inference, as a
+result of this additional prior model, is significantly more difficult than GMM,
+since the inference of each pairwise connectivity cannot be factorized like
+standard GMM due to the statistical dependency on other variables. We use
+variational inference to approximate the posterior distribution of the
+connectivity variables and solved the intractable optimization problem. 
+
+The second method we discussed in Chapter \ref{chap:method2} is in a higher
+level than the pairwise connectivity estimation in Chapter
+\ref{chap:method1}. The algorithm outputs a 3D label map, and the labeling
+represents the functional systems. Compared to Chapter \ref{chap:method1}, here
+we are able to detect all functional systems without defining a seed region, and
+show them in a single spatial map. The algorithm is aware of the functional
+system, as each cluster represents one system. Although the ability to identify
+multiple systems are a strength compared to the previous pairwise connectivity
+estimation, it is hard to state the multiple network detection method is
+superior to the pairwise connectivity estimation method, as the two methods are
+at a different level. The lower-level pairwise connectivity estimated can be
+used in other models as input. For example, it can be used to define the ROIs
+for the graph-based analysis. Or, the prior distribution of the connectivity
+variables can be modified to include an additional parameter for multi-subject
+analysis. The current prior distribution of the connectivity variables are
+defined by a MRF including only smoothing constraints. In the case of multiple
+subjects, we can assume the same pairwise connectivity variable for all subjects
+are random variables from a population distribution. By redefining the
+six-dimensional graph and include other subjects, and a group layer, we have a
+hierarchical model for the pairwise connectivity variables, much like what we
+have done in the HMRF model in Chapter \ref{chap:method3}.
+
+% add the general discussion for the last paper. 
+Both the algorithm in Chapter \ref{chap:method1} and \ref{chap:method2} deal
+with single subject. By contrast, the hierarchical MRF model in Chapter
+\ref{chap:method3} explore the functional patterns of a group of subjects. It
+turns out if we integrate our knowledge of the within-subject smoothness and the
+between-subject similarity into the graph structure, we will convert the group
+inference problem into a standard inference of the posterior distribution. So we
+defined a abstract layer of the graph including all the gray matter voxels in
+the subject volumes, and a \emph{virtual} volume of the group. Below this layer
+is the image voxels of the subjects and groups volume. Above the layer, we have
+a standard graph and we are able to apply standard optimization algorithm on
+it. The single-subject MCEM method we proposed in Chapter \ref{chap:method2} is
+a special case of our extended HMRF model. And we have shown that the extended
+model is able to enforce the similarity of the functional patterns across
+subjects, as well as estimate a group map. Because a single subject can borrow
+statistical power from other subjects via the group level, we can estimate a
+reasonable map even from a noisy single-subject data.
+
+A classical occurrence of hierarchical models is the inclusion of the
+random-effects in the linear model~\cite{robert2007bayesian}. For a simple
+example, suppose we randomly choose $M$ schools from all the schools in the
+country, and randomly choose $N$ students from each school and record their
+scores on an exam. We use $y_{ij}$ to denote the score of the student $n$ from
+school $m$. The score can be modeled by a linear model with random-effects
+$y_{nm} = \beta + \theta_m + w_{nm}$, where $\beta$ is the average score of the
+population, $\theta_m$ is the school-specific random effect that represent the
+difference between the population's average score $\beta$ and school $m$'s
+score, and $w_{nm}$ is the individual student's deviation from the school's
+average score. Both $\theta_m$ and $w_{nm}$ are random variables since the
+schools and the students are randomly chosen. The above linear model can be
+decomposed into a hierarchical model as
+\begin{align*}
+  y_{nm} &= u_m + w_{nm}\\
+  u_m &= \beta + \theta_m.
+\end{align*}
+Here $u_m$ is the average score for the school $m$, and is further decomposed
+into the fixed effects $\beta$ and random effects $\theta_m$. In our multi-level
+model for the rs-fMRI group analysis, the BOLD time series correspond to the
+student score $y$, and the subject network label maps correspond to the average
+score $u$ of the school, and the group label map corresponds to the population's
+average score $\beta$. vMF distribution denotes the random effects of the BOLD
+signals, hence is similar to the $w$ in the above example. Because the
+parameters (called hidden variables in our model) are discrete values, there is
+no direct counterpart of $\theta$ in our model, but the MRF and its equivalent
+Gibbs distribution represent the random properties of the group and subject
+label maps.
+
+There are reasons of this decomposition and the formulation by Bayesian
+rules~\cite{robert2007bayesian}. First, The two levels of models represent the
+prior knowledge of the meta-population. The hierarchical models naturally
+appeared in the meta-analysis. In the case of fMRI study, the results of the
+analysis on other subjects can be used as a prior of current subjects. Second,
+the hierarchical model can separate the priors into two components. One
+component corresponds to the soft constraints applied on the subject level
+parameters (subject network label map), and the other component represents the
+uncertainty of such constraints, i.e. the distribution of the group label map,
+as well as the unknown weight parameters between the subject and the group. Also
+the decomposition can often simply the posterior inference of the hidden
+variable, at least on the concept level.
+
+
+
+\section{HMM v.s. CRF}
+The MRF, as a extension of the one dimensional hidden Markov model (HMM), is a
+model that does not depend on the observed data. The conditional random field
+(CRF), on the contrary, has a regularization energy function that depends on the
+data. One of the reasons that the prior energy should be dependent on the data
+is the smoothness assumption is often violated at the discontinuities, i.e. the
+edges in the image, be it natural scene images or fMRI images. Put it another
+way, when certain voxel's BOLD signal is significantly different from one of its
+spatial neighbor's, there is reason we do not want to borrow information from
+this neighbor. Intuitively this though of reasoning make sense, although in such
+definition, the separation of the prior $P(X)$ and the conditional probability
+$P(Y|X)$ wold not be possible, since $P(X)$ also involves the data $Y$.
+
+Historically, the existence or lack of links between spatially adjacent nodes on
+a regular lattice is modeled by a line process by
+Geman~\cite{geman1984stochastic}. The inference is iterated between the MRF with
+image pixels at nodes, and the line process. However, even the links is modeled
+as a line process, the hidden variable $X$ is still in a distribution that does
+not include $Y$. So fundamentally such model is same with regular MRF, rather
+than a CRF. It is the optimization methods that differ.
+
+The CRF is a reasonable model in some situation, when the disparity of the
+neighboring voxels represents the discontinuity of the images. In some cases, if
+a voxel is very noisy, such that its signal looks significantly different with
+its neighbors, while in face the difference is due to the large noise, the CRF
+may assume the discontinuity at this edge, and does not define, or define a weak
+interaction. Therefore, the noisy voxel may not be correctly classified. In such
+situation, the data $Y$ is essentially used twice, one in the prior distribution
+$P(X)$, and the other in the likelihood function $P(Y)$. Because we increase the
+weight of the data term, the CRF will fail to estimate the correct hidden
+variables when the data is noisy. In practice, in a multi-modality image
+segmentation problem, we used CRF and found some noisy voxels was not labeled
+correctly because the CRF removed the edge between the noisy voxels and their
+neighbors due to the large intensity difference. One possible solution of this
+incorrect edge determination is to use larger neighborhood when computing the
+discontinuity, thus decrease the influence of the single noisy
+pixel~\cite{tanaka2008locally}.
+
+In our model, we choose to use HMM instead of CRF with the belief that a simple
+Bayesian model will conceptually fit our problem and have good generalization
+property. It is worthy applying the CRF model to our hierarchical MRF
+framework. Because of its Bayesian concept, HMM is easy to understand than the
+CRF. But in some situation if the CRF outperforms HMM and Bayesian-based models,
+it will be an open question that if we are willing to give up a little
+performance in order to obtain a simple model that we can understand.
+
+\section{Future Directions}
+
+\noindent\textbf{Dynamics of the functional network:} In the conventional brain
+connectivity analysis one assumes that the connections between regions are
+static and do not change with time. The functional connectivity may not be in a
+stationary state. Not like structural connectivity measured by DTI, the lack or
+existence of functional connectivity may depend on the brain's cognitive
+activity. For example, the most active regions during resting-state seem to be
+the regions that shows the greatest deactivation during external cognitive
+challenges. Besides, functional links can persist even without direct anatomical
+connection. 
+
+zalesky et al.~\cite{zalesky2011relationship} test the variation of the fMRI
+time series by splitting the time series into two part, and use paired t-test to
+test any difference between two halves with respect to the various statistical
+measures, including variance, maximum and minimum amplitude, and did not
+identify significant difference. This suggest there is no long-term variation on
+the time series. But this is not sufficient to suggest that the functional
+network is static. The connectivity between any regions can change over time.
+
+One interpretation of the intrinsic activity, especially the
+dynamics of the patterns is a inner state of exploration where the brain
+generates predictions about the best possible network patterns that would be
+optimal for the impending future external event~\cite{deco2010emerging}. If that
+is the case, it will be beneficial to study the dynamics of the functional
+network for better understanding how the brain predicts the external events and
+prepare for it. There has been works that model the complex network's dynamics
+with time delay, mostly notably the models proposed by Honey et
+al.~\cite{honey2007network}, Deco et al.~\cite{deco2009key}, Ferguson et
+al.~\cite{ferguson2012dynamical} and Ghosh et al.~\cite{ghosh2008noise}.
+
+in Honey~\cite{honey2007network}, the structure connectivity matrix is first computed,
+and neural dynamical potential signal is simulated by some models. The neural
+potential has high sampling rate. The functional connectivity is computed from
+this simulated time course signal at different temporal scale. BOLD signal is
+also simulated from the neural potential signal by the \emph{balloon} model. It
+seems the simulated BOLD signal has corse spatial resolution compared the neural
+potential signal, i.e., BOLD is simulated per region. The author concluded that
+functional connectivity estimated from the whole neural potential signals are
+more consistent with structural network, while the network estimated from a
+segment of neural signals have more transient network patterns.
+
+In Ghosh~\cite{ghosh2008noise}, the low level neural singal is also simulated
+similar to Honey~\cite{honey2007network}, and BOLD signal is computed from these
+simulated signals. The difference from Honey's work is the author added time
+delay between the regions, and the delay is proportional to the distance between
+the regions.
+
+For the study of fMRI, we do not have to assume a model for neural potential
+signal and simulate it. An direct way is to define a dynamic model for BOLD
+signal. The model should take account multiple subjects. We should model the
+common property among all the subjects. For example, although different subjects
+may not in the same state at same time point on same ROI, they may share
+probability of transiting from one state to the next. Subjects must share
+something. To model the dynamics of the network, we can either explicitly model
+the time delay due to the transmission of the neural signal in the fibers, or we
+can choose not model this time delay. Honey et al.~\cite{honey2007network} does
+not model the time delay, which is reasonable due to the low temporal resolution
+of BOLD signal. The time delay, compared to the TR of BOLD signal, can be
+ignored.
+
+These models mainly explore the dynamic patterns of single subject, with the
+anatomical constraints applied on the possible functional structure. Although
+the dynamics of subjects may differ, it would intriguing to study a group of
+subjects' network dynamics and see if some patterns are shared among them. To
+study the dynamics of the functional network, some new techniques about network
+dynamics~\cite{boccaletti2006complex, holme2012temporal, kolar2010estimating,
+  arenas2008synchronization, mortveit2008introduction} are required besides our
+hierarchical model.
+
+% Jeff anderson's work on the Autism study.
+\noindent\textbf{Functional connectivity in clinical study: } The intrinsic activity,
+used as a baseline signal for detecting the activation during task, not only
+help understanding subject's functional patterns for specific task, but is also
+used for studying mental disorders such as autism spectrum disorders (ASDs) and
+Alzheimer's~\cite{buckner2009cortical, huang2010learning, minshew2010nature,
+  anderson2011functional, nielsen2013multisite}. For instance, in a review of of
+the attention deficit hyperactivity disorder (ADHD)~\cite{castellanos2011large},
+the author found the default model network has less anti-correlation for ADHD
+patients. since the strong anti-correlation is believed to related to the better
+behavioral performance, such findings helps the understanding and treatment of
+the ADHD patients.
+
+One of particular interesting application of functional connectivity is the
+ASDs.  The classification of autism and control patients can be cast into a
+regression problem by defining the pairwise functional connectivity as
+independent variables and the autism diagnostic score as the dependent
+variable. By this definition, we aim to use rs-fMRI data to predict the autism
+patients. The correct prediction of the autism patients is not the only goal. By
+solving the linear regression problem, it would be possible to pinpoint one or
+more functional connectivity variables are strongly correlated to the autism
+clinical scores, and even the anatomical regions that are involved in these good
+connectivity variables. Because of connectivity variables are pairwise, the
+number of such variables are big. For a set of ROIs defined by
+Power~\cite{power2011functional} with 264 nodes, the number of pairwise
+connectivity variables will be $264\times 263 / 2 = 34716$. For the denser ROIs
+used By Anderson~\cite{anderson2011functional}, there are 7266 seed regions, and
+the number of pairwise connectivity variables will be $26,397,378$. On the
+contrary, the number of observations (subjects) for such type of studies is much
+smaller. Therefore, we face a typical \emph{curse of dimensionality}
+problem. There are rich literatures in machine learning community that have been
+proposed for addressing such problems. An early and simple solution is feature
+selection, i.e. to select only a subset of the independent variables and discard
+others. The regression is performed between those chosen variables and the
+dependent variables.
+
+To select $k$ \emph{good} features from $n$ features is an optimization problem,
+but is intractable due to the combinatorial number of choices. One can use
+univariate methods, which use hypothesis test to tell if a feature can
+significantly separate apart the training sample set, or use more advanced
+methods which also take into account the interactions of the
+features~\cite{guyon2003introduction,saeys2007review}. More modern methods
+integrates feature and variable selection and classification in a single
+framework, such as the $L1$ regularization methods,
+LASSO~\cite{friedman2008sparse}.
+
+With The Autism Brain Imaging Data Exchange (ABIDE) repository open to the
+public~\cite{di2013autism}, thousands of rs-fMRI datasets from various sites are
+available for analysis. This data sharing initiative is an opportunity to
+explore the relationship between the functional connectivity and the
+ASDs. However, due to the different source of fMRI data, a simple pooling of all
+the subjects in a one layer model may not work well. This has been shown by
+Nielsen et al.~\cite{nielsen2013multisite}. The authors use 964 subjects from 16
+separate international sites and use the pairwise connectivity variables of all
+the subjects to predict the autism variable, with age variable taken into
+account. Nielson shows the classification accuracy significantly outperformed
+chance but is much lower than their previous results on single
+site~\cite{anderson2011functional}. One of the possible reasons is the
+heterogeneity of the datasets, due to the different sites, scanner parameters
+and practitioners. We can extend our HMRF model to this problem by defining a
+hierarchical regression and classification problem. By the hierarchy, we assume
+the regression coefficients are also random variables, instead of fixed unknown
+parameters. the coefficients are from a prior distribution with
+hyper-parameters. With the hierarchical model, the regression can be balanced
+between the estimation purely from the data, and the estimation of other
+sites. For example, if for one site, the training data is good quality, so the
+variance of the regression coefficients are small, the posterior distribution of
+the coefficients of this particular subject will be closer to the value that fit
+the data, i.e. a estimates from regular regression. If the data of one site is
+highly overlapped and non-separable, the variance of the regression coefficients
+will be bigger, so the posterior mean of the coefficients will be closer to the
+population's coefficients, which is estimated from other sites. In this way,
+each site has its own parameter to model the data quality, and we may achieve
+overall higher rate of classification, and find more reliable correspondence
+between the function regions and Autism disorder.
+
+% spatio-temporal model from spatial statistics.
+\noindent\textbf{Spatio-temporal Modeling: } One interesting model that can be
+used for this spatio-temporal analysis is the Gaussian process (GP). GP
+originates from linear regression problem $\vec y = \vec w^{\top} \vec \phi(\vec
+x)$ with arbitrary basis function $\phi(x)$. When the weight parameters $\vec w$
+are unknown fixed constants, the estimation of $\vec w$ can be solved be least
+square estimation, or equivalently, maximum likelihood estimation. We can define
+the $\vec w$ also as random variables, and accordingly the response variable
+$\vec y $ will also be random. When $\vec w$ is of Gaussian distribution, the
+joint probability $P(\vec y, \vec w)$, the conditional probability $P(\vec y |
+\vec x)$, and the predictive distribution of $y'$ for a new data point $\vec x'$
+is also Gaussian, and therefore the statistical inference of $\vec y$ and $y'$
+can be done in a closed form. The standard linear regression with prior
+distribution defined on $\vec w$ is solved in parameter space, i.e. search the
+optimal parameter $\vec w $ in a space that can maximize the posterior
+distribution of $\vec w$. The GP adopt a function view. That is, we define a
+distribution on the function $y(\vec x)$. The variance of the functional value
+$y(x_n)$ and $y(x_m)$ can be represented by the inner product of the basis
+function $\phi(x_n)$ and $\phi(x_m)$, which can be defined directly by a kernel
+function of $x_n$ and $x_m$. Most of the kernel function is defined such as the
+predicted value $y'$ depends more on data points $x$ that are close to $x'$,
+although the estimation of $y'$ uses the $y$ value of all the $x$ in the
+training dataset. We can, however, make use of the Markov property and assume
+that $y'$ only depends on the nearby $y$. In 1-D case, the auto-regressive (AR)
+model is a special case where the variable $y$ only depends on the limited
+number of values of $y$ in the past. In such model, the covariance matrix of the
+function value $y$ is dense, but the inverse covariance matrix, i.e. the
+precision matrix will be sparse, since it represent the conditional
+independence.
+
+The extension to the spatio-temporal model have two possible options. One either
+start from a time series model for each spatial data point, such as
+auto-regressive (AR), moving average (MA), or ARMA, and assume the model
+parameters dependence on spatial neighbors. Or, one assume a spatial model such
+as MRF, or Gaussian random field, and allow the parameters to change over time
+instead of fixed. Such model would be helpful for the analysis fMRI data. For
+now, the spatial and temporal properties of BOLD signal of fMRI data are
+typically addressed separately. The temporal model is either represented by a
+frequency filter with the assumption of the interested frequency band, or by
+using a explicit model such as AR process. The spatial dependency is either
+enforced by a spatial Gaussian filter as a preprocessing step, or modeled by MRF
+such as the HMRF in our work. A unified spatio-temporal model will help the
+denoising, estimation, interpolation and prediction of the fMRI data.
+
+
+% sparse covariance estimation, vs thresholding the correlation matrix. Hastie's
+% comparison work shows the latter is even more accurate in some case.

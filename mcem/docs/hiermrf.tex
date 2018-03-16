@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows,fit,decorations.pathmorphing,backgrounds,positioning,shapes.misc,calc,trees,positioning,chains,shapes.geometric,decorations.pathreplacing,decorations.pathmorphing,shapes,matrix,shapes.symbols,shadings,shadows}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+
+\begin{document}
+
+\begin{tikzpicture}
+  [node distance = 20mm,
+    group/.style={circle,draw=red, thick,}, 
+    par/.style={circle,draw=black, fill = black, thick, minimum size = 2pt, inner sep=0pt}, 
+  subject/.style={circle, draw=blue, thick},
+  fmri/.style={circle, draw=blue, thick, node distance=50mm},
+  darc/.style={->, semithick, >=stealth'},
+  uarc/.style={-, semithick}]
+
+
+  \node (group) at ( 0,0) [group] {$G$};
+  \node (zr) [below left=of group] [subject] {$z_r$};
+  \node (zs) [below right=of group] [subject] {$z_s$};
+  \node (xr) [below =of zr] [fmri] {$x_r$};
+  \node (xs) [below =of zs] [fmri] {$x_s$};
+  \draw[darc] (group) to  (zr);
+  \draw[darc] (group) to  (zs);
+  \draw[uarc] (zr) to (zs);
+
+  %% draw parameters.
+  \node (betag) [above=of group] [label=left:$\beta_g$] [par] {};
+  \draw [darc] (betag) to (group);
+
+  \node (betaz) [left=of group] [label=left:$\beta_z$] [par] {};
+  \node (alphaz) [right=of group] [label=left:$\alpha_z$] [par] {};
+  \draw[darc] (betaz) to (zr);
+  \draw[darc] (betaz) to (zs);
+
+  \draw[darc] (alphaz) to (zr);
+  \draw[darc] (alphaz) to (zs);
+
+  \draw[darc] (zr) to  (xr);
+  \draw[darc] (zs) to  (xs);
+
+  \begin{pgfonlayer}{background}
+    \node [fill=black!30,fit=(zr) (zs) (xr) ] {};
+  \end{pgfonlayer}
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,211 @@
+\documentclass[runningheads,a4paper]{llncs}
+
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+
+\usepackage{url}
+%% \urldef{\mailsa}\path|{alfred.hofmann, ursula.barth, ingrid.haas, frank.holzwarth,|
+%% \urldef{\mailsb}\path|anna.kramer, leonie.kunz, christine.reiss, nicole.sator,|
+%% \urldef{\mailsc}\path|erika.siebert-cole, peter.strasser, lncs}@springer.com|    
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+%%%%%% Added by Wei Liu %%%%%%%
+\usepackage{lwdefs}
+\usepackage{amsmath}
+%%%%%% End of Added by Wei Liu %%%%%%%
+
+
+\begin{document}
+
+\mainmatter  % start of an individual contribution
+
+% first the title is needed
+\title{Some Title}
+
+% a short form should be given in case it is too long for the running head
+\titlerunning{Some Title running}
+
+% the name(s) of the author(s) follow(s) next
+%
+% NB: Chinese authors should write their first names(s) in front of
+% their surnames. This ensures that the names appear correctly in
+% the running heads and the author index.
+%
+\author{Some authors}
+%
+\authorrunning{Some author running}
+% (feature abused for this document to repeat the title also on left hand pages)
+
+% the affiliations are given next; don't give your e-mail address
+% unless you accept that it will be published
+
+%
+% NB: a more complex sample for affiliations and the mapping to the
+% corresponding authors can be found in the file "llncs.dem"
+% (search for the string "\mainmatter" where a contribution starts).
+% "llncs.dem" accompanies the document class "llncs.cls".
+%
+
+\toctitle{Lecture Notes in Computer Science}
+\tocauthor{Some author}
+\maketitle
+
+
+\begin{abstract}
+We propose a new method for detecting the functional connectivity of
+the human brain in resting state. By transforming the time series data
+a hyper-sphere, we build the relationship between the Pearson
+correlation of time series and their shortest path on the sphere. This
+makes it possible to use a mixture of von Mises-Fisher model to find
+the clusters of voxels with similar pattern of activity. The model
+also takes account the spatial priors by using Markov Random Field,
+and we use Monte Carlo Expectation-Maximization to estimate the
+cluster labels and parameters iteratively. We show how our algorithm
+works for synthetic data, and on real resting-state fMRI data of 5
+subjects. Our method can get obtain the clusters of connected region
+on the whole brain volume, without user giving seed region of
+interest.
+\end{abstract}
+
+\section{Introduction}
+It has been proposed that there is a default mode network in human
+brain, and functional connectivity MRI analysis is widely used to
+detect the activity pattern in this network. In resting-state fMRI,
+the temporal correlation between voxels are used for detecting their
+connectivity. The standard procedure is to select a region of interest
+(ROI) and find the correlation between the average of the ROI and
+other voxels in the brain.  The correlation will usually be
+thresholded so only those voxels having significant correlations with
+ROI are kept.
+
+Recent method using Independent Component Analysis to find the
+components of interest, and use a ad-hoc method to manually choose
+those that have specific frequency property. Like other method that
+use seed regions, it does not give the full view of the brain
+connectivity and tends to introduce human subjective bias.
+
+We introduce a new method to find the pairwise connections between
+voxels with a generative model. By subtracting the mean value from
+each time series, and divide the length of the time series as a vector
+such that it has unit second norm, we transform the time series data
+in original $p+1$ dimensional space to a $p-2$ sphere. On the sphere,
+if two data points have small shortest path, they will have big inner
+product, and they will have big Pearson correlation in original
+space. So we re-formulate the problem of finding clusters of voxels
+with higher correlations, to the problem of finding clusters on sphere
+that has small shortest path, or big inner products. Because von
+Mises-Fisher (vMF) distribution is the counterpart on the sphere, of
+the Multivariate Gaussian distribution on Euclidean space, we use vMF
+to model the direction data on the sphere. Again like data in original
+space, time series on spheres have multiple components, and naturally
+we use mixture of vMF to model the time series data on sphere.
+
+The next section gives introduction of von Mises-Fisher distribution
+and mixture of vMF, and parameter estimate of vMF. Section
+\ref{sec:mcem} introduces Monte Carlo Expectation-Maximization frame
+work. We give experiments in section 5 and conclude at section 6.
+
+\section{The von Mises-Fisher Distribution}\label{sec:vmf}
+von Mises-Fisher distribution comes from the directional
+statistics. It gives a distribution of data points on sphere of unit
+radius. A random vector $\vec x$ with unit length ($\norm{x} = 1$ is
+said to have von Mises-Fisher distribution $\cM_p(\vec \mu, \kappa)$
+if its probability densitiy function is
+\begin{equation}
+  f(\vec x;\vec \mu, \kappa) = C_p(\kappa) \exp (\kappa \vec \mu\T \vec x),
+  \quad \vec x \in S^{p-1}, 
+  \label{eq:vmf}
+\end{equation}
+where $S^{p-1}$ is the $p$ dimensional hypersphere. $\norm{\vec \mu} =
+1$ is called the \emph{mean direction}, and $\kappa \geq 0$ is called
+the \emph{concentration parameter}.The larger the $\kappa$, the
+greater the density is concentrated around the mean direction. Since
+\eqref{eq:vmf} depends on $\vec x$ only by $\vec x\T \mu$, the vMF is
+unimodal and rotationally symmetric to $\vec \mu$. The normalization
+constant $C_p(\kappa)$ is given as
+\begin{equation*}
+  C_p(\kappa) = \frac{\kappa^{\frac{p}{2} - 1}}{(2\pi)^{\frac{p}{2}} I_{\frac{p}{2}-1}(\kappa)},
+\end{equation*}
+where $I_\nu$ denotes the modified Bessel function of the first kind
+and order $\nu$. When $p = 2$, the vMF distribution reduces to von
+Mises distribution, which gives the distribution of points on a circle
+$S^1$.
+\section{Monte Carlo EM for Mixture of vMF}
+\label{sec:mcem}
+Since we look for clusters of voxels on the sphere, we use a mixture
+of vMFs. Let $\cS$ be the set of indices of all voxels and $\cL = \{1,
+2, \dots, L\}$ be the set of labels. Let $\mat z$ be a configuration
+of a random field $Z$ and $\cZ$ be the set of all possible
+configurations so that
+\begin{equation*}
+  \cZ = \{ \mat z = (z_1,\dots, z_N) | z_i \in \cL, i \in \cS\}.
+\end{equation*}
+Each label $l\in \cL$ corresponds to a vMF component. Given $z_i = l$,
+the observed data point $\vec x_i$ on sphere follows a vMF
+distribution $f(\vec x_i; \vec \mu_l, \kappa_l)$. The standard EM
+algorithm maximizes the expectation of log-likelihood of joint pdf of
+$\mat x$ and the latent variable $\mat z$ with respect to the
+posterior probability $P(\mat z | \mat x)$, i.e. $\mathbb{E}_{P(\mat
+  z| \mat x)} [\log (P(\mat x, \mat z; \vec \theta))]$ Because there
+is combinatorial number of configuration $\mat z$, this expectation
+value is intractable. We instead use a Monte-Carlo approximation of
+this expectation, defined as
+\begin{equation*}
+  \widetilde Q = \frac{1}{M}\sum_{m=1}^{M} \log P(\mat z^m; \vec \theta_{r}) + \log P(\mat x | \mat z^m; \vec \theta_{t}), 
+\label{eq:mcemq}
+\end{equation*}
+where $\mat z^m$ is a sample from $P(\mat z | \mat x)$, and $\vec \theta_r$ and $\vec \theta_t$ are parameters of prior  and conditional distribution respectively.
+
+\subsection{Markov Prior}
+we have a natural assumption of the clusters of correlated voxels:
+they should consist of piecewise smooth regions. We apply Markov Random
+Field (MRF) on $\mat z$ to regularize this spatial smoothness. for $\mat z$ to be MRF, we define 
+
+\begin{equation*}
+  P(\mat z) = \frac{1}{C}\exp \{ -\beta \sum_{(i,j) \in \cE}T(z_i \neq z_j\}),
+\end{equation*}
+where $T$ is $1$ if its argument is true and $0$ otherwise. $\cE$ is
+the set of voxel pairs that are spatial neighbors. $\beta$ is the only
+parameter in $\vec \theta_r$, and $C$ is a normalization
+constant. Because of the Markov-Gibbs equivalence, the conditional
+distribution of $z_i$ at site $i$ is,
+\begin{equation*}
+  P(z_i | z_{-i}) = P(z_i | z_{\cN_i}) = \frac{\exp \{ -\beta \sum_{j \in \cN_i}T(z_i \neq z_j) \}}{\sum_{l \in \cL} \exp \{ -\beta \sum_{j \in \cN_i}T(l \neq z_j)\}},
+\end{equation*}
+where $-i$ is the set of all the sites excluding site $i$, and $\cN_{i}$ is the
+set of sites of $i$'s spatial neighbors.Given the MRF priors,
+\eqref{eq:mcemq} can be written as
+\begin{align*}
+  \widetilde Q &= \frac{1}{M}\sum_{m=1}^{M} \sum_{i \in \cS} \log P(z_i | z_{\cN_i}; \vec \theta_r) + \frac{1}{M}\sum_{m=1}^{M}\sum_{i \in \cS} \log P(\vec x_i | z_i; \vec \theta_t) \\
+  &= \widetilde Q_r + \widetilde Q_t. \\
+\end{align*}
+We use $\widetilde Q_r$ to denote the log-likelihood of prior
+distribution, and use $\widetilde Q_t$ to denote log-likelihood of
+conditional distribution.
+
+\subsection{Sampling From Posterior}
+Given the parameter value $\vec \theta = \{\vec \theta_r, \vec
+\theta_t \}$, we want to draw samples from the posterior distribution
+$P(\mat z | \mat x; \vec \theta)$. This can be achieved by Metropolis
+Sampling. Define posterior energy of $z_i$ as the negative log of the
+posterior distribution $P(z_i | \vec x_i)$, the posterior energy can be
+written as
+\begin{equation*}
+U(\mat z_i = l| \mat x_i) = \{\beta \sum_{j \in \cN_i} T(z_i \neq z_j)  \}  + \left \{ -\log(C_p(\kappa_l)) - \kappa_l \vec \mu_l \T \vec x_i \right \} + \mathrm{const}
+\end{equation*}
+which is the sum of prior energy and conditional energy plus a constant. Then in Metropolis Sampling, given current configuration $\mat z^n$, generate a new sample $\mat w$ by drawing a new label $l'$ at site $i$ with uniform distribution. $\mat w$ has value $l'$ at site $i$, and other sites are same as $\mat z^n$. Then we compute the change of energy $\Delta U(\mat w) = U(\mat w | \mat x) - U( \mat z^n | \mat x)$, and accept candidate $\mat w$ with probability $\min (1, \exp \{ -\Delta U(\mat w) \})$.
+
+\section{Parameter Estimation}
+By maximizing $\widetilde Q_2$ with the constraint $\vec \mu_l\T \vec \mu_l = 1$ we get 
+\begin{equation}
+  R_l = \sum_{m=1}^{M}\sum_{\{i \in \cS: z_i  = l\}}^{} \vec x_i, \qquad \hat {\vec \mu}_l = \frac{R_l}{\norm{R_l}}.
+  \label{eq:mlmu}
+\end{equation}
+We do not have any \emph{a prior} knowledge or $\vec \mu$ so a Maximum Likelihood estimation  in \eqref{eq:mlmu} is best we can do. For estimating $\kappa$, we assume a Gaussian prior distribution on $\kappa$ with hyperparameters $\mu^{\kappa}$ and $\sigma^{\kappa}$, and estimate $\kappa$ by maximizing the posterior distribution. We use $\kappa$ as superscript to make distinction with vMF's mean direction vector $\vec \mu$ on the sphere.
+\section{Experiments}
+\bibliographystyle{splncs03} 
+\bibliography{reference}
+\end{document}

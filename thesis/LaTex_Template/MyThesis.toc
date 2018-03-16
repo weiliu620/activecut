@@ -1,0 +1,27 @@
+\contentsline {chapter}{\uppercase {Abstract}}{iii}{Doc-Start}
+\sloppy 
+\contentsline {chapter}{LIST OF FIGURES}{v}{Doc-Start}
+\contentsline {chapter}{LIST OF TABLES}{vi}{Doc-Start}
+\contentsline {chapter}{\uppercase {Acknowledgments}}{vii}{Doc-Start}
+\contentsline {groupheader}{CHAPTERS}{1}{chapter.1}
+\contentsline {chapter}{\numberline {1.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0\uppercase {Chapter 1 Title}}{1}{chapter.1}
+\contentsline {groupheader}{\vspace {-22pt}}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Section Title}{1}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Subsection Title}{1}{subsection.1.1.1}
+\contentsline {chapter}{\numberline {2.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0\uppercase {Chapter 2 Title}}{3}{chapter.2}
+\contentsline {groupheader}{\vspace {-22pt}}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Section Title}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Subsection Title}{3}{subsection.2.1.1}
+\contentsline {chapter}{\numberline {3.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0\uppercase {Chapter 3 Title}}{4}{chapter.3}
+\contentsline {groupheader}{\vspace {-22pt}}{4}{chapter.3}
+\contentsline {section}{\numberline {3.1}Section Title}{4}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Subsection Title}{4}{subsection.3.1.1}
+\contentsline {chapter}{\numberline {4.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0\uppercase {Chapter 4 Title}}{5}{chapter.4}
+\contentsline {groupheader}{\vspace {-22pt}}{5}{chapter.4}
+\contentsline {section}{\numberline {4.1}Section Title}{5}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Subsection Title}{5}{subsection.4.1.1}
+\contentsline {groupheader}{APPENDICES}{6}{appendix.A}
+\contentsline {chapter}{\numberline {A.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0\uppercase {Appendix A Title}}{6}{appendix.A}
+\contentsline {groupheader}{\vspace {-22pt}}{6}{appendix.A}
+\contentsline {chapter}{\numberline {B.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0\uppercase {Appendix B Title}}{7}{appendix.B}
+\contentsline {groupheader}{\vspace {-22pt}}{7}{appendix.B}

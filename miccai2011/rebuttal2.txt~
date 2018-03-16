@@ -1,0 +1,12 @@
+[Review 1, comment 1] Disagree. we assign a label to each voxel to
+indicate which functional network it belongs to. This labeling is
+assumed to be piecewise smooth in the whole brain, and we use Markov
+random field as a prior to model this [sec 2.1].  a Maximum a Posterior
+estimation is then used to estimate the label map. Moreover, we define
+hyperpriors on the \kappa parameter of conditional
+likelihood (von Mises) at sec. 2.2. All these leads to a Bayesian method.
+
+[Review 1, comment 2] We assume a non-informative (flat) prior on
+/kappa and get estimation of /kappa's, which are used to get empirical
+value of hyperparameters (mu_kappa and sigma_kappa). We can add above
+to the final version.

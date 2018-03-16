@@ -1,0 +1,35 @@
+All reviewers have concerns on the Gibbs sampling of the inference section. Indeed there is a typo in algorithm 1: the sampling is from posterior p(y_s | y_Ns, X) instead of from prior. We'll correct it as well as the same typo in eq (3). 
+
+For the burn-in issue, in the paper the goal is to find samples whose average converges to the expectation. This can be achieved even when the samples are correlated [see Robert and Casella, 2004, chap 12]. Actually the consecutive samples are even correlated in stationary Markov chain, but such correlation does not prevent that the average of the correlated samples converge to expectation. Therefore, we have only one burn-in at the beginning and this is not a flaw. Given the limited number of sampling, the final label map is an approximation of optimal solution. The stop criteria of MCMC is empirically chosen, which surly need improvement.
+
+Pseudo-likelihood (PL) is required because the partition function Z is the sum over all possible configuration of Y, which is combinatorial number and intractable to compute. PL factorize the likelihood into sum of individual conditional likelihood, which is easy to compute.
+
+One of the benefits of our method is to intrinsically model the dependency between spatial neighbors without spatial smoothing. The smoothing may help or hurt N-Cut and K-Means depending on the given filter's size. In the paper we smoothed the synthetic image with Gaussian filter of 1.2 voxel's  FWHM. Even with this small kernel, some fine structures are lost in N-Cut and K-means. groupmrf method can adaptively choose parameters and preserve the fine structure. 
+
+When we say "explicit statistical modeling" of our method, we mean the statistical dependency between group and subject network maps and the simutaneously estimation of both. We agree this need rewording. 
+
+We will mention that hyperparameters is needed. In the experiments mu_alpha = 0.9, sigma = 0.001. Considering the huge number of voxels used in the maximum likelihood estimation of alpha, this prior is regarded as nearly flat. 
+
+More number of networks increases the time of Gibbs Sampling, but the running time does not increase significantly until K > 100.
+
+
+==========================================================
+We thank the reviewers for their generally positive comments and helpful suggestions for improvement.
+
+All reviewers had concerns about the Gibbs sampling in the inference section. This is in fact a typo in Algorithm 1: the sampling should be from the posterior p(y_s | y_Ns, X) instead of from the prior. We'll correct this here as well as in eq (3). The presented results were generated with the correct posterior sampling.
+
+For the burn-in issue, the goal is to find samples whose average converges to the expectation. This is guaranteed theoretically for our Markov Chains by the Ergodic Theorem [Robert and Casella, 2004, Theorem 6.63], which does not require independence. Therefore, we have only one burn-in at the beginning, and this is not a flaw. However, the more practical issue is the speed of convergence...
+
+Pseudo-likelihood is needed because the partition function Z is the function of parameters. Z is the sum over all possible configuration of Y, which is combinatorial number and intractable to compute. Pseudo-likelihood factorize the likelihood into sum of individual conditional likelihood, which is easy to compute.
+
+Smoothing: One of the benefits of our method is to intrinsically model the dependency between spatial neighbors without spatial smoothing. The smoothing may help or hurt N-Cut and K-Means depending on the given filter's size. In the paper we smoothed the synthetic image with Gaussian filter of 1.2 voxel's  FWHM. Even with this small kernel, some fine structures are lost in N-Cut and K-means. groupmrf method can adaptively choose parameters and preserve the fine structure.
+
+We will mention that hyperparameters is needed. The hyperparameters are manually set empirically. Considering the large number of voxels used in the maximum likelihood estimation of alpha, this prior is regarded as mild. 
+
+Minor points:
+
+When we say "explicit statistical modeling" of our method, we mean the statistical dependency between group and subject network maps and the simultaneously estimation of both. We agree this need rewording.
+
+
+
+A larger number of networks increases the time for the Gibbs Sampling, but the running time does not increase significantly until K > 100.

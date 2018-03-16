@@ -1,0 +1,979 @@
+\begin{thebibliography}{100}
+
+\bibitem{achanta2012slic}
+{\sc Achanta, R., Shaji, A., Smith, K., Lucchi, A., Fua, P., and S{\"u}sstrunk,
+  S.}
+\newblock Slic superpixels compared to state-of-the-art superpixel methods.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine
+  Intelligence\/} (2012), 2274--2282.
+
+\bibitem{achard2006resilient}
+{\sc Achard, S., Salvador, R., Whitcher, B., Suckling, J., and Bullmore, E.}
+\newblock A resilient, low-frequency, small-world human brain functional
+  network with highly connected association cortical hubs.
+\newblock {\em The Journal of Neuroscience 26}, 1 (2006), 63--72.
+
+\bibitem{anderson2011functional}
+{\sc Anderson, J.~S., Nielsen, J.~A., Froehlich, A.~L., DuBray, M.~B., Druzgal,
+  T.~J., Cariello, A.~N., Cooperrider, J.~R., Zielinski, B.~A., Ravichandran,
+  C., Fletcher, P.~T., et~al.}
+\newblock Functional connectivity magnetic resonance imaging classification of
+  autism.
+\newblock {\em Brain 134}, 12 (2011), 3742--3754.
+
+\bibitem{arenas2008synchronization}
+{\sc Arenas, A., D{\'\i}az-Guilera, A., Kurths, J., Moreno, Y., and Zhou, C.}
+\newblock Synchronization in complex networks.
+\newblock {\em Physics Reports 469}, 3 (2008), 93--153.
+
+\bibitem{arthur2007k}
+{\sc Arthur, D., and Vassilvitskii, S.}
+\newblock k-means++: The advantages of careful seeding.
+\newblock In {\em Proceedings of the Eighteenth Annual ACM-SIAM Symposium on
+  Discrete Algorithms\/} (2007), Society for Industrial and Applied
+  Mathematics, pp.~1027--1035.
+
+\bibitem{banerjee2006clustering}
+{\sc Banerjee, A., Dhillon, I., Ghosh, J., and Sra, S.}
+\newblock {Clustering on the unit hypersphere using von Mises-Fisher
+  distributions}.
+\newblock {\em J. Machine Learning Res. 6}, 2 (2006), 1345.
+
+\bibitem{barbu2005generalizing}
+{\sc Barbu, A., and Zhu, S.}
+\newblock Generalizing {S}wendsen-{W}ang to sampling arbitrary posterior
+  probabilities.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions on
+  27}, 8 (2005), 1239--1253.
+
+\bibitem{baumgartner1998quantification}
+{\sc Baumgartner, R., Windischberger, C., and Moser, E.}
+\newblock Quantification in functional magnetic resonance imaging: fuzzy
+  clustering vs. correlation analysis.
+\newblock {\em Magnetic Resonance Imaging 16}, 2 (1998), 115--125.
+
+\bibitem{beckmann2005tensorial}
+{\sc Beckmann, C., and Smith, S.}
+\newblock Tensorial extensions of independent component analysis for
+  multisubject {FMRI} analysis.
+\newblock {\em Neuroimage 25}, 1 (2005), 294--311.
+
+\bibitem{beckmann2003general}
+{\sc Beckmann, C.~F., Jenkinson, M., and Smith, S.~M.}
+\newblock General multilevel linear modeling for group analysis in {FMRI}.
+\newblock {\em Neuroimage 20}, 2 (2003), 1052--1063.
+
+\bibitem{beckmann2009group}
+{\sc Beckmann, C.~F., Mackay, C.~E., Filippini, N., and Smith, S.~M.}
+\newblock Group comparison of resting-state {FMRI} data using multi-subject
+  {ICA} and dual regression.
+\newblock {\em Neuroimage 47}, Suppl 1 (2009), S148.
+
+\bibitem{bellec2010multi}
+{\sc Bellec, P., Rosa-Neto, P., Lyttelton, O., Benali, H., and Evans, A.}
+\newblock Multi-level bootstrap analysis of stable clusters in resting-state
+  {fMRI}.
+\newblock {\em Neuroimage 51}, 3 (2010), 1126--1139.
+
+\bibitem{besag_spatial_1974}
+{\sc Besag, J.}
+\newblock Spatial interaction and the statistical analysis of lattice systems.
+\newblock {\em Journal of the Royal Statistical Society. Series B
+  {(Methodological)} 36}, 2 (1974), 192--236.
+
+\bibitem{besag1975statistical}
+{\sc Besag, J.}
+\newblock Statistical analysis of non-lattice data.
+\newblock {\em The Statistician\/} (1975), 179--195.
+
+\bibitem{besag1986statistical}
+{\sc Besag, J.}
+\newblock On the statistical analysis of dirty pictures.
+\newblock {\em Journal of the Royal Statistical Society. Series B
+  (Methodological)\/} (1986), 259--302.
+
+\bibitem{bishop2006pattern}
+{\sc Bishop, C.}
+\newblock Pattern recognition and machine learning.
+\newblock {\em Information science\/} (2006).
+
+\bibitem{biswal1995functional}
+{\sc Biswal, B., Zerrin~Yetkin, F., Haughton, V.~M., and Hyde, J.~S.}
+\newblock Functional connectivity in the motor cortex of resting human brain
+  using echo-planar {MRI}.
+\newblock {\em Magnetic Resonance in Medicine 34}, 4 (1995), 537--541.
+
+\bibitem{boccaletti2006complex}
+{\sc Boccaletti, S., Latora, V., Moreno, Y., Chavez, M., and Hwang, D.-U.}
+\newblock Complex networks: {structure} and dynamics.
+\newblock {\em Physics {R}eports 424}, 4 (2006), 175--308.
+
+\bibitem{boykov2001fast}
+{\sc Boykov, Y., Veksler, O., and Zabih, R.}
+\newblock Fast approximate energy minimization via graph cuts.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions on
+  23}, 11 (2001), 1222--1239.
+
+\bibitem{boykov2001interactive}
+{\sc Boykov, Y.~Y., and Jolly, M.-P.}
+\newblock Interactive graph cuts for optimal boundary \& region segmentation of
+  objects in nd images.
+\newblock In {\em Computer Vision, 2001. ICCV 2001. Proceedings. Eighth IEEE
+  International Conference on\/} (2001), vol.~1, IEEE, pp.~105--112.
+
+\bibitem{buckner2008brain}
+{\sc Buckner, R.~L., Andrews-Hanna, J.~R., and Schacter, D.~L.}
+\newblock The brain's default network.
+\newblock {\em Annals of the New York Academy of Sciences 1124}, 1 (2008),
+  1--38.
+
+\bibitem{buckner2009cortical}
+{\sc Buckner, R.~L., Sepulcre, J., Talukdar, T., Krienen, F.~M., Liu, H.,
+  Hedden, T., Andrews-Hanna, J.~R., Sperling, R.~A., and Johnson, K.~A.}
+\newblock Cortical hubs revealed by intrinsic functional connectivity: mapping,
+  assessment of stability, and relation to alzheimer's disease.
+\newblock {\em The Journal of Neuroscience 29}, 6 (2009), 1860--1873.
+
+\bibitem{bullmore2009complex}
+{\sc Bullmore, E., and Sporns, O.}
+\newblock Complex brain networks: graph theoretical analysis of structural and
+  functional systems.
+\newblock {\em Nature Reviews Neuroscience 10}, 3 (2009), 186--198.
+
+\bibitem{bullmore2012economy}
+{\sc Bullmore, E., and Sporns, O.}
+\newblock The economy of brain network organization.
+\newblock {\em Nature Reviews Neuroscience 13}, 5 (2012), 336--349.
+
+\bibitem{buxton1998dynamics}
+{\sc Buxton, R., Wong, E., and Frank, L.}
+\newblock Dynamics of blood flow and oxygenation changes during brain
+  activation: the balloon model.
+\newblock {\em Magnetic Resonance in Medicine 39}, 6 (1998), 855--864.
+
+\bibitem{caffo2005ascent}
+{\sc Caffo, B.~S., Jank, W., and Jones, G.~L.}
+\newblock Ascent-based monte carlo expectation--maximization.
+\newblock {\em Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology) 67}, 2 (2005), 235--251.
+
+\bibitem{calhoun2001method}
+{\sc Calhoun, V., Adali, T., Pearlson, G., and Pekar, J.}
+\newblock A method for making group inferences from functional {MRI} data using
+  independent component analysis.
+\newblock {\em Human Brain Mapping 14}, 3 (2001), 140--151.
+
+\bibitem{calhoun2001spatial}
+{\sc Calhoun, V., Adali, T., Pearlson, G., and Pekar, J.}
+\newblock Spatial and temporal independent component analysis of functional
+  {MRI} data containing a pair of task-related waveforms.
+\newblock {\em HBM 13}, 1 (2001), 43--53.
+
+\bibitem{castellanos2011large}
+{\sc Castellanos, F., and Proal, E.}
+\newblock Large-scale brain systems in {ADHD}: beyond the prefrontal--striatal
+  model.
+\newblock {\em Trends in {C}ognitive {S}ciences\/} (2011).
+
+\bibitem{chen2008group}
+{\sc Chen, S., Ross, T.~J., Zhan, W., Myers, C.~S., Chuang, K.-S., Heishman,
+  S.~J., Stein, E.~A., and Yang, Y.}
+\newblock Group independent component analysis reveals consistent resting-state
+  networks across multiple sessions.
+\newblock {\em Brain {R}esearch 1239\/} (2008), 141.
+
+\bibitem{clifford1990markov}
+{\sc Clifford, P.}
+\newblock Markov random fields in statistics.
+\newblock {\em Disorder in physical systems\/} (1990), 19--32.
+
+\bibitem{cohen2008defining}
+{\sc Cohen, A.~L., Fair, D.~A., Dosenbach, N.~U., Miezin, F.~M., Dierker, D.,
+  Van~Essen, D.~C., Schlaggar, B.~L., and Petersen, S.~E.}
+\newblock Defining functional areas in individual human brains using resting
+  functional connectivity {MRI}.
+\newblock {\em Neuroimage 41}, 1 (2008), 45--57.
+
+\bibitem{cooper1999mixing}
+{\sc Cooper, C., and Frieze, A.}
+\newblock Mixing properties of the {S}wendsen-{W}ang process on classes of
+  graphs.
+\newblock {\em Random Structures and Algorithms 15}, 3-4 (1999), 242--261.
+
+\bibitem{cordes2002hierarchical}
+{\sc Cordes, D., Haughton, V., Carew, J.~D., Arfanakis, K., and Maravilla, K.}
+\newblock Hierarchical clustering to measure connectivity in {fMRI}
+  resting-state data.
+\newblock {\em Magnetic Resonance Imaging 20}, 4 (2002), 305--317.
+
+\bibitem{cordes2001frequencies}
+{\sc Cordes, D., Haughton, V.~M., Arfanakis, K., Carew, J.~D., Turski, P.~A.,
+  Moritz, C.~H., Quigley, M.~A., and Meyerand, M.~E.}
+\newblock Frequencies contributing to functional connectivity in the cerebral
+  cortex in "resting-state" data.
+\newblock {\em American Journal of Neuroradiology 22}, 7 (2001), 1326--1333.
+
+\bibitem{cordes2000mapping}
+{\sc Cordes, D., Haughton, V.~M., Arfanakis, K., Wendt, G.~J., Turski, P.~A.,
+  Moritz, C.~H., Quigley, M.~A., and Meyerand, M.~E.}
+\newblock Mapping functionally related regions of brain with functional
+  connectivity mr imaging.
+\newblock {\em American Journal of Neuroradiology 21}, 9 (2000), 1636--1644.
+
+\bibitem{cosman_exact_2004}
+{\sc Cosman, E.~R., Fisher, J.~W., and Wells, W.~M.}
+\newblock Exact {MAP} activity detection in {fMRI} using a {GLM} with an
+  {I}sing spatial prior.
+\newblock In {\em MICCAI\/} (2004), pp.~703–--710.
+
+\bibitem{craddock2012whole}
+{\sc Craddock, R.~C., James, G.~A., Holtzheimer, P.~E., Hu, X.~P., and Mayberg,
+  H.~S.}
+\newblock A whole brain fmri atlas generated via spatially constrained spectral
+  clustering.
+\newblock {\em Human Brain Mapping 33}, 8 (2012), 1914--1928.
+
+\bibitem{damoiseaux2006consistent}
+{\sc Damoiseaux, J., Rombouts, S., Barkhof, F., Scheltens, P., Stam, C., Smith,
+  S.~M., and Beckmann, C.}
+\newblock Consistent resting-state networks across healthy subjects.
+\newblock {\em Proceedings of the National Academy of Sciences 103}, 37 (2006),
+  13848--13853.
+
+\bibitem{deco2010emerging}
+{\sc Deco, G., Jirsa, V., and McIntosh, A.}
+\newblock Emerging concepts for the dynamical organization of resting-state
+  activity in the brain.
+\newblock {\em Nature Reviews Neuroscience 12}, 1 (2010), 43--56.
+
+\bibitem{deco2009key}
+{\sc Deco, G., Jirsa, V., McIntosh, A., Sporns, O., and K{\"o}tter, R.}
+\newblock Key role of coupling, delay, and noise in resting brain fluctuations.
+\newblock {\em Proceedings of the National Academy of Sciences 106}, 25 (2009),
+  10302--10307.
+
+\bibitem{dempster1977maximum}
+{\sc Dempster, A.~P., Laird, N.~M., and Rubin, D.~B.}
+\newblock Maximum likelihood from incomplete data via the em algorithm.
+\newblock {\em Journal of the Royal Statistical Society. Series B
+  (Methodological)\/} (1977), 1--38.
+
+\bibitem{descombes_spatio-temporal_1998}
+{\sc Descombes, X., Kruggel, F., and Cramon, D.~V.}
+\newblock Spatio-temporal {fMRI} analysis using {M}arkov random fields.
+\newblock {\em Medical Imaging, {IEEE} Transactions on 17}, 6 (1998),
+  1028--1039.
+
+\bibitem{descombes_fmri_1998}
+{\sc Descombes, X., Kruggel, F., and von Cramon, D.~Y.}
+\newblock {fMRI} signal restoration using a {spatio-temporal} {M}arkov random
+  field preserving transitions.
+\newblock {\em {NeuroImage} 8}, 4 (Nov. 1998), 340--349.
+
+\bibitem{dhillon2001efficient}
+{\sc Dhillon, I.~S., Fan, J., and Guan, Y.}
+\newblock Efficient clustering of very large document collections.
+\newblock {\em Data Mining for Scientific and Engineering Applications\/}
+  (2001), 357--381.
+
+\bibitem{dhillon2003modeling}
+{\sc Dhillon, I.~S., and Sra, S.}
+\newblock Modeling data using directional distributions.
+\newblock Tech. rep., Technical Report TR-03-06, Department of Computer
+  Sciences, The University of Texas at Austin., 2003.
+
+\bibitem{di2013autism}
+{\sc Di~Martino, A., Yan, C., Li, Q., Denio, E., Castellanos, F., Alaerts, K.,
+  Anderson, J., Assaf, M., Bookheimer, S., Dapretto, M., et~al.}
+\newblock The autism brain imaging data exchange: towards a large-scale
+  evaluation of the intrinsic brain architecture in autism.
+\newblock {\em Molecular Psychiatry\/} (2013).
+
+\bibitem{efron1994introduction}
+{\sc Efron, B., and Tibshirani, R.~J.}
+\newblock {\em An introduction to the bootstrap}, vol.~57.
+\newblock CRC press, 1994.
+
+\bibitem{esposito2005independent}
+{\sc Esposito, F., Scarabino, T., Hyvarinen, A., Himberg, J., Formisano, E.,
+  Comani, S., Tedeschi, G., Goebel, R., Seifritz, E., Di~Salle, F., et~al.}
+\newblock Independent component analysis of {fMRI} group studies by
+  self-organizing clustering.
+\newblock {\em Neuroimage 25}, 1 (2005), 193--205.
+
+\bibitem{feodor2000stochastic}
+{\sc Feodor~Nielsen, S.}
+\newblock The stochastic {EM} algorithm: estimation and asymptotic results.
+\newblock {\em Bernoulli 6}, 3 (2000), 457--489.
+
+\bibitem{ferguson2012dynamical}
+{\sc Ferguson, M.~A., and Anderson, J.~S.}
+\newblock Dynamical stability of intrinsic connectivity networks.
+\newblock {\em Neuroimage 59}, 4 (2012), 4022--4031.
+
+\bibitem{filippini2009distinct}
+{\sc Filippini, N., MacIntosh, B.~J., Hough, M.~G., Goodwin, G.~M., Frisoni,
+  G.~B., Smith, S.~M., Matthews, P.~M., Beckmann, C.~F., and Mackay, C.~E.}
+\newblock Distinct patterns of brain activity in young carriers of the
+  apoe-$\varepsilon$4 allele.
+\newblock {\em Proceedings of the National Academy of Sciences 106}, 17 (2009),
+  7209--7214.
+
+\bibitem{ford2010flows}
+{\sc Ford, D., and Fulkerson, D.~R.}
+\newblock {\em Flows in networks}.
+\newblock Princeton University Press, 2010.
+
+\bibitem{fox2007spontaneous}
+{\sc Fox, M., and Raichle, M.}
+\newblock Spontaneous fluctuations in brain activity observed with functional
+  magnetic resonance imaging.
+\newblock {\em Nature Reviews Neuroscience 8}, 9 (2007), 700--711.
+
+\bibitem{fox2006spontaneous}
+{\sc Fox, M.~D., Corbetta, M., Snyder, A.~Z., Vincent, J.~L., and Raichle,
+  M.~E.}
+\newblock Spontaneous neuronal activity distinguishes human dorsal and ventral
+  attention systems.
+\newblock {\em Proceedings of the National Academy of Sciences 103}, 26 (2006),
+  10046--10051.
+
+\bibitem{fox2005human}
+{\sc Fox, M.~D., Snyder, A.~Z., Vincent, J.~L., Corbetta, M., Van~Essen, D.~C.,
+  and Raichle, M.~E.}
+\newblock The human brain is intrinsically organized into dynamic,
+  anticorrelated functional networks.
+\newblock {\em Proceedings of the National Academy of Sciences of the United
+  States of America 102}, 27 (2005), 9673--9678.
+
+\bibitem{franco2009interrater}
+{\sc Franco, A.~R., Pritchard, A., Calhoun, V.~D., and Mayer, A.~R.}
+\newblock Interrater and intermethod reliability of default mode network
+  selection.
+\newblock {\em Human Brain Mapping 30}, 7 (2009), 2293--2303.
+
+\bibitem{friedman2008sparse}
+{\sc Friedman, J., Hastie, T., and Tibshirani, R.}
+\newblock Sparse inverse covariance estimation with the graphical lasso.
+\newblock {\em Biostatistics 9}, 3 (2008), 432--441.
+
+\bibitem{friston2007statistical}
+{\sc Friston, K., Ashburner, J., Kiebel, S., Nichols, T., and Penny, W.}
+\newblock Statistical {P}arametric {M}apping: the analysis of functional brain
+  images.
+\newblock {\em Statistical Parametric Mapping The Analysis of Functional Brain
+  Images 8\/} (2007).
+
+\bibitem{friston1994analysis}
+{\sc Friston, K., Jezzard, P., and Turner, R.}
+\newblock Analysis of functional mri time-series.
+\newblock {\em Human Brain Mapping 1}, 2 (1994), 153--171.
+
+\bibitem{friston1994functional}
+{\sc Friston, K.~J.}
+\newblock Functional and effective connectivity in neuroimaging: a synthesis.
+\newblock {\em Human Brain Mapping 2}, 1-2 (1994), 56--78.
+
+\bibitem{gelman2003bayesian}
+{\sc Gelman, A., Carlin, J.~B., Stern, H.~S., and Rubin, D.~B.}
+\newblock {\em Bayesian data analysis}.
+\newblock CRC press, 2003.
+
+\bibitem{gelman2006bayesian}
+{\sc Gelman, A., and Pardoe, I.}
+\newblock Bayesian measures of explained variance and pooling in multilevel
+  (hierarchical) models.
+\newblock {\em Technometrics 48}, 2 (2006), 241--251.
+
+\bibitem{gelman1992inference}
+{\sc Gelman, A., and Rubin, D.}
+\newblock Inference from iterative simulation using multiple sequences.
+\newblock {\em Statistical Science 7}, 4 (1992), 457--472.
+
+\bibitem{geman1984stochastic}
+{\sc Geman, S., and Geman, D.}
+\newblock Stochastic relaxation, gibbs distributions, and the {B}ayesian
+  restoration of images.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 6 (1984), 721--741.
+
+\bibitem{ghosh2008noise}
+{\sc Ghosh, A., Rho, Y., McIntosh, A., K{\"o}tter, R., and Jirsa, V.}
+\newblock Noise during rest enables the exploration of the brain's dynamic
+  repertoire.
+\newblock {\em PLoS Computational Biology 4}, 10 (2008), e1000196.
+
+\bibitem{gibbs2000bounding}
+{\sc Gibbs, A.}
+\newblock Bounding the convergence time of the gibbs sampler in {B}ayesian
+  image restoration.
+\newblock {\em Biometrika 87}, 4 (2000), 749--766.
+
+\bibitem{golland2008spatial}
+{\sc Golland, P., Lashkari, D., and Venkataraman, A.}
+\newblock Spatial patterns and functional profiles for discovering structure in
+  {fMRI} data.
+\newblock In {\em Signals, Systems and Computers, 2008 42nd Asilomar Conference
+  on\/} (2008), IEEE, pp.~1402--1409.
+
+\bibitem{gonzalez2011parallel}
+{\sc Gonzalez, J., Low, Y., Gretton, A., and Guestrin, C.}
+\newblock Parallel gibbs sampling: from colored fields to thin junction trees.
+\newblock In {\em International Conference on Artificial Intelligence and
+  Statistics\/} (2011), pp.~324--332.
+
+\bibitem{greicius2007resting}
+{\sc Greicius, M.~D., Flores, B.~H., Menon, V., Glover, G.~H., Solvason, H.~B.,
+  Kenna, H., Reiss, A.~L., and Schatzberg, A.~F.}
+\newblock Resting-state functional connectivity in major depression: abnormally
+  increased contributions from subgenual cingulate cortex and thalamus.
+\newblock {\em Biological Psychiatry 62}, 5 (2007), 429--437.
+
+\bibitem{greicius2003functional}
+{\sc Greicius, M.~D., Krasnow, B., Reiss, A.~L., and Menon, V.}
+\newblock Functional connectivity in the resting brain: a network analysis of
+  the default mode hypothesis.
+\newblock {\em Proceedings of the National Academy of Sciences 100}, 1 (2003),
+  253--258.
+
+\bibitem{greicius2004default}
+{\sc Greicius, M.~D., Srivastava, G., Reiss, A.~L., and Menon, V.}
+\newblock Default-mode network activity distinguishes alzheimer's disease from
+  healthy aging: evidence from functional {MRI}.
+\newblock {\em Proceedings of the National Academy of Sciences 101}, 13 (2004),
+  4637--4642.
+
+\bibitem{greig1989exact}
+{\sc Greig, D., Porteous, B., and Seheult, A.~H.}
+\newblock Exact maximum a posteriori estimation for binary images.
+\newblock {\em Journal of the Royal Statistical Society. Series B
+  (Methodological)\/} (1989), 271--279.
+
+\bibitem{grimmett2006random}
+{\sc Grimmett, G.}
+\newblock {\em The random-cluster model}, vol.~333.
+\newblock Springer Verlag, 2006.
+
+\bibitem{guyon2003introduction}
+{\sc Guyon, I., and Elisseeff, A.}
+\newblock An introduction to variable and feature selection.
+\newblock {\em The Journal of Machine Learning Research 3\/} (2003),
+  1157--1182.
+
+\bibitem{hamze2004fields}
+{\sc Hamze, F., and de~Freitas, N.}
+\newblock From fields to trees.
+\newblock In {\em Proceedings of the 20th Conference on Uncertainty in
+  Artificial Intelligence\/} (2004), AUAI Press, pp.~243--250.
+
+\bibitem{hartvig2000spatial}
+{\sc Hartvig, N.~V., and Jensen, J.~L.}
+\newblock Spatial mixture modeling of {fMRI} data.
+\newblock {\em Human Brain Mapping 11}, 4 (2000), 233--248.
+
+\bibitem{hermundstad2013structural}
+{\sc Hermundstad, A.~M., Bassett, D.~S., Brown, K.~S., Aminoff, E.~M., Clewett,
+  D., Freeman, S., Frithsen, A., Johnson, A., Tipper, C.~M., Miller, M.~B.,
+  et~al.}
+\newblock Structural foundations of resting-state and task-based functional
+  connectivity in the human brain.
+\newblock {\em Proceedings of the National Academy of Sciences 110}, 15 (2013),
+  6169--6174.
+
+\bibitem{holme2012temporal}
+{\sc Holme, P., and Saram{\"a}ki, J.}
+\newblock Temporal networks.
+\newblock {\em Physics Reports 519}, 3 (2012), 97--125.
+
+\bibitem{honey2009predicting}
+{\sc Honey, C., Sporns, O., Cammoun, L., Gigandet, X., Thiran, J.-P., Meuli,
+  R., and Hagmann, P.}
+\newblock Predicting human resting-state functional connectivity from
+  structural connectivity.
+\newblock {\em Proceedings of the National Academy of Sciences 106}, 6 (2009),
+  2035--2040.
+
+\bibitem{honey2007network}
+{\sc Honey, C.~J., K{\"o}tter, R., Breakspear, M., and Sporns, O.}
+\newblock Network structure of cerebral cortex shapes functional connectivity
+  on multiple time scales.
+\newblock {\em Proceedings of the National Academy of Sciences 104}, 24 (2007),
+  10240--10245.
+
+\bibitem{huang2010learning}
+{\sc Huang, S., Li, J., Sun, L., Ye, J., Fleisher, A., Wu, T., Chen, K., and
+  Reiman, E.}
+\newblock Learning brain connectivity of alzheimer's disease by sparse inverse
+  covariance estimation.
+\newblock {\em NeuroImage 50}, 3 (2010), 935--949.
+
+\bibitem{huber2003bounding}
+{\sc Huber, M.}
+\newblock A bounding chain for {S}wendsen-{W}ang.
+\newblock {\em Random Structures \& Algorithms 22}, 1 (2003), 43--59.
+
+\bibitem{huettel2004functional}
+{\sc Huettel, S.~A., Song, A.~W., and McCarthy, G.}
+\newblock {\em Functional {M}agnetic {R}esonance {I}maging}, vol.~1.
+\newblock Sinauer Associates Sunderland, 2004.
+
+\bibitem{hyvarinen2000independent}
+{\sc Hyv{\"a}rinen, A., and Oja, E.}
+\newblock Independent component analysis: algorithms and applications.
+\newblock {\em Neural Networks 13}, 4 (2000), 411--430.
+
+\bibitem{jenkinson2012fsl}
+{\sc Jenkinson, M., Beckmann, C.~F., Behrens, T.~E., Woolrich, M.~W., and
+  Smith, S.~M.}
+\newblock Fsl.
+\newblock {\em NeuroImage 62}, 2 (2012), 782--790.
+
+\bibitem{jirsa2007handbook}
+{\sc Jirsa, V.~K., and McIntosh, A.~R.}
+\newblock {\em Handbook of brain connectivity}, vol.~1.
+\newblock Springer Berlin, 2007.
+
+\bibitem{johnson1996studying}
+{\sc Johnson, V.}
+\newblock Studying convergence of {M}arkov chain monte carlo algorithms using
+  coupled sample paths.
+\newblock {\em Journal of the American Statistical Association\/} (1996),
+  154--166.
+
+\bibitem{kindermann1980markov}
+{\sc Kindermann, R., Snell, J.~L., et~al.}
+\newblock {\em Markov random fields and their applications}, vol.~1.
+\newblock American Mathematical Society Providence, RI, 1980.
+
+\bibitem{kirkpatrick1983optimization}
+{\sc Kirkpatrick, S., Jr., D.~G., and Vecchi, M.~P.}
+\newblock Optimization by simmulated annealing.
+\newblock {\em Science 220}, 4598 (1983), 671--680.
+
+\bibitem{kolar2010estimating}
+{\sc Kolar, M., Song, L., Ahmed, A., and Xing, E.~P.}
+\newblock Estimating time-varying networks.
+\newblock {\em The Annals of Applied Statistics 4}, 1 (2010), 94--123.
+
+\bibitem{kollar2009probabilistic}
+{\sc Kollar, D., and Friedman, N.}
+\newblock {\em Probabilistic graphical models: principles and techniques}.
+\newblock The MIT Press, 2009.
+
+\bibitem{lafferty2001conditional}
+{\sc LAfferty, J.}
+\newblock Conditional random fields: probabilistic models for segmenting and
+  labeling sequence data.
+\newblock In {\em Proceedings of the 18th International Conference on Machine
+  Learning (ICML 2001)\/} (2001), Morgan Kaufmann.
+
+\bibitem{lauritzen1996graphical}
+{\sc Lauritzen, S.~L.}
+\newblock {\em Graphical models}.
+\newblock Oxford University Press, 1996.
+
+\bibitem{levine2001implementations}
+{\sc Levine, R.~A., and Casella, G.}
+\newblock Implementations of the monte carlo em algorithm.
+\newblock {\em Journal of Computational and Graphical Statistics 10}, 3 (2001),
+  422--439.
+
+\bibitem{levinshtein2009turbopixels}
+{\sc Levinshtein, A., Stere, A., Kutulakos, K.~N., Fleet, D.~J., Dickinson,
+  S.~J., and Siddiqi, K.}
+\newblock Turbopixels: fast superpixels using geometric flows.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions on
+  31}, 12 (2009), 2290--2297.
+
+\bibitem{lewin2003functional}
+{\sc Lewin, J.}
+\newblock Functional {MRI}: An introduction to methods.
+\newblock {\em Journal of Magnetic Resonance Imaging 17}, 3 (2003), 383--383.
+
+\bibitem{LiBook}
+{\sc Li, S.~Z.}
+\newblock {\em Markov random field modeling in computer vision}.
+\newblock Springer, 1995.
+
+\bibitem{li_markov_2009}
+{\sc Li, S.~Z.}
+\newblock {\em Markov random field modeling in image analysis}.
+\newblock Springer, Mar. 2009.
+
+\bibitem{liu2011monte}
+{\sc Liu, W., Awate, S., Anderson, J., Yurgelun-Todd, D., and Fletcher, P.}
+\newblock Monte {C}arlo expectation maximization with hidden {M}arkov models to
+  detect functional networks in resting-state {fMRI}.
+\newblock {\em Machine Learning in Medical Imaging\/} (2011), 59--66.
+
+\bibitem{liu2012group}
+{\sc Liu, W., Awate, S.~P., and Fletcher, P.~T.}
+\newblock Group analysis of resting-state {fMRI} by hierarchical {M}arkov
+  random fields.
+\newblock In {\em Medical Image Computing and Computer-Assisted
+  Intervention--MICCAI 2012}. Springer, 2012, pp.~189--196.
+
+\bibitem{low2012distributed}
+{\sc Low, Y., Bickson, D., Gonzalez, J., Guestrin, C., Kyrola, A., and
+  Hellerstein, J.~M.}
+\newblock Distributed graphlab: {a} framework for machine learning and data
+  mining in the cloud.
+\newblock {\em Proceedings of the VLDB Endowment 5}, 8 (2012), 716--727.
+
+\bibitem{mardia2000directional}
+{\sc Mardia, K., Jupp, P., and Corporation, E.}
+\newblock {\em {Directional statistics}}.
+\newblock Wiley Chichester, 2000.
+
+\bibitem{meindl2010test}
+{\sc Meindl, T., Teipel, S., Elmouden, R., Mueller, S., Koch, W., Dietrich, O.,
+  Coates, U., Reiser, M., and Glaser, C.}
+\newblock Test--retest reproducibility of the default-mode network in healthy
+  individuals.
+\newblock {\em Human Brain Mapping 31}, 2 (2010), 237--246.
+
+\bibitem{metropolis1953equation}
+{\sc Metropolis, N., Rosenbluth, A.~W., Rosenbluth, M.~N., Teller, A.~H., and
+  Teller, E.}
+\newblock Equation of state calculations by fast computing machines.
+\newblock {\em The Journal of Chemical Physics 21\/} (1953), 1087.
+
+\bibitem{mezer2009cluster}
+{\sc Mezer, A., Yovel, Y., Pasternak, O., Gorfine, T., and Assaf, Y.}
+\newblock Cluster analysis of resting-state {fMRI} time series.
+\newblock {\em Neuroimage 45}, 4 (2009), 1117--1125.
+
+\bibitem{michel2012supervised}
+{\sc Michel, V., Gramfort, A., Varoquaux, G., Eger, E., Keribin, C., and
+  Thirion, B.}
+\newblock A supervised clustering approach for {fMRI}-based inference of brain
+  states.
+\newblock {\em Pattern Recognition 45}, 6 (2012), 2041--2049.
+
+\bibitem{minshew2010nature}
+{\sc Minshew, N.~J., and Keller, T.~A.}
+\newblock The nature of brain dysfunction in autism: functional brain imaging
+  studies.
+\newblock {\em Current Opinion in Neurology 23}, 2 (2010), 124.
+
+\bibitem{mitchell1980need}
+{\sc Mitchell, T.~M.}
+\newblock {\em The need for biases in learning generalizations}.
+\newblock Department of Computer Science, Laboratory for Computer Science
+  Research, Rutgers Univ., 1980.
+
+\bibitem{mohammadi2009changes}
+{\sc Mohammadi, B., Kollewe, K., Samii, A., Krampfl, K., Dengler, R., and
+  M{\"u}nte, T.}
+\newblock Changes of resting state brain networks in amyotrophic lateral
+  sclerosis.
+\newblock {\em Klinische Neurophysiologie 40}, 01 (2009), V148.
+
+\bibitem{mortveit2008introduction}
+{\sc Mortveit, H., and Reidys, C.}
+\newblock {\em An introduction to sequential dynamical systems}.
+\newblock Springer Verlag, 2008.
+
+\bibitem{mller_multivariate_2001}
+{\sc M\"{u}ller, K., Lohmann, G., Bosch, V., and von Cramon, D.~Y.}
+\newblock On multivariate spectral analysis of {fMRI} time series.
+\newblock {\em {NeuroImage} 14}, 2 (Aug. 2001), 347--356.
+
+\bibitem{murphy2012machine}
+{\sc Murphy, K.~P.}
+\newblock {\em Machine learning: a probabilistic perspective}.
+\newblock The MIT Press, 2012.
+
+\bibitem{ng2012modeling}
+{\sc Ng, B., Hamarneh, G., and Abugharbieh, R.}
+\newblock Modeling brain activation in {fMRI} using group {MRF}.
+\newblock {\em Medical Imaging, IEEE Transactions on 31}, 5 (2012), 1113--1123.
+
+\bibitem{nggroup2012}
+{\sc Ng, B., McKeown, M., and Abugharbieh, R.}
+\newblock Group replicator dynamics: a novel group-wise evolutionary approach
+  for sparse brain network detection.
+\newblock {\em IEEE TMI 31}, 3 (2012), 576 --585.
+
+\bibitem{nielsen2013multisite}
+{\sc Nielsen, J.~A., Zielinski, B.~A., Fletcher, P.~T., Alexander, A.~L.,
+  Lange, N., Bigler, E.~D., Lainhart, J.~E., and Anderson, J.~S.}
+\newblock Multisite functional connectivity mri classification of autism:
+  {ABIDE} results.
+\newblock {\em Frontiers in Human Neuroscience 7\/} (2013).
+
+\bibitem{ou_spatial_2005}
+{\sc Ou, W., and Golland, P.}
+\newblock From spatial regularization to anatomical priors in {fMRI} analysis.
+\newblock {\em {I}nformation in {M}edical {I}maging\/} (2005), 88--100.
+
+\bibitem{ou2010combining}
+{\sc Ou, W., Wells~III, W.~M., and Golland, P.}
+\newblock Combining spatial priors and anatomical information for fmri
+  detection.
+\newblock {\em Medical Image Analysis 14}, 3 (2010), 318--331.
+
+\bibitem{peierls1936ising}
+{\sc Peierls, R., and Born, M.}
+\newblock On ising's model of ferromagnetism.
+\newblock In {\em Proceedings of the Cambridge Philosophical Society\/} (1936),
+  vol.~32, p.~477.
+
+\bibitem{penny2005bayesian}
+{\sc Penny, W.~D., Trujillo-Barreto, N.~J., and Friston, K.~J.}
+\newblock Bayesian {fMRI} time series analysis with spatial priors.
+\newblock {\em NeuroImage 24}, 2 (2005), 350--362.
+
+\bibitem{jezzard2003functional}
+{\sc Peter~Jezzard, P. M.~M., and Smith, S.~M.}, Eds.
+\newblock {\em Functional MRI: an introduction to methods}.
+\newblock Oxford University Press, 2003.
+
+\bibitem{potts1952some}
+{\sc Potts, R.~B.}
+\newblock Some generalized order-disorder transformations.
+\newblock In {\em Proceedings of the Cambridge Philosophical Society\/} (1952),
+  vol.~48, Cambridge University Press, pp.~106--109.
+
+\bibitem{power2011functional}
+{\sc Power, J.~D., Cohen, A.~L., Nelson, S.~M., Wig, G.~S., Barnes, K.~A.,
+  Church, J.~A., Vogel, A.~C., Laumann, T.~O., Miezin, F.~M., Schlaggar, B.~L.,
+  et~al.}
+\newblock Functional network organization of the human brain.
+\newblock {\em Neuron 72}, 4 (2011), 665--678.
+
+\bibitem{raichle2001}
+{\sc Raichle, M.~E., MacLeod, A.~M., Snyder, A.~Z., Powers, W.~J., Gusnard,
+  D.~A., and Shulman, G.~L.}
+\newblock A default mode of brain function.
+\newblock {\em PNAS 98}, 2 (2001), 676--682.
+
+\bibitem{raichle2001default}
+{\sc Raichle, M.~E., MacLeod, A.~M., Snyder, A.~Z., Powers, W.~J., Gusnard,
+  D.~A., and Shulman, G.~L.}
+\newblock A default mode of brain function.
+\newblock {\em Proceedings of the National Academy of Sciences 98}, 2 (2001),
+  676--682.
+
+\bibitem{rand1971objective}
+{\sc Rand, W.~M.}
+\newblock Objective criteria for the evaluation of clustering methods.
+\newblock {\em Journal of the American Statistical association 66}, 336 (1971),
+  846--850.
+
+\bibitem{robert2007bayesian}
+{\sc Robert, C.}
+\newblock {\em The {B}ayesian choice: from decision-theoretic foundations to
+  computational implementation}.
+\newblock Springer, 2007.
+
+\bibitem{robert2004monte}
+{\sc Robert, C., and Casella, G.}
+\newblock {\em Monte Carlo statistical methods}.
+\newblock Springer, 2004.
+
+\bibitem{rother2004grabcut}
+{\sc Rother, C., Kolmogorov, V., and Blake, A.}
+\newblock Grabcut: interactive foreground extraction using iterated graph cuts.
+\newblock In {\em ACM Transactions on Graphics (TOG)\/} (2004), vol.~23, ACM,
+  pp.~309--314.
+
+\bibitem{rubinov2010complex}
+{\sc Rubinov, M., and Sporns, O.}
+\newblock Complex network measures of brain connectivity: uses and
+  interpretations.
+\newblock {\em Neuroimage 52}, 3 (2010), 1059--1069.
+
+\bibitem{rubinstein2008simulation}
+{\sc Rubinstein, R., and Kroese, D.}
+\newblock {\em Simulation and the Monte Carlo method}, vol.~707.
+\newblock Wiley-Interscience, 2008.
+
+\bibitem{rue2005gaussian}
+{\sc Rue, H., and Held, L.}
+\newblock {\em Gaussian {M}arkov random fields: theory and applications}.
+\newblock CRC Press, 2005.
+
+\bibitem{saeys2007review}
+{\sc Saeys, Y., Inza, I., and Larra{\~n}aga, P.}
+\newblock A review of feature selection techniques in bioinformatics.
+\newblock {\em Bioinformatics 23}, 19 (2007), 2507--2517.
+
+\bibitem{salvador2005neurophysiological}
+{\sc Salvador, R., Suckling, J., Coleman, M.~R., Pickard, J.~D., Menon, D., and
+  Bullmore, E.}
+\newblock Neurophysiological architecture of functional magnetic resonance
+  images of human brain.
+\newblock {\em Cerebral Cortex 15}, 9 (2005), 1332--1342.
+
+\bibitem{seeley2009neurodegenerative}
+{\sc Seeley, W.~W., Crawford, R.~K., Zhou, J., Miller, B.~L., and Greicius,
+  M.~D.}
+\newblock Neurodegenerative diseases target large-scale human brain networks.
+\newblock {\em Neuron 62}, 1 (2009), 42.
+
+\bibitem{seeley2007dissociable}
+{\sc Seeley, W.~W., Menon, V., Schatzberg, A.~F., Keller, J., Glover, G.~H.,
+  Kenna, H., Reiss, A.~L., and Greicius, M.~D.}
+\newblock Dissociable intrinsic connectivity networks for salience processing
+  and executive control.
+\newblock {\em The Journal of neuroscience 27}, 9 (2007), 2349--2356.
+
+\bibitem{shehzad2009resting}
+{\sc Shehzad, Z., Kelly, A.~C., Reiss, P.~T., Gee, D.~G., Gotimer, K., Uddin,
+  L.~Q., Lee, S.~H., Margulies, D.~S., Roy, A.~K., Biswal, B.~B., et~al.}
+\newblock The resting brain: unconstrained yet reliable.
+\newblock {\em Cerebral Cortex 19}, 10 (2009), 2209--2229.
+
+\bibitem{shi2000normalized}
+{\sc Shi, J., and Malik, J.}
+\newblock Normalized cuts and image segmentation.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions on
+  22}, 8 (2000), 888--905.
+
+\bibitem{sporns2004organization}
+{\sc Sporns, O., Chialvo, D.~R., Kaiser, M., and Hilgetag, C.~C.}
+\newblock Organization, development and function of complex brain networks.
+\newblock {\em Trends in Cognitive Sciences 8}, 9 (2004), 418--425.
+
+\bibitem{stroman2011essentials}
+{\sc Stroman, P.}
+\newblock {\em Essentials of functional MRI}.
+\newblock CRC Press, 2011.
+
+\bibitem{tanaka2008locally}
+{\sc Tanaka, M., and Okutomi, M.}
+\newblock Locally adaptive learning for translation-variant {MRF} image priors.
+\newblock In {\em Computer Vision and Pattern Recognition, 2008. CVPR 2008.
+  IEEE Conference on\/} (2008), IEEE, pp.~1--8.
+
+\bibitem{thirion2006dealing}
+{\sc Thirion, B., Flandin, G., Pinel, P., Roche, A., Ciuciu, P., and Poline,
+  J.-B.}
+\newblock Dealing with the shortcomings of spatial normalization: multi-subject
+  parcellation of {fMRI} datasets.
+\newblock {\em Human Brain Mapping 27}, 8 (2006), 678--693.
+
+\bibitem{van2008normalized}
+{\sc Van Den~Heuvel, M., Mandl, R., and Pol, H.}
+\newblock Normalized cut group clustering of resting-state {FMRI} data.
+\newblock {\em PLoS One 3}, 4 (2008), e2001.
+
+\bibitem{varoquaux2011multi}
+{\sc Varoquaux, G., Gramfort, A., Pedregosa, F., Michel, V., and Thirion, B.}
+\newblock Multi-subject dictionary learning to segment an atlas of brain
+  spontaneous activity.
+\newblock In {\em Information Processing in Medical Imaging\/} (2011),
+  Springer, pp.~562--573.
+
+\bibitem{varoquaux2012small}
+{\sc Varoquaux, G., Gramfort, A., and Thirion, B.}
+\newblock Small-sample brain mapping: sparse recovery on spatially correlated
+  designs with randomization and clustering.
+\newblock In {\em Proceedings of the 29th International Conference on Machine
+  Learning (ICML-12)\/} (2012), pp.~1375--1382.
+
+\bibitem{varoquaux2010group}
+{\sc Varoquaux, G., Sadaghiani, S., Pinel, P., Kleinschmidt, A., Poline, J.-B.,
+  and Thirion, B.}
+\newblock A group model for stable multi-subject {ICA} on {fMRI} datasets.
+\newblock {\em Neuroimage 51}, 1 (2010), 288--299.
+
+\bibitem{von2007tutorial}
+{\sc Von~Luxburg, U.}
+\newblock A tutorial on spectral clustering.
+\newblock {\em Statistics and Computing 17}, 4 (2007), 395--416.
+
+\bibitem{wang1987nonuniversal}
+{\sc Wang, J., and Swendsen, R.}
+\newblock Nonuniversal critical dynamics in {M}onte {C}arlo simulations.
+\newblock {\em Physical Review Letters\/} (1987).
+
+\bibitem{wei1990monte}
+{\sc Wei, G., and Tanner, M.}
+\newblock {A Monte Carlo implementation of the EM algorithm and the poor man's
+  data augmentation algorithms}.
+\newblock {\em Journal of the American Statistical Association 85}, 411 (1990),
+  699--704.
+
+\bibitem{winkler2003image}
+{\sc Winkler, G.}
+\newblock {\em Image analysis, random fields and {M}arkov chain Monte Carlo
+  methods: a mathematical introduction}, vol.~27.
+\newblock Springer Verlag, 2003.
+
+\bibitem{wood1994simulation}
+{\sc Wood, A.~T.}
+\newblock Simulation of the von {M}ises {F}isher distribution.
+\newblock {\em Communications in Statistics-Simulation and Computation 23}, 1
+  (1994), 157--164.
+
+\bibitem{woolrich_fully_2004}
+{\sc Woolrich, M., Jenkinson, M., Brady, J., and Smith, S.}
+\newblock {F}ully {B}ayesian {spatio-temporal} modeling of {fMRI} data.
+\newblock {\em Medical Imaging, {IEEE} Transactions on 23}, 2 (2004), 213--231.
+
+\bibitem{woolrich2004multilevel}
+{\sc Woolrich, M.~W., Behrens, T.~E., Beckmann, C.~F., Jenkinson, M., Smith,
+  S.~M., et~al.}
+\newblock Multilevel linear modelling for {FMRI} group analysis using
+  {B}ayesian inference.
+\newblock {\em Neuroimage 21}, 4 (2004), 1732--1747.
+
+\bibitem{woolrich2004fully}
+{\sc Woolrich, M.~W., Jenkinson, M., Brady, J.~M., and Smith, S.~M.}
+\newblock Fully {B}ayesian spatio-temporal modeling of {fMRI} data.
+\newblock {\em Medical Imaging, IEEE Transactions on 23}, 2 (2004), 213--231.
+
+\bibitem{worsley_analysis_1995}
+{\sc Worsley, K.~J., and Friston, K.~J.}
+\newblock Analysis of {fMRI} time-series revisited--again.
+\newblock {\em Neuroimage 2}, 3 (1995), 173--181.
+
+\bibitem{yedidia2003understanding}
+{\sc Yedidia, J.~S., Freeman, W.~T., and Weiss, Y.}
+\newblock Understanding belief propagation and its generalizations.
+\newblock {\em Exploring Artificial Intelligence in the New Millennium 8\/}
+  (2003), 236--239.
+
+\bibitem{yeo2011organization}
+{\sc Yeo, B., Krienen, F., Sepulcre, J., Sabuncu, M., Lashkari, D.,
+  Hollinshead, M., Roffman, J., Smoller, J., Z{\"o}llei, L., Polimeni, J.,
+  et~al.}
+\newblock The organization of the human cerebral cortex estimated by intrinsic
+  functional connectivity.
+\newblock {\em Journal of Neurophysiology 106}, 3 (2011), 1125--1165.
+
+\bibitem{zalesky2011relationship}
+{\sc Zalesky, A., Fornito, A., Egan, G., Pantelis, C., and Bullmore, E.}
+\newblock The relationship between regional and inter-regional functional
+  connectivity deficits in schizophrenia.
+\newblock {\em Human Brain Mapping\/} (2011).
+
+\bibitem{zhang1992mean}
+{\sc Zhang, J.}
+\newblock The mean field theory in em procedures for {M}arkov random fields.
+\newblock {\em Signal Processing, IEEE Transactions on 40}, 10 (1992),
+  2570--2583.
+
+\bibitem{zhang2009evaluation}
+{\sc Zhang, J., Anderson, J.~R., Liang, L., Pulapura, S.~K., Gatewood, L.,
+  Rottenberg, D.~A., and Strother, S.~C.}
+\newblock Evaluation and optimization of {fMRI} single-subject processing
+  pipelines with npairs and second-level cva.
+\newblock {\em Magnetic Resonance Imaging 27}, 2 (2009), 264--278.
+
+\bibitem{zhang2001segmentation}
+{\sc Zhang, Y., Brady, M., and Smith, S.}
+\newblock Segmentation of brain mr images through a hidden markov random field
+  model and the expectation-maximization algorithm.
+\newblock {\em Medical Imaging, IEEE Transactions on 20}, 1 (2001), 45--57.
+
+\bibitem{zuo2010reliable}
+{\sc Zuo, X., Kelly, C., Adelstein, J., Klein, D., Castellanos, F., and Milham,
+  M.}
+\newblock Reliable intrinsic connectivity networks: test-retest evaluation
+  using {ICA} and dual regression approach.
+\newblock {\em Neuroimage 49}, 3 (2010), 2163.
+
+\end{thebibliography}

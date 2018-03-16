@@ -1,0 +1,251 @@
+%% \chapter{Background}
+%\fixchapterheading % Use this if section follows chapter immediately
+
+\chapter{Background and Mathematical Tools}
+% Effect of preprocessing. SPM smoothing, Random field theory for enforcing
+% smoothing.
+Human brain is organized into distributed functional modeules that work
+independently for some cognitive tasks but also interact with each other. There
+appears two principles of functional organization: functional integration and
+functional specialization\cite{friston2007statistical}. The functional
+specialization assumes the module that process a particular cognitive activity
+can be localized to a anatomical region in the brain, and study the relationship
+of the anatomical regions and the particular cognitive activity. However, the
+regions, or functional modules do not work alone. There is interactions among
+the functional modules. Functional integration study such interactions.
+
+This chapter provide background information of the current research of exploring
+brain's functional network using rs-fMRI. I will begin with the relationshiop
+between brain activity and fMRI, and give the definitions of functional
+connectivity and functional network. Then I will survey various class of methods
+that estimate the functional connectivity and the networks. Last some general
+graphical model concepts and inference method will be given. these mathematical
+tools will be used in the following chapters, with changes depending on the
+specific applications.
+
+%% [Brain network organization, anatomical/functional connectivity, fmri BOLD,
+%%   oxygen, task, resting-state, functional network]
+\section{Resting-State Fucntional Network}
+% the interaction: anatomical connectivity and functional connectivity. 
+The interaction between various brain's functional modules can be represented by
+the connectivity between anatomical regions. Two sets of MRI techniques are
+widely used for mapping the \emph{in vivo} human's brain connectivity. Diffusion
+MRI, or more specifically, diffusion tensor imaging (DTI) is used to find the
+anatomical links between any two regions in the brain's white matter, and
+functional MRI (fMRI) is used to identify the functional links between two
+regions of interest in brain's gray matter. Researchers have shown the
+correlation between the anatomical and functional connections although they are
+not exactly same. This work is mainly focused on the functional connectivity.
+
+% fmri intro, BOLD, oxygen, task-based. 
+The blood oxygenation level-dependent (BOLD) signal of fMRI detects the
+locations of increased neuro activity by measuring the blood oxygen levels at
+consecutive time points. the oxygen consumption in the blood indicates the
+corresponding regions consume more energy, and hence in a more active neural
+activity compared to baseline activity. Therefore the BOLD signal is an indirect
+way of identifying neural activities. 
+
+% various methods to map brain functions.
+Besides fMRI, other techniques are also used for mapping brain's functions. The
+differ in terms of both their temporal and spatial resolution. In general,
+electrophysiological methods, such as electroencephalography (EEG) or the
+associated magnetic version magnetoencephalography (MEG) record the neural
+events in real time, hence have relatively high temporal resolution. On the
+other hand, fMRI and positron emission tomography (PET) detect the change of
+blood flow due to neuronal information processing, and have high spatial
+resolution (1-6 mm) but lower temporal resolution, because of the delayed
+haemodynamic changes.
+
+% func connectivity. 
+fMRI is initially discovered as a tool to map the brain's function for subjects
+under specific cognitive task. One compares the BOLD signal at a specific region
+in the brain with the paradigm task signal. Because of the nature of the
+haemodynamics of the blood, the paradigm task signal is the convolution of the
+original paradigm function (for example a boxcar function) with the haemodynamic
+response function (HRF). Later, people found that the BOLD signals not only can
+be used to compare between one brain region and the paradigm signal, but also to
+compare between any two brain regions. Such pairwise comparisons are used to
+explore the interactions between various functional modules of the
+brain. Functional connectivity is defined as the temporal dependence of neuronal
+activity patterns of spatially remote (or anatomically separated) brain regions
+(Friston, 1993). The temporal dependence is measured by the linear correlation
+across all time points. Although the temporal correlation within the BOLD signal
+of single region or voxel violate the independence assumption of the time point
+samples, this temporal correlation is often safely ignored. Alternatively, one
+also identify functional connectivity by transforming the signals into frequency
+domain and compute the coherence of two signals at curtain frequency band. This
+is equivalent to band pass filtering the original BOLD signal and compute the
+linear correlation.
+
+% preprocessing. motion correction. global signal regression? slice timing
+% correction, nuisance parameter regression (GM, WM, CSF), registration.
+
+\section{Related Work}
+[Seed-based correlation, ICA, clustering, etc]
+
+% Define a functional network. 
+The pairwise correlation or coherence only measure the functional connectivity
+between regions as a local measurement. As the whole brain is organized as a
+complex system with many such pairwise interactions, it is of interests to find
+out those regions with similar patterns of neuronal activity. A functional
+network, or functional system (hereafter used interchangeably), is a collection
+of separate anatomical regions that have similar patterns of activity measured
+by BOLD signal. The regions within a functional system may have direct or
+indirect information flow among them. Together the system serve one or more
+cognitive tasks. An anatomical region may participate in different functional
+system under different cognitive tasks.
+
+%% [ Various levels. Task, resting, Cognitive disease. Mental disorder. Low
+%% frequency. Correlation.
+The correlated fluctuations of multiple brain regions not only happens in a
+stimulus-evoked experiments, but also in experiments where the participants
+rested passively without any cognition activity. Therefore, the resting-state
+fMRI (rs-fMRI) becomes a powerful tool for probing functional network patterns
+in a resting-brain. The original name of the rs-fMRI is not accurate, since the
+brain are not in a true resting state even without any cognitive activity. The
+resting-brain consume about 20 percent of the whole body's energy, while it only
+have about 5 percent of the body mass. The study of the functional system of
+brain under rest will help understanding the functional organization of the
+brain. Because the pathologic conditions appear to be reflected to the
+interactions within or between the functional system, the rs-fMRI study also
+holds valuable diagnostic and prognostic information towards various
+neurological or psychiatric diseases including Alzheimer's disease, depression,
+schizophrenia, etc~\cite{fox2007spontaneous}. The reason of this spontaneous
+activity is largely unknown, although some reasonably postulate that it is a
+predictive intrinsic response to the unknown events in the outside environment.
+
+
+%% [How to define a functional network or system. Seed based. ICA, clustering. ROI
+%% or voxel-based.]
+\subsection{Seed Based methods}
+There are various ways of representations of functional networks depending on
+the specific experiment goal. A straightforward yet statistically powerful
+method is to compute the correlation between \emph{a priori} given seed regions
+and every other regions in the brain. The correlation values are typically the
+Fisher transformation in order to meet the normal distribution assumption in the
+following hypothesis test. Those transformed correlation values with p value
+smaller than certain threshold are regarded as a indicator of the existence of
+the functional connectivity. All voxels or regions that are functional connected
+to the seed regions belong to the same functional system. The advantage of
+seed-based methods is its simplicity and relatively ease of extending to
+multiple subjects. One just compute the average correlations across subjects for
+a given pair of regions. However, it also has the limits that the user has to
+know in advance the seed. Therefore, a functional system can not identified if
+it does not include the specified seed regions. Despite the limits, it is used
+in may works, sometimes with better visualization by dynamic moving the seed and
+show the real-time functional system associated with the current seed region.
+
+\subsection{ICA}
+Because of functional networks are in a large scale over the whole brain, and in
+a distributed manner, multi-variate analysis would help. A large class of
+multi-variate methods use the signal-decomposition concept in the signal
+processing community, and decompose the BOLD signal at certain regions into
+various independent components, each of which as part of one functional
+system. The percentage or weights of these components will represent whether or
+to what extent the region belong to certain networks. One widely accepted method
+in this class is the independent component analysis (ICA). ICA was originally
+introduced in signal processing field to separate varisou source of signals from
+samples of mixed signals. The central limit theorem states the sum of two
+independent signals is more Gaussian then any of the original signals. Therefore
+maximizing the non-Gaussianity gives us the original independent
+components. Besides the maximization of non-Gaussianity, the independent can also
+be estimated by minimization of mutual information, or by maximum
+likelihood\cite{hyvarinen2000independent}.
+
+There are two varieties when applying to ICA to rs-fMRI dataset. Spatial ICA
+assume all the voxel intensity at certain time point as one mixed signal
+sample. Therefore the mixed signals are independent across all spatial
+voxels. Alternatively, temporal ICA each BOLD time series at a voxel is a mixed
+signal, hence the source signals are independent across the time
+point\cite{calhoun2001spatial}. Because of the large number of voxels compared
+to number of time points, the spatial ICA is typically used for rs-fMRI
+analysis. Compared to seed-based methods, ICA is purely data-driven. However,
+because ICA need to estimate both the independent components and mixing
+coefficients, it is a significantly more difficult task. By A whitening step
+before ICA, the data is rotated such that it has unit variance in terms of the
+covariance matrix, and greatly simplify the ICA problem. The estimated
+independent components are usually z transformed, and thresholded for
+visualization purpose. Because the resting-state brain functional patterns are
+unpredictable, the output independent components need to be visually inspected
+in order to identify physiologically meaningful components.
+
+\subsection{Segmentation-basd Methods}
+
+\subsection{Group Analysis}
+%% [Group of subjects. Variation and shared information. resting-state intrinsic
+%% cognition. 1000 connectomes. ]
+The analysis fMRI data is challenging, due to the scanner noise, physiological
+noise such as blood vessel and heart beat, subject's head motion. Sometimes
+subjects have random thoughts even instructed not thinking anything specifically
+during the data acquisition. The functional connectivity and network estimation
+is still not accurate and consistent even various preprocessing techniques are
+used. On the other hand, because rs-fMRI experiments have much lower requirement
+to the patient subjects or control subjects compared to a paradigm design
+experiments, it is possible to collect the rs-fMRI data from a big group of
+subjects. The more accurate and consistent functional networks can be estimated
+by using the statistical power of the group analysis. With the initiative of
+1000 Functional Connectomes Project, large cohort of data are available for
+researchers to explore the relationship of functional networks to the subjects
+age, gender etc.
+
+% seed-based methods extend to grp analysis.
+Compared with single-subject analysis, the methods for multiple-subject
+functinal network analysis are not yet established. The seed-based methods
+typically
+
+% group ICA
+Group ICA is used as an extension of single-subject ICA in
+order to seek a set of independent components shared across all
+subjects~\cite{calhoun2001spatial}. In a typical group ICA study, all subjects
+are registered to a common atlas and assumed to share a common spatial component
+map but have distinct time courses. The BOLD signals from all subjects are
+concatenated temporally, followed by a single subject ICA. The subject component
+maps are then obtained by a back-reconstruction procedure. Alternatively,
+single-subject ICA is applied on each subject first, and a self-organized
+clustering algorithm applies to all subjects' components such that similar
+components are assigned into one cluster. The group ICA components are
+represented by the centers of the
+clusters~\cite{esposito2005independent}. Neither of the above approaches
+iteratively refine group (or subject) maps once the subjects (or group) maps are
+estimated.
+
+% assumption of the group study.
+the functional networks detected by either model-based methods such as
+seed-based correlation, or data-driven methods such as ICA, are highly
+reproducible across participants and scans.
+
+\section{Mathematical Tools}
+
+\subsection{Graph and Graphical Model}
+[graph notation, graph-probability distribution correspondence, conditional independence, etc]
+The main methodology we used in this work is statistical method, and more
+precisely, Bayesian method. Whether we define a random variable on each voxel of
+the fMRI image, or on each region of interest, or on each pairwise connectivity
+between voxels or regions, the problems will be multivariate. The random
+variables in this multivariate dataset interacts in a complex way. The best tool
+for representing such dependency in the multivariate settings is a graph.  A
+graph can be either directed or directed. While directed graph is often used for
+modeling the causal relationship of variables, in this work we focus on the
+correlation without any inference on the causality. Therefore we use undirected
+graph.  A undirected graph $G$ is defined by a collection of vertices $V$ and a
+[collection of edges $E \in V time V$. For undirected graph, there is no
+direction for the edge.
+
+
+% Maybe talk about measures of the graph, but that's only tangential to my work
+% . So don't spend too much text. 
+
+% Difficulties of defining the nodes of the graph. Choosing ROI is hard (ref:
+% Jonathan D. Power for choosing nodes, functional parcellation 200 (cadmeron?). 
+
+% MRF, undirected graphical model, SPM approach: enforce smoothing, but that's
+% not the best. ROI may be in varisou scale.
+
+\subsection{Markov Random Field}
+\subsection{Inerence of Graphical Model and MRF}
+[Sampling, Gibbs/Metropolis, variation method, mean field, ICM, Bayesian MAP, ]
+%% [Introduce MRF. SPM approach: enforce smoothing. Our approach. Rich structure of
+%%   graph/MRF. Model group of datasets.]
+
+%  learning, inference, Bayesian, Gibbs Sampling or Metroplis Sampling. And also
+%  the variational inference method.

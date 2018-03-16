@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2010)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: thesisproposal.aux
+The style file: unsrtnat.bst
+Database file #1: /home/sci/weiliu/projects/centralref.bib
+Warning--I didn't find a database entry for "liu2010spatialCopy"
+Warning--I didn't find a database entry for "liu2011monteCopy"
+Warning--I didn't find a database entry for "Liu2012aCopy"
+You've used 27 entries,
+            2481 wiz_defined-function locations,
+            735 strings with 9770 characters,
+and the built_in function-call counts, 12652 in all, are:
+= -- 1076
+> -- 711
+< -- 16
++ -- 266
+- -- 210
+* -- 1059
+:= -- 1978
+add.period$ -- 93
+call.type$ -- 27
+change.case$ -- 54
+chr.to.int$ -- 25
+cite$ -- 27
+duplicate$ -- 601
+empty$ -- 1086
+format.name$ -- 249
+if$ -- 2716
+int.to.chr$ -- 3
+int.to.str$ -- 28
+missing$ -- 27
+newline$ -- 153
+num.names$ -- 83
+pop$ -- 208
+preamble$ -- 1
+purify$ -- 27
+quote$ -- 0
+skip$ -- 384
+stack$ -- 0
+substring$ -- 718
+swap$ -- 143
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 189
+warning$ -- 0
+while$ -- 105
+width$ -- 0
+write$ -- 380
+(There were 3 warnings)

@@ -1,0 +1,39 @@
+Functional magnetic resonance imaging (fMRI) measures the change of oxygen
+consumption level in the blood vessels of the human brain, hence indirectly
+detecting the neuronal activity. Resting-state fMRI (rs-fMRI) is used to
+identify the intrinsic functional patterns of the brain when there is no
+external stimulus. Accurate estimation of intrinsic activity is important for
+understanding the functional organization and dynamics of the brain, as well as
+differences in the functional networks of patients with mental disorders.
+
+This thesis aims to robustly estimate the functional connectivities and networks
+of the human brain using rs-fMRI data of multiple subjects. We use Markov random
+field (MRF), an undirected graphical model to represent the statistical
+dependency among the functional network variables. Graphical models describe
+multivariate probability distributions that can be factorized and represented by
+a graph. By defining the nodes and the edges along with their weights according
+to our assumptions, we build soft constraints into the graph structure as prior
+information. We explore various approximate optimization methods including
+variational Bayesian, graph cuts, and Markov chain Monte Carlo sampling (MCMC).
+
+We develop the random field models to solve three related problems. In the first
+problem, the goal is to detect the pairwise connectivity between gray matter
+voxels in a rs-fMRI dataset of the single subject. We define a six-dimensional
+graph to represent our prior that two voxels are more likely to be connected if
+their spatial neighbors are connected. The posterior mean of the connectivity
+variables are estimated by variational inference, also known as mean field
+theory in statistical physics. The proposed method proves to outperform the
+standard spatial smoothing and is able to detect finer patterns of brain
+activity. Our second work aims to identify multiple functional systems. We
+define a Potts model, a special case of MRF on the network label variables, and
+define von Mises-Fisher distribution on the normalized fMRI signal. The
+inference is significantly more difficult than the binary classification in the
+previous problem. We use MCMC to draw samples from the posterior distribution of
+network labels. In the third application, we extend the graph to the multiple
+subject scenario. By building a graph including the network labels of both a
+group map and the subject label maps, we define a hierarchical model with richer
+structure than the flat single-subject model, and captures the shared patterns
+and also the variation among the subjects. All three solutions are data-driven
+Bayesian methods, which estimate model parameters from the data. The experiments
+show that by the regularization of MRF, the functional network maps we estimate
+are more accurate and more consistent across multiple sessions.

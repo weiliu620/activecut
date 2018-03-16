@@ -1,0 +1,1024 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/TeX Live for opensuse.org) (format=pdflatex 2013.9.16)  5 OCT 2013 15:18
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**\nonstopmode\input mcem_weiliu_miccai2011.tex
+(./mcem_weiliu_miccai2011.tex (./llncs.cls
+Document Class: llncs 2010/07/12 v2.17 
+ LaTeX document class for Lecture Notes in Computer Science
+(/usr/share/texmf/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf/tex/latex/tools/multicol.sty
+Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
+\c@tracingmulticols=\count87
+\mult@box=\box26
+\multicol@leftmargin=\dimen103
+\c@unbalance=\count88
+\c@collectmore=\count89
+\doublecol@number=\count90
+\multicoltolerance=\count91
+\multicolpretolerance=\count92
+\full@width=\dimen104
+\page@free=\dimen105
+\premulticols=\dimen106
+\postmulticols=\dimen107
+\multicolsep=\skip43
+\multicolbaselineskip=\skip44
+\partial@page=\box27
+\last@line=\box28
+\mult@rightbox=\box29
+\mult@grightbox=\box30
+\mult@gfirstbox=\box31
+\mult@firstbox=\box32
+\@tempa=\box33
+\@tempa=\box34
+\@tempa=\box35
+\@tempa=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\c@columnbadness=\count93
+\c@finalcolumnbadness=\count94
+\last@try=\dimen108
+\multicolovershoot=\dimen109
+\multicolundershoot=\dimen110
+\mult@nat@firstbox=\box50
+\colbreak@box=\box51
+\multicol@sort@counter=\count95
+)
+(/usr/share/texmf/tex/latex/oberdiek/aliascnt.sty
+Package: aliascnt 2009/09/08 v1.3 Alias counters (HO)
+
+(/usr/share/texmf/tex/latex/carlisle/remreset.sty))
+\c@chapter=\count96
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 362.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 363.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 364.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 365.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 366.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 367.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 368.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 369.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 370.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 371.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 372.
+\tocchpnum=\dimen111
+\tocsecnum=\dimen112
+\tocsectotal=\dimen113
+\tocsubsecnum=\dimen114
+\tocsubsectotal=\dimen115
+\tocsubsubsecnum=\dimen116
+\tocsubsubsectotal=\dimen117
+\tocparanum=\dimen118
+\tocparatotal=\dimen119
+\tocsubparanum=\dimen120
+\@tempcntc=\count97
+\fnindent=\dimen121
+\c@@inst=\count98
+\c@@auth=\count99
+\c@auco=\count100
+\instindent=\dimen122
+\authrun=\box52
+\authorrunning=\toks14
+\tocauthor=\toks15
+\titrun=\box53
+\titlerunning=\toks16
+\toctitle=\toks17
+\c@theorem=\count101
+\c@case=\count102
+\c@conjecture=\count103
+\c@corollary=\count104
+\c@definition=\count105
+\c@example=\count106
+\c@exercise=\count107
+\c@lemma=\count108
+\c@note=\count109
+\c@problem=\count110
+\c@property=\count111
+\c@proposition=\count112
+\c@question=\count113
+\c@solution=\count114
+\c@remark=\count115
+\headlineindent=\dimen123
+)
+(/usr/share/texmf/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texmf/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks18
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texmf/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks19
+)
+(/usr/share/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texmf/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texmf/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texmf/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texmf/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count116
+))
+\Gin@req@height=\dimen124
+\Gin@req@width=\dimen125
+)
+(/usr/share/texmf/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+(/usr/share/texmf/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip45
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texmf/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks20
+\ex@=\dimen126
+))
+(/usr/share/texmf/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen127
+)
+(/usr/share/texmf/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count117
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count118
+\leftroot@=\count119
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count120
+\DOTSCASE@=\count121
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box54
+\strutbox@=\box55
+\big@size=\dimen128
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+
+
+Package amsmath Warning: Unable to redefine math accent \vec.
+
+\macc@depth=\count122
+\c@MaxMatrixCols=\count123
+\dotsspace@=\muskip11
+\c@parentequation=\count124
+\dspbrk@lvl=\count125
+\tag@help=\toks21
+\row@=\count126
+\column@=\count127
+\maxfields@=\count128
+\andhelp@=\toks22
+\eqnshift@=\dimen129
+\alignsep@=\dimen130
+\tagshift@=\dimen131
+\tagwidth@=\dimen132
+\totwidth@=\dimen133
+\lineht@=\dimen134
+\@envbody=\toks23
+\multlinegap=\skip46
+\multlinetaggap=\skip47
+\mathdisplay@stack=\toks24
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+) (/usr/share/texmf/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2013/01/06 v5.00 algorithms environments
+\c@AlgoLine=\count129
+
+(/usr/share/texmf/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texmf/tex/latex/tools/xspace.sty
+Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
+)
+(/usr/share/texmf/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+********************************************************
+Package `algorithm2e' Release 5.0 -- january 06 2013 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (cfiorio@um2.fr)
+********************************************************
+\skiptotal=\skip48
+\skiplinenumber=\skip49
+\skiprule=\skip50
+\skiphlne=\skip51
+\skiptext=\skip52
+\skiplength=\skip53
+\algomargin=\skip54
+\skipalgocfslide=\skip55
+\algowidth=\dimen135
+\inoutsize=\dimen136
+\inoutindent=\dimen137
+\interspacetitleruled=\dimen138
+\interspacealgoruled=\dimen139
+\interspacetitleboxruled=\dimen140
+\algocf@inoutbox=\box56
+\algocf@inputbox=\box57
+\AlCapSkip=\skip56
+\AlCapHSkip=\skip57
+\algoskipindent=\skip58
+\algocf@nlbox=\box58
+\algocf@hangingbox=\box59
+\algocf@untilbox=\box60
+\algocf@skipuntil=\skip59
+\algocf@capbox=\box61
+\algoheightruledefault=\skip60
+\algoheightrule=\skip61
+\algotitleheightruledefault=\skip62
+\algotitleheightrule=\skip63
+\c@algocfline=\count130
+\c@algocfproc=\count131
+\c@algocf=\count132
+\algocf@algoframe=\box62
+\algocf@algobox=\box63
+) (./lwdefs.sty) (/usr/share/texmf/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen141
+)
+(./mcem_weiliu_miccai2011.aux)
+\openout1 = `mcem_weiliu_miccai2011.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+ (/usr/share/texmf/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count133
+\scratchdimen=\dimen142
+\scratchbox=\box64
+\nofMPsegments=\count134
+\nofMParguments=\count135
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count136
+\MPscratchDim=\dimen143
+\MPnumerator=\count137
+\makeMPintoPDFobject=\count138
+\everyMPtoPDFconversion=\toks26
+) (/usr/share/texmf/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texmf/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texmf/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texmf/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texmf/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/share/texmf/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/share/texmf/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/share/texmf/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/share/texmf/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texmf/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Font Info:    Try loading font information for U+msa on input line 44.
+
+(/usr/share/texmf/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 44.
+
+(/usr/share/texmf/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+! Missing \endcsname inserted.
+<to be read again> 
+                   \csname\endcsname
+l.44 \maketitle
+               
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \csname\endcsname
+l.44 \maketitle
+               
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \csname\endcsname
+l.44 \maketitle
+               
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \csname\endcsname
+l.44 \maketitle
+               
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+[1
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+! Undefined control sequence.
+<write> ...lax \begingroup \let \@elt \global \c@ 
+                                                  \csname\endcsname\z@ cl@@a...
+l.86 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...let \@elt \global \c@ \csname\endcsname
+                                                  \z@ cl@@auth\endcsname \en...
+l.86 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...lax \begingroup \let \@elt \global \c@ 
+                                                  \csname\endcsname\z@ cl@@a...
+l.86 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...let \@elt \global \c@ \csname\endcsname
+                                                  \z@ cl@@auth\endcsname \en...
+l.86 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...lax \begingroup \let \@elt \global \c@ 
+                                                  \csname\endcsname\z@ cl@@a...
+l.86 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...let \@elt \global \c@ \csname\endcsname
+                                                  \z@ cl@@auth\endcsname \en...
+l.86 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...lax \begingroup \let \@elt \global \c@ 
+                                                  \csname\endcsname\z@ cl@@a...
+l.86 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<write> ...let \@elt \global \c@ \csname\endcsname
+                                                  \z@ cl@@auth\endcsname \en...
+l.86 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+]
+Underfull \vbox (badness 2726) has occurred while \output is active []
+
+ [2]
+[3] [4] <figures/synthetic/true.png, id=33, 391.4625pt x 391.4625pt>
+File: figures/synthetic/true.png Graphic file (type png)
+
+<use figures/synthetic/true.png>
+Package pdftex.def Info: figures/synthetic/true.png used on input line 400.
+(pdftex.def)             Requested size: 65.95432pt x 65.95041pt.
+
+<figures/synthetic/obs.png, id=34, 391.4625pt x 391.4625pt>
+File: figures/synthetic/obs.png Graphic file (type png)
+
+<use figures/synthetic/obs.png>
+Package pdftex.def Info: figures/synthetic/obs.png used on input line 401.
+(pdftex.def)             Requested size: 65.95432pt x 65.95041pt.
+
+<figures/synthetic/sphere1.png, id=35, 376.40625pt x 376.40625pt>
+File: figures/synthetic/sphere1.png Graphic file (type png)
+
+<use figures/synthetic/sphere1.png>
+Package pdftex.def Info: figures/synthetic/sphere1.png used on input line 402.
+(pdftex.def)             Requested size: 65.95432pt x 65.95248pt.
+
+<figures/synthetic/label_icm.png, id=37, 391.4625pt x 391.4625pt>
+File: figures/synthetic/label_icm.png Graphic file (type png)
+
+<use figures/synthetic/label_icm.png>
+Package pdftex.def Info: figures/synthetic/label_icm.png used on input line 403
+.
+(pdftex.def)             Requested size: 65.95432pt x 65.95041pt.
+
+<figures/synthetic/label_mc.png, id=38, 391.4625pt x 391.4625pt>
+File: figures/synthetic/label_mc.png Graphic file (type png)
+
+<use figures/synthetic/label_mc.png>
+Package pdftex.def Info: figures/synthetic/label_mc.png used on input line 404.
+
+(pdftex.def)             Requested size: 65.95432pt x 65.95041pt.
+ [5]
+<figures/wholebrain/sub1/axial0028.png, id=42, 334.24875pt x 321.2pt>
+File: figures/wholebrain/sub1/axial0028.png Graphic file (type png)
+
+<use figures/wholebrain/sub1/axial0028.png>
+Package pdftex.def Info: figures/wholebrain/sub1/axial0028.png used on input li
+ne 459.
+(pdftex.def)             Requested size: 52.0664pt x 50.03053pt.
+
+<figures/wholebrain/sub1/axial0034.png, id=43, 334.24875pt x 321.2pt>
+File: figures/wholebrain/sub1/axial0034.png Graphic file (type png)
+
+<use figures/wholebrain/sub1/axial0034.png>
+Package pdftex.def Info: figures/wholebrain/sub1/axial0034.png used on input li
+ne 460.
+(pdftex.def)             Requested size: 52.0664pt x 50.03053pt.
+
+<figures/wholebrain/sub2/axial0028.png, id=44, 334.24875pt x 321.2pt>
+File: figures/wholebrain/sub2/axial0028.png Graphic file (type png)
+
+<use figures/wholebrain/sub2/axial0028.png>
+Package pdftex.def Info: figures/wholebrain/sub2/axial0028.png used on input li
+ne 462.
+(pdftex.def)             Requested size: 52.0664pt x 50.03053pt.
+
+<figures/wholebrain/sub2/axial0034.png, id=45, 334.24875pt x 321.2pt>
+File: figures/wholebrain/sub2/axial0034.png Graphic file (type png)
+
+<use figures/wholebrain/sub2/axial0034.png>
+Package pdftex.def Info: figures/wholebrain/sub2/axial0034.png used on input li
+ne 463.
+(pdftex.def)             Requested size: 52.0664pt x 50.03053pt.
+
+<figures/wholebrain/sub5/axial0028.png, id=46, 334.24875pt x 321.2pt>
+File: figures/wholebrain/sub5/axial0028.png Graphic file (type png)
+
+<use figures/wholebrain/sub5/axial0028.png>
+Package pdftex.def Info: figures/wholebrain/sub5/axial0028.png used on input li
+ne 465.
+(pdftex.def)             Requested size: 52.0664pt x 50.03053pt.
+
+<figures/wholebrain/sub5/axial0034.png, id=47, 334.24875pt x 321.2pt>
+File: figures/wholebrain/sub5/axial0034.png Graphic file (type png)
+
+<use figures/wholebrain/sub5/axial0034.png>
+Package pdftex.def Info: figures/wholebrain/sub5/axial0034.png used on input li
+ne 466.
+(pdftex.def)             Requested size: 52.0664pt x 50.03053pt.
+
+<figures/wholebrain/sub1/saggital0029.png, id=48, 334.24875pt x 321.2pt>
+File: figures/wholebrain/sub1/saggital0029.png Graphic file (type png)
+
+<use figures/wholebrain/sub1/saggital0029.png>
+Package pdftex.def Info: figures/wholebrain/sub1/saggital0029.png used on input
+ line 468.
+(pdftex.def)             Requested size: 52.0664pt x 50.03053pt.
+
+<figures/wholebrain/sub1/coronal0029.png, id=49, 334.24875pt x 321.2pt>
+File: figures/wholebrain/sub1/coronal0029.png Graphic file (type png)
+
+<use figures/wholebrain/sub1/coronal0029.png>
+Package pdftex.def Info: figures/wholebrain/sub1/coronal0029.png used on input 
+line 469.
+(pdftex.def)             Requested size: 52.0664pt x 50.03053pt.
+
+<figures/wholebrain/sub2/saggital0029.png, id=50, 334.24875pt x 321.2pt>
+File: figures/wholebrain/sub2/saggital0029.png Graphic file (type png)
+
+<use figures/wholebrain/sub2/saggital0029.png>
+Package pdftex.def Info: figures/wholebrain/sub2/saggital0029.png used on input
+ line 472.
+(pdftex.def)             Requested size: 52.0664pt x 50.03053pt.
+
+<figures/wholebrain/sub2/coronal0029.png, id=51, 334.24875pt x 321.2pt>
+File: figures/wholebrain/sub2/coronal0029.png Graphic file (type png)
+
+<use figures/wholebrain/sub2/coronal0029.png>
+Package pdftex.def Info: figures/wholebrain/sub2/coronal0029.png used on input 
+line 473.
+(pdftex.def)             Requested size: 52.0664pt x 50.03053pt.
+
+<figures/wholebrain/sub5/saggital0029.png, id=52, 334.24875pt x 321.2pt>
+File: figures/wholebrain/sub5/saggital0029.png Graphic file (type png)
+
+<use figures/wholebrain/sub5/saggital0029.png>
+Package pdftex.def Info: figures/wholebrain/sub5/saggital0029.png used on input
+ line 475.
+(pdftex.def)             Requested size: 52.0664pt x 50.03053pt.
+
+<figures/wholebrain/sub5/coronal0029.png, id=53, 334.24875pt x 321.2pt>
+File: figures/wholebrain/sub5/coronal0029.png Graphic file (type png)
+
+<use figures/wholebrain/sub5/coronal0029.png>
+Package pdftex.def Info: figures/wholebrain/sub5/coronal0029.png used on input 
+line 476.
+(pdftex.def)             Requested size: 52.0664pt x 50.03053pt.
+ [6 <./figures/synthetic/true.png (PNG copy)> <./figures/synthetic/obs.png (PNG
+ copy)> <./figures/synthetic/sphere1.png> <./figures/synthetic/label_icm.png (P
+NG copy)> <./figures/synthetic/label_mc.png (PNG copy)>]
+
+! LaTeX Error: File `figures/method2/workshop/mcem/dmn_a' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.529 ...dth]{figures/method2/workshop/mcem/dmn_a}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/mcem/dmn_s' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.530 ...dth]{figures/method2/workshop/mcem/dmn_s}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/mcem/motor_a' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.532 ...h]{figures/method2/workshop/mcem/motor_a}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/mcem/motor_s' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.533 ...h]{figures/method2/workshop/mcem/motor_s}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/mcem/atten_a' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.535 ...h]{figures/method2/workshop/mcem/atten_a}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/mcem/atten_s' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.536 ...h]{figures/method2/workshop/mcem/atten_s}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/mcem/visual_a' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.538 ...]{figures/method2/workshop/mcem/visual_a}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/mcem/visual_s' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.539 ...]{figures/method2/workshop/mcem/visual_s}
+                                                   \\
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_separate/DMN_a' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.540 ...ures/method2/workshop/ica_separate/DMN_a}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_separate/DMN_s' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.541 ...ures/method2/workshop/ica_separate/DMN_s}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_separate/motor_a' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.543 ...es/method2/workshop/ica_separate/motor_a}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_separate/motor_s' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.544 ...es/method2/workshop/ica_separate/motor_s}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_separate/atten_a' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.546 ...es/method2/workshop/ica_separate/atten_a}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_separate/atten_s' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.547 ...es/method2/workshop/ica_separate/atten_s}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_separate/visual_a' not found.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.549 ...s/method2/workshop/ica_separate/visual_a}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_separate/visual_s' not found.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.550 ...s/method2/workshop/ica_separate/visual_s}
+                                                   \\
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_single/dmn_a' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.551 ...igures/method2/workshop/ica_single/dmn_a}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_single/dmn_s' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.552 ...igures/method2/workshop/ica_single/dmn_s}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_single/motor_a' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.554 ...ures/method2/workshop/ica_single/motor_a}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_single/motor_s' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.555 ...ures/method2/workshop/ica_single/motor_s}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_single/atten_a' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.557 ...ures/method2/workshop/ica_single/atten_a}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_single/atten_s' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.558 ...ures/method2/workshop/ica_single/atten_s}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_single/visual_a' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.560 ...res/method2/workshop/ica_single/visual_a}
+                                                   &
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `figures/method2/workshop/ica_single/visual_s' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.561 ...res/method2/workshop/ica_single/visual_s}
+                                                  
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (3.55026pt too wide) in paragraph at lines 580--582
+\OT1/cmr/bx/n/10 Acknowledgments:  \OT1/cmr/m/n/10 This work was funded in part
+ by NIH Grant R01 DA020269
+ []
+
+(./mcem_weiliu_miccai2011.bbl [7 <./figures/wholebrain/sub1/axial0028.png> <./f
+igures/wholebrain/sub1/axial0034.png> <./figures/wholebrain/sub2/axial0028.png>
+ <./figures/wholebrain/sub2/axial0034.png> <./figures/wholebrain/sub5/axial0028
+.png> <./figures/wholebrain/sub5/axial0034.png> <./figures/wholebrain/sub1/sagg
+ital0029.png> <./figures/wholebrain/sub1/coronal0029.png> <./figures/wholebrain
+/sub2/saggital0029.png> <./figures/wholebrain/sub2/coronal0029.png> <./figures/
+wholebrain/sub5/saggital0029.png> <./figures/wholebrain/sub5/coronal0029.png>])
+[8] (./mcem_weiliu_miccai2011.aux) ) 
+Here is how much of TeX's memory you used:
+ 4469 strings out of 493315
+ 59609 string characters out of 6145891
+ 152535 words of memory out of 5000000
+ 7807 multiletter control sequences out of 15000+600000
+ 13397 words of font info for 51 fonts, out of 8000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 38i,12n,26p,682b,359s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
+usr/share/texmf/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texmf/font
+s/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf/fonts/type1/public/amsfo
+nts/cm/cmex10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf/fon
+ts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf/fonts/type1/public/amsf
+onts/cm/cmmib10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+</usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf/fon
+ts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf/fonts/type1/public/amsfo
+nts/cm/cmr7.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr
+/share/texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/
+type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/public/amsfont
+s/cm/cmti10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmtt10.pfb></u
+sr/share/texmf/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf/fonts
+/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on mcem_weiliu_miccai2011.pdf (8 pages, 381917 bytes).
+PDF statistics:
+ 142 PDF objects out of 1000 (max. 8388607)
+ 81 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
+

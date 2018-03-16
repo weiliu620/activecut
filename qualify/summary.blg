@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2010)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: summary.aux
+The style file: plainnat.bst
+Database file #1: /home/sci/weiliu/projects/centralref.bib
+Repeated entry---line 213 of file /home/sci/weiliu/projects/centralref.bib
+ : @article{raichle2001
+ :                     ,
+I'm skipping whatever remains of this entry
+You've used 8 entries,
+            2773 wiz_defined-function locations,
+            649 strings with 6786 characters,
+and the built_in function-call counts, 4482 in all, are:
+= -- 378
+> -- 354
+< -- 3
++ -- 119
+- -- 111
+* -- 408
+:= -- 721
+add.period$ -- 26
+call.type$ -- 8
+change.case$ -- 60
+chr.to.int$ -- 8
+cite$ -- 16
+duplicate$ -- 169
+empty$ -- 298
+format.name$ -- 121
+if$ -- 903
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 8
+newline$ -- 50
+num.names$ -- 32
+pop$ -- 109
+preamble$ -- 1
+purify$ -- 52
+quote$ -- 0
+skip$ -- 142
+stack$ -- 0
+substring$ -- 132
+swap$ -- 13
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 88
+warning$ -- 0
+while$ -- 36
+width$ -- 0
+write$ -- 113
+(There was 1 error message)

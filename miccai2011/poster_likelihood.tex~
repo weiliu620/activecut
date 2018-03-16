@@ -1,0 +1,30 @@
+\frame[plain]{
+\begin{minipage}{0.3\linewidth}
+\begin{block}{\LARGE Likelihood}
+
+\Large
+\begin{itemize}
+  \item Mean and variance over all time points are not used for find functional connectivity.
+
+    \item 
+    \begin{equation*}
+        P(\mat z)
+        =
+        \frac
+            {1}
+            {C}
+            \exp
+            \Bigg(\!-\beta
+            \sum_{i\in \cS}
+            \sum_{j \in \cN_i}
+            T (z_i \neq z_j)
+            \Bigg),
+    \end{equation*}
+    \item Spatially smooth functional map has higher probability.
+\end{itemize}
+
+
+\end{block}
+\end{minipage}
+
+}

@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+\usepackage{hyperref}
+ \usepackage[numbers]{natbib}
+
+\hypersetup{
+  % bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Research Statement},
+    pdfauthor={Wei Liu},     % author
+    pdfsubject={Wei Liu's Research Statement for Qualify},   % subject of the document
+    pdfcreator={Wei Liu},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={Research statement, qualify}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks= true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\topmargin}{-1 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{9 in}
+\setlength{\headsep}{0.5 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+\begin{document}
+\title{Research Statement}
+\author{Wei Liu\\ \small{(advisor: Tom Fletcher)} }
+\date{\today}
+\maketitle
+
+My research goal is to find the functional connectivity among the regions (voxels) of the whole human brain by using functional MRI (fMRI) imaging technique. fMRI BOLD signal detects the locations of increased neuro activity by measuring the blood oxygen levels at consecutive time points. The functional connectivity is usually defined as the temporal dependency between spatially remote regions or voxels. Compared to electroencephalograph (EEG), fMRI has lower temporal resolution (2s) but higher spatial resolution (3mm), and is an increasingly important non-invasive method for obtaining \emph{in vivo} brain functional images. 
+
+The high noise level of fMRI need statistical method like Statistical Parametric Mapping (SPM), where the effects of a stimulus signal is estimated as a linear regression problem, with BOLD signal of stimulus as explanatory variable, and BOLD signal of any brain voxel as observation. Activation or no activation  is decided by looking significant effects under the null hypothesis of no activation. This method is often regarded as mass univariate, in the sense that the effects of the stimulus on voxel $i$ is independent on the effect of voxel $j$, even $i$ and $j$ are spatially adjacent. In practice, there is almost always a spatial smoothing step as preprocessing, thus make spatially adjacent voxels' intensities (and effects) dependent on each other.
+
+
+While most of fMRI experiments are block design or event-related where a stimulus is given to the subject under study, there is increasing interest in resting-state fMRI, where subjects do not receive any stimulus during scan. Such experiments are used to detect the spontaneous activity of the brain when subjects are not performing any task. Because of the lack of stimulus signal, the standard SPM method does not apply and people have new computational methods that falls into a few categories~\cite{margulies2010resting} that lists as below.
+
+Seed-based methods find the correlation between an \emph{a priori} region-of-interest (ROI) and the whole brain. This straightforward method has the drawback of the \emph{a priori} ROI selection. Independent Component analysis (ICA) methods look for statistically independent components without the need of selecting ROI. But users need to manually select meaningful component by visual inspection. Clustering-based methods partition the brain voxels into distinct regions (clusters), and voxels in same regions are believed to belong to same functional networks. If the goal is to discriminate the patients and healthy control groups,  pattern classification method can also be used. There are also graph theory based methods that treats each ROI (or  voxel) as a node on the graph, and the connectivity between them as edge, and a rich set of graph algorithms can be used to learn the graph structure (small-worldness, modularity, etc). Last there are local methods which only look at the direct neighborhood of single voxels.
+
+Our first attempt~\cite{SCI:Liu2010a} on detecting functional network aims to explicitly model the spatial smoothness of the network. Instead of apply a Gaussian filter spatially on fMRI data as preprocessing, we use Markov Random Field (MRF) to model the assumption that if two voxels are functionally connected, their neighbors are likely connected, too. Because the goal is to find \emph{pairwise} connectivity among gray matter voxels, we build a graph with twice the dimension of the original image space. Then we do clustering on the connectivity variables, which is a 2-class (connected v.s. not connected) problem. A expectation-maximization (EM) framework is used to estimate the connectivity as well as estimating the parameters.
+
+Although this method is able to detect functional networks like default mode network, the computation cost (due to the high dimensional graph) make it difficult for generalizing it to group study. Then we consider the possibility of clustering the brain voxels in their original space while still modeling spatial smoothness as \emph{a prior} knowledge. We notice the mean (over all the time points) and the variance of the time course at each voxel is not a feature for clustering, so each time course are normalized by subtracting its mean and dividing by its standard deviation (also over all time points). This is equivalent the  time course to a high dimensional sphere and then they can be modeled by mixture of von-Mises Fisher (vMF) distribution (similar to mixture of Gaussian on Euclidean space). MRF is again used as a prior in the model and we estimate the label by maximize its posterior probability in a EM framework. Monte-Carlo Sampling is used to approximate the expectation value in EM since the introduction of MRF make it difficult to compute the expectation directly. By this method~\cite{SCI:Liu2011a} we are able to detect most significant brain networks like motor, visual, motion, and default mode network with precision compared to standard ICA method.
+
+Another advantage of this method is we can get a hierarchical MRF model after adding a group label map, which we assume should be shared by the population. Given the group label map, we \emph{generate} individual subject's label map with the group map as a parameter. And given the individual's labels, time courses  are generated on the sphere. With this three layer generative model, we can estimate the group label map (like the population mean), while still tolerate some change for each individual. The parameters including one that connects the group and individual, and those in MRF and mixture of vMF, can be manually set or estimated in a EM framework (though we need to see if estimating all parameters is appropriate or possible). This portion of work is an ongoing project.
+
+ \bibliographystyle{plainnat}
+\bibliography{ref}
+\end{document}

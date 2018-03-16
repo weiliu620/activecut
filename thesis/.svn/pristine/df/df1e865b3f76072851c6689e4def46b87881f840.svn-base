@@ -1,0 +1,2057 @@
+@article{deco2010emerging,
+  title={Emerging concepts for the dynamical organization of resting-state activity in the brain},
+  author={Deco, G. and Jirsa, V.K. and McIntosh, A.R.},
+  journal={Nature Reviews Neuroscience},
+  volume={12},
+  number={1},
+  pages={43--56},
+  year={2010},
+  publisher={Nature Publishing Group}
+}
+
+
+@article{wei1990monte,
+  title={{A Monte Carlo implementation of the EM algorithm and the poor man's data augmentation algorithms}},
+  author={Wei, G.C.G. and Tanner, M.A.},
+  journal={Journal of the American Statistical Association},
+  volume={85},
+  number={411},
+  pages={699--704},
+  issn={0162-1459},
+  year={1990},
+  publisher={JSTOR}
+}
+
+@article{zhang2001segmentation,
+  title={Segmentation of brain MR images through a hidden Markov random field model and the expectation-maximization algorithm},
+  author={Zhang, Yongyue and Brady, Michael and Smith, Stephen},
+  journal={Medical Imaging, IEEE Transactions on},
+  volume={20},
+  number={1},
+  pages={45--57},
+  year={2001},
+  publisher={IEEE}
+}
+
+@article{Golland2007,
+   author = {Golland, Polina and Golland, Yulia and Malach, Rafael},
+   affiliation = {Computer Science and Artificial Intelligence Laboratory, MIT USA},
+   title = {Detection of Spatial Activation Patterns as Unsupervised Segmentation of {fMRI} Data},
+  journal={MICCAI 2007},
+   pages = {110-118},
+   year = 2007
+}
+
+@article{fox2010clinical,
+  title={{Clinical Applications of Resting State Functional Connectivity}},
+  author={Fox, M.D. and Greicius, M.},
+  journal={Frontiers in systems neuroscience},
+  volume={4},
+  year={2010},
+  publisher={Frontiers Research Foundation}
+}
+
+@MISC{spmwebsite,
+      AUTHOR = {{Wellcome Trust Centre for Neuroimaging}},
+      TITLE = {Statistical Parametric Mapping},
+      MONTH = Nov,
+      YEAR = 2010,
+      HOWPUBLISHED = {\url{http://www.fil.ion.ucl.ac.uk/spm/}} }
+}
+
+@MISC{giftwebiste,
+      AUTHOR = {V. D. Calhoun},
+      TITLE = {Group {ICA} Toolbox},
+      MONTH = Mar,
+      YEAR = 2011,
+      HOWPUBLISHED = {\url{http://icatb.sourceforge.net/}} }
+}
+
+
+@MISC{connwebsite,
+      AUTHOR = {Susan Whitfield-Gabrieli},
+      TITLE = {conn {M}atlab toolbox},
+      MONTH = Mar,
+      YEAR = 2011,
+      HOWPUBLISHED = {\url{http://web.mit.edu/swg/software.htm}} }
+}
+
+@article{raichle2001default,
+  title={A default mode of brain function},
+  author={Raichle, Marcus E and MacLeod, Ann Mary and Snyder, Abraham Z and Powers, William J and Gusnard, Debra A and Shulman, Gordon L},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={98},
+  number={2},
+  pages={676--682},
+  year={2001},
+  publisher={National Acad Sciences}
+}
+
+@article{raichle2001,
+        title = "A default mode of brain function",
+        author = "M. E. Raichle and A. M. MacLeod and A. Z. Snyder and W. J. Powers and D. A. Gusnard and G. L. Shulman",
+        journal = "PNAS",
+        year = 2001,
+        volume = "98",
+        number = "2",
+        pages = "676--682"
+}
+
+@article{worsley_analysis_1995,
+	title = {Analysis of {fMRI} time-series revisited--again},
+	volume = {2},
+	number = {3},
+	journal = {Neuroimage},
+	author = {K. J. Worsley and K. J. Friston},
+	year = {1995},
+	pages = {173--181}
+},
+
+@article{ou_spatial_2005,
+	title = {From spatial regularization to anatomical priors in {fMRI} analysis},
+	journal = {{I}nformation in {M}edical {I}maging},
+	author = {Wanmei Ou and Polina Golland},
+	year = {2005},
+	pages = {88--100}
+},
+
+@article{descombes_fmri_1998,
+	title = {{fMRI} Signal restoration using a {spatio-temporal} {M}arkov random field preserving transitions},
+	volume = {8},
+	issn = {1053-8119},
+	doi = {10.1006/nimg.1998.0372},
+	number = {4},
+	journal = {{NeuroImage}},
+	author = {Xavier Descombes and Frithjof Kruggel and D. Yves von Cramon},
+	month = nov,
+	year = {1998},
+	pages = {340--349}
+},
+
+@article{descombes_spatio-temporal_1998,
+	title = {Spatio-temporal {fMRI} analysis using {M}arkov random fields},
+	volume = {17},
+	issn = {0278-0062},
+	doi = {10.1109/42.746636},
+	number = {6},
+	journal = {Medical Imaging, {IEEE} Transactions on},
+	author = {X. Descombes and F. Kruggel and {D.Y.} Von Cramon},
+	year = {1998},
+	pages = {1028--1039}
+},
+
+@article{woolrich_fully_2004,
+	title = {{F}ully {B}ayesian {spatio-temporal} modeling of {fMRI} data},
+	volume = {23},
+	issn = {0278-0062},
+	doi = {10.1109/TMI.2003.823065},
+	number = {2},
+	journal = {Medical Imaging, {IEEE} Transactions on},
+	author = {{M.W.} Woolrich and M. Jenkinson and {J.M.} Brady and {S.M.} Smith},
+	year = {2004},
+	pages = {213--231}
+},
+
+@inproceedings{cosman_exact_2004,
+	title = {Exact {MAP} activity detection in {fMRI} using a {GLM} with an {I}sing spatial prior},
+	booktitle = {MICCAI},
+	author = {E. R. Cosman and J. W. Fisher and W. M. Wells},
+	year = {2004},
+	pages = {703–-710}
+},
+
+@article{mller_multivariate_2001,
+	title = {On Multivariate Spectral Analysis of {fMRI} Time Series},
+	volume = {14},
+	issn = {1053-8119},
+	url = {http://www.sciencedirect.com/science/article/B6WNP-457VFJT-19/2/495421aedd5d6d64a3777408b65ecb46},
+	doi = {10.1006/nimg.2001.0804},
+	number = {2},
+	journal = {{NeuroImage}},
+	author = {Karsten M\"{u}ller and Gabriele Lohmann and Volker Bosch and D. Yves von Cramon},
+	month = aug,
+	year = {2001},
+	keywords = {{fMRI;} functional connectivities; spectral analysis; coherence; phase lead},
+	pages = {347--356}
+},
+
+@article{geman1984stochastic,
+  title={Stochastic relaxation, Gibbs distributions, and the {B}ayesian restoration of images},
+  author={Geman, Stuart and Geman, Donald},
+  journal={Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  number={6},
+  pages={721--741},
+  year={1984},
+  publisher={IEEE}
+}
+
+@article{zalesky2011relationship,
+  title={The relationship between regional and inter-regional functional connectivity deficits in schizophrenia},
+  author={Zalesky, A. and Fornito, A. and Egan, G.F. and Pantelis, C. and Bullmore, E.T.},
+  journal={Human Brain Mapping},
+  year={2011},
+  publisher={Wiley Online Library}
+}
+
+@book{mortveit2008introduction,
+  title={An introduction to sequential dynamical systems},
+  author={Mortveit, H.S. and Reidys, C.M.},
+  year={2008},
+  publisher={Springer Verlag}
+}
+
+@article{margulies2010resting,
+  title={Resting developments: a review of fMRI post-processing methodologies for spontaneous brain activity},
+  author={Margulies, D.S. and Bottger, J. and Long, X. and Lv, Y. and Kelly, C. and Schafer, A. and Goldhahn, D. and Abbushi, A. and Milham, M.P. and Lohmann, G. and others},
+  journal={Magnetic Resonance Materials in Physics, Biology and Medicine},
+  pages={1--19},
+  year={2010},
+  publisher={Springer}
+}
+
+@article{liu2010spatial,
+title={Spatial {R}egularization of {F}unctional {C}onnectivity {U}sing {H}igh-{D}imensional {M}arkov {R}andom {F}ields},
+  author={Liu, W. and Zhu, P. and Anderson, J. and Yurgelun-Todd, D. and Fletcher, P.T.},
+  journal={Medical Image Computing and Computer-Assisted Intervention--MICCAI 2010},
+  pages={363--370},
+  year={2010},
+  publisher={Springer},
+  url={http://www.sci.utah.edu/publications/liu10/MRF_connectivity_miccai2010.pdf}
+}
+
+@article{varoquaux2010brain,
+  title={Brain covariance selection: better individual functional connectivity models using population prior},
+  author={Varoquaux, G. and Gramfort, A. and Poline, J.B. and Thirion, B.},
+  journal={Arxiv preprint arXiv:1008.5071},
+  year={2010}
+}
+
+@article{yuan2006model,
+  title={Model selection and estimation in regression with grouped variables},
+  author={Yuan, M. and Lin, Y.},
+  journal={Journal of the Royal Statistical Society: Series B (Statistical Methodology)},
+  volume={68},
+  number={1},
+  pages={49--67},
+  year={2006},
+  publisher={Wiley Online Library}
+}
+@article{butts2009revisiting,
+  title={Revisiting the foundations of network analysis},
+  author={Butts, C.T.},
+  journal={Science},
+  volume={325},
+  number={5939},
+  pages={414},
+  year={2009},
+  publisher={American Association for the Advancement of Science}
+}
+
+@article{castellanos2011large,
+  title={Large-scale brain systems in {ADHD}: beyond the prefrontal--striatal model},
+  author={Castellanos, F.X. and Proal, E.},
+  journal={Trends in {C}ognitive {S}ciences},
+  year={2011},
+  publisher={Elsevier}
+}
+
+@article{ghosh2008noise,
+  title={Noise during rest enables the exploration of the brain's dynamic repertoire},
+  author={Ghosh, A. and Rho, Y. and McIntosh, AR and K{\"o}tter, R. and Jirsa, VK},
+  journal={PLoS Computational Biology},
+  volume={4},
+  number={10},
+  pages={e1000196},
+  year={2008},
+  publisher={Public Library of Science}
+}
+
+
+@article{mori1999three,
+  title={Three-dimensional tracking of axonal projections in the brain by magnetic resonance imaging},
+  author={Mori, S. and Crain, B.J. and Chacko, VP and Van Zijl, P.},
+  journal={Annals of neurology},
+  volume={45},
+  number={2},
+  pages={265--269},
+  year={1999},
+  publisher={Wiley Online Library}
+}
+
+@article{mori2002fiber,
+  title={Fiber tracking: principles and strategies--a technical review},
+  author={Mori, S. and van Zijl, P.},
+  journal={NMR in Biomedicine},
+  volume={15},
+  number={7-8},
+  pages={468--480},
+  year={2002},
+  publisher={Wiley Online Library}
+}
+
+@article{mori2002imaging,
+  title={Imaging cortical association tracts in the human brain using diffusion-tensor-based axonal tracking},
+  author={Mori, S. and Kaufmann, W.E. and Davatzikos, C. and Stieltjes, B. and Amodei, L. and Fredericksen, K. and Pearlson, G.D. and Melhem, E.R. and Solaiyappan, M. and Raymond, G.V. and others},
+  journal={Magnetic resonance in medicine},
+  volume={47},
+  number={2},
+  pages={215--223},
+  year={2002},
+  publisher={Wiley Online Library}
+}
+
+@article{campbell2005flow,
+  title={Flow-based fiber tracking with diffusion tensor and q-ball data: validation and comparison to principal diffusion direction techniques},
+  author={Campbell, J.S.W. and Siddiqi, K. and Rymar, V.V. and Sadikot, A.F. and Pike, G.B.},
+  journal={NeuroImage},
+  volume={27},
+  number={4},
+  pages={725--736},
+  year={2005},
+  publisher={Elsevier}
+}
+
+
+@article{basser2000vivo,
+  title={In vivo fiber tractography using DT-MRI data},
+  author={Basser, P.J. and Pajevic, S. and Pierpaoli, C. and Duda, J. and Aldroubi, A.},
+  journal={Magnetic resonance in medicine},
+  volume={44},
+  number={4},
+  pages={625--632},
+  year={2000},
+  publisher={Wiley Online Library}
+}
+
+
+@article{zalesky2008dt,
+  title={DT-MRI fiber tracking: a shortest paths approach},
+  author={Zalesky, A.},
+  journal={Medical Imaging, IEEE Transactions on},
+  volume={27},
+  number={10},
+  pages={1458--1471},
+  year={2008},
+  publisher={IEEE}
+}
+
+@article{iturria2007characterizing,
+  title={Characterizing brain anatomical connections using diffusion weighted MRI and graph theory},
+  author={Iturria-Medina, Y. and Canales-Rodriguez, EJ and Melie-Garcia, L. and Valdes-Hernandez, PA and Martinez-Montes, E. and Alem{\'a}n-G{\'o}mez, Y. and S{\'a}nchez-Bornot, JM},
+  journal={Neuroimage},
+  volume={36},
+  number={3},
+  pages={645--660},
+  year={2007},
+  publisher={Elsevier}
+}
+
+@inproceedings{poynton2005probabilistic,
+  title={Probabilistic tracking of fiber pathways using dynamic programming},
+  author={Poynton, C. and Lal, R. and Ratnanather, JT and Mori, S. and Boatman, D. and Miller, MI},
+  booktitle={11th Annu. Meeting Org. Human Brain Mapp., Toronto, ON, Canada},
+  year={2005}
+}
+
+@book{kleinberg2006algorithm,
+  title={Algorithm design},
+  author={Kleinberg, J.},
+  year={2006},
+  publisher={Pearson Education India}
+}
+
+@book{cormen2001introduction,
+  title={Introduction to algorithms},
+  author={Cormen, T.H.},
+  year={2001},
+  publisher={The MIT press}
+}
+
+@book{robert2004monte,
+  title={Monte Carlo Statistical Methods},
+  author={Robert, Christian and Casella, George},
+  year={2004},
+  publisher={Springer}
+}
+
+@book{winkler2003image,
+  title={Image analysis, random fields and {M}arkov chain Monte Carlo methods: a mathematical introduction},
+  author={Winkler, G.},
+  volume={27},
+  year={2003},
+  publisher={Springer Verlag}
+}
+
+@book{grimmett2006random,
+  title={The random-cluster model},
+  author={Grimmett, G.},
+  volume={333},
+  year={2006},
+  publisher={Springer Verlag}
+}
+
+@book{rubinstein2008simulation,
+  title={Simulation and the Monte Carlo method},
+  author={Rubinstein, R.Y. and Kroese, D.P.},
+  volume={707},
+  year={2008},
+  publisher={Wiley-Interscience}
+}
+
+@article{barbu2005generalizing,
+  title={Generalizing {S}wendsen-{W}ang to sampling arbitrary posterior probabilities},
+  author={Barbu, A. and Zhu, S.C.},
+  journal={Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  volume={27},
+  number={8},
+  pages={1239--1253},
+  year={2005},
+  publisher={IEEE}
+}
+
+
+@article{kay1998fundamentals,
+  title={Fundamentals of statistical signal processing, Volume I: Estimation theory},
+  author={Kay, S.M.},
+  publisher={Prentice Hall},
+  volume={7},
+  year={1998}
+}
+
+@article{buxton1998dynamics,
+  title={Dynamics of blood flow and oxygenation changes during brain activation: the balloon model},
+  author={Buxton, R.B. and Wong, E.C. and Frank, L.R.},
+  journal={Magnetic Resonance in Medicine},
+  volume={39},
+  number={6},
+  pages={855--864},
+  year={1998},
+  publisher={Wiley Online Library}
+}
+
+@article{gelman1992inference,
+  title={Inference from iterative simulation using multiple sequences},
+  author={Gelman, A. and Rubin, D.B.},
+  journal={Statistical Science},
+  volume={7},
+  number={4},
+  pages={457--472},
+  year={1992},
+  publisher={Institute of Mathematical Statistics}
+}
+
+@article{johnson1996studying,
+  title={Studying convergence of {M}arkov chain Monte Carlo algorithms using coupled sample paths},
+  author={Johnson, V.E.},
+  journal={Journal of the American Statistical Association},
+  pages={154--166},
+  year={1996},
+  publisher={JSTOR}
+}
+
+@article{gibbs2000bounding,
+  title={Bounding the convergence time of the Gibbs sampler in {B}ayesian image restoration},
+  author={Gibbs, A.L.},
+  journal={Biometrika},
+  volume={87},
+  number={4},
+  pages={749--766},
+  year={2000},
+  publisher={Biometrika Trust}
+}
+
+@article{nepomniaschaya2000simple,
+  title={A simple implementation of Dijkstra's shortest path algorithm on associative parallel processors},
+  author={Nepomniaschaya, A.S. and Dvoskina, M.A.},
+  journal={Fundamenta Informaticae},
+  volume={43},
+  number={1},
+  pages={227--243},
+  year={2000},
+  publisher={IOS Press}
+}
+
+@article{harish2007accelerating,
+  title={Accelerating large graph algorithms on the GPU using CUDA},
+  author={Harish, P. and Narayanan, P.},
+  journal={High Performance Computing--HiPC 2007},
+  pages={197--208},
+  year={2007},
+  publisher={Springer}
+}
+
+@article{buluē2010solving,
+  title={Solving path problems on the GPU},
+  author={Bulu{\=e}, A.I. and Gilbert, J.R. and Budak, C.},
+  journal={Parallel Computing},
+  volume={36},
+  number={5-6},
+  pages={241--253},
+  year={2010},
+  publisher={Elsevier}
+}
+
+@article{huber2003bounding,
+  title={A bounding chain for {S}wendsen-{W}ang},
+  author={Huber, M.},
+  journal={Random Structures \& Algorithms},
+  volume={22},
+  number={1},
+  pages={43--59},
+  year={2003},
+  publisher={Wiley Online Library}
+}
+
+@article{cooper1999mixing,
+  title={Mixing properties of the {S}wendsen-{W}ang process on classes of graphs},
+  author={Cooper, C. and Frieze, A.M.},
+  journal={Random Structures and Algorithms},
+  volume={15},
+  number={3-4},
+  pages={242--261},
+  year={1999}
+}
+
+@article{lewin2003functional,
+  title={Functional {MRI}: An introduction to methods},
+  author={Lewin, J.S.},
+  journal={Journal of Magnetic Resonance Imaging},
+  volume={17},
+  number={3},
+  pages={383--383},
+  year={2003},
+  publisher={Wiley Online Library}
+}
+
+@article{noll2001primer,
+  title={A primer on MRI and functional MRI},
+  author={Noll, D.C. and others},
+  journal={Techical Report, University of Michigan, Ann Arbor, USA},
+  year={2001}
+}
+
+@book{stroman2011essentials,
+  title={Essentials of Functional MRI},
+  author={Stroman, P.W.},
+  year={2011},
+  publisher={CRC Press}
+}
+
+
+@book {LiBook,
+ author = {S. Z. Li},
+ title  = {Markov random field modeling in computer vision},
+ year   = {1995},
+ publisher = {Springer},
+ }
+
+@book{mardia2000directional,
+  title={{Directional statistics}},
+  author={Mardia, K.V. and Jupp, P.E. and Ebooks Corporation},
+  isbn={0471953334},
+  year={2000},
+  publisher={Wiley Chichester}
+}
+
+@article{banerjee2006clustering,
+  title={{Clustering on the unit hypersphere using von Mises-Fisher distributions}},
+  author={Banerjee, A. and Dhillon, I.S. and Ghosh, J. and Sra, S.},
+  journal={J. Machine Learning Res.},
+  year={2006},
+  volume={6},
+  number={2},
+  pages={1345},
+  issn={1532-4435},
+  publisher={Citeseer}
+}
+
+@INPROCEEDINGS{5074650,
+author={Golland, P. and Lashkari, D. and Venkataraman, A.},
+booktitle={42nd Asilomar Conference on Signals, Systems and Computers}, title={Spatial patterns and functional profiles for discovering structure in {fMRI} data},
+year=2008,
+month=Oct,
+pages={1402 -1409},
+ISSN={1058-6393},}
+
+@article{fox2005human,
+  title={The human brain is intrinsically organized into dynamic, anticorrelated functional networks},
+  author={Fox, Michael D and Snyder, Abraham Z and Vincent, Justin L and Corbetta, Maurizio and Van Essen, David C and Raichle, Marcus E},
+  journal={Proceedings of the National Academy of Sciences of the United States of America},
+  volume={102},
+  number={27},
+  pages={9673--9678},
+  year={2005},
+  publisher={National Acad Sciences}
+}
+
+@book{li_markov_2009,
+	title = {Markov random field modeling in image analysis},
+	isbn = {1848002785, 9781848002784},
+	publisher = {Springer},
+	author = {Stan Z. Li},
+	month = mar,
+	year = {2009}
+}
+
+@article{thirion2006detection,
+  title={{Detection of signal synchronizations in resting-state fMRI datasets}},
+  author={Thirion, B. and Dodel, S. and Poline, J.B.},
+  journal={Neuroimage},
+  volume={29},
+  number={1},
+  pages={321--327},
+  issn={1053-8119},
+  year={2006},
+  publisher={Elsevier}
+}
+
+@article{fox2010clinical,
+  title={{Clinical Applications of Resting State Functional Connectivity}},
+  author={Fox, M.D. and Greicius, M.},
+  journal={Frontiers in systems neuroscience},
+  volume={4},
+  year={2010},
+  publisher={Frontiers Research Foundation}
+}
+
+@MISC{spmwebsite,
+      AUTHOR = {{Wellcome Trust Centre for Neuroimaging}},
+      TITLE = {Statistical Parametric Mapping},
+      MONTH = Nov,
+      YEAR = 2010,
+      HOWPUBLISHED = {\url{http://www.fil.ion.ucl.ac.uk/spm/}} }
+}
+
+@MISC{giftwebiste,
+      AUTHOR = {V. D. Calhoun},
+      TITLE = {Group {ICA} Toolbox},
+      MONTH = Mar,
+      YEAR = 2011,
+      HOWPUBLISHED = {\url{http://icatb.sourceforge.net/}} }
+}
+
+
+@MISC{connwebsite,
+      AUTHOR = {Susan Whitfield-Gabrieli},
+      TITLE = {conn {M}atlab toolbox},
+      MONTH = Mar,
+      YEAR = 2011,
+      HOWPUBLISHED = {\url{http://web.mit.edu/swg/software.htm}} }
+}
+
+@inproceedings{ng2010group,
+  title={Group {MRF} for {fMRI} activation detection},
+  author={Ng, B. and Abugharbieh, R. and Hamarneh, G.},
+  booktitle={CVPR 2010},
+  pages={2887--2894},
+  year={2010},
+  organization={IEEE}
+}
+
+@article{beckmann2005tensorial,
+  title={Tensorial extensions of independent component analysis for multisubject {FMRI} analysis},
+  author={Beckmann, C.F. and Smith, S.M.},
+  journal={Neuroimage},
+  volume={25},
+  number={1},
+  pages={294--311},
+  year={2005},
+  publisher={Elsevier}
+}
+
+@article{descombes1998spatio,
+  title={Spatio-temporal {fMRI} analysis using {M}arkov random fields},
+  author={Descombes, X. and Kruggel, F. and Von Cramon, D.Y.},
+  journal={IEEE TMI},
+  volume={17},
+  number={6},
+  pages={1028--1039},
+  year={1998},
+  publisher={IEEE}
+}
+
+
+@ARTICLE{nggroup2012, 
+author={Ng, B. and McKeown, M.J. and Abugharbieh, R.}, 
+journal={IEEE TMI}, 
+title={Group Replicator Dynamics: A Novel Group-Wise Evolutionary Approach for Sparse Brain Network Detection}, 
+year={2012}, 
+volume={31}, 
+number={3}, 
+pages={576 -585}, 
+doi={10.1109/TMI.2011.2173699}, 
+ISSN={0278-0062},}
+
+@article{Beckmann20031052,
+title = "General multilevel linear modeling for group analysis in FMRI",
+journal = "NeuroImage",
+volume = "20",
+number = "2",
+pages = "1052 - 1063",
+year = "2003",
+issn = "1053-8119",
+doi = "10.1016/S1053-8119(03)00435-X",
+author = "Christian F. Beckmann and Mark Jenkinson and Stephen M. Smith",
+}
+
+@article{Liu2012a,
+title = {Group Analysis of Resting-State {fMRI} by Hierarchical {M}arkov {R}andom {F}ields},
+journal={MICCAI 2012},
+author={Liu, W. and Awate, S. and Fletcher, P.T.},
+notes = {In Press},
+year = {In Press},
+url={http://www.sci.utah.edu/~weiliu/publications/hiermrf_miccai12.pdf}
+}
+
+@article{cowles1996markov,
+  title={Markov chain {M}onte {C}arlo convergence diagnostics: a comparative review},
+  author={Cowles, M.K. and Carlin, B.P.},
+  journal={Journal of the American Statistical Association},
+  pages={883--904},
+  year={1996},
+  publisher={JSTOR}
+}
+
+@article{propp1996exact,
+  title={Exact sampling with coupled {M}arkov chains and applications to statistical mechanics},
+  author={Propp, J.G. and Wilson, D.B.},
+  journal={Random structures and Algorithms},
+  volume={9},
+  number={1-2},
+  pages={223--252},
+  year={1996},
+  publisher={Citeseer}
+}
+
+
+@article{haggstrom1999exact,
+  title={On Exact Simulation of {M}arkov Random Fields Using Coupling from the Past},
+  author={H{\"a}ggstr{\"o}m, O. and Nelander, K.},
+  journal={Scandinavian Journal of Statistics},
+  pages={395--411},
+  year={1999},
+  publisher={JSTOR}
+}
+
+@article{smith2012future,
+  title={The future of FMRI connectivity},
+  author={Smith, S.M.},
+  journal={NeuroImage},
+  year={2012},
+  publisher={Elsevier}
+}
+
+@article{Smith20121257,
+title = "The future of FMRI connectivity",
+journal = "NeuroImage",
+volume = "62",
+number = "2",
+pages = "1257 - 1266",
+year = "2012",
+author = "Stephen M. Smith",
+}
+
+@article{mikl2008effects,
+  title={Effects of spatial smoothing on fMRI group inferences},
+  author={Mikl, M. and Mare{\v{c}}ek, R. and Hlu{\v{s}}t{\'\i}k, P. and Pavlicov{\'a}, M. and Drastich, A. and Chlebus, P. and Br{\'a}zdil, M. and Krupa, P.},
+  journal={Magnetic resonance imaging},
+  volume={26},
+  number={4},
+  pages={490--503},
+  year={2008},
+  publisher={Elsevier}
+}
+
+@article{friston2007statistical,
+  title={Statistical {P}arametric {M}apping: The Analysis of Functional Brain Images},
+  author={Friston, K.J. and Ashburner, J.T. and Kiebel, S.J. and Nichols, T.E. and Penny, W.D.},
+  journal={Statistical Parametric Mapping The Analysis of Functional Brain Images},
+  volume={8},
+  year={2007},
+  publisher={Academic Press}
+}
+
+@article{fox2007spontaneous,
+  title={Spontaneous fluctuations in brain activity observed with functional magnetic resonance imaging},
+  author={Fox, M.D. and Raichle, M.E.},
+  journal={Nature Reviews Neuroscience},
+  volume=8,
+  number=9,
+  pages={700--711},
+  year=2007,
+  publisher={Nature Publishing Group}
+}
+
+
+@article{10.1371/journal.pone.0044428,
+    author = {Moussa, , Malaak N. AND Steen, , Matthew R. AND Laurienti, , Paul J. AND Hayasaka, , Satoru},
+    journal = {PLoS ONE},
+    publisher = {Public Library of Science},
+    title = {Consistency of Network Modules in Resting-State fMRI Connectome Data},
+    year = {2012},
+    month = {08},
+    volume = {7},
+    url = {http://dx.doi.org/10.1371%2Fjournal.pone.0044428},
+    pages = {e44428},
+    number = {8},
+    doi = {10.1371/journal.pone.0044428}
+}        
+
+
+@article{mcgraw1996forming,
+  title={Forming inferences about some intraclass correlation coefficients.},
+  author={McGraw, K.O. and Wong, SP},
+  journal={Psychological methods},
+  volume={1},
+  number={1},
+  pages={30},
+  year={1996},
+  publisher={American Psychological Association}
+}
+
+@article{weir2005quantifying,
+  title={Quantifying test-retest reliability using the intraclass correlation coefficient},
+  author={Weir, J.P.},
+  journal={J Strength Cond Res},
+  volume={19},
+  number={1},
+  pages={231--40},
+  year={2005}
+}
+
+@article{shrout1979intraclass,
+  title={Intraclass correlations: uses in assessing rater reliability.},
+  author={Shrout, P.E. and Fleiss, J.L.},
+  journal={Psychological bulletin},
+  volume={86},
+  number={2},
+  pages={420},
+  year={1979},
+  publisher={American Psychological Association}
+}
+
+@article{friedman2008sparse,
+  title={Sparse inverse covariance estimation with the graphical lasso},
+  author={Friedman, J. and Hastie, T. and Tibshirani, R.},
+  journal={Biostatistics},
+  volume={9},
+  number={3},
+  pages={432--441},
+  year={2008},
+  publisher={Biometrika Trust}
+}
+
+@article{besag1975statistical,
+  title={Statistical analysis of non-lattice data},
+  author={Besag, J.},
+  journal={The Statistician},
+  pages={179--195},
+  year={1975},
+  publisher={JSTOR}
+}
+
+
+@Article{ besag_spatial_1974,
+  title = {Spatial interaction and the statistical analysis of
+		  lattice systems},
+  volume = {36},
+  number = {2},
+  journal = {Journal of the Royal Statistical Society. Series B
+		  {(Methodological)}},
+  author = {J. Besag},
+  year = {1974},
+  pages = {192-236},
+}
+
+@Article{ liu2011monte,
+  title = {Monte {C}arlo Expectation Maximization with Hidden
+		  {M}arkov Models to Detect Functional Networks in
+		  Resting-State {fMRI}},
+  author = {Liu, W. and Awate, S. and Anderson, J. and Yurgelun-Todd,
+		  D. and Fletcher, P.T.},
+  journal = {Machine Learning in Medical Imaging},
+  pages = {59--66},
+  year = {2011},
+  publisher = {Springer},
+}
+
+@Article{ yeo2011organization,
+  title = {The organization of the human cerebral cortex estimated by
+		  intrinsic functional connectivity},
+  author = {Yeo, B.T.T. and Krienen, F.M. and Sepulcre, J. and
+		  Sabuncu, M.R. and Lashkari, D. and Hollinshead, M. and
+		  Roffman, J.L. and Smoller, J.W. and Z{\"o}llei, L. and
+		  Polimeni, J.R. and others},
+  journal = {Journal of Neurophysiology},
+  volume = {106},
+  number = {3},
+  pages = {1125--1165},
+  year = {2011},
+  publisher = {Am Physiological Soc}
+}
+
+@Article{ calhoun2001spatial,
+  title = {Spatial and temporal independent component analysis of
+		  functional {MRI} data containing a pair of task-related
+		  waveforms},
+  author = {Calhoun, VD and Adali, T. and Pearlson, GD and Pekar, JJ},
+  journal = {HBM},
+  volume = 13,
+  number = 1,
+  pages = {43--53},
+  year = 2001,
+  publisher = {Wiley Online Library}
+}
+
+@Article{ van2008normalized,
+  title = {Normalized cut group clustering of resting-state {FMRI}
+		  data},
+  author = {Van Den Heuvel, M. and Mandl, R. and Pol, H.H.},
+  journal = {PLoS One},
+  volume = {3},
+  number = {4},
+  pages = {e2001},
+  year = {2008},
+  publisher = {Public Library of Science}
+}
+
+@Article{ bellec2010multi,
+  title = {Multi-level bootstrap analysis of stable clusters in
+		  resting-state {fMRI}},
+  author = {Bellec, P. and Rosa-Neto, P. and Lyttelton, O.C. and
+		  Benali, H. and Evans, A.C.},
+  journal = {Neuroimage},
+  volume = {51},
+  number = {3},
+  pages = {1126-1139},
+  year = {2010},
+  publisher = {Elsevier}
+}
+
+@article{shi2000normalized,
+  title={Normalized cuts and image segmentation},
+  author={Shi, Jianbo and Malik, Jitendra},
+  journal={Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  volume={22},
+  number={8},
+  pages={888--905},
+  year={2000},
+  publisher={IEEE}
+}
+@article{craddock2012whole,
+  title={A whole brain fMRI atlas generated via spatially constrained spectral clustering},
+  author={Craddock, R Cameron and James, G Andrew and Holtzheimer, Paul E and Hu, Xiaoping P and Mayberg, Helen S},
+  journal={Human Brain Mapping},
+  volume={33},
+  number={8},
+  pages={1914--1928},
+  year={2012},
+  publisher={Wiley Online Library}
+}
+
+@Article{ calhoun2001method,
+  title = {A method for making group inferences from functional {MRI}
+		  data using independent component analysis},
+  author = {Calhoun, VD and Adali, T. and Pearlson, GD and Pekar, JJ},
+  journal = {Human Brain Mapping},
+  volume = {14},
+  number = {3},
+  pages = {140--151},
+  year = {2001},
+  publisher = {Wiley Online Library}
+}
+
+@Article{zuo2010reliable,
+  title = {Reliable intrinsic connectivity networks: test-retest
+		  evaluation using {ICA} and dual regression approach},
+  author = {Zuo, X.N. and Kelly, C. and Adelstein, J.S. and Klein,
+		  D.F. and Castellanos, F.X. and Milham, M.P.},
+  journal = {Neuroimage},
+  volume = {49},
+  number = {3},
+  pages = {2163},
+  year = {2010},
+  publisher = {NIH Public Access}
+}
+
+@inproceedings{potts1952some,
+  title={Some generalized order-disorder transformations},
+  author={Potts, Renfrey Burnard},
+  booktitle={Proceedings of the Cambridge Philosophical Society},
+  volume={48},
+  number={2},
+  pages={106--109},
+  year={1952},
+  organization={Cambridge University Press}
+}
+@Article{baumgartner1998quantification,
+  title = {Quantification in functional magnetic resonance imaging:
+		  fuzzy clustering vs. correlation analysis},
+  author = {Baumgartner, R. and Windischberger, C. and Moser, E.},
+  journal = {Magnetic Resonance Imaging},
+  volume = {16},
+  number = {2},
+  pages = {115--125},
+  year = {1998},
+  publisher = {Elsevier}
+}
+
+@InProceedings{arthur2007k,
+  title = {k-means++: The advantages of careful seeding},
+  author = {Arthur, D. and Vassilvitskii, S.},
+  booktitle = {Proceedings of the eighteenth annual ACM-SIAM symposium on
+		  discrete algorithms},
+  pages = {1027--1035},
+  year = {2007},
+  organization = {Society for Industrial and Applied Mathematics}
+}
+
+@article{shehzad2009resting,
+  title={The resting brain: unconstrained yet reliable},
+  author={Shehzad, Zarrar and Kelly, AM Clare and Reiss, Philip T and Gee, Dylan
+                  G and Gotimer, Kristin and Uddin, Lucina Q and Lee, Sang Han
+                  and Margulies, Daniel S and Roy, Amy Krain and Biswal, Bharat
+                  B and others},
+  journal={Cerebral Cortex},
+  volume={19},
+  number={10},
+  pages={2209--2229},
+  year={2009},
+  publisher={Oxford Univ Press}
+}
+@article{esposito2005independent,
+  title={Independent component analysis of {fMRI} group studies by
+                  self-organizing clustering},
+  author={Esposito, Fabrizio and Scarabino, Tommaso and Hyvarinen, Aapo and
+                  Himberg, Johan and Formisano, Elia and Comani, Silvia and
+                  Tedeschi, Gioacchino and Goebel, Rainer and Seifritz, Erich
+                  and Di Salle, Francesco and others},
+  journal={Neuroimage},
+  volume={25},
+  number={1},
+  pages={193--205},
+  year={2005},
+  publisher={Orlando, FL: Academic Press, c1992-}
+}
+
+@article{beckmann2003general,
+  title={General multilevel linear modeling for group analysis in {FMRI}},
+  author={Beckmann, Christian F and Jenkinson, Mark and Smith, Stephen M},
+  journal={Neuroimage},
+  volume=20,
+  number=2,
+  pages={1052--1063},
+  year=2003,
+  publisher={Elsevier}
+}
+ @article{woolrich2004multilevel,
+  title={Multilevel linear modelling for {FMRI} group analysis using {B}ayesian
+                  inference},
+  author={Woolrich, Mark W and Behrens, Timothy EJ and Beckmann, Christian F and
+                  Jenkinson, Mark and Smith, Stephen M and others},
+  journal={Neuroimage},
+  volume={21},
+  number={4},
+  pages={1732--1747},
+  year={2004},
+  publisher={Elsevier Science}
+}
+
+@article{woolrich2004fully,
+  title={Fully {B}ayesian spatio-temporal modeling of {fMRI} data},
+  author={Woolrich, Mark W and Jenkinson, Mark and Brady, J Michael and Smith,
+                  Stephen M},
+  journal={Medical Imaging, IEEE Transactions on},
+  volume={23},
+  number={2},
+  pages={213--231},
+  year={2004},
+  publisher={IEEE}
+}
+
+@article{penny2005bayesian,
+  title={Bayesian {fMRI} time series analysis with spatial priors},
+  author={Penny, William D and Trujillo-Barreto, Nelson J and Friston, Karl J},
+  journal={NeuroImage},
+  volume={24},
+  number={2},
+  pages={350--362},
+  year={2005},
+  publisher={Elsevier}
+}
+
+@article{hartvig2000spatial,
+  title={Spatial mixture modeling of {fMRI} data},
+  author={Hartvig, Niels Vaever and Jensen, Jens Ledet},
+  journal={Human Brain Mapping},
+  volume={11},
+  number={4},
+  pages={233--248},
+  year={2000},
+  publisher={Wiley Online Library}
+}
+
+@article{ng2012modeling,
+  title={Modeling Brain Activation in {fMRI} Using Group {MRF}},
+  author={Ng, Bernard and Hamarneh, Ghassan and Abugharbieh, Rafeef},
+  journal={Medical Imaging, IEEE Transactions on},
+  volume={31},
+  number={5},
+  pages={1113--1123},
+  year={2012},
+  publisher={IEEE}
+}
+
+@article{damoiseaux2006consistent,
+  title={Consistent resting-state networks across healthy subjects},
+  author={Damoiseaux, JS and Rombouts, SARB and Barkhof, F and Scheltens, P and
+                  Stam, CJ and Smith, Stephen M and Beckmann, CF},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={103},
+  number={37},
+  pages={13848--13853},
+  year={2006},
+  publisher={National Acad Sciences}
+}
+@article{chen2008group,
+  title={Group independent component analysis reveals consistent resting-state
+                  networks across multiple sessions},
+  author={Chen, Sharon and Ross, Thomas J and Zhan, Wang and Myers, Carol S and
+                  Chuang, Keh-Shih and Heishman, Stephen J and Stein, Elliot A
+                  and Yang, Yihong},
+  journal={Brain {R}esearch},
+  volume={1239},
+  pages={141},
+  year={2008},
+  publisher={NIH Public Access}
+}
+@article{meindl2010test,
+  title={Test--retest reproducibility of the default-mode network in healthy
+                  individuals},
+  author={Meindl, Thomas and Teipel, Stefan and Elmouden, Rachid and Mueller,
+                  Sophia and Koch, Walter and Dietrich, Olaf and Coates, Ute and
+                  Reiser, Maximilian and Glaser, Christian},
+  journal={Human Brain Mapping},
+  volume={31},
+  number={2},
+  pages={237--246},
+  year={2010},
+  publisher={Wiley Online Library}
+}
+
+@article{franco2009interrater,
+  title={Interrater and intermethod reliability of default mode network
+                  selection},
+  author={Franco, Alexandre R and Pritchard, Aaron and Calhoun, Vince D and
+                  Mayer, Andrew R},
+  journal={Human Brain Mapping},
+  volume={30},
+  number={7},
+  pages={2293--2303},
+  year={2009},
+  publisher={Wiley Online Library}
+}
+
+@article{efron1993introduction,
+  title={An introduction to the bootstrap},
+  author={Efron, B and Tibshirani, RJ},
+  journal={Monographs on statistics and applied probability (57)},
+  year={1993},
+  publisher={New York [etc.]: Chapman \& Hall}
+}
+
+@article{beckmann2009group,
+  title={Group comparison of resting-state {FMRI} data using multi-subject {ICA}
+                  and dual regression},
+  author={Beckmann, Christian F and Mackay, Clare E and Filippini, Nicola and
+                  Smith, Stephen M},
+  journal={Neuroimage},
+  volume={47},
+  number={Suppl 1},
+  pages={S148},
+  year={2009},
+  publisher={Elsevier Science}
+}
+
+@article{filippini2009distinct,
+  title={Distinct patterns of brain activity in young carriers of the
+                  APOE-$\varepsilon$4 allele},
+  author={Filippini, Nicola and MacIntosh, Bradley J and Hough, Morgan G and
+                  Goodwin, Guy M and Frisoni, Giovanni B and Smith, Stephen M
+                  and Matthews, Paul M and Beckmann, Christian F and Mackay,
+                  Clare E},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={106},
+  number={17},
+  pages={7209--7214},
+  year={2009},
+  publisher={National Acad Sciences}
+}
+
+@article{greicius2004default,
+  title={Default-mode network activity distinguishes Alzheimer's disease from
+                  healthy aging: evidence from functional {MRI}},
+  author={Greicius, Michael D and Srivastava, Gaurav and Reiss, Allan L and
+                  Menon, Vinod},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={101},
+  number={13},
+  pages={4637--4642},
+  year={2004},
+  publisher={National Acad Sciences}
+}
+
+@article{greicius2007resting,
+  title={Resting-state functional connectivity in major depression: abnormally
+                  increased contributions from subgenual cingulate cortex and
+                  thalamus},
+  author={Greicius, Michael D and Flores, Benjamin H and Menon, Vinod and
+                  Glover, Gary H and Solvason, Hugh B and Kenna, Heather and
+                  Reiss, Allan L and Schatzberg, Alan F},
+  journal={Biological Psychiatry},
+  volume={62},
+  number={5},
+  pages={429--437},
+  year={2007},
+  publisher={Elsevier}
+}
+
+@article{seeley2009neurodegenerative,
+  title={Neurodegenerative diseases target large-scale human brain networks},
+  author={Seeley, William W and Crawford, Richard K and Zhou, Juan and Miller,
+                  Bruce L and Greicius, Michael D},
+  journal={Neuron},
+  volume={62},
+  number={1},
+  pages={42},
+  year={2009},
+  publisher={NIH Public Access}
+}
+@article{mohammadi2009changes,
+  title={Changes of resting state brain networks in amyotrophic lateral
+                  sclerosis},
+  author={Mohammadi, Bahram and Kollewe, Katja and Samii, Amir and Krampfl,
+                  Klaus and Dengler, Reinhard and M{\"u}nte, T},
+  journal={Klinische Neurophysiologie},
+  volume={40},
+  number={01},
+  pages={V148},
+  year={2009}
+}
+
+@incollection{liu2012group,
+  title={Group Analysis of Resting-State {fMRI} by Hierarchical {M}arkov Random
+                  Fields},
+  author={Liu, Wei and Awate, Suyash P and Fletcher, P Thomas},
+  booktitle={Medical Image Computing and Computer-Assisted Intervention--MICCAI
+                  2012},
+  pages={189--196},
+  year={2012},
+  publisher={Springer}
+}
+
+@article{besag1986statistical,
+  title={On the statistical analysis of dirty pictures},
+  author={Besag, Julian},
+  journal={Journal of the Royal Statistical Society. Series B (Methodological)},
+  pages={259--302},
+  year={1986},
+  publisher={JSTOR}
+}
+
+@article{gelman2006bayesian,
+  title={Bayesian measures of explained variance and pooling in multilevel
+                  (hierarchical) models},
+  author={Gelman, Andrew and Pardoe, Iain},
+  journal={Technometrics},
+  volume={48},
+  number={2},
+  pages={241--251},
+  year={2006},
+  publisher={American Statistical Association}
+}
+
+@article{greig1989exact,
+  title={Exact maximum a posteriori estimation for binary images},
+  author={Greig, DM and Porteous, BT and Seheult, Allan H},
+  journal={Journal of the Royal Statistical Society. Series B (Methodological)},
+  pages={271--279},
+  year={1989},
+  publisher={JSTOR}
+}
+
+@article{rand1971objective,
+  title={Objective criteria for the evaluation of clustering methods},
+  author={Rand, William M},
+  journal={Journal of the American Statistical association},
+  volume={66},
+  number={336},
+  pages={846--850},
+  year={1971},
+  publisher={Taylor \& Francis Group}
+}
+
+@book{gelman2003bayesian,
+  title={Bayesian data analysis},
+  author={Gelman, Andrew and Carlin, John B and Stern, Hal S and Rubin, Donald
+                  B},
+  year={2003},
+  publisher={CRC press}
+}
+
+@inproceedings{golland2008spatial,
+  title={Spatial patterns and functional profiles for discovering structure in
+                  {fMRI} data},
+  author={Golland, Polina and Lashkari, Danial and Venkataraman, Archana},
+  booktitle={Signals, Systems and Computers, 2008 42nd Asilomar Conference on},
+  pages={1402--1409},
+  year={2008},
+  organization={IEEE}
+}
+
+@article{fox2006spontaneous,
+  title={Spontaneous neuronal activity distinguishes human dorsal and ventral
+                  attention systems},
+  author={Fox, Michael D and Corbetta, Maurizio and Snyder, Abraham Z and
+                  Vincent, Justin L and Raichle, Marcus E},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={103},
+  number={26},
+  pages={10046--10051},
+  year={2006},
+  publisher={National Acad Sciences}
+}
+
+@article{seeley2007dissociable,
+  title={Dissociable intrinsic connectivity networks for salience processing and
+                  executive control},
+  author={Seeley, William W and Menon, Vinod and Schatzberg, Alan F and Keller,
+                  Jennifer and Glover, Gary H and Kenna, Heather and Reiss,
+                  Allan L and Greicius, Michael D},
+  journal={The Journal of neuroscience},
+  volume={27},
+  number={9},
+  pages={2349--2356},
+  year={2007},
+  publisher={Soc Neuroscience}
+}
+
+@article{greicius2003functional,
+  title={Functional connectivity in the resting brain: a network analysis of the
+                  default mode hypothesis},
+  author={Greicius, Michael D and Krasnow, Ben and Reiss, Allan L and Menon,
+                  Vinod},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={100},
+  number={1},
+  pages={253--258},
+  year={2003},
+  publisher={National Acad Sciences}
+}
+
+@article{hyvarinen2000independent,
+  title={Independent component analysis: algorithms and applications},
+  author={Hyv{\"a}rinen, Aapo and Oja, Erkki},
+  journal={Neural Networks},
+  volume={13},
+  number={4},
+  pages={411--430},
+  year={2000},
+  publisher={Elsevier}
+}
+
+@article{andrews2007disruption,
+  title={Disruption of large-scale brain systems in advanced aging},
+  author={Andrews-Hanna, Jessica R and Snyder, Abraham Z and Vincent, Justin L and Lustig, Cindy and Head, Denise and Raichle, Marcus E and Buckner, Randy L},
+  journal={Neuron},
+  volume={56},
+  number={5},
+  pages={924--935},
+  year={2007},
+  publisher={Elsevier}
+}
+
+@article{bishop2006pattern,
+  title={Pattern recognition and machine learning},
+  author={Bishop, CM},
+  journal={Information science},
+  year={2006},
+  publisher={New York [etc.]: Springer}
+}
+
+@book{rue2005gaussian,
+  title={Gaussian {M}arkov random fields: theory and applications},
+  author={Rue, Havard and Held, Leonhard},
+  year={2005},
+  publisher={CRC Press}
+}
+
+@article{hammersley1968markov,
+  title={Markov fields on finite graphs and lattices},
+  author={Hammersley, John M and Clifford, Peter},
+  journal={Unpublished},
+  year={1968}
+}
+
+@article{metropolis1953equation,
+  title={Equation of state calculations by fast computing machines},
+  author={Metropolis, Nicholas and Rosenbluth, Arianna W and Rosenbluth, Marshall N and Teller, Augusta H and Teller, Edward},
+  journal={The Journal of Chemical Physics},
+  volume={21},
+  pages={1087},
+  year={1953}
+}
+
+@book{kindermann1980markov,
+  title={Markov random fields and their applications},
+  author={Kindermann, Ross and Snell, James Laurie and others},
+  volume={1},
+  year={1980},
+  publisher={American Mathematical Society Providence, RI}
+}
+
+@inproceedings{lafferty2001conditional,
+  title={Conditional random fields: probabilistic models for segmenting and labeling sequence data},
+  author={LAfferty, J},
+  booktitle={Proceedings of the 18th International Conference on Machine Learning (ICML 2001)},
+  year={2001},
+  organization={Morgan Kaufmann}
+}
+
+@inproceedings{rother2004grabcut,
+  title={Grabcut: Interactive foreground extraction using iterated graph cuts},
+  author={Rother, Carsten and Kolmogorov, Vladimir and Blake, Andrew},
+  booktitle={ACM Transactions on Graphics (TOG)},
+  volume={23},
+  number={3},
+  pages={309--314},
+  year={2004},
+  organization={ACM}
+}
+
+@inproceedings{boykov2001interactive,
+  title={Interactive graph cuts for optimal boundary \& region segmentation of objects in ND images},
+  author={Boykov, Yuri Y and Jolly, M-P},
+  booktitle={Computer Vision, 2001. ICCV 2001. Proceedings. Eighth IEEE International Conference on},
+  volume={1},
+  pages={105--112},
+  year={2001},
+  organization={IEEE}
+}
+
+@book{murphy2012machine,
+  title={Machine learning: a probabilistic perspective},
+  author={Murphy, Kevin P},
+  year={2012},
+  publisher={The MIT Press}
+}
+
+@article{boykov2001fast,
+  title={Fast approximate energy minimization via graph cuts},
+  author={Boykov, Yuri and Veksler, Olga and Zabih, Ramin},
+  journal={Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  volume={23},
+  number={11},
+  pages={1222--1239},
+  year={2001},
+  publisher={IEEE}
+}
+
+@article{feodor2000stochastic,
+  title={The stochastic {EM} algorithm: estimation and asymptotic results},
+  author={Feodor Nielsen, S{\o}ren},
+  journal={Bernoulli},
+  volume={6},
+  number={3},
+  pages={457--489},
+  year={2000},
+  publisher={Bernoulli Society for Mathematical Statistics and Probability}
+}
+@techreport{dhillon2003modeling,
+  title={Modeling data using directional distributions},
+  author={Dhillon, Inderjit S and Sra, Suvrit},
+  year={2003},
+  institution={Technical Report TR-03-06, Department of Computer Sciences, The University of Texas at Austin.}
+}
+
+@book{jirsa2007handbook,
+  title={Handbook of brain connectivity},
+  author={Jirsa, Viktor K and McIntosh, Anthony R},
+  volume={1},
+  year={2007},
+  publisher={Springer Berlin}
+}
+
+@book{huettel2004functional,
+  title={Functional {M}agnetic {R}esonance {I}maging},
+  author={Huettel, Scott A and Song, Allen W and McCarthy, Gregory},
+  volume={1},
+  year={2004},
+  publisher={Sinauer Associates Sunderland}
+}
+
+@book{jezzard2003functional,
+title={Functional MRI: An Introduction to Methods},
+editor={Peter Jezzard, Paul M. Matthews and Stephen M. Smith},
+year={2003},
+publisher={ Oxford University Press}
+}
+
+@article{friston1994functional,
+  title={Functional and effective connectivity in neuroimaging: a synthesis},
+  author={Friston, Karl J},
+  journal={Human Brain Mapping},
+  volume={2},
+  number={1-2},
+  pages={56--78},
+  year={1994},
+  publisher={Wiley Online Library}
+}
+@article{friston1994analysis,
+  title={Analysis of functional MRI time-series},
+  author={Friston, KJ and Jezzard, P and Turner, R},
+  journal={Human Brain Mapping},
+  volume={1},
+  number={2},
+  pages={153--171},
+  year={1994},
+  publisher={Wiley Online Library}
+}
+
+@article{cordes2001frequencies,
+  title={Frequencies contributing to functional connectivity in the cerebral cortex in "resting-state" data},
+  author={Cordes, Dietmar and Haughton, Victor M and Arfanakis, Konstantinos and Carew, John D and Turski, Patrick A and Moritz, Chad H and Quigley, Michelle A and Meyerand, M Elizabeth},
+  journal={American Journal of Neuroradiology},
+  volume={22},
+  number={7},
+  pages={1326--1333},
+  year={2001},
+  publisher={American Society of Neuroradiology}
+}
+
+@article{cordes2000mapping,
+  title={Mapping functionally related regions of brain with functional connectivity MR imaging},
+  author={Cordes, Dietmar and Haughton, Victor M and Arfanakis, Konstantinos and Wendt, Gary J and Turski, Patrick A and Moritz, Chad H and Quigley, Michelle A and Meyerand, M Elizabeth},
+  journal={American Journal of Neuroradiology},
+  volume={21},
+  number={9},
+  pages={1636--1644},
+  year={2000},
+  publisher={Am Soc Neuroradiology}
+}
+
+@article{buckner2008brain,
+  title={The brain's default network},
+  author={Buckner, Randy L and Andrews-Hanna, Jessica R and Schacter, Daniel L},
+  journal={Annals of the New York Academy of Sciences},
+  volume={1124},
+  number={1},
+  pages={1--38},
+  year={2008},
+  publisher={Wiley Online Library}
+}
+
+@article{buckner2009cortical,
+  title={Cortical hubs revealed by intrinsic functional connectivity: mapping, assessment of stability, and relation to Alzheimer's disease},
+  author={Buckner, Randy L and Sepulcre, Jorge and Talukdar, Tanveer and Krienen, Fenna M and Liu, Hesheng and Hedden, Trey and Andrews-Hanna, Jessica R and Sperling, Reisa A and Johnson, Keith A},
+  journal={The Journal of Neuroscience},
+  volume={29},
+  number={6},
+  pages={1860--1873},
+  year={2009},
+  publisher={Soc Neuroscience}
+}
+
+@article{biswal1995functional,
+  title={Functional connectivity in the motor cortex of resting human brain using echo-planar {MRI}},
+  author={Biswal, Bharat and Zerrin Yetkin, F and Haughton, Victor M and Hyde, James S},
+  journal={Magnetic Resonance in Medicine},
+  volume={34},
+  number={4},
+  pages={537--541},
+  year={1995},
+  publisher={Wiley Online Library}
+}
+
+@article{salvador2005neurophysiological,
+  title={Neurophysiological architecture of functional magnetic resonance images of human brain},
+  author={Salvador, Raymond and Suckling, John and Coleman, Martin R and Pickard, John D and Menon, David and Bullmore, ED},
+  journal={Cerebral Cortex},
+  volume={15},
+  number={9},
+  pages={1332--1342},
+  year={2005},
+  publisher={Oxford Univ Press}
+}
+@article{cohen2008defining,
+  title={Defining functional areas in individual human brains using resting functional connectivity {MRI}},
+  author={Cohen, Alexander L and Fair, Damien A and Dosenbach, Nico UF and Miezin, Francis M and Dierker, Donna and Van Essen, David C and Schlaggar, Bradley L and Petersen, Steven E},
+  journal={Neuroimage},
+  volume={41},
+  number={1},
+  pages={45--57},
+  year={2008},
+  publisher={Elsevier}
+}
+@article{cordes2002hierarchical,
+  title={Hierarchical clustering to measure connectivity in {fMRI} resting-state data},
+  author={Cordes, Dietmar and Haughton, Vic and Carew, John D and Arfanakis, Konstantinos and Maravilla, Ken},
+  journal={Magnetic Resonance Imaging},
+  volume={20},
+  number={4},
+  pages={305--317},
+  year={2002},
+  publisher={Elsevier}
+}
+@article{mezer2009cluster,
+  title={Cluster analysis of resting-state {fMRI} time series},
+  author={Mezer, Aviv and Yovel, Yossi and Pasternak, Ofer and Gorfine, Tali and Assaf, Yaniv},
+  journal={Neuroimage},
+  volume={45},
+  number={4},
+  pages={1117--1125},
+  year={2009},
+  publisher={Elsevier}
+}
+@article{levinshtein2009turbopixels,
+  title={Turbopixels: Fast superpixels using geometric flows},
+  author={Levinshtein, Alex and Stere, Adrian and Kutulakos, Kiriakos N and Fleet, David J and Dickinson, Sven J and Siddiqi, Kaleem},
+  journal={Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  volume={31},
+  number={12},
+  pages={2290--2297},
+  year={2009},
+  publisher={IEEE}
+}
+
+@article{achanta2012slic,
+  title={SLIC Superpixels Compared to State-of-the-Art Superpixel Methods},
+  author={Achanta, Radhakrishna and Shaji, Appu and Smith, Kevin and Lucchi, Aurelien and Fua, Pascal and S{\"u}sstrunk, Sabine},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  pages={2274--2282},
+  year={2012},
+  publisher={IEEE}
+}
+
+@article{bullmore2009complex,
+  title={Complex brain networks: graph theoretical analysis of structural and functional systems},
+  author={Bullmore, Ed and Sporns, Olaf},
+  journal={Nature Reviews Neuroscience},
+  volume={10},
+  number={3},
+  pages={186--198},
+  year={2009},
+  publisher={Nature Publishing Group}
+}
+
+@article{achard2006resilient,
+  title={A resilient, low-frequency, small-world human brain functional network with highly connected association cortical hubs},
+  author={Achard, Sophie and Salvador, Raymond and Whitcher, Brandon and Suckling, John and Bullmore, ED},
+  journal={The Journal of Neuroscience},
+  volume={26},
+  number={1},
+  pages={63--72},
+  year={2006},
+  publisher={Soc Neuroscience}
+}
+
+@article{sporns2004organization,
+  title={Organization, development and function of complex brain networks},
+  author={Sporns, Olaf and Chialvo, Dante R and Kaiser, Marcus and Hilgetag, Claus C},
+  journal={Trends in Cognitive Sciences},
+  volume={8},
+  number={9},
+  pages={418--425},
+  year={2004},
+  publisher={Elsevier}
+}
+
+@article{bullmore2012economy,
+  title={The economy of brain network organization},
+  author={Bullmore, Ed and Sporns, Olaf},
+  journal={Nature Reviews Neuroscience},
+  volume={13},
+  number={5},
+  pages={336--349},
+  year={2012},
+  publisher={Nature Publishing Group}
+}
+@article{honey2009predicting,
+  title={Predicting human resting-state functional connectivity from structural connectivity},
+  author={Honey, CJ and Sporns, O and Cammoun, Leila and Gigandet, Xavier and Thiran, Jean-Philippe and Meuli, Reto and Hagmann, Patric},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={106},
+  number={6},
+  pages={2035--2040},
+  year={2009},
+  publisher={National Acad Sciences}
+}
+
+@article{hermundstad2013structural,
+  title={Structural foundations of resting-state and task-based functional connectivity in the human brain},
+  author={Hermundstad, Ann M and Bassett, Danielle S and Brown, Kevin S and Aminoff, Elissa M and Clewett, David and Freeman, Scott and Frithsen, Amy and Johnson, Arianne and Tipper, Christine M and Miller, Michael B and others},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={110},
+  number={15},
+  pages={6169--6174},
+  year={2013},
+  publisher={National Acad Sciences}
+}
+
+@article{honey2007network,
+  title={Network structure of cerebral cortex shapes functional connectivity on multiple time scales},
+  author={Honey, Christopher J and K{\"o}tter, Rolf and Breakspear, Michael and Sporns, Olaf},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={104},
+  number={24},
+  pages={10240--10245},
+  year={2007},
+  publisher={National Acad Sciences}
+}
+
+@null{deli2013prediction, 
+author={Deligianni, F. and Varoquaux, G. and Thirion, B. and Sharp, D.J. and Ledig, C. and Leech, R. and Rueckert, D.}, 
+journal={Medical Imaging, IEEE Transactions on}, 
+title={A framework for inter-subject prediction of functional connectivity from structural networks}, 
+year={2013}, 
+volume={PP}, 
+number={99}, 
+pages={1-1}, 
+keywords={Statistical associations;functional brain connectivity;predictive modeling;structural brain connectivity}, 
+doi={10.1109/TMI.2013.2276916}, 
+ISSN={0278-0062},}
+
+@article{varoquaux2010group,
+  title={A group model for stable multi-subject {ICA} on {fMRI} datasets},
+  author={Varoquaux, Ga{\"e}l and Sadaghiani, Sepideh and Pinel, Philippe and Kleinschmidt, Andreas and Poline, Jean-Baptiste and Thirion, Bertrand},
+  journal={Neuroimage},
+  volume={51},
+  number={1},
+  pages={288--299},
+  year={2010},
+  publisher={Elsevier}
+}
+
+@article{erhardt2011comparison,
+  title={Comparison of multi-subject ICA methods for analysis of fMRI data},
+  author={Erhardt, Erik Barry and Rachakonda, Srinivas and Bedrick, Edward J and Allen, Elena A and Adali, T{\"u}lay and Calhoun, Vince D},
+  journal={Human Brain Mapping},
+  volume={32},
+  number={12},
+  pages={2075--2095},
+  year={2011},
+  publisher={Wiley Online Library}
+}
+
+@inproceedings{varoquaux2011multi,
+  title={Multi-subject dictionary learning to segment an atlas of brain
+                  spontaneous activity},
+  author={Varoquaux, Gael and Gramfort, Alexandre and Pedregosa, Fabian and
+                  Michel, Vincent and Thirion, Bertrand},
+  booktitle={Information Processing in Medical Imaging},
+  pages={562--573},
+  year={2011},
+  organization={Springer}
+}
+
+@article{thirion2006dealing,
+  title={Dealing with the shortcomings of spatial normalization: Multi-subject parcellation of {fMRI} datasets},
+  author={Thirion, Bertrand and Flandin, Guillaume and Pinel, Philippe and Roche, Alexis and Ciuciu, Philippe and Poline, Jean-Baptiste},
+  journal={Human Brain Mapping},
+  volume={27},
+  number={8},
+  pages={678--693},
+  year={2006},
+  publisher={Wiley Online Library}
+}
+@article{michel2012supervised,
+  title={A supervised clustering approach for {fMRI}-based inference of brain states},
+  author={Michel, Vincent and Gramfort, Alexandre and Varoquaux, Ga{\"e}l and Eger, Evelyn and Keribin, Christine and Thirion, Bertrand},
+  journal={Pattern Recognition},
+  volume={45},
+  number={6},
+  pages={2041--2049},
+  year={2012},
+  publisher={Elsevier}
+}
+@inproceedings{varoquaux2012small,
+  title={Small-sample brain mapping: sparse recovery on spatially correlated designs with randomization and clustering},
+  author={Varoquaux, Gael and Gramfort, Alexandre and Thirion, Bertrand},
+  booktitle={Proceedings of the 29th International Conference on Machine Learning (ICML-12)},
+  pages={1375--1382},
+  year={2012}
+}
+@article{rubinov2010complex,
+  title={Complex network measures of brain connectivity: uses and interpretations},
+  author={Rubinov, Mikail and Sporns, Olaf},
+  journal={Neuroimage},
+  volume={52},
+  number={3},
+  pages={1059--1069},
+  year={2010},
+  publisher={Elsevier}
+}
+@article{ou2010combining,
+  title={Combining spatial priors and anatomical information for fMRI detection},
+  author={Ou, Wanmei and Wells III, William M and Golland, Polina},
+  journal={Medical Image Analysis},
+  volume={14},
+  number={3},
+  pages={318--331},
+  year={2010},
+  publisher={Elsevier}
+}
+@book{lauritzen1996graphical,
+  title={Graphical models},
+  author={Lauritzen, Steffen L},
+  year={1996},
+  publisher={Oxford University Press}
+}
+@inproceedings{peierls1936ising,
+  title={On Ising's model of ferromagnetism},
+  author={Peierls, R and Born, M},
+  booktitle={Proceedings of the Cambridge Philosophical Society},
+  volume={32},
+  pages={477},
+  year={1936}
+}
+@article{wang1987nonuniversal,
+  title={Nonuniversal critical dynamics in {M}onte {C}arlo simulations},
+  author={Wang, Jian—Sheng and Swendsen, RH},
+  journal={Physical Review Letters},
+  year={1987}
+}
+@book{mitchell1980need,
+  title={The need for biases in learning generalizations},
+  author={Mitchell, Tom M},
+  year={1980},
+  publisher={Department of Computer Science, Laboratory for Computer Science Research, Rutgers Univ.}
+}
+@article{jenkinson2012fsl,
+  title={FSL},
+  author={Jenkinson, Mark and Beckmann, Christian F and Behrens, Timothy EJ and Woolrich, Mark W and Smith, Stephen M},
+  journal={NeuroImage},
+  volume={62},
+  number={2},
+  pages={782--790},
+  year={2012},
+  publisher={Elsevier}
+}
+@article{zhang2009evaluation,
+  title={Evaluation and optimization of {fMRI} single-subject processing pipelines with NPAIRS and second-level CVA},
+  author={Zhang, Jing and Anderson, Jon R and Liang, Lichen and Pulapura, Sujit K and Gatewood, Lael and Rottenberg, David A and Strother, Stephen C},
+  journal={Magnetic Resonance Imaging},
+  volume={27},
+  number={2},
+  pages={264--278},
+  year={2009},
+  publisher={Elsevier}
+}
+@article{von2007tutorial,
+  title={A tutorial on spectral clustering},
+  author={Von Luxburg, Ulrike},
+  journal={Statistics and Computing},
+  volume={17},
+  number={4},
+  pages={395--416},
+  year={2007},
+  publisher={Springer}
+}
+@article{zhang1992mean,
+  title={The mean field theory in EM procedures for {M}arkov random fields},
+  author={Zhang, Jun},
+  journal={Signal Processing, IEEE Transactions on},
+  volume={40},
+  number={10},
+  pages={2570--2583},
+  year={1992},
+  publisher={IEEE}
+}
+@article{kirkpatrick1983optimization,
+  title={Optimization by simmulated annealing},
+  author={Kirkpatrick, Scott and Jr., D. Gelatt and Vecchi, Mario P},
+  journal={Science},
+  volume={220},
+  number={4598},
+  pages={671--680},
+  year={1983},
+  publisher={Washington}
+}
+
+@book{ford2010flows,
+  title={Flows in networks},
+  author={Ford, DR and Fulkerson, Delbert Ray},
+  year={2010},
+  publisher={Princeton University Press}
+}
+@article{dhillon2001efficient,
+  title={Efficient clustering of very large document collections},
+  author={Dhillon, Inderjit S and Fan, James and Guan, Yuqiang},
+  journal={Data Mining for Scientific and Engineering Applications},
+  pages={357--381},
+  year={2001}
+}
+@article{wood1994simulation,
+  title={Simulation of the von {M}ises {F}isher distribution},
+  author={Wood, Andrew TA},
+  journal={Communications in Statistics-Simulation and Computation},
+  volume={23},
+  number={1},
+  pages={157--164},
+  year={1994},
+  publisher={Taylor \& Francis}
+}
+@book{robert2007bayesian,
+  title={The {B}ayesian choice: from decision-theoretic foundations to computational implementation},
+  author={Robert, Christian},
+  year={2007},
+  publisher={Springer}
+}
+@techreport{caffo2002ascent,
+  title={Ascent-Based {M}onte {C}arlo {EM}},
+  author={Caffo, Brian S and Jank, Wolfgang S and Jones, Galin L},
+  year={2002},
+  institution={Technical report, Johns Hopkins University Department of Biostatistics}
+}
+@inproceedings{tanaka2008locally,
+  title={Locally adaptive learning for translation-variant {MRF} image priors},
+  author={Tanaka, Masayuki and Okutomi, Masatoshi},
+  booktitle={Computer Vision and Pattern Recognition, 2008. CVPR 2008. IEEE Conference on},
+  pages={1--8},
+  year={2008},
+  organization={IEEE}
+}
+@article{deco2009key,
+  title={Key role of coupling, delay, and noise in resting brain fluctuations},
+  author={Deco, Gustavo and Jirsa, Viktor and McIntosh, AR and Sporns, Olaf and K{\"o}tter, Rolf},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={106},
+  number={25},
+  pages={10302--10307},
+  year={2009},
+  publisher={National Acad Sciences}
+}
+@article{boccaletti2006complex,
+  title={Complex networks: Structure and dynamics},
+  author={Boccaletti, Stefano and Latora, Vito and Moreno, Yamir and Chavez, Martin and Hwang, D-U},
+  journal={Physics {R}eports},
+  volume={424},
+  number={4},
+  pages={175--308},
+  year={2006},
+  publisher={Elsevier}
+}
+@article{holme2012temporal,
+  title={Temporal networks},
+  author={Holme, Petter and Saram{\"a}ki, Jari},
+  journal={Physics Reports},
+  volume={519},
+  number={3},
+  pages={97--125},
+  year={2012},
+  publisher={Elsevier}
+}
+@article{kolar2010estimating,
+  title={Estimating time-varying networks},
+  author={Kolar, Mladen and Song, Le and Ahmed, Amr and Xing, Eric P},
+  journal={The Annals of Applied Statistics},
+  volume={4},
+  number={1},
+  pages={94--123},
+  year={2010},
+  publisher={Institute of Mathematical Statistics}
+}
+@article{arenas2008synchronization,
+  title={Synchronization in complex networks},
+  author={Arenas, Alex and D{\'\i}az-Guilera, Albert and Kurths, Jurgen and Moreno, Yamir and Zhou, Changsong},
+  journal={Physics Reports},
+  volume={469},
+  number={3},
+  pages={93--153},
+  year={2008},
+  publisher={Elsevier}
+}
+@article{huang2010learning,
+  title={Learning brain connectivity of Alzheimer's disease by sparse inverse covariance estimation},
+  author={Huang, Shuai and Li, Jing and Sun, Liang and Ye, Jieping and Fleisher, Adam and Wu, Teresa and Chen, Kewei and Reiman, Eric},
+  journal={NeuroImage},
+  volume={50},
+  number={3},
+  pages={935--949},
+  year={2010},
+  publisher={Elsevier}
+}
+@article{minshew2010nature,
+  title={The nature of brain dysfunction in autism: functional brain imaging studies},
+  author={Minshew, Nancy J and Keller, Timothy A},
+  journal={Current Opinion in Neurology},
+  volume={23},
+  number={2},
+  pages={124},
+  year={2010},
+  publisher={NIH Public Access}
+}
+@article{anderson2011functional,
+  title={Functional connectivity magnetic resonance imaging classification of autism},
+  author={Anderson, Jeffrey S and Nielsen, Jared A and Froehlich, Alyson L and DuBray, Molly B and Druzgal, T Jason and Cariello, Annahir N and Cooperrider, Jason R and Zielinski, Brandon A and Ravichandran, Caitlin and Fletcher, P Thomas and others},
+  journal={Brain},
+  volume={134},
+  number={12},
+  pages={3742--3754},
+  year={2011},
+  publisher={Oxford Univ Press}
+}
+@article{nielsen2013multisite,
+  title={Multisite functional connectivity MRI classification of autism: ABIDE results},
+  author={Nielsen, Jared A and Zielinski, Brandon A and Fletcher, P Thomas and Alexander, Andrew L and Lange, Nicholas and Bigler, Erin D and Lainhart, Janet E and Anderson, Jeffrey S},
+  journal={Frontiers in Human Neuroscience},
+  volume={7},
+  year={2013},
+  publisher={Frontiers Media SA}
+}
+@article{power2011functional,
+  title={Functional network organization of the human brain},
+  author={Power, Jonathan D and Cohen, Alexander L and Nelson, Steven M and Wig, Gagan S and Barnes, Kelly Anne and Church, Jessica A and Vogel, Alecia C and Laumann, Timothy O and Miezin, Fran M and Schlaggar, Bradley L and others},
+  journal={Neuron},
+  volume={72},
+  number={4},
+  pages={665--678},
+  year={2011},
+  publisher={Elsevier}
+}
+@article{guyon2003introduction,
+  title={An introduction to variable and feature selection},
+  author={Guyon, Isabelle and Elisseeff, Andr{\'e}},
+  journal={The Journal of Machine Learning Research},
+  volume={3},
+  pages={1157--1182},
+  year={2003},
+  publisher={JMLR. org}
+}
+@article{saeys2007review,
+  title={A review of feature selection techniques in bioinformatics},
+  author={Saeys, Yvan and Inza, I{\~n}aki and Larra{\~n}aga, Pedro},
+  journal={Bioinformatics},
+  volume={23},
+  number={19},
+  pages={2507--2517},
+  year={2007},
+  publisher={Oxford University Press}
+}
+@article{di2013autism,
+  title={The autism brain imaging data exchange: towards a large-scale evaluation of the intrinsic brain architecture in autism},
+  author={Di Martino, A and Yan, CG and Li, Q and Denio, E and Castellanos, FX and Alaerts, K and Anderson, JS and Assaf, M and Bookheimer, SY and Dapretto, M and others},
+  journal={Molecular Psychiatry},
+  year={2013},
+  publisher={Nature Publishing Group}
+}
+@article{ferguson2012dynamical,
+  title={Dynamical stability of intrinsic connectivity networks},
+  author={Ferguson, Michael A and Anderson, Jeffrey S},
+  journal={Neuroimage},
+  volume={59},
+  number={4},
+  pages={4022--4031},
+  year={2012},
+  publisher={Elsevier}
+}

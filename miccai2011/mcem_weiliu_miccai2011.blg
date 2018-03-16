@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2010)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: mcem_weiliu_miccai2011.aux
+The style file: splncs03.bst
+Database file #1: reference.bib
+Warning--string name "oct." is undefined
+--line 57 of file reference.bib
+You've used 11 entries,
+            2785 wiz_defined-function locations,
+            655 strings with 6244 characters,
+and the built_in function-call counts, 6408 in all, are:
+= -- 547
+> -- 182
+< -- 15
++ -- 76
+- -- 64
+* -- 393
+:= -- 807
+add.period$ -- 12
+call.type$ -- 11
+change.case$ -- 66
+chr.to.int$ -- 0
+cite$ -- 11
+duplicate$ -- 565
+empty$ -- 556
+format.name$ -- 73
+if$ -- 1409
+int.to.chr$ -- 0
+int.to.str$ -- 11
+missing$ -- 111
+newline$ -- 38
+num.names$ -- 22
+pop$ -- 187
+preamble$ -- 1
+purify$ -- 54
+quote$ -- 0
+skip$ -- 200
+stack$ -- 0
+substring$ -- 415
+swap$ -- 345
+text.length$ -- 15
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 42
+warning$ -- 0
+while$ -- 55
+width$ -- 13
+write$ -- 112
+(There was 1 warning)

@@ -1,0 +1,358 @@
+\documentclass[12pt]{article}
+\usepackage{/home/sci/weiliu/haldefs}
+\usepackage{/home/sci/weiliu/notes}
+\usepackage{/home/sci/weiliu/projects/lwdefs}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{textcomp}
+
+\usepackage{subfig}
+\usepackage{hyperref}
+%\usepackage{/home/sci/weiliu/packages/breakurl/breakurl}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{natbib}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{color}
+\usepackage{mdwlist}
+
+\hypersetup{
+  % bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Monte Carlo Expectation Maximization},
+    pdfauthor={Wei Liu},     % author
+    pdfsubject={Monte Carlo Expectation Maximization},   % subject of the document
+    pdfcreator={Wei Liu},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={Monte Carlo, Expectation Maximization}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks= true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{9 in}
+\setlength{\headsep}{0.5 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+\begin{document}
+\title{Monte Carlo Expectation Maximization}
+\author{Wei Liu}
+\maketitle
+
+\section{Prior Distribution}
+
+The Gibbs distribution is defined as
+\begin{align}
+  P(\vec f) = \frac{1}{Z} \exp\{-U(\vec f)\},
+\end{align}
+where the energy function $U$ is given as
+\begin{align}
+  U(\vec f) = \sum_{i \in \mathcal{S}} V_1 (f_i) + \sum_{(i,j) \in \mathcal{E}} V_2 (f_i, f_j)
+\end{align}
+$V_1$ is one site clique potential, and is defined as $V_1(f_i) = \alpha(
+f_i)$. $V_2$ is the two site clique potential. For multiple labels
+$\mathcal{L} = \{1,\dots, K\}$, we can use \emph{Potts model} defined
+as
+\begin{align}
+  V_2 (f_i, f_j) &= w_{ij} T(f_i \neq f_j)
+\end{align}
+where $T$ is $1$ if its argument is true, and $0$
+otherwise\citep{boykov2002fast}. $w_{ij}$ can be different for each
+pair of neighboring pixels. For simplicity we assume it is constant
+for all neighboring pixels, and let $w_{ij} = \beta$. $\alpha$ is used
+to give the preference to some labels. For now we just set it to
+zero. The Gibbs distribution is given as
+\begin{align}
+  U(\vec f) &= \beta \sum_{(i,j) \in \mathcal{E}}T(f_i \neq f_j) \\
+  P(\vec f) &= \frac{1}{Z} \exp \{  - \beta \sum_{(i,j) \in \mathcal{E}}T(f_i \neq f_j)\}.
+\end{align}
+For a single pixel $f_i$ (because of the Markov-Gibbs equivalence),
+\begin{align*}
+  U(f_i) &= \beta \sum_{j \in \mathcal{N}_i} T(f_i \neq f_j)  = \beta S_i^n\\
+  P(f_i | f_{-i} ) &= P(f_i | f_{\mathcal{N}_i}) \\
+  &= \frac{\exp\{- \beta \sum_{j\in \cN_i}T(f_i \neq f_j)\}}{\sum_{f_i \in \cL}\exp\{ - \beta \sum_{j\in \cN_i}T(f_i \neq f_j)\}} \\
+&=   \frac{\exp \{ -\beta S_i^n(f_i)\}}{\sum_{f_i \in \mathcal{L}} \exp \{ -\beta S_i^n(f_i) \}}
+\end{align*}
+
+$f_{-i}$ is the labeling for all data points except $i$. $\beta > 0$ means adjacent pixels should have same labeling. For convenience we define $S_i^n (f_i) = \sum_{j\in \mathcal{N}_i} T(f_i \neq f_j) $.
+
+\section{Sampling From Prior Distribution}
+
+To generate synthetic image we need to sample from MRF to get a label image.  We can use Metropolis Sampler to generate a sample image from prior distribution $P(\vec f)$ as follows:
+\begin{itemize}
+  \item[1.] Start with initial label image $\vec f^1$.
+  \item[2.] Given previous sample $\vec f^{n}$, generate a new sample $\vec w$ by drawing a new label  $f_i'$  with uniform distribution for site $i$. Note that $\vec w$ has value $f_i'$ at site $i$, and all value at other sites are same as $\vec f^{n}$. 
+   \item[3.] Compute $\Delta U(\vec w) = U(\vec w) - U(\vec f^n)$. Because $\vec f^{n}$ and $\vec w$ differ only at site $i$, we have
+     \begin{align*}
+       \Delta U(\vec w) &= U(f_i') - U(f_i) = \beta \sum_{j\in \mathcal{N}_i} T(f_i' \neq f_j)- \beta \sum_{j\in \mathcal{N}_i} T(f_i \neq f_j) \\
+       &= \beta \sum_{j \in \mathcal{N}_i} \left \{  T(f_i' \neq f_j) - T(f_i \neq f_j) \right \}
+     \end{align*}
+     \item[4.] if $\Delta U < 0$, we accept $\vec w$ and let $\vec f^{n+1} = \vec w$. Otherwise, we accept $\vec f^{n+1} = \vec w$ with probability $\exp \{ - \Delta U(\vec w)\}$
+\end{itemize}
+
+The likelihood function is defined as Gaussian distribution
+\begin{align*}
+  P(d_i | f_i = k) &= \frac{1}{\sqrt{2\pi} \sigma_k}\exp \left \{ -\frac{(d_i - \mu_k)^2}{2\sigma_k^2}\right \} \\
+  &= \frac{1}{\sqrt{2\pi} }\exp \left \{ -\frac{(d_i - \mu_k)^2}{2\sigma_k^2} - 
+\log \sigma_k \right \} \\
+P(\vec d | \vec f) &= \prod_{i \in \mathcal{S}}\frac{1}{\sqrt{2\pi} }\exp \left \{ -\frac{(d_i - \mu_k)^2}{2\sigma_k^2} - \log \sigma_k \right \} .
+\end{align*}
+If we also define the likelihood energy, we have
+\begin{align*}
+  U(d_i | f_i = k) &= \frac{(d_i - \mu_k)^2}{2\sigma_k^2} + \log \sigma_k \\
+  U(\vec d | \vec f) &= \sum_{i \in \mathcal{S}} \left \{\frac{(d_i - \mu_k)^2}{2\sigma_k^2} + \log \sigma_k \right \}\\
+  P(\vec d | \vec f) &= \frac{1}{Z_l}\exp \{ -U(\vec d | \vec f)\}
+\end{align*}
+
+If we define posterior energy, we find the posterior energy is the sum of prior energy and likelihood energy, plus a constant.
+
+\begin{align*}
+  P(\vec f | \vec d) &\prop P(\vec f) \cdot P(\vec d | \vec f) \\
+  &= \frac{1}{Z_p} \exp \{ -U(\vec f | \vec d)\} \\
+  U(\vec f | \vec d) &= U(\vec f) + U(\vec d | \vec f) + \mathrm{const}
+\end{align*}
+
+\section{Monte Carlo EM}
+
+In \emph{Expectation} step of EM algorithm, the objective function that need to be optimized is
+\begin{align*}
+  \vec Q (\vec f; \vec \theta)  &=\mathbb{E}_{P(\vec f | \vec d)} \log P(\vec f, \vec d; \vec \theta)\\
+  &= \mathbb{E}_{P(\vec f | \vec d)} \left \{ \log P(\vec f; \vec \theta) + \log P(\vec d | \vec f; \vec \theta )\right \} \\
+  &\approx \mathbb{E}_{P(\vec f | \vec d)} \left \{ \sum_{i \in \mathcal{S}} \log P(f_i | f_{\mathcal{N}_i}; \vec \theta) + \sum_{i \in \mathcal{S}} \log P(d_i | f_i; \vec \theta) \right \}
+\end{align*}
+The approximation is because we replace  $\log P(\vec f; \vec \theta)$ with pseudo-likelihood $\sum_{f_i \in \mathcal{S}} \log P(f_i | f_{\mathcal{N}_i}; \vec \theta)$. $\vec \theta = \{ \beta, \vec \mu, \vec \sigma^2 \}$ is the parameter set.
+To use Monte Carlo EM instead of computing the expectation value of the joint log-likelihood, we need draw samples $\vec f^1, \vec f^2, \dots, \vec f^N$ from $P(\vec f | \vec d; \vec \theta)$. Each sample $\vec f^n$ is a whole image, and we use $f_i^n$ to denote the sampled value at pixel $i$ in sample image $n$.We then compute
+\begin{align*}
+  \vec {\widetilde Q} &= \frac{1}{N}\sum_{n=1}^N \left \{ \sum_{i \in \mathcal{S}} \log P(f_i^n | f^n_{\mathcal{N}_i}) + \sum_{i \in \mathcal{S}} \log P(d_i | f_i^n) \right \}
+\end{align*}
+
+Parameter set $\vec \theta = \{\beta, \vec \mu, \vec \sigma^2\}$, where $\beta$ is the parameter in prior distribution $P(\vec f)$, and $\vec \mu$ and $\vec \sigma^2$ is the parameters in likelihood function $P(\vec d| \vec f)$. 
+
+\subsection{Expectation Step}
+In E step, we compute posterior $P(\vec f | \vec d)$ and sample from it with Metropolis sampler. This is same as sampling from prior distribution, except that now we sample from posterior instead of prior distribution. The steps are as follows:
+\begin{itemize}
+  \item[1.] Start with initial label image $\vec f^1$.
+  \item[2.] Given previous sample $\vec f^{n}$, generate a new sample $\vec w$ by drawing a new label  $f_i'$  with uniform distribution for site $i$. Note that $\vec w$ has value $f_i'$ at site $i$, and all value at other sites are same as $\vec f^{n}$. 
+   \item[3.] Compute the change of posterior energy $\Delta U(\vec w) = U(\vec w | \vec d) - U(\vec f^n | \vec d)$. Because $\vec f^{n}$ and $\vec w$ differ only at site $i$, we have
+     \begin{align*}
+       \Delta U(\vec w) &= U(f_i'| d_i) - U(f_i | d_i) \\
+       &= \left \{\beta \sum_{j\in \mathcal{N}_i} T(f_i' \neq f_j) + \frac{(d_i - \mu_k')^2}{2\sigma_k'^2} + \log \sigma_k' \right \}
+- \left \{\beta \sum_{j\in \mathcal{N}_i} T(f_i \neq f_j) + \frac{(d_i - \mu_k)^2}{2\sigma_k^2} + \log \sigma_k \right \} \\
+       &= \beta \sum_{j \in \mathcal{N}_i} \left \{  T(f_i' \neq f_j) - T(f_i \neq f_j) \right \} + \left \{ \frac{(d_i - \mu_k')^2}{2\sigma_k'^2} + \log \sigma_k' - \frac{(d_i - \mu_k)^2}{2\sigma_k^2} - \log \sigma_k  \right \}
+     \end{align*}
+     \item[4.] if $\Delta U < 0$, we accept $\vec w$ and let $\vec f^{n+1} = \vec w$. Otherwise, we accept $\vec f^{n+1} = \vec w$ with probability $\exp \{ - \Delta U(\vec w)\}$
+\end{itemize}
+
+
+\subsection{Maximization step}
+We can split $\vec {\widetilde Q}$ into two separate functions $\vec {\widetilde Q_1}$ and $\vec {\widetilde Q_2}$ such that $\vec {\widetilde Q_1 }$ is functin of only parameter $\beta$ and $\vec {\widetilde Q_2}$ is functin of only parameter $\vec \mu$ and $\vec \sigma$. 
+
+\begin{align*}
+  \vec {\widetilde Q} &= \vec {\widetilde Q_1} + \vec {\widetilde Q_2} \\
+  \vec {\widetilde Q_1 (\beta)} &= \frac{1}{N}\sum_{n=1}^N \left \{ \sum_{i \in \mathcal{S}} \log P(f_i^n | f^n_{\mathcal{N}_i})\right \} \\
+  \vec {\widetilde Q_2(\vec \mu, \vec \sigma^2)} &= \frac{1}{N}\sum_{n=1}^N \left \{  \sum_{i \in \mathcal{S}} \log P(d_i | f_i^n) \right \}
+\end{align*}
+
+
+Maximization $\vec Q_1$ over $\beta$: We write $\vec Q_1$ and $\partial \vec Q_1 / \partial \beta$ as 
+\begin{align*}
+  \vec Q_1 &= \frac{1}{N}\sum_{n = 1}^{N} \sum_{i \in \mathcal{S}}^{} \log \frac{\exp \{ -\beta S_i^n(f_i)\}}{\sum_{l \in \mathcal{L}} \exp \{ -\beta S_i^n(l) \}} \\
+  &= \frac{1}{N}\sum_{n = 1}^{N} \sum_{i \in \mathcal{S}}^{} \left (-\beta S_i^n(f_i) - \log \sum_{l \in \mathcal{L}} e^{ -\beta S_i^n(l)} \right) \\
+  \frac{\partial \vec Q_1}{\partial \beta} &= \frac{1}{N}\sum_{n = 1}^{N} \sum_{i \in \mathcal{S}}^{} \left ( -S_i^n(f_i) + \frac{\sum_{l \in \mathcal{L}} S_i^n(l) \cdot e^{ -\beta S_i^n(l)}}{\sum_{l \in \mathcal{L}} e^{ -\beta S_i^n(l)}} \right ).
+\end{align*}
+
+There are two options for optimizing $\vec Q_1$ over $\beta$: Golden-section-search or Gradient descent method. 
+
+
+Maximization  $\vec {\widetilde Q_2}$ over $\vec \mu$ and $\vec \sigma^2$: 
+For simplicity, also define an indicator variable $z_{ik}^n$, which is $1$ if in $n$th Monte-Carlo sample, pixel $i$ is labeled $k$, and is $0$ otherwise. The $\vec {\widetilde Q_2}$ can be written as
+\begin{align*}
+  \vec {\widetilde Q_2(\vec \mu, \vec \sigma^2)} &= \frac{1}{N}\sum_{n=1}^N \left \{  \sum_{i \in \mathcal{S}} \sum_{k = 1}^{K} -\frac{(d_i - \mu_k)^2}{2\sigma_k^2} \cdot z_{ik}^n\right \} - \frac{1}{N}\sum_{n=1}^N \left \{  \sum_{i \in \mathcal{S}} \sum_{k = 1}^{K} \log(\sigma_k) \cdot z_{ik}^n \right \} + \mathrm{const}
+\end{align*}
+
+\begin{align*}
+  \frac{\partial  \vec {\widetilde Q_2(\vec \mu, \vec \sigma^2)}}{\partial \mu_k} &= \frac{1}{N}\sum_{n=1}^N  \sum_{i \in \mathcal{S}} -\frac{2(d_i- \mu_k) \cdot \mu_k}{2\sigma_k^2} \cdot z_{ik}^n = 0\\
+  \mu_k &= \frac{\sum_{n=1}^N  \sum_{i \in \mathcal{S}} z_{ik}^n d_i}{\sum_{n=1}^N  \sum_{i \in \mathcal{S}}  z_{ik}^n}\\
+  &\frac{\partial  \vec {\widetilde Q_2(\vec \mu, \vec \sigma^2)}}{\partial \sigma_2^k} = 0 \\
+  \sigma_k^2 &= \frac{\sum_{n=1}^N  \sum_{i \in \mathcal{S}} z_{ik}^n (d_i - \mu_k)^2}{\sum_{n=1}^N  \sum_{i \in \mathcal{S}}  z_{ik}^n}\\
+\end{align*}
+
+\subsection{EM Initialization}
+When the number of clusters are large, EM is more sensitive to initialization of cluster center $\mu$ and $\sigma$. I use K-Means to get a rough estimate of cluster center. Because K-means is also sensitive to initialization, I run a few K-mean sessions and choose the best (in the sum-of-square-error sense).
+
+\subsection{MLE of prior parameter}
+To verify if the Maximum  Pseudo-likelihood estimation of $\beta$ is consistent estimation of true value, do the test as follows:
+
+-- Generate label image from MRF by Metropolis sampling. $\beta = 2$, image size is 128 by 128, 4 labels, scan 3000 times. Golden-section estimation is 1.933. Newton method is 1.932. Good. 
+
+-- Generate label image from MRF by Metropolis sampling. $\beta = 1$, image size is 128 by 128, 4 labels, scan 3000 times. Golden-section estimation is 0.988. Newton method is 0.999. Pretty Good. 
+
+-- Generate label image from MRF by Metropolis sampling. $\beta = 3$, image size is 128 by 128, 4 labels, scan 3000 times. Golden-section estimation is 2.749. Newton method is 2.750. Not good.
+
+\subsection{EM Convergence}
+Because of the sampling in E step, MCEM algorithm loses the monotonic
+increasing property on the $\vec {\tilde Q}$ function. That is, in
+some EM iteration, the $\vec {\tilde Q}$ decreases. To check the
+convergence of MCEM, we need the evidence that $\vec {\tilde Q}$ will
+increase with certain probability. We define the change of $\vec {\tilde Q}$ and $ {\tilde Q}$ as 
+\begin{align*}
+ \Delta {\vec Q}(\vec \theta^{new}, \vec \theta^{old}) &= {\vec Q}(\vec \theta^{new}) - {\vec Q}(\vec \theta^{old})\\
+ \Delta \widetilde {\vec Q}(\vec \theta^{new}, \vec \theta^{old}) &= \widetilde {\vec Q}(\vec \theta^{new}) - \widetilde {\vec Q}(\vec \theta^{old}) \\
+ &= \frac{1}{N}\sum_{n=1}^{N}\left \{ \log P(\vec f^n, \vec d; \vec \theta^{new}) - \log P(\vec f^n, \vec d; \vec \theta^{old})\right \}\\
+ &= \frac{1}{N}\sum_{n=1}^{N}\left \{ \log \frac{P(\vec f^n, \vec d; \vec \theta^{new})}{ P(\vec f^n, \vec d; \vec \theta^{old})}\right \}
+\end{align*}
+$ \Delta \widetilde {\vec Q}$ has a limiting normal distribution with
+mean $\Delta {\vec Q}$ and variance $\sigma^2$. To estimate the
+variance $\sigma^2$, we see $ \Delta \widetilde {\vec Q}$ is a mean of
+a log term, which can be defined as
+\begin{align*}
+  \Lambda (\vec f^n) = \log \frac{P(\vec f^n, \vec d; \vec \theta^{new})}{ P(\vec f^n, \vec d; \vec \theta^{old})} 
+\end{align*}
+For each MC sample $f^n$ drawn from posterior probability $P(\vec f| \vec d, \vec \theta^{old})$, we can get one $\Lambda(\vec f^n)$. Thus, we can compute sample variance of $\Lambda(\vec f)$ as
+\begin{align}
+\widehat  \var(\Lambda(\vec f)) &= \frac{1}{N}\sum_{n = 1}^{N}\{\Lambda(\vec f^n)\}^2 - \left (\frac{\sum_{n=1}^{N} \Lambda(\vec f^n)}{N} \right )^2 
+\label{eq:varlambda}
+\end{align}
+The \eqref{eq:varlambda} can also be derived from \citet{caffo2005ascent} (eq. 14) by setting all the weights to one. The asymptotic standard error (ASE) of $ \Delta \widetilde {\vec Q}(\vec \theta^{new}, \vec \theta^{old}) -  \Delta {\vec Q}(\vec \theta^{new}, \vec \theta^{old})$ can be estimated by 
+\begin{align*}
+  \hat \sigma &= \sqrt{\widehat  \var(\Lambda(\vec f))/N}
+\end{align*}
+
+
+There are a few issues in this Ascent-based method. First, How to init the additional MC samples? There are some possible solutions:
+\begin{itemize*}
+\item[1.] Init them with maximum likelihood. This may not be a good method. since when more samples are needed, $\beta$ parameter is probably not small. If we init new samples with ML, in a short burn-in(usually 20), and a big $\beta$, new samples can barely get to the stationary distribution. In the experiments, I can see that cleary, especially compared with old samples.
+
+\item[2. ] Init with current state of existing samples. Suppose I have $N$ old sampls $\vec f^0, \dots, \vec f^N\}$, and I need $M$ additional samples $\vec f^{N+1}, \dots, \vec f^{N+M}$. I can let $\vec f^{N+1} = \vec f^{1}$, $\vec f^{N+2} = \vec f^{2}$, etc.
+
+\item[3. ] Same with method 2, but we first apply ICM on existing samples, and copy the results of ICM to the new samples.
+
+\item[4. ]Init all new sampels with the best existing samples. The \emph{best} in the sense of likelihood $\log P(\vec f, \vec d; \vec \theta)$. This method is not like previous two methos in that it init all new samples to same state. The disadvantage of that is the N indepedent chain has less chance to explore large search space. But, the advantage is we can keep the best sample and throw away those far from optimal solution.
+
+\item[5. ] Same with method 4, but init all new samples with the ICM output of the best existing samples. This is in spirit similar to method 3.
+\end{itemize*}
+
+Method 3, 4, 5 can also be applied for initializing the existing samples.
+
+After EM converges, I need to estimate labels from the current parameters. We can use ICM on the MC sample with greatest joint likelihood, because that MC sample is supposed to be the best among all MC samples.
+
+In the experiments I found the N indepdent chains convege siginificantly slower than previous single long chains, no matter what method I used to initialized old and new samples. This is probably due to the fact that one long chain 
+
+
+\section{Implementation}
+Have sorted the labels such that after labeling, small labels have small means. This is consistent with our generative model when creating the synthetic image.
+
+The Monte Carlo EM algorithm is as follows:
+\begin{itemize*}
+  
+\item[1.] Initialized the parameters and labeled image. This
+  include
+  \begin{itemize*}
+  \item [1.1]Run K-Means clustering a few times with different random
+    initial cluster center. Choose the results with smallest
+    sum-of-square distance between pixel intensity and cluster
+    centers.
+  \item[1.2] Given cluster centers in previous step, estimate labels by
+    assign each points the label with nearest distance.
+  \item Given cluster centers ($\mu$) and labels in previous two
+    steps, estimate the initial variance of each clusters.
+  \item[1.3] $\beta$ is set manually to a small value.
+  \item[1.4] Given the $\mu$ and $\sigma$ of each cluster, re-estimate
+    labels by Maximum-Likelihood. (Optional)
+  \end{itemize*}
+\item[2.] E step. With initial labels and parameters, Metropolis
+  sampling to get Monte Carlo samples.
+\item[3.] M step. estimate $\mu$ and $\sigma$ given labels. Estimate
+  $\beta$ (given labels) by maximizing pseudo-likelihood function with
+  Newton-Raphson method. Initial $\beta$ value of Newton-Raphson is
+  current value.
+\item [4.] Use last MC sample of E step as the estimate
+  of labels, and used for initial value of next E step sampling.
+\item [4a.]  Or, run ICM (initialized with current labels) until it
+  converges. The labels are used for initial value of next E step
+  sampling.
+\item [4b.] Or, Based on last MC samples of previous E step, use
+  simulated annealing to estimate the labels.
+\item [5.]Repeat step 2, 3, 4 until parameters do not change
+  significantly.
+\item [6.] run ICM based on current labels until convergence, and get
+  the final labeled image.
+      
+\end{itemize*}
+
+On the first iteration of EM, we use Golden-Section method to estimate $\beta$. This is because we have no knowledge of the initial value of $\beta$ in Newton-Raphson method. If we give an arbitrary initial value, it may be far away from true value and Newton-Method may not work. Beginning from second E step, we use Newton method with $\beta$ initialized with the value from previous E step.
+
+Another reason of method (2) is better than method (1) is: A poor choice of starting values can greatly increase the required burn-in time. A basic rule is to start the Monte Carlo sampling close to the center of the distribution, for example the mode. For method (2), we initialized with MLE, and get the mode of the conditional likelihood $P(\vec d | \vec f)$. For method (1) we use last MC sample from previous Metropolis sampling, which is more close to the mode of the posterior $P(\vec f | \vec d)$. Since the posterior is the stationary distribution we want, method (1) gets better initialization. 
+
+
+
+\section{Experiments}
+
+\section{Questions}
+The number of burn-ins and Monte-Carlo samples can change with the EM iteration. Initially, the parameters $\beta$, $\mu$ and $\sigma$ change significantly, so a roughly estimation is enough. And we can use less number of burnins and MC samples. When the parameters nearly converge, we need more MC samples to get a stable estimation. If, however, not enough MC samples are used (say, 10), at the end EM iteration, we see $\beta$ change around some value but does not converge. This is due to the variance of MC samples.
+
+
+Metropolis sampling may have large rejection rate. how to fix this?
+
+For Gibbs distribution, there seems a critical temperature ($1/\beta$). If $1/\beta$ is above this value, it takes long time to converge to the stationary distribution?
+
+Questions from Suyash:
+
+- Can we run exactly the same experiments where MCEM is replaced by (i) ICM (ii) mean-field approx. We should be able to show that MCEM does better job (monte carlo analysis; smaller bias; smaller variance of estimated parameter values).
+
+Wei: The labels computed by ICM, as an approximation, may not be good samples from the posterior distribution P(f|d). But given enough EM iterations, chances are ICM-EM can also converge because of property of EM. and the parameters estimated by ICM may also have small variance. The only difference is probably the number of EM iterations needed. So if we compare the number of EM iterations between MCEM and ICM (and mean field), we can show MCEM is better?
+
+- to double check the code, we should be sure that the pseudo-likelihood parameter estimation, for beta, is working well (again monte carlo analysis)
+
+Wei: Estimation for beta converge to true beta. Not exactly equal to true value but pretty close to it. But, how can I use Monte Carlo to verify that?
+
+on optimization:
+- What are the rejection rates that we get in the Gibbs sampling ?
+
+Not yet tested. But when there are more labels, probably there are higher rejection rates, as the candidate label from a uniform proposal distribution.
+
+-- EM standard error.
+
+-- Besides prior information from MRF, I also have the proportion of data points in each clusters, i.e. $N_k/ N$. How can I use both informaiton.
+
+If I can use importance sampling in MRF, that will save a lot of wasted samples.
+
+Inhomogeneous Markov Random Field?
+
+-- Applications. Can this be applied to segmentation of MRI image?
+
+-- Implement mean field and compuare with MCEM.
+
+\section{To-Do}
+- Merge common.h and commonalt.h\\
+- when save nii file, also save png file, for 2d image.\\
+- Change number of burn-in and number of MC samples, with the EM iteration.\\
+- Sort the labels so small labels have small mean.\\
+- Split the creat true image and emission process.\\
+- Save a parameter file for each created image.\\
+- Use iterator on all files.\\
+- Save estimated parameter (beta, mu and sigma) in each EM iteration into a file, for visualization.\\
+- Would be good to get a histogram of the images.\\
+- Init sigma with a more data-driven value.\\
+
+
+As a third year PhD student at University of Utah, I am applying for Nvidia fellowship because my research
+
+\bibliographystyle{plainnat}
+\bibliography{ref}
+\end{document}

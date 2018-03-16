@@ -1,0 +1,7 @@
+\chapter{Full Pairwise Connectivity With Spatial Coherence}
+% need to talk about parallel implementation of mean field or ICM. Without
+% splitting into serial blocks, the checerboard image may be obtained.
+\section{Methods}
+\section{Experiments}
+\section{Results}
+\section{Discussions}

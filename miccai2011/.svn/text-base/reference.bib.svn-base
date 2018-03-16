@@ -1,0 +1,200 @@
+
+@book {LiBook,
+ author = {S. Z. Li},
+ title  = {Markov random field modeling in computer vision},
+ year   = {1995},
+ publisher = {Springer},
+ }
+
+@book{mardia2000directional,
+  title={{Directional statistics}},
+  author={Mardia, K.V. and Jupp, P.E. and Ebooks Corporation},
+  isbn={0471953334},
+  year={2000},
+  publisher={Wiley Chichester}
+}
+
+@article{wei1990monte,
+  title={{A Monte Carlo implementation of the EM algorithm and the poor man's data augmentation algorithms}},
+  author={Wei, G.C.G. and Tanner, M.A.},
+  journal={Journal of the American Statistical Association},
+  volume={85},
+  number={411},
+  pages={699--704},
+  issn={0162-1459},
+  year={1990},
+  publisher={JSTOR}
+}
+
+@article{banerjee2006clustering,
+  title={{Clustering on the unit hypersphere using von Mises-Fisher distributions}},
+  author={Banerjee, A. and Dhillon, I.S. and Ghosh, J. and Sra, S.},
+  journal={J. Machine Learning Res.},
+  year={2006},
+  volume={6},
+  number={2},
+  pages={1345},
+  issn={1532-4435},
+  publisher={Citeseer}
+}
+
+@article{zhang2002segmentation,
+  title={{Segmentation of brain MR images through a hidden Markov random field model and the expectation-maximization algorithm}},
+  author={Zhang, Y. and Brady, M. and Smith, S.},
+  journal={IEEE Trans. on Medical Imaging},
+  volume=20,
+  number=1,
+  pages={45--57},
+  issn={0278-0062},
+  year=2002,
+  publisher={IEEE}
+}
+
+@INPROCEEDINGS{5074650,
+author={Golland, P. and Lashkari, D. and Venkataraman, A.},
+booktitle={42nd Asilomar Conference on Signals, Systems and Computers}, title={Spatial patterns and functional profiles for discovering structure in {fMRI} data},
+year=2008,
+month=Oct.,
+pages={1402 -1409},
+ISSN={1058-6393},}
+
+
+
+@article{raichle2001,
+        title = "A default mode of brain function",
+        author = "M. E. Raichle and A. M. MacLeod and A. Z. Snyder and W. J. Powers and D. A. Gusnard and G. L. Shulman",
+        journal = "PNAS",
+        year = "2001",
+        volume = "98",
+        number = "2",
+        pages = "676--682"
+}
+
+@article{damoiseaux2006consistent,
+  title={{Consistent resting-state networks across healthy subjects}},
+  author={Damoiseaux, JS and Rombouts, S. and Barkhof, F. and Scheltens, P. and Stam, CJ and Smith, SM and Beckmann, CF},
+  journal={PNAS},
+  volume={103},
+  number={37},
+  pages={13848},
+  year={2006},
+  publisher={National Acad Sciences}
+}
+
+@article{greicius2003functional,
+  title={{Functional connectivity in the resting brain: a network analysis of the default mode hypothesis}},
+  author={Greicius, M.D. and Krasnow, B. and Reiss, A.L. and Menon, V.},
+  journal={PNAS},
+  volume={100},
+  number={1},
+  pages={253},
+  year={2003},
+  publisher={National Acad Sciences}
+}
+
+@article{fox2005human,
+  title={{The human brain is intrinsically organized into dynamic, anticorrelated functional networks}},
+  author={Fox, M.D. and Snyder, A.Z. and Vincent, J.L. and Corbetta, M. and Van Essen, D.C. and Raichle, M.E.},
+  journal={PNAS},
+  volume={102},
+  number={27},
+  pages={9673},
+  year={2005},
+  publisher={National Acad Sciences}
+}
+
+@book{li_markov_2009,
+	title = {Markov random field modeling in image analysis},
+	isbn = {1848002785, 9781848002784},
+	publisher = {Springer},
+	author = {Stan Z. Li},
+	month = mar,
+	year = {2009}
+},
+
+@article{thirion2006detection,
+  title={{Detection of signal synchronizations in resting-state fMRI datasets}},
+  author={Thirion, B. and Dodel, S. and Poline, J.B.},
+  journal={Neuroimage},
+  volume={29},
+  number={1},
+  pages={321--327},
+  issn={1053-8119},
+  year={2006},
+  publisher={Elsevier}
+}
+
+@article{beckmann2005tensorial,
+  title={{Tensorial extensions of independent component analysis for multisubject fMRI analysis}},
+  author={Beckmann, C.F. and Smith, S.M.},
+  journal={Neuroimage},
+  volume={25},
+  number={1},
+  pages={294--311},
+  issn={1053-8119},
+  year={2005},
+  publisher={Elsevier}
+}
+
+@article{liu2010spatial,
+  title={{Spatial regularization of functional connectivity using high-dimensional Markov random fields}},
+  author={Liu, W. and Zhu, P. and Anderson, J. and Yurgelun-Todd, D. and Fletcher, P.T.},
+  journal={MICCAI 2010},
+  pages={363--370},
+  year=2010,
+  publisher={Springer}
+}
+
+@article{Golland2007,
+   author = {Golland, Polina and Golland, Yulia and Malach, Rafael},
+   affiliation = {Computer Science and Artificial Intelligence Laboratory, MIT USA},
+   title = {Detection of Spatial Activation Patterns as Unsupervised Segmentation of {fMRI} Data},
+  journal={MICCAI 2007},
+   pages = {110-118},
+   year = 2007
+}
+
+@article{fox2010clinical,
+  title={{Clinical Applications of Resting State Functional Connectivity}},
+  author={Fox, M.D. and Greicius, M.},
+  journal={Frontiers in systems neuroscience},
+  volume={4},
+  year={2010},
+  publisher={Frontiers Research Foundation}
+}
+
+@article{descombes_spatio-temporal_1998,
+	title = {Spatio-temporal {fMRI} analysis using {M}arkov random fields},
+	volume = {17},
+	number = {6},
+	journal = {{IEEE} Trans. on Medical Imaging},
+	author = {X. Descombes and F. Kruggel and {D.Y.} Von Cramon},
+	year = {1998},
+	pages = {1028--1039}
+},
+
+@MISC{spmwebsite,
+      AUTHOR = {{Wellcome Trust Centre for Neuroimaging}},
+      TITLE = {Statistical Parametric Mapping},
+      MONTH = Nov,
+      YEAR = 2010,
+      HOWPUBLISHED = {\url{http://www.fil.ion.ucl.ac.uk/spm/}} }
+}
+
+@MISC{giftwebiste,
+      AUTHOR = {V. D. Calhoun},
+      TITLE = {Group {ICA} Toolbox},
+      MONTH = Mar,
+      YEAR = 2011,
+      HOWPUBLISHED = {\url{http://icatb.sourceforge.net/}} }
+}
+
+
+@MISC{connwebsite,
+      AUTHOR = {Susan Whitfield-Gabrieli},
+      TITLE = {conn {M}atlab toolbox},
+      MONTH = Mar,
+      YEAR = 2011,
+      HOWPUBLISHED = {\url{http://web.mit.edu/swg/software.htm}} }
+}
+

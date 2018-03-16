@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/TeX Live for opensuse.org)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: MyThesis.aux
+A level-1 auxiliary file: chap1.aux
+A level-1 auxiliary file: chap2.aux
+A level-1 auxiliary file: math.aux
+A level-1 auxiliary file: method1.aux
+A level-1 auxiliary file: method2.aux
+A level-1 auxiliary file: method3.aux
+A level-1 auxiliary file: discussion.aux
+The style file: acm.bst
+Database file #1: myref.bib
+Warning--can't use both volume and number fields in potts1952some
+Warning--can't use both volume and number fields in rother2004grabcut
+You've used 162 entries,
+            2253 wiz_defined-function locations,
+            1383 strings with 34128 characters,
+and the built_in function-call counts, 60813 in all, are:
+= -- 5841
+> -- 3380
+< -- 0
++ -- 1410
+- -- 1222
+* -- 5366
+:= -- 10023
+add.period$ -- 487
+call.type$ -- 162
+change.case$ -- 1067
+chr.to.int$ -- 0
+cite$ -- 164
+duplicate$ -- 1744
+empty$ -- 4440
+format.name$ -- 1222
+if$ -- 12218
+int.to.chr$ -- 0
+int.to.str$ -- 162
+missing$ -- 182
+newline$ -- 813
+num.names$ -- 325
+pop$ -- 966
+preamble$ -- 1
+purify$ -- 926
+quote$ -- 0
+skip$ -- 1057
+stack$ -- 0
+substring$ -- 4209
+swap$ -- 435
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 604
+warning$ -- 2
+while$ -- 583
+width$ -- 165
+write$ -- 1637
+(There were 2 warnings)

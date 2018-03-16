@@ -1,0 +1,448 @@
+\documentclass[12pt]{article}
+ 
+\usepackage{/home/sci/weiliu/haldefs}
+\usepackage{/home/sci/weiliu/notes}
+\usepackage{/home/sci/weiliu/projects/lwdefs}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{textcomp}
+
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage{/home/sci/weiliu/packages/breakurl/breakurl}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{natbib}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{color}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Technical Report: Markov Random Field on Functional Connectivity},    % title
+    pdfauthor={Wei Liu},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Wei Liu},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={fMRI, markov random field}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks= true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{9 in}
+\setlength{\headsep}{0.5 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+\begin{document}
+\title{Techical Report: Markov Random Field on fMRI connectivity}
+\author{Wei Liu}
+\maketitle
+\tableofcontents
+
+\section{Markov Random Fields for Functional Connectivity}
+\label{sec:model}
+Our framework for functional connectivity is a Bayesian approach in
+which we estimate the posterior distribution of the connectivity
+between voxels, conditioned  on the fMRI data. Let $\vec x =
+\{x_{ij}\}$ denote the functional connectivity map, i.e., a map
+denoting whether each pair of voxels $i,j$ is connected, and let $\vec
+y$ denote the original fMRI data, or some meausrements derived from
+the fMRI. In this work we take $\vec y$ to be the map of correlations
+between pairs voxel time series. The posterior distribution is then
+proportionally given by
+\begin{equation}
+  \label{eq:posterior}
+  P(\vec x \, | \, \vec y) \prop P(\vec x) \cdot P(\vec y \, | \, \vec x).
+\end{equation}
+In this work we model $P(\vec x)$, the prior on the connectivity map, using a
+MRF, and the likelihood $P(\vec y \, | \, \vec x)$ using Gaussian models of the
+Fisher transformed correlation values. We now give details for both of these
+pieces of the model.
+\subsection{Markov Prior}
+Conventional image analysis applications of MRFs~\citep{li_markov_2009} define the set of
+sites of the random field as the image voxels, with the neighborhood structure
+given by a regular lattice. Because we are studying the pairwise connectivity
+between voxels, we need to define a MRF in the higher-dimensional space of voxel
+location pairs. Thus, if $\Omega \subset \mathbb{Z}^d$ is a $d$-dimensional
+image domain, then the sites for our connectivity MRF form the set $\mathcal{S}
+= \Omega \times \Omega$. Let $i, j \in \Omega$ be voxel locations, and let
+$\mathcal{N}_i, \mathcal{N}_j$ denote the set of neighbors of voxel $i$ and $j$,
+respectively, in the original image lattice. Then the set of neighbors for the
+site $(i, j) \in \mathcal{S}$ is given by $\mathcal{N}_{ij} = (\{i\} \times
+\mathcal{N}_j) \cup (\mathcal{N}_i \times \{j\})$. In other words, two sites are
+neighbors if they share one coordinate and their other coordinates are neighbors
+in the original image lattice. This neighborhood structure will give us the
+property in the MRF that two voxels $i, j$ in the image are more likely to be
+connected if $i$ is connected to $j$'s neighbors or vice-versa. Equipped with
+this graph structure, $\mathcal{S}$ is a regular $2d$-dimensional lattice, which
+we will refer to as the {\em connectivity graph}.
+
+We next define a multivariate random variable $\vec x = \{ x_{ij} \}$ on the set
+$\mathcal{S}$, where each random variable $x_{ij}$ is a binary variable that
+denotes the connectivity ($x_{ij} = 1$) or lack of connectivity ($x_{ij} = -1$)
+between voxel $i$ and $j$. If $A \subset \mathcal{S}$, let $\vec x_A$ denote the
+set of all $x_{ij}$ with $(i,j) \in A$, and let $\vec x_{-ij}$ denote the
+collection of all variables in $\vec x$ excluding $x_{ij}$. For $\vec x$ to be a
+MRF it must satisfy
+\begin{equation*}
+  P( x_{ij} \, | \, \vec x_{-ij}) = p(x_{ij} \, | \, x_{\mathcal{N}_{ij}}).
+\end{equation*}
+According to the Hammersley and Clifford
+Theorem\citep{besag_spatial_1974}, $\vec x$ is Markov random field if
+and only if it is also a Gibbs distribution, defined as
+\begin{equation}
+  P(\vec x) = \frac{1}{Z}\exp\left(-U(\vec x)\right), \label{eq:Gibbs1}
+\end{equation}
+where $U$ is the energy function $U(\vec x) = \sum_{c \in \mathcal{C}}
+V_c$, with potentials $V_c$ defined for each clique $c$ in the clique
+set $\mathcal{C}$. The partition function $Z = \sum \exp(-U(\vec x))$
+is a normalizing constant, where the summation is over all possible
+configurations of $\vec x$. We use a particular form of MRF---the
+Ising model---a commonly used model for MRFs with binary states. In
+this model the energy function is given by
+\begin{equation}
+  U(\vec x) = - \beta \sum_{\langle ij, mn \rangle} x_{ij} x_{mn},
+  \label{eq:A1}
+\end{equation}
+where the summation is over all edges $\langle ij, mn \rangle$, i.e., all
+adjacent voxel pairs $(i,j), (m,n)$ in the connectivity graph. When $\beta > 0$,
+this definition favors similarity of neighbors.
+
+If we use clique of both a single site, and clique of
+pair of neighboring sites, the energy function is defined as
+\begin{align}
+  V_1(x_{ij}) &= - \alpha x_{ij}, \qquad
+  V_2(x_{ij}, x_{mn}) = -\beta x_{ij} x_{mn} \nonumber\\
+  U(\vec x) &= \sum_{\langle ij \rangle} V_1(x_{ij}) + \sum_{\langle ij, mn \rangle} V_2(x_{ij}, x_{mn}) \nonumber\\
+  %    &= \sum_{\langle ij \rangle} (- \alpha x_{ij}) + \sum_{\langle ij, mn \rangle} ( -\beta x_{ij} x_{mn}) \nonumber\\
+  &= - \alpha \sum_{\langle ij \rangle}  x_{ij} - \beta \sum_{\langle ij, mn \rangle} x_{ij} x_{mn} \label{eq:energy}
+\end{align}
+Using~\eqref{eq:Gibbs1} and \eqref{eq:energy}, the Gibbs
+distribution of $\vec x$ can be written as
+\begin{equation}
+  P(\vec x) = \frac{1}{Z}\exp\{ \alpha \sum_{\langle ij \rangle}  x_{ij} + \beta \sum_{\langle ij, mn \rangle} x_{ij} x_{mn} \}
+  \label{eq:Gibbs}
+\end{equation}
+By Hammersley-Clifford Theorem, the conditional probability is
+Markov Random Field and can be drived from \eqref{eq:Gibbs} (refer
+to \citet[sec 1.2]{li_markov_2009} for the derivation)
+\begin{align}
+  P(x_{ij} | x_{-ij}) = P(x_{ij} | \vec x_{\mathcal{N}_{ij}}) &= \frac{\exp \{ \alpha x_{ij} + \beta \sum_{mn\in \mathcal{N}_{ij}} x_{ij} x_{mn}\}}{\sum_{x_{ij} \in \mathcal{L}} \exp \{ \alpha x_{ij} + \beta \sum_{mn\in \mathcal{N}_{ij}} x_{ij} x_{mn}\} } \nonumber \\
+  &= \frac{\exp \{ \alpha x_{ij} + \beta \sum_{mn\in \mathcal{N}_{ij}} x_{ij} x_{mn}\}}{2\cosh( \alpha x_{ij} + \beta \sum_{mn\in \mathcal{N}_{ij}} x_{ij} x_{mn}\} }\label{eq:cond}
+\end{align}
+where $\mathcal{L}$ is the set of all possible labling and here
+$\mathcal{L} = \{-1, +1\}$.  
+
+\subsection{Likelihood Model}
+We now define the likelihood model, $P(\vec y \, | \, \vec x)$,
+which connects the observed data $\vec y$ to our MRF. Because we are
+interested in the functional connectivity between pairs of voxels,
+we compute the correlation between the time courses of each pair of
+voxels, and get a correlation matrix $\vec y = \{y_{ij}\}$. Just as
+in the case of the random field $\vec x$, the correlation matrix
+$\vec y$ is also defined on the $2$-dimensional lattice
+$\mathcal{S}$. Linear correlation is not the only choice for $\vec
+y$. We can use any statistic, as long as it indicates the affinity
+between two voxel time series. Another possibility could be
+frequency domain measures, such as the
+coherence~\citep{mller_multivariate_2001}.
+
+
+Before defining the full data likelihood, we start with a definition
+of the {\em emission function} at a single site $s_{ij} \in
+\mathcal{S}$. This is defined as the conditional likelihood,
+$P(y_{ij} \, | \, x_{ij})$, and is interpreted as the probability of
+the observed correlation, given the state of the connectivity
+between voxels $i$ and $j$. We model the emission function as a
+Gaussian distribution with unknown mean and variance on the Fisher
+transformed correlation $y_{ij}$, that is,
+\begin{equation}
+  \label{eq:emission}
+  P(y_{ij} \,|\, x_{ij} = k) = \frac{1}{\sqrt{2\pi} \sigma_k} \exp \left( -\frac{(F(y_{ij}) -  \mu_k)^2}{2\sigma_k^2}\right),
+\end{equation}
+where $F$ denotes the Fisher transform. Notice that each correlation $y_{ij}$ on
+site $s_{ij}$ only depends on the latent variable $x_{ij}$ on the same site, and
+does not depend on neighbors of $x_{ij}$. Therefore, the full likelihood is
+given by
+\begin{equation}
+  \label{eq:likelihood}
+  P(\vec y \, | \, \vec x) = \prod_{s_{ij}\in\mathcal{S}} P(y_{ij} \, | \, x_{ij}).
+\end{equation}
+
+\section{Estimation via Expectation Maximization}
+\label{sec:algorithm}
+Having defined the data likelihood and MRF prior in the previous
+section, we are now ready to describe the maximization of the
+posterior given by~\eqref{eq:posterior}. For this we need to
+determine the model parameters, $\beta$ in \eqref{eq:A1} and
+$(\mu_k, \sigma_k^2)$ in \eqref{eq:emission}. Rather than
+arbitrarily setting these parameters, we estimate them using an
+Expectation Maximization (EM) algorithm.
+
+In the framework of model parameter estimation, this is un-supervised
+parameter estimation problem, because both the parameters and labeling
+variable $\vec x$ are unknown and need to be estimated in EM. If $\vec
+x$ is known, we can estimate parameter set $\vec \theta$ by maximizing
+joint log-likelihood $\ln P(\vec x, \vec y |\vec \theta)$. But since
+$\vec x$ is unkown, the only information we know is the posterior
+probability $P(\vec x| \vec y)$. $\ln P(\vec x, \vec y | \vec \theta)$
+is function of $\vec x$, and it is also a random variable. We can
+instead estimate $\vec \theta$ by maximizing the expected value of
+$\ln P(\vec x, \vec y |\vec \theta)$ under the posterior probability
+$P(\vec x| \vec y)$. Therefore, we define the following conditional
+expectation of the log-likelihood as
+
+\begin{align}
+  \mathcal{Q}(\vec \theta) &= \mathbb{E}_{p(\vec x| \vec y)} [\ln P(\vec x, \vec y | \vec \theta)]\nonumber\\
+  &= \mathbb{E}_{p(\vec x| \vec y)}[\ln P(\vec x| \vec \theta) + \ln P(\vec y | \vec x, \vec \theta) ] \label{eq:qfun}
+\end{align}
+
+Because 
+\begin{equation}\ln P(\vec x | \vec \theta) = -\ln Z - \alpha \sum_{\langle ij \rangle} x_{ij} + \beta \sum_{\langle ij, mn \rangle} x_{ij}x_{mn}, \label{eq:logprior}
+\end{equation}
+
+exact  computation of the \eqref{eq:logprior} is intractable, due to
+the combinatorial number of terms in the partition function $Z$. Therefore, we
+instead maximize the approximate \textcolor{black}{prior} given by the pseudo-likelihood
+function~\cite{li_markov_2009,besag_spatial_1974},
+\begin{align}
+  PL(\vec x) &= \prod_{ij \in \mathcal{S}}^{}P (x_{ij}|x_{\mathcal{N}_{ij}})\\
+  \ln P(\vec x) &\approx \sum_{ij \in \mathcal{S}}^{} \ln P(x_{ij} | x_{\mathcal{N}_{ij}})\label{eq:2} 
+\end{align}
+
+Plug \eqref{eq:likelihood} and \eqref{eq:2} into \eqref{eq:qfun} we get
+\begin{align}
+  \mathcal{Q} (\vec \theta) &= \mathbb{E}_{p(\vec x| \vec y)} \left [ \sum_{ij\in \mathcal{S}} \left(\ln P(x_{ij} | x_{\mathcal{N}_{ij}}) + \ln P(y_{ij} | x_{ij})\right)\right] \nonumber \\
+  &= \sum_{ij\in \mathcal{S}} \left \{ \mathbb{E}_{p(\vec x| \vec y)} \left [\ln P(x_{ij} | x_{\mathcal{N}_{ij}}) + \ln P(y_{ij} | x_{ij})\right] \right\}\nonumber \\
+  &= \sum_{ij\in \mathcal{S}} \left \{ \sum_{\vec x} \left [\ln P(x_{ij} | x_{\mathcal{N}_{ij}}) + \ln P(y_{ij} | x_{ij})\right] P(\vec x | \vec y)\right\}\nonumber \\
+  &= \sum_{ij\in \mathcal{S}} \left \{ \sum_{x_{ij}} \left [\ln P(x_{ij} | x_{\mathcal{N}_{ij}}) + \ln P(y_{ij} | x_{ij})\right] P(x_{ij} | y_{ij}) \right\}\nonumber \\
+  &= \sum_{ij\in \mathcal{S}} \left \{ \sum_{x_{ij}} \ln P(x_{ij} | x_{\mathcal{N}_{ij}}) \cdot P(x_{ij} | y_{ij}) + \sum_{x_{ij}} \ln P(y_{ij} | x_{ij}) \cdot  P(x_{ij} | y_{ij}) \right\}\nonumber \\
+  &= \sum_{ij\in \mathcal{S}} \left \{ \sum_{x_{ij}} \ln P(x_{ij} | x_{\mathcal{N}_{ij}}) \cdot P(x_{ij} | y_{ij}) \right \} + \sum_{ij\in \mathcal{S}} \left \{ \sum_{x_{ij}} \ln P(y_{ij} | x_{ij}) \cdot  P(x_{ij} | y_{ij}) \right\} \label{eq:qfun2}
+\end{align}
+
+We see \eqref{eq:qfun2} is exactly same as equation (9.40) of \citet[ch. 9]{bishop2006pattern}, except that the mixing coefficients $\pi_k$ is replaced by prior probability $P(x_{ij} | y_{ij})$. 
+
+
+For computing posterior $P(x_{ij} | x_{\mathcal{N}_{ij}})$ given
+parameter set $\vec \theta$, there are a few options: (1) We can
+sample from posterior at each site, given previously sampled value at
+its neighbors. A sampling procedure through the whole data is called a
+\emph{scan}. After many scans (usually 50 -- 80), the field reaches
+equilibrium state, we have two options again. (1a). we compute the
+expected value at each site from its posterior probability right after
+the field goes to equilibrium. (1b).  Continue sampling for $m$ scans
+after equilibrium and average over the value from $m$ scans after
+burn-in period to get the mean of each voxel. (1c) Mean field
+approximation, which we chosed in our algorithm. The mean field
+approximation assumes the influence of $x_{ij}$'s neighbors
+$x_{\mathcal{N}_{ij}}$, can be approximated by the influence of
+$x_{\mathcal{N}_{ij}}$'s expected value $\langle x_{\mathcal{N}_{ij}}
+\rangle$.  This is reasonable only when the field is in equilibrium
+state. The prior distribution therefore can be expressed as
+\begin{equation*} 
+  P(\vec x) \approx \prod_{ij \in \mathcal{S}} P(x_{ij} | x_{\mathcal{N}_{ij}}) \approx \prod_{ij \in \mathcal{S}} P(x_{ij} | \langle x_{\mathcal{N}_{ij}} \rangle)
+\end{equation*}
+The first $\approx$ in above equation is because of psudo-likelihood
+approximation, and the second is because of mean field
+approximation. At each site $ij$, we freeze all other sites $x_{-ij}$,
+and compute the posterior as
+\begin{align}
+  P(x_{ij} | x_{\mathcal{N}_{ij}}) &= \frac{P(x_{ij} | x_{\mathcal{N}_{ij}})\cdot P(y_{ij} | x_{ij})}{\sum_{ij \in \mathcal{L}}P(x_{ij} | x_{\mathcal{N}_{ij}})\cdot P(y_{ij} | x_{ij})} \label{eq:localcond}\\
+  &\approx \frac{P(x_{ij} | \langle x_{\mathcal{N}_{ij}} \rangle ) \cdot P(y_{ij} | x_{ij})}{\sum_{ij \in \mathcal{L}}P(x_{ij} |\langle x_{\mathcal{N}_{ij}} \rangle )\cdot P(y_{ij} | x_{ij})} \label{eq:meanfield}
+\end{align}
+where the $\langle x_{\mathcal{N}_{ij}} \rangle $ is assumed given. This expected value is given by 
+\begin{equation}
+  \langle x_{ij} \rangle = \sum_{} x_{ij} \cdot P(x_{ij}) \label{eq:mean}
+\end{equation}
+The mean field approximation is similar to the psudo-lilihood, expect
+that $x_{\mathcal{N}_{ij}}$ is replaced by $\langle
+x_{\mathcal{N}_{ij}} \rangle $. To implement mean filed approximation,
+we again first sample from posterior at each site, given the sampled
+value at its enighbors. After the field reach equilibirum, we iterate
+between \eqref{eq:meanfield} and \eqref{eq:mean} at each site to get
+the mean field. Usually 5-10 iterations are enough to get a stable mean field.
+
+ 
+In parameter set $\vec \theta = \{ \beta, \mu, \sigma^2\}$, the prior
+$\ln P(x_{ij} | x_{\mathcal{N}_{ij}})$ depends on $\beta$, and
+log-likelihood $\ln P(y_{ij} | x_{ij})$ depends on $\mu$ and
+$\sigma^2$. 
+
+Now we are ready to give the EM iteration procedure. In the E-step,
+the parameters are held fixed and we compute the posterior probability
+$P(x_{ij} | y_{ij})$ for each $x_{ij}$, and sample $x_{ij}$ from the
+posterior distribution using Gibbs Sampling. After certain times of
+scans, the field is in equilibrium state. We then compute the expected
+value of each connectivity node by~\eqref{eq:mean}. After that we
+update $x_{ij}$ with its expected value $\langle x_{ij} \rangle$. This
+expected value will be used when computing the posterior probability
+of $x_{ij}$'s neighbors.
+  
+In M-step, the complete data $\{\langle\vec x\rangle, \vec y\}$ is
+available, and the parameters can be estimated by maximizing the
+expected value of joint log-likelihood (the $\mathcal{Q}$ function of
+\eqref{eq:qfun2} with $P(x_{ij} | x_{\mathcal{N}_{ij}})$ replaced by
+\eqref{eq:meanfield}). We notice in \eqref{eq:qfun2} the first part is
+function of $\beta$, and the second part is only function of $\mu$ and
+$\sigma^2$. So we can estimate $\beta$ by maximizing the first part,
+and estimate $\mu$ and $\sigma^2$ by maximizing the second part. The
+closed form solutions for estimated $\mu$ and $\sigma^2$ are same as
+Gaussian Mixture Model~\citep[ch 9]{bishop2006pattern}, and are given as
+\begin{align}
+  \mu_{ij} &= \frac{1}{N_{ij}} \sum_{ij \in \mathcal{S}} y_{ij} \cdot P(x_{ij} | y_{ij}) \label{eq:getmu}\\
+  \sigma_{ij} &= \frac{1}{N_{ij}} \sum_{ij \in \mathcal{S}} (y_{ij} - \mu_{ij})^2 \cdot P(x_{ij} | y_{ij}) \label{eq:getsigma}\\
+      N_{ij} &= \sum_{ij \in \mathcal{S}} P(x_{ij}) \label{eq:getN}
+\end{align}
+
+To estimate $\beta$ by maximizing first part of~\eqref{eq:qfun2}, rewrite it as 
+\begin{equation}
+  \mathcal{Q}_1 = \sum_{ij\in \mathcal{S}} \left \{ \sum_{x_{ij}} \ln P(x_{ij} | x_{\mathcal{N}_{ij}}) \cdot P(x_{ij} | y_{ij}) \right \} \label{eq:qfun21}
+\end{equation}
+
+Together with \eqref{eq:cond}, \eqref{eq:qfun21} can be written as
+\begin{align}
+  \mathcal{Q}_1 &= \sum_{ij\in \mathcal{S}} \left \{ \sum_{x_{ij} \in \mathcal{L}} \ln \frac{\exp \{ \alpha x_{ij} + \beta \sum_{mn\in \mathcal{N}_{ij}} x_{ij} x_{mn}\}}{2\cosh( \alpha x_{ij} + \beta \sum_{mn\in \mathcal{N}_{ij}} x_{ij} x_{mn}\} } \cdot P(x_{ij} | y_{ij}) \right \} \nonumber \\
+  &= \sum_{ij\in \mathcal{S}} \left \{ \sum_{x_{ij}  \in \mathcal{L}} \left(\alpha x_{ij} + \beta x_{ij} \sum_{mn \in \mathcal{N}_{ij}}x_{mn} - \ln (2\cosh (\alpha + \beta \sum_{mn \in \mathcal{N}_{ij}} x_{mn})) \right) \cdot P(x_{ij} | y_{ij}) \right \}. \nonumber 
+\end{align}
+For simplicity we define $R_{ij} = \sum_{mn \in \mathcal{N}_{ij}} x_{mn}$ and the previous $\mathcal{Q}_1$ function can be written as
+\begin{equation}
+  \mathcal{Q}_1 &= \sum_{ij\in \mathcal{S}} \left \{ \sum_{x_{ij} \in \mathcal{L}} \left(\alpha x_{ij} + \beta x_{ij} R_{ij} - \ln (2\cosh (\alpha + \beta R_{ij})) \right) \cdot P(x_{ij} | y_{ij}) \right \}. \label{eq:q1}
+\end{equation}
+
+We use Newton's method to find the roots of $\mathcal{Q}_1$'s first derivative with $\beta$, and this is also the global maxima of $\mathcal{Q}_1$ with $\beta$. The iteration step of Newton's method is given as
+\begin{equation}
+  \beta_{n+1} = \beta_n - \frac{\mathcal{Q}_1'(\beta_n)}{\mathcal{Q}_1''(\beta_n)} \label{eq:Newton}.
+\end{equation}
+
+Write down he first and second derivative of $\mathcal{Q}_1$ with regard to $\beta$ as
+\begin{align}
+  \frac{\partial \mathcal{Q}_1}{\partial \beta} &= \sum_{ij\in \mathcal{S}} \left \{ \sum_{x_{ij} \in \mathcal{L}} R_{ij} ( \beta x_{ij} - \tanh(\alpha + \beta R_{ij})) \cdot P(x_{ij} | y_{ij})\right \}, \label{eq:1stdev}\\
+  \frac{\partial^2 \mathcal{Q}_1}{\partial \beta^2} &= \sum_{ij\in \mathcal{S}} \left \{ \sum_{x_{ij} \in \mathcal{L}} R_{ij}^2 (\tanh^2(\alpha + \beta R_{ij}) - 1)\cdot P(x_{ij} | y_{ij}) \right \}.\label{eq:2nddev}
+\end{align}
+
+Also write down the first and second derivative with $\alpha$ (Though this is not used because we do not estimate $\alpha$. We keep it fixed as an external energy)
+\begin{align*}
+  \frac{\partial \mathcal{Q}_1}{\partial \alpha} &= \sum_{ij\in \mathcal{S}} \left \{ \sum_{x_{ij} \in \mathcal{L}} (x_{ij} - \tanh(\alpha + \beta R_{ij}))\cdot P(x_{ij} | y_{ij}) \right \},\\
+  \frac{\partial^2 \mathcal{Q}_1}{\partial \alpha^2} &= \sum_{ij\in \mathcal{S}} \left \{ \sum_{x_{ij} \in \mathcal{L}} (\tanh^2(\alpha + \beta R_{ij}) - 1)\cdot P(x_{ij} | y_{ij}) \right \}.
+\end{align*}
+
+Newton's method requires that the function $\mathcal{Q}_1$ are twice
+differentiable, and the initial guess of $\beta_0$ is close enough to
+the stationary point. We can choose initial $\beta$ be the value in
+previous M step. Because $\beta$ in consecutive EM steps does not
+change significantly, the initialization condition of Newton's method
+is also satisfied.
+
+After certain iterations of EM steps we get parameters as our MAP
+estimates, and also the posterior connectivity map. The whole
+procedure is summarized in Algorithm \ref{alg:1}.
+
+{\bf GPU Implementation.} The whole algorithm involves updating a high
+dimensional connectivity map $\vec x$ iteratively, and hence have high
+computation cost. We designed a parallel Markov random field updating strategy
+on Nvidia's graphics processing unit (GPU). The algorithm take only a few minutes
+compared with more than 1 hour on CPU counterpart.
+
+To fit the algorithm into GPU's architecture, we use some special
+strategy. First, because GPU only support 3-dimensional array, we need
+to reshape $\vec x$ and $\vec y$ defined originally on higher
+dimensional graph by linear indexing their original subscripts. This
+is especially difficult for brain fMRI data because the gray matter
+voxels resides in a irregular 3-D lattice. A special data structure is
+used for mapping between original voxel subscripts and their linear
+index. Second, to update each site of MRF in parallel we
+have to make sure a site is not updated simultaneously with its
+neighbors, otherwise the field tends to be stuck in a
+checkerboard-like local maximum. Our strategy is to divide all the
+sites of the field into several sub-groups, such that a site is not in
+the same sub-group with its neighbors.  We then can update the
+sub-group sequentially, while the data within sub-groups are updated
+simultaneously. 
+
+  \begin{algorithm}[tbh]
+    \caption{MAP estimation by EM}
+    \label{alg:1}
+    \begin{algorithmic}
+      \REQUIRE Sample correlation map $\mat Y$.
+      \STATE Init posterior map $\mat X$  by maximizing conditional log-likelihood $\ln P(y_{ij}|x_{ij})$.  
+      \WHILE{$\Delta \ln P(\langle \mat X \rangle, \mat Y) > \varepsilon$ } 
+      \STATE \textbf{E step: }
+
+      (a). Based on the current $\vec \theta$, compute the posterior on each node by~\eqref{eq:cond}, \eqref{eq:likelihood} and~\eqref{eq:localcond}. Sample from posterior by Gibbs Sampling, and update each $x_{ij}$ by sampled value.
+
+      (b). Repeatedly previous step until the field reach equilibrium.
+
+      (c). Iteratively update each node x$_{ij}$ by \eqref{eq:meanfield} and \eqref{eq:mean}, to get the mean field. 
+
+      (d). Repeat previous step until the field reach equilibrium.
+      \STATE \textbf{M step: } 
+
+      (d) With complete data $\{\langle \mat X \rangle, \mat
+      Y\}$, estimate $\mu$ and $\sigma^2$ by \eqref{eq:getmu}, \eqref{eq:getsigma} and \eqref{eq:getN}. Eestimate $\beta$ by \eqref{eq:Newton}, \eqref{eq:1stdev} and \eqref{eq:2nddev}. 
+      \ENDWHILE
+      \RETURN posterior map $\mat X$.
+    \end{algorithmic}
+  \end{algorithm}
+
+\section{Implementation}
+This section gives a detailed procedure for implementing the algorithm. The data are first preprocessed by SPM8, then are processed by Susan Whitfield-Gabrieli's  \texttt{conn} software package.
+
+\textbf{Dataset:} The dataset I am using is from Tom, named from \texttt{R1} to \texttt{R16}. Each folder is for one subject with Resting state fMRI, DTI, field map, T1 and T2 image. The resting fMRI data is in dicom format, but in some subject these dicom files are converted to nifti format (probably by \texttt{SPM}). The fMRI image is 64x64x40x490, with 490 the number of sampled time points. 
+
+There are two \emph{series} in the Resting directory for each subject, most are named series 12 and 13 (as can be seen in Matlab by \texttt{dicominfo} command). It is not clear what exactly the term \emph{series} mean, and the difference between the two series.  For now I'm assuming the two series are just two scans at different time, for example, with some interval but on the same day. In the functional connectivity experiment, I use series 12 in all subjects. 
+
+The resolution of the fMRI image is 3.4375 millimeter within slices, and 3.3 millimeter between slices. The orientation of the image is LAS (right to left, posterior to anterior, inferior to superior). The date type of each voxel is UINT16 (as can be seen from output of FSL's command \texttt{fslhd}).
+
+\textbf{Preprocessing in SPM: } The preprocessing is done in two software sequentially. First the data is processed by SPM for motion correction. The volume at all time points are aligned to the mean volume by a six parameter rigid transformation. The next step is slice timing correction. The order of the slice timing correction is even number first (2, 4,...40, 1, 3, ..., 39). This order is specific to Siemens Trio scanner, and \href{https://mri.radiology.uiowa.edu/fmri_images.html}{this link} gives some information about slicing order. (It is still not clear if this is correct option, though.)
+
+Then the fMRI image, T1 image and T2 image are registered together. The T2 image is registed to fMRI first, then the T1 image is registered to T2, so the three images are in the same coordinate space. When registering T2 to fMRI, I use the mean image of fMRI as a reference image (target image), and choose only to \emph{estimate} the transformation. The \emph{estimate} option is different with \emph{estimate and reslice} in that only the header information in the source image (here is T2) is changed to save the transformation matrix, but the actual data does not change. And \emph{reslice} does the interpolation according to the transformation matrix saved in the header.
+
+The registered T1 image then go to the segmentation step. This step segments the T1 image into gray matter, white matter and CSF, each of which is saved as a separate probability map and their voxel value range from $0$ to $1$. The gray matter probability map will be used as a mask image in the following functional connectivity analysis to choose only gray matter voxels.
+
+The segmentation step also generates a transformation matrix parameter file to transform T1 to MNI standard space. This is because in SPM segmentation is done together with normalization, to get a better result. 
+
+In Normalization step we use this transformation matrix to map the functional image, original T1 image, original T2 image, and the gray matter probability map to the standard space. All images are resampled to a 3x3x3 millimeter. This resolution is chosen because the original fMRI image has similar resolution. By resampling, we inevitably introduced spatial smoothing on fMRI image.
+
+A remark on SPM's MNI template: it is a 2 millimeter T1 image called MNI152, and is actually same with the template used by FSL.
+
+The whole preprocessing steps can be done in a batch job in SPM. To run the batch file on all subjects, give each subject's filename as input and run the batch file on each subject. There should be better method to run job file once to get results for all subjects, but so far this strategy is OK for my experiment.
+
+If otherwise specified, all preprocessing step above use default parameters and options in SPM.
+
+\textbf{Preprocessing by \texttt{conn} package: } To validate the results of our algorithm, we need another software which uses standard SPM method for connectivity analysis. So we can compare between 1) random field connectivity analysis on data without spatial smoothing, and 2) \texttt{conn} analysis on data with spatial smoothing. 
+
+\href{http://www.nitrc.org/projects/conn/}{\texttt{conn}} is a Matlab package for preprocessing and functional connectivity analysis. It supports both single and multiple subjects, but here in our study we only use its single subject module. The package takes fMRI and structural image as input, after some preprocessing, compute the correlation (or regression) between the interested region and the whole brain. Below I gives the setup steps.
+
+Setup: In setup page, we give T1 as structural image input, and give fMRI as input. In ROI (region of interest) menu, we delete all ROIs except gray matter, white matter, CSF, MPFC(medial prefrontal cortex), PCC(posterior singular cortex). The \texttt{conn} package will call SPM routine to do the segmentation and get gray matter, white matter and CSF (so we need SPM installed and in the Matlab path). The other regions like MPFC and PCC are represented by voxel coordinates saved in the \texttt{conn} directory. These coordinates are in standard space, so we need both the functional and structural image registered into standard space (already done in previous step in SPM). 
+
+The dimension of the ROIs comes from the fact that \texttt{conn} runs principal component analysis on the time courses in each ROI, and get only the first few principal components as regressors (explanatory variables). If the dimension of a ROI is one, only the mean of all the voxels in the region are obtained. Here in 'setup' page, the dimension of RIOs are the maximal dimensions allowed to choose in the following steps.
+
+Preprocessing: In preprocessing submenu, we choose white matter and CSF as confounds. This is because we believe there are some physiological signal components that are in all voxels. Since the white matter and CSF does not contain functional signal, we use them as confounds of these physiological signal, and regress out them from gray matter voxels. Both white matter and CSF have derivative order zero and dimension one. That is, the average of all white matter is used as a confound signal, and the average of all CSF voxels is used as a confound signal.
+
+First level analysis: After removing white matter and CSF signal from the whole brain, we are ready to see the correlation between the seed region and the whole volume. We only do this on spatial smoothed functional data, and compare the results with our MRF method  on non-smoothed data, to see if they have roughly consistent results.
+
+
+
+
+\section{Appendix}
+For C.M. Bishop's book \emph{Pattern recognition and machine learning}, \href{http://www.sci.utah.edu/~weiliu/books/prml.tar.gz}{here} is a soft copy of the book.
+
+\bibliographystyle{plainnat}
+\bibliography{report001}
+\end{document}

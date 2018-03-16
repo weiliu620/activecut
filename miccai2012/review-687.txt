@@ -1,0 +1,282 @@
+MICCAI 2012
+
+Reviews of submission #687: "Group Study Of Resting-State fMRI by
+Hierarchical Markov Random Field"
+
+------------------------ Submission 687, Review 1 ------------------------
+
+Reviewer:           External
+
+Relevance of the contribution
+
+   3  (acceptable)
+
+Originality
+
+   4  (good )
+
+Soundness
+
+   3  (acceptable)
+
+Clarity of presentation
+
+   4  (good)
+
+Review: Summary
+
+   This paper presents a generative model for group analysis of
+   resting-state functional connectivity. The model has a hierarchical
+   latent structure, consisting of a population label map, which gives rise
+   to individual subject labels. In both cases, a Markov random field is
+   placed over the labels to enforce spatial smoothness. The fMRI time
+   courses are generated independently from the subject labels according to
+   a von Mises Fisher distribution. Inference consists of an EM-like
+   algorithm which alternates between drawing samples from the latent
+   posterior distribution and updating the model parameters. The results are
+   good on both synthetic and in vivo data.
+
+Review : General Opinion
+
+   This paper is well-organized and well-written. It presents an interesting
+   formulation, which I have not seen in the literature. The figures are
+   clear and informative. The major drawback of this paper is the inference
+   section. There is either a bug in the derivation, or it was written up
+   incorrectly in the paper. Also, given the dimensionality of this problem,
+   the run time of Gibbs sampling is too high for practical use. Overall, I
+   believe this model should be presented. Conditional on the appropriate
+   edits in the inference section, I recommend this paper for acceptance
+   into MICCAI.
+
+Review : Explanation of Recommendation
+
+   I have three concerns about the inference section:
+
+   1) As it is written, the sampling procedure in Algorithm 1 is wrong.
+   2) The Gibbs samples may not be sufficiently far apart (I cannot tell
+   from the text).
+   3) The pseudo likelihood section is confusing and unneccessary.
+
+   The traditional EM framework alternates between updating the latent
+   posterior (in this case P(Y|X;\Theta)) given the model parameters \Theta
+   and updating the model parameters by maximizing E[log P(X,Y;\Theta)],
+   where the expectation is taken over the posterior for Y. The Gibbs
+   sampling procedure should be obtaining samples from P(Y|X;\Theta).
+   However, in Algorithm 1, it seems like the authors are obtaining samples
+   from the prior P(Y). In this case, the samples do not depend on the data
+   X. Hence, updating the model parameters does not change the sampling
+   distribution for Y. Perhaps the authors meant to sample y^j_s from the
+   product p(y^j_s|y_N(s))p(x^j_s|y_s) rather than from just
+   p(y^j_s|y_N(s))? If not, this is a serious flaw in the algorithm.
+
+   Second, the text is unclear about how the samples are collected. In
+   particular, is there a burn in B just at the begining, or are there
+   additional burn-ins between samples Y^m, Y^(m+1)? If it is the former,
+   then once again, this is a serious flaw. Consecutive Y's are heavily
+   dependent on each other and do not represent independent samples from the
+   steady-state Markov chain. If it is the former, then the inference will
+   probably be slow. Specifically, we are sampling y_s for each VOXEL in the
+   group template and in each subject. Although the neighborhood structure
+   allows for some parallelization, we still must perform several updates
+   per iteration.
+
+   Finally, I don't understand the purpose of the pseudo-likelihood section.
+   In the typical EM formulation, the parameters are updated by maximizing
+   E[log P(X,Y;\Theta)]. The partition function is an additive term in this
+   expectation. Since it does not depend on the parameters, it is irrelevant
+   to the algorithm.
+
+   Minor point:
+
+   While the synthetic experiment is a good sanity check, it does not
+   validate the proposed approach over other methods. Namely, the synthetic
+   data is generated according to the presented graphical model. Hence, the
+   optimal solution is ML inference via the EM algorithm. K-means and N-Cuts
+   make different assumptions about the data and will not perform as well.
+   This point should be emphasized in the paper.
+
+Type of presentation ?
+
+
+
+
+
+------------------------ Submission 687, Review 2 ------------------------
+
+Reviewer:           External
+
+Relevance of the contribution
+
+   4  (good)
+
+Originality
+
+   4  (good )
+
+Soundness
+
+   4  (good )
+
+Clarity of presentation
+
+   4  (good)
+
+Review: Summary
+
+   This paper proposes a novel MRF-based approach for adding a group prior
+   to functional network detection in handling the poor SNR in fMRI data.
+   The proposed approach enables both intra-subject and group networks to be
+   simultaneously identified. This contribution is innovative with promising
+   results demonstrated. 
+
+Review : General Opinion
+
+   Relevance: The approach proposed in this paper is suitable for any
+   medical applications that require clustering of features across a group
+   of subjects, where certain intrinsic relationships are present between
+   the features, e.g. local spatial correlations in the present work. This
+   paper fits well into the theme of general medical image computing of
+   MICCAI.
+
+   Originality: Although the idea of incorporating group information into
+   intra-subject fMRI analysis to handle low SNR has been previously
+   proposed (e.g. [7] in the manuscript & [i] below), the approach taken in
+   this work is quite different. In particular, MRF is used to pool
+   information across subjects in estimating both intra-subject and group
+   networks.
+
+   [i] Ng, B., McKeown, M.J., Abugharbieh, R.: Group Replicator Dynamics: A
+   Novel Group-Wise Evolutionary Approach for Sparse Brain Network
+   Detection. IEEE Trans. Med. Imaging 31, 576—585 (2012)
+
+   Soundness: The paper is technically sound. State-of-the-art methods are
+   used to optimize the proposed MRF energy. A few technical details are
+   missing, as discussed below.
+
+   Clarity: The paper is well structured and clearly written. The abstract
+   describes well the problem that the authors are trying to tackle and
+   their strategy taken. All symbols are defined, and the figures and
+   captions are clear (though Fig. 2 can be improved as discussed below).
+   Except for the critical reference mentioned above, most relevant
+   references to this work have been cited.
+
+Review : Explanation of Recommendation
+
+   Below is a list of suggestions to improve the paper:
+
+   - In the Abstract, simply stating “especially for multiple subjects”
+   does not convey whether detecting group networks or finding corresponding
+   networks across subjects is challenging.
+   - On page 1, the method in [3] is commonly referred to as “Group
+   ICA”, not “Spatial ICA”. Spatial ICA is for finding independent
+   spatial components (as opposed to independent time courses) within a
+   subject, as proposed by McKeown et al. in 1998.
+   - On page 2, it is mentioned that “there is no explicit statistical
+   modeling of the variability between the group and subject component
+   maps” but the proposed MRF approach does not seem to provide such
+   modeling either. Given group and subject component maps, consistency
+   analysis can be performed if desired. Hence, this statement should be
+   revised to reflect that Group ICA does not simultaneously estimate
+   intra-subject and group networks as a single optimization.
+   - [i] above should be cited, since [i] is the first piece of work that
+   integrates group information into intra-subject functional network
+   detection.
+   - On page 2, it is mentioned that all parameters are estimated from data,
+   except the number of networks, but it appears that the model requires
+   setting of hyperparameters: mu_alpha and sigma_alpha, which could have an
+   impact on the results. The need for setting hyperparameters should be
+   mentioned.
+   - A particularly important attribute of Ng et al.’s work [7] is that
+   their proposed group structure bypasses the need for a one-to-one voxel
+   correspondence across subjects, in contrast to what was stated in the
+   submission info. 
+   - Please label the first equation on page 3. Also, Z^j should be H^j.
+   - For the likelihood term, summing over S might not be correct since the
+   group nodes do not have data associated with them. I believe it should be
+   summing over H?
+   - The authors should mention that the clustering of spatially distant
+   voxels into networks is facilitated through the likelihood term (since
+   the pairwise potential only accounts for local interactions). The
+   mechanism for clustering distant voxels through the likelihood term
+   should be explained.
+   - Please discuss how hyperparameters: mu_alpha and sigma_alpha, are set,
+   and how robust the results are to the choice of these hyperparameters.
+   - Please briefly mention the optimality of the proposed optimization
+   method. It seems that global optimality is not guaranteed in contrast to
+   [7]. How robust are the results to initialization?
+   - Please define “rand index”.
+   - The larger clusters obtained with K-Means and N-Cuts, compared to
+   groupmrf, might be due to the size of the spatial smoothing kernel used.
+   Please describe how the kernel size was chosen. Also, please mention that
+   smoothing was not performed when applying groupmrf because groupmrf
+   intrinsically accounts for local spatial correlations by penalizing
+   mismatch in labels between neighboring voxels.
+   - Comparison against MRF without group prior should be performed to more
+   clearly illustrate the benefits of incorporating group information.
+   - The key results to be observed from Fig. 2 are not very clear. Please
+   highlight the key differences that the readers should take notice.
+   - The scalability of the proposed method should be briefly discussed.
+
+Type of presentation ?
+
+
+
+
+
+------------------------ Submission 687, Review 3 ------------------------
+
+Reviewer:           External
+
+Relevance of the contribution
+
+   4  (good)
+
+Originality
+
+   4  (good )
+
+Soundness
+
+   3  (acceptable)
+
+Clarity of presentation
+
+   3  (acceptable)
+
+Review: Summary
+
+   This paper proposed a hierarchical MRF model to detect both group and
+   individual functional networks. The problem was formulated into a Monte
+   Carlo EM framework. 
+
+Review : General Opinion
+
+   The topic is highly relevant to miccai community. The methodology is
+   novel, in the sense of adding spatial regularization into the model via
+   MRF.  The presentation clarity is not satisfactory, and equation
+   notations and figure captions need significant improvements (see below
+   for details). 
+
+Review : Explanation of Recommendation
+
+    The reviewer has a couple of questions about the paper. 
+
+   1.	What’s the influence of smoothing procedure towards Ncut and KMeans?
+
+   2.	How the number of networks affects the performance of proposed model? 
+
+   Minor Issues: 
+   1.	In first Equation U(Y),  the last part for spatial coherence
+   regularization : Z^j ,should be H^j . 
+   2.	What is the Z in MRF prior?
+   3.	xs pertains to S^p-1 , there’s no definition for either S or p.
+   4.	Zs in the equation above eq(2)? 
+   5.	Fig3. Top row: DMN, z=-8?
+
+Type of presentation ?
+
+
+
+
+
+

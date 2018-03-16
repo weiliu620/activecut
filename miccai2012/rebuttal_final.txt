@@ -1,0 +1,15 @@
+We thank the reviewers for their helpful suggestions for improvement and for recognizing the originality and merit of our work.
+
+All reviewers had concerns about the Gibbs sampling in the inference section. This is in fact a typo in Algorithm 1: the sampling should be from the posterior p(y_s | y_Ns, X) instead of from the prior. We'll correct this here as well as in eq (3). The presented results were generated with the correct posterior sampling.
+
+For the burn-in issue, the goal is to find samples whose average converges to the expectation. This is guaranteed theoretically for our Markov Chains by the Ergodic Theorem [Robert and Casella, 2004, Theorem 6.63], which does not require independence. Therefore, we have only one burn-in at the beginning, and this is not a flaw. However, the more practical issue is the speed of convergence. We have experimented with multiple random runs and also with N independent chains sampling, and found the results converge to consistent answers. Although optimality is not guaranteed, the consistency of multiple random runs and the accuracy of the synthetic tests is empirical evidence that we are achieving good solutions.
+
+Pseudolikelihood is needed because the partition function Z is a function of the MRF parameters.
+
+Smoothing: One of the benefits of our method is to intrinsically model the dependency between spatial neighbors without predefined spatial smoothing. The smoothing may help or hurt N-Cut and K-Means depending on the given filter's size, relative to the size of structures. The synthetic image is smoothed with a conservative Gaussian filter of 1.2 voxel's FWHM. Even with this small kernel, some fine structures are lost in N-Cut and K-means. Our groupmrf method can adaptively choose parameters and preserve fine structures. For real fMRI images, the standard 8mm FWHM kernel size is used. 
+
+We will mention that hyperparameters are needed. The hyperparameters are manually set empirically. Because of the large number of voxels used in the maximum likelihood estimation of alpha, we found the results are robust to changes in the hyperparameters.
+
+We've experimented with up to 10 networks and found it to be efficient and accurate on synthetic data. For real data, we chose 7 networks based on the literature and ease of interpretability.
+
+We appreciate the detailed recommendations of the reviewers for improvements to the text and notations. We will make all of these changes in the final version.
