@@ -1,0 +1,142 @@
+cmake_minimum_required(VERSION 2.8)
+PROJECT(group_mrf)
+
+#if you don't want the full compiler output, remove the following line
+SET(CMAKE_VERBOSE_MAKEFILE OFF)
+
+#add definitions, compiler switches, etc.
+
+FIND_PACKAGE(ITK REQUIRED)
+IF(ITK_FOUND)
+  INCLUDE(${ITK_USE_FILE})
+ENDIF(ITK_FOUND)
+
+INCLUDE_DIRECTORIES (/home/sci/weiliu/packages/boost_1_53_0)
+INCLUDE_DIRECTORIES (${PROJECT_SOURCE_DIR})
+
+# boost library
+set(BOOST_LIB "" CACHE FILEPATH "Boost library path")
+LINK_DIRECTORIES( ${BOOST_LIB} )
+
+MESSAGE(STATUS "Project source dir: " ${PROJECT_SOURCE_DIR})
+
+ADD_LIBRARY(util
+utilalt.cxx)
+
+ADD_EXECUTABLE(groupmrf
+  segimagealt.cxx
+  MCModel.cxx
+  MCModel_paralleled.cxx
+  MCModel_llhood.cxx
+  )
+
+ADD_EXECUTABLE(cleanmask
+  cleanmask.cxx
+  )
+
+ADD_EXECUTABLE(combinemask
+  combinemask.cxx
+  )
+
+ADD_EXECUTABLE(initmrf
+  initmrf.cxx
+  MCModel_init.cxx
+  estimatemu.cxx
+  )
+
+ADD_EXECUTABLE(xtrctmeants
+  xtrctmeants.cxx
+  MCModel.cxx
+  MCModel_paralleled.cxx
+  estimatemu.cxx
+  MCModel_llhood.cxx
+  utilalt.cxx
+)
+
+ADD_EXECUTABLE(genmeants
+  genmeants.cxx
+)
+
+ADD_EXECUTABLE(createmask
+  createmask.cxx
+  utilalt.cxx
+)
+
+ADD_EXECUTABLE(creategrpmap
+  createimage.cxx
+  )
+
+ADD_EXECUTABLE(gensubmap
+  gensubmap.cxx
+  )
+
+ADD_EXECUTABLE(createfmri 
+  createfmri.cxx
+  vonmise.cxx
+  )
+
+ADD_EXECUTABLE(createfmri2
+  createfmri2.cxx
+  )
+
+ADD_EXECUTABLE(gennoise
+  gennoise.cxx
+  )
+
+ADD_EXECUTABLE(projectfmri
+  projectfmri.cxx
+  )
+
+ADD_EXECUTABLE(validatelabelmap
+  validatelabelmap.cxx
+
+  )
+
+ADD_EXECUTABLE(vmmseg
+  vmmseg.cxx
+  vmmodel.cxx
+  )
+
+ADD_EXECUTABLE(regfilter
+  regfilter.cxx
+  )
+
+ADD_EXECUTABLE(regmotion
+  regmotion.cxx
+  )
+
+ADD_EXECUTABLE(subkmeans
+  subkmeans.cxx
+  )
+
+ADD_EXECUTABLE(alignlabels
+  alignlabels.cxx
+  )
+
+#need to link to some other libraries ? just add them here
+TARGET_LINK_LIBRARIES(groupmrf util ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(cleanmask util ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(combinemask  util ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(initmrf util ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(xtrctmeants ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(genmeants ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(createmask ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(creategrpmap util ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(gensubmap util ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(createfmri ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(createfmri2 util ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(gennoise ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(projectfmri  ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(validatelabelmap  ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(vmmseg util ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+TARGET_LINK_LIBRARIES(regfilter  util ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+
+TARGET_LINK_LIBRARIES(regmotion  util ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+
+TARGET_LINK_LIBRARIES(subkmeans util ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+
+TARGET_LINK_LIBRARIES(alignlabels ${ITK_LIBRARIES} boost_program_options boost_filesystem boost_system)
+
+
+
+

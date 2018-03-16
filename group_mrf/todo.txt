@@ -1,0 +1,54 @@
+- when save nii file, also save png file, for 2d image.
+
+- Rejection rate of Metropolis. (low)
+- add a argument to golden-section function, for the relative error.
+-- add a prior to parameters.
+-- what will happen if a cluster does not get any point?
+
+*************** Group MRF ******************************
+-- Make a commen mask from individual sub's mask by 'or' operation. And use a threshold on that.
+
+
+*************** Group MRF ******************************
+-- Add estimate kappa with prior section to document.
+-- Use more subjects on Kmean and see what the result looks like.
+-- Each subject's sample need to save to the same filename, so I know which sub it is from. Now there is no good way to do this. 
+-- Try to decrease alpha so group lable has less effect on subject level.
+
+When run this command:
+run -f ~/dataset/groupfmri -m cleanmask.nii -i grouplabelmap.nii -v 2 --alpha 1 --betaz 0.01 --betag 0.01 -b 3 -n 3
+
+I get 0.4 at (7,23,10) from groupprobmap.nii, while original grouplabelmap does not have this voxel.
+
+
+
+done:
+-- no burn-in for ICM, use convergence(stop) criteria.
+-- Find a profiler tool for running time of each function.
+-- how about graph-cuts in E step?
+- Compare with ICM for percentage of correct classification, parameters, etc. (high)
+-- An annealing procedure?
+- Make sure random generator should be initialized once, and initialized with a fixed value for debugging. (high)
+- Compute 2nd derivative and use Newton-Raphson method for estimating beta. Check the condition, and if 2nd derivative is negative, go back to gradient descent. (high)
+- One step Newton method in estimating beta at M step. (low)
+
+- Use 4 labels instead of 5. (high)
+- At end of EM, we know the parameters, and can just choose a label that maximize P(f | d). That is icm. 
+- numScan and burnin should be parameters of segimage.
+- Sort the labels so small labels have small mean.
+- Init sigma with a more data-driven value.
+-- when joint likelihood begins decreasing, it's time to increase mc samples.
+- Estimate beta on true label image. (low).
+- Save estimated parameter (beta, mu and sigma) in each EM iteration into a file, for visualization. 
+- Split the creat true image and emission process.
+-- ICM on nChain after M step.
+-- At end of EM, run ICM on each n Chain. Pick the one with max joint likelihood. 
+
+-- Use vector container for mu and sigma. (high)
+-- Change MCModel::print() to better name. (low)
+-- my own prog to mask image.
+-- icmEstep naychange > a number.
+
+-- The conditional log likelihood is positive number, which is weird.
+-- Bessel function when computing normalization constant.
+======================

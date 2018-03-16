@@ -1,0 +1,857 @@
+~/projects/group_mrf/groupmrf -b 20 --inittemp 0.1 --finaltemp 0.1 -n 5 --emiter 20 --betag 2 --betaz 2 --alpha 0.3 --gamma 1 --seed 0 -k 5 -v 1 -i ~/dataset/syn2/data/init_unsmooth.nii.gz --initsubpath ~/dataset/syn2/data/subinit/ --fmripath ~/dataset/syn2/data/onsphere_unsmoothed/ --sampleprefix $TESTHOME/test/samples/sub --subbasename $TESTHOME/test/outsub --grouplabel $TESTHOME/test/outgrp1.nii.gz --grpsamplename $TESTHOME/test/sample_grp.nii.gz
+InitSubSamples(): numSubs = 16
+Init sub 1 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub01.nii.gz
+Init sub 2 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub02.nii.gz
+Init sub 3 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub03.nii.gz
+Init sub 4 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub04.nii.gz
+Init sub 5 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub05.nii.gz
+Init sub 6 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub06.nii.gz
+Init sub 7 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub07.nii.gz
+Init sub 8 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub08.nii.gz
+Init sub 9 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub09.nii.gz
+Init sub 10 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub10.nii.gz
+Init sub 11 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub11.nii.gz
+Init sub 12 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub12.nii.gz
+Init sub 13 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub13.nii.gz
+Init sub 14 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub14.nii.gz
+Init sub 15 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub15.nii.gz
+Init sub 16 all samples with /home/sci/weiliu/dataset/syn2/data/subinit/sub16.nii.gz
+SaveSamples(): File with basename /home/sci/weiliu/dataset/syn2/test/samples/sub saved.
+SaveGrpSamples(): File /home/sci/weiliu/dataset/syn2/test/sample_grp.nii.gz saved.
+alpha = 0.300, beta_g = 2.000, beta_z = 2.000, gamma = 1.000, temp = 1.000000
+sub 1: 
+       cls[1]: # of pts: 3450, meanNorm = 0.162, kappa = 40.05, mu = [ 0.0235 -0.0471 0.0110 0.0414 0.0035 ]
+       cls[2]: # of pts: 3060, meanNorm = 0.184, kappa = 45.63, mu = [ -0.0432 -0.0384 -0.0622 -0.0799 -0.0259 ]
+       cls[3]: # of pts: 2420, meanNorm = 0.173, kappa = 42.70, mu = [ 0.0145 0.0044 0.0012 0.0441 -0.0332 ]
+       cls[4]: # of pts: 4545, meanNorm = 0.178, kappa = 44.21, mu = [ 0.0708 0.0590 0.0584 0.0772 0.0957 ]
+       cls[5]: # of pts: 2550, meanNorm = 0.180, kappa = 44.60, mu = [ 0.0329 -0.0836 -0.1014 -0.1085 -0.0162 ]
+sub 2: 
+       cls[1]: # of pts: 4210, meanNorm = 0.174, kappa = 43.05, mu = [ 0.0724 0.0652 0.0343 0.1076 0.1031 ]
+       cls[2]: # of pts: 2200, meanNorm = 0.193, kappa = 47.97, mu = [ -0.0456 -0.0304 -0.0417 -0.1165 -0.1230 ]
+       cls[3]: # of pts: 2785, meanNorm = 0.167, kappa = 41.33, mu = [ 0.0168 -0.0284 -0.0430 0.0061 -0.0089 ]
+       cls[4]: # of pts: 2325, meanNorm = 0.176, kappa = 43.58, mu = [ -0.0169 0.0152 0.0763 -0.0525 0.0028 ]
+       cls[5]: # of pts: 4505, meanNorm = 0.176, kappa = 43.60, mu = [ -0.0046 -0.0625 -0.0927 -0.0714 -0.0222 ]
+sub 3: 
+       cls[1]: # of pts: 4095, meanNorm = 0.180, kappa = 44.63, mu = [ -0.0089 -0.0705 -0.0775 -0.0657 -0.0413 ]
+       cls[2]: # of pts: 2590, meanNorm = 0.163, kappa = 40.30, mu = [ 0.0006 -0.0198 0.0131 0.0463 0.0134 ]
+       cls[3]: # of pts: 4140, meanNorm = 0.176, kappa = 43.64, mu = [ 0.0720 0.0504 0.0370 0.0825 0.1077 ]
+       cls[4]: # of pts: 1890, meanNorm = 0.172, kappa = 42.49, mu = [ 0.0026 0.0646 0.0331 0.0074 -0.0320 ]
+       cls[5]: # of pts: 3310, meanNorm = 0.200, kappa = 49.85, mu = [ -0.0418 -0.0371 -0.0656 -0.1184 -0.1550 ]
+sub 4: 
+       cls[1]: # of pts: 3580, meanNorm = 0.179, kappa = 44.47, mu = [ -0.0275 -0.0663 0.0072 -0.0522 -0.0786 ]
+       cls[2]: # of pts: 3070, meanNorm = 0.178, kappa = 44.10, mu = [ 0.0470 0.0440 0.0447 0.0838 0.1090 ]
+       cls[3]: # of pts: 2970, meanNorm = 0.181, kappa = 44.78, mu = [ 0.0370 -0.0593 -0.1670 -0.1071 0.0160 ]
+       cls[4]: # of pts: 2030, meanNorm = 0.170, kappa = 41.99, mu = [ 0.0200 0.0621 0.0432 0.0268 0.0254 ]
+       cls[5]: # of pts: 4375, meanNorm = 0.166, kappa = 40.90, mu = [ 0.0068 -0.0183 0.0374 0.0426 0.0213 ]
+sub 5: 
+       cls[1]: # of pts: 3095, meanNorm = 0.188, kappa = 46.83, mu = [ -0.0400 -0.0744 -0.0765 -0.1048 -0.1605 ]
+       cls[2]: # of pts: 2575, meanNorm = 0.175, kappa = 43.39, mu = [ -0.0231 -0.0177 -0.0882 -0.0540 -0.0355 ]
+       cls[3]: # of pts: 3465, meanNorm = 0.171, kappa = 42.32, mu = [ 0.0347 -0.0642 0.0397 0.0697 0.0272 ]
+       cls[4]: # of pts: 3710, meanNorm = 0.176, kappa = 43.65, mu = [ 0.0738 0.0811 0.0276 0.0768 0.1119 ]
+       cls[5]: # of pts: 3180, meanNorm = 0.182, kappa = 45.27, mu = [ -0.0028 -0.0234 -0.0780 -0.0716 -0.0289 ]
+sub 6: 
+       cls[1]: # of pts: 3715, meanNorm = 0.170, kappa = 41.92, mu = [ 0.0026 -0.0326 0.0161 0.0454 0.0156 ]
+       cls[2]: # of pts: 2460, meanNorm = 0.186, kappa = 46.26, mu = [ 0.0470 0.0905 -0.0049 0.0190 0.0822 ]
+       cls[3]: # of pts: 3820, meanNorm = 0.177, kappa = 43.79, mu = [ 0.0180 -0.0566 -0.0931 -0.0650 -0.0459 ]
+       cls[4]: # of pts: 3320, meanNorm = 0.191, kappa = 47.52, mu = [ -0.0139 -0.0546 -0.0659 -0.1132 -0.1464 ]
+       cls[5]: # of pts: 2710, meanNorm = 0.189, kappa = 46.94, mu = [ 0.0760 0.0351 0.0579 0.0896 0.0594 ]
+sub 7: 
+       cls[1]: # of pts: 3890, meanNorm = 0.169, kappa = 41.87, mu = [ 0.0279 -0.0192 0.0259 0.0489 -0.0151 ]
+       cls[2]: # of pts: 3120, meanNorm = 0.183, kappa = 45.43, mu = [ 0.0356 0.0746 0.0035 0.0869 0.0963 ]
+       cls[3]: # of pts: 2730, meanNorm = 0.186, kappa = 46.29, mu = [ 0.0462 0.0305 0.0034 0.0626 0.0556 ]
+       cls[4]: # of pts: 3065, meanNorm = 0.177, kappa = 43.86, mu = [ -0.0021 -0.0566 -0.0985 -0.0832 -0.0082 ]
+       cls[5]: # of pts: 3220, meanNorm = 0.175, kappa = 43.25, mu = [ -0.0267 -0.0030 0.0616 0.0214 -0.0337 ]
+sub 8: 
+       cls[1]: # of pts: 2610, meanNorm = 0.171, kappa = 42.15, mu = [ 0.0289 -0.0559 0.0275 0.0577 0.0115 ]
+       cls[2]: # of pts: 3360, meanNorm = 0.193, kappa = 48.13, mu = [ -0.0399 -0.0418 -0.0574 -0.1139 -0.1452 ]
+       cls[3]: # of pts: 2290, meanNorm = 0.169, kappa = 41.76, mu = [ -0.0145 -0.0289 -0.0986 -0.0833 0.0114 ]
+       cls[4]: # of pts: 3575, meanNorm = 0.185, kappa = 45.84, mu = [ 0.0606 0.0411 0.0488 0.0855 0.1075 ]
+       cls[5]: # of pts: 4190, meanNorm = 0.188, kappa = 46.73, mu = [ 0.0673 0.0752 0.0224 0.0863 0.0701 ]
+sub 9: 
+       cls[1]: # of pts: 2350, meanNorm = 0.192, kappa = 47.72, mu = [ -0.0279 -0.0557 -0.0425 -0.0884 -0.1619 ]
+       cls[2]: # of pts: 4545, meanNorm = 0.175, kappa = 43.44, mu = [ 0.0700 0.0481 0.0261 0.0870 0.0990 ]
+       cls[3]: # of pts: 3375, meanNorm = 0.176, kappa = 43.66, mu = [ 0.0087 -0.0593 -0.1111 -0.0827 -0.0301 ]
+       cls[4]: # of pts: 2945, meanNorm = 0.171, kappa = 42.30, mu = [ 0.0297 -0.0267 0.0231 0.0259 0.0019 ]
+       cls[5]: # of pts: 2810, meanNorm = 0.180, kappa = 44.51, mu = [ -0.0196 0.0486 0.0500 -0.0074 -0.0475 ]
+sub 10: 
+       cls[1]: # of pts: 2390, meanNorm = 0.176, kappa = 43.54, mu = [ -0.0029 0.0148 0.0487 0.0260 -0.0024 ]
+       cls[2]: # of pts: 3255, meanNorm = 0.176, kappa = 43.55, mu = [ 0.0061 -0.0444 -0.1209 -0.0805 0.0013 ]
+       cls[3]: # of pts: 4485, meanNorm = 0.178, kappa = 44.23, mu = [ 0.0422 0.0580 0.0490 0.0995 0.1015 ]
+       cls[4]: # of pts: 2700, meanNorm = 0.191, kappa = 47.47, mu = [ -0.0534 -0.0969 -0.0687 -0.0980 -0.1462 ]
+       cls[5]: # of pts: 3195, meanNorm = 0.173, kappa = 42.78, mu = [ -0.0164 -0.0376 -0.0240 0.0651 -0.0352 ]
+sub 11: 
+       cls[1]: # of pts: 3335, meanNorm = 0.177, kappa = 43.95, mu = [ 0.0189 -0.0529 -0.0670 -0.0565 -0.0447 ]
+       cls[2]: # of pts: 4480, meanNorm = 0.175, kappa = 43.32, mu = [ 0.0540 0.0712 0.0365 0.0793 0.0876 ]
+       cls[3]: # of pts: 2480, meanNorm = 0.168, kappa = 41.42, mu = [ 0.0249 -0.0285 -0.0041 0.0568 0.0292 ]
+       cls[4]: # of pts: 2210, meanNorm = 0.185, kappa = 46.07, mu = [ -0.0548 -0.0630 -0.0498 -0.1086 -0.1098 ]
+       cls[5]: # of pts: 3520, meanNorm = 0.182, kappa = 45.20, mu = [ -0.0154 0.0386 0.0560 0.0188 -0.0115 ]
+sub 12: 
+       cls[1]: # of pts: 5165, meanNorm = 0.178, kappa = 44.22, mu = [ 0.0009 -0.0631 -0.1324 -0.0897 -0.0162 ]
+       cls[2]: # of pts: 2265, meanNorm = 0.173, kappa = 42.66, mu = [ -0.0393 0.0371 0.0589 0.0008 -0.0569 ]
+       cls[3]: # of pts: 1740, meanNorm = 0.169, kappa = 41.68, mu = [ -0.0044 -0.1002 -0.0479 -0.0188 -0.1046 ]
+       cls[4]: # of pts: 4040, meanNorm = 0.175, kappa = 43.23, mu = [ 0.0567 0.0797 0.0322 0.0844 0.1033 ]
+       cls[5]: # of pts: 2815, meanNorm = 0.174, kappa = 43.03, mu = [ 0.0090 0.0009 0.0317 0.0491 0.0011 ]
+sub 13: 
+       cls[1]: # of pts: 2065, meanNorm = 0.184, kappa = 45.74, mu = [ -0.0631 -0.0639 -0.0866 -0.1059 -0.1356 ]
+       cls[2]: # of pts: 2225, meanNorm = 0.176, kappa = 43.54, mu = [ 0.0234 0.0076 0.0684 -0.0097 0.0357 ]
+       cls[3]: # of pts: 4830, meanNorm = 0.182, kappa = 45.15, mu = [ 0.0559 0.0628 0.0282 0.0816 0.1254 ]
+       cls[4]: # of pts: 4240, meanNorm = 0.173, kappa = 42.87, mu = [ 0.0308 -0.0188 0.0344 0.0371 0.0078 ]
+       cls[5]: # of pts: 2665, meanNorm = 0.174, kappa = 43.04, mu = [ -0.0277 -0.0705 -0.1287 -0.0470 -0.0346 ]
+sub 14: 
+       cls[1]: # of pts: 3420, meanNorm = 0.165, kappa = 40.79, mu = [ 0.0569 -0.0248 -0.0009 0.0326 0.0197 ]
+       cls[2]: # of pts: 3480, meanNorm = 0.189, kappa = 47.14, mu = [ 0.0774 0.0794 0.0425 0.0488 0.0434 ]
+       cls[3]: # of pts: 3435, meanNorm = 0.190, kappa = 47.40, mu = [ 0.0603 0.0800 0.0563 0.0829 0.1301 ]
+       cls[4]: # of pts: 3830, meanNorm = 0.194, kappa = 48.48, mu = [ -0.0076 0.0015 -0.0131 0.1049 0.0849 ]
+       cls[5]: # of pts: 1860, meanNorm = 0.158, kappa = 38.92, mu = [ 0.0161 -0.0577 -0.0011 0.0075 -0.0566 ]
+sub 15: 
+       cls[1]: # of pts: 2990, meanNorm = 0.177, kappa = 43.73, mu = [ -0.0216 0.0345 0.0264 0.0010 0.0110 ]
+       cls[2]: # of pts: 3265, meanNorm = 0.169, kappa = 41.67, mu = [ -0.0153 -0.0880 -0.0740 -0.0326 -0.0385 ]
+       cls[3]: # of pts: 4475, meanNorm = 0.177, kappa = 43.80, mu = [ 0.0486 0.0516 0.0669 0.0687 0.1156 ]
+       cls[4]: # of pts: 2875, meanNorm = 0.176, kappa = 43.60, mu = [ 0.0759 -0.0498 0.0219 -0.0165 0.0068 ]
+       cls[5]: # of pts: 2420, meanNorm = 0.170, kappa = 41.92, mu = [ -0.0500 -0.0080 -0.0558 -0.0062 -0.0238 ]
+sub 16: 
+       cls[1]: # of pts: 2830, meanNorm = 0.172, kappa = 42.63, mu = [ -0.0175 -0.0762 -0.1263 -0.0917 0.0414 ]
+       cls[2]: # of pts: 5855, meanNorm = 0.182, kappa = 45.10, mu = [ 0.0660 0.0750 0.0448 0.0929 0.1149 ]
+       cls[3]: # of pts: 3115, meanNorm = 0.170, kappa = 42.05, mu = [ 0.0371 -0.0421 0.0415 0.0549 -0.0098 ]
+       cls[4]: # of pts: 2015, meanNorm = 0.169, kappa = 41.62, mu = [ -0.0099 0.0409 0.0560 0.0569 -0.0424 ]
+       cls[5]: # of pts: 2210, meanNorm = 0.190, kappa = 47.18, mu = [ -0.0614 -0.0818 -0.0402 -0.1476 -0.1096 ]
+Q1[mcIdx]: [ 720.4836 720.4836 720.4836 720.4836 720.4836 ]
+Q2[mcIdx]: [ 64363.2617 64363.2617 64363.2617 64363.2617 64363.2617 ]
+Q3[mcIdx]: [ -16349483.0000 -16349483.0000 -16349483.0000 -16349483.0000 -16349483.0000 ]
+Q1/E(G)  = 7.204836E+02, Q2/E(Z|G) = 6.436326E+04, Q3/E(X|Z) = -1.634948E+07, Q2+Q3 = -1.628512E+07, Q/E(X,G,Z) = -1.628440E+07
+EM iteration 1 begin:
+mcsampling(): scan 0 done.
+mcsampling(): scan 5 done.
+mcsampling(): scan 10 done.
+mcsampling(): scan 15 done.
+mcsampling(): scan 20 done.
+EM iteration 1, sampling done. 
+    beta: 2.0000 -> -0.2292. E(G,Z): 33005.329 -> 117361.864. drv1 = -698531.3450, drv2 = 294479.1053
+    alpha: 0.3000 -> 0.3743. E(G,Z): 117361.864 -> 117336.741. drv1 = 61.8061, drv2 = 47700.9325
+beta_g = -0.2292, beta_z = -0.2292, alpha = 0.3743, Q1 (E(G)) = 7442.728, Q2 (E(Z|G) = 109894.013, (Q1+Q2) = 117336.741
+    beta: -0.2292 -> 2.1305. E(G,Z): 117336.741 -> 34450.349. drv1 = 55621.4195, drv2 = 18456.9440
+    alpha: 0.3743 -> 0.0581. E(G,Z): 34450.349 -> 34386.609. drv1 = 35.1035, drv2 = 6081.0249
+beta_g = 2.1305, beta_z = 2.1305, alpha = 0.0581, Q1 (E(G)) = 116.215, Q2 (E(Z|G) = 34270.394, (Q1+Q2) = 34386.609
+    beta: 2.1305 -> -0.9062. E(G,Z): 34386.609 -> 220583.696. drv1 = -792415.0148, drv2 = 52134.6404
+    alpha: 0.0581 -> 0.5055. E(G,Z): 220583.696 -> 219906.343. drv1 = 1677.4589, drv2 = 43588.6626
+beta_g = -0.9062, beta_z = -0.9062, alpha = 0.5055, Q1 (E(G)) = 15056.187, Q2 (E(Z|G) = 204850.156, (Q1+Q2) = 219906.343
+EM iteration 1, parameter estimation done. 
+Q1[mcIdx]: [ 15055.1699 15054.6377 15054.3955 15056.1504 15060.5830 ]
+Q2[mcIdx]: [ 204682.7812 204803.2969 204863.1406 204929.1875 204972.3750 ]
+Q3[mcIdx]: [ -16345472.0000 -16345452.0000 -16345444.0000 -16345426.0000 -16345420.0000 ]
+Q1/E(G)  = 1.505619E+04, Q2/E(Z|G) = 2.048502E+05, Q3/E(X|Z) = -1.634544E+07, Q2+Q3 = -1.614059E+07, Q/E(X,G,Z) = -1.612554E+07
+alpha = 0.506, beta_g = -0.906, beta_z = -0.906, gamma = 1.000, temp = 0.100000
+sub 1: 
+       cls[1]: # of pts: 3705, meanNorm = 0.157, kappa = 38.51, mu = [ 0.0222 -0.0486 0.0097 0.0378 -0.0047 ]
+       cls[2]: # of pts: 3002, meanNorm = 0.183, kappa = 45.51, mu = [ -0.0395 -0.0418 -0.0791 -0.0783 -0.0282 ]
+       cls[3]: # of pts: 2313, meanNorm = 0.173, kappa = 42.74, mu = [ 0.0119 0.0054 0.0112 0.0342 -0.0294 ]
+       cls[4]: # of pts: 4690, meanNorm = 0.175, kappa = 43.39, mu = [ 0.0678 0.0600 0.0597 0.0774 0.0962 ]
+       cls[5]: # of pts: 2315, meanNorm = 0.185, kappa = 45.98, mu = [ 0.0369 -0.0863 -0.1006 -0.1088 -0.0126 ]
+sub 2: 
+       cls[1]: # of pts: 4295, meanNorm = 0.171, kappa = 42.34, mu = [ 0.0663 0.0585 0.0336 0.1003 0.0936 ]
+       cls[2]: # of pts: 2026, meanNorm = 0.199, kappa = 49.61, mu = [ -0.0495 -0.0296 -0.0459 -0.1195 -0.1227 ]
+       cls[3]: # of pts: 2804, meanNorm = 0.164, kappa = 40.44, mu = [ 0.0220 -0.0287 -0.0346 0.0047 -0.0050 ]
+       cls[4]: # of pts: 2176, meanNorm = 0.177, kappa = 43.72, mu = [ -0.0186 0.0291 0.0776 -0.0337 0.0042 ]
+       cls[5]: # of pts: 4724, meanNorm = 0.172, kappa = 42.53, mu = [ -0.0011 -0.0625 -0.0923 -0.0747 -0.0197 ]
+sub 3: 
+       cls[1]: # of pts: 4472, meanNorm = 0.173, kappa = 42.85, mu = [ -0.0094 -0.0712 -0.0802 -0.0542 -0.0388 ]
+       cls[2]: # of pts: 2585, meanNorm = 0.162, kappa = 40.03, mu = [ 0.0079 -0.0197 0.0137 0.0262 0.0113 ]
+       cls[3]: # of pts: 4384, meanNorm = 0.170, kappa = 42.10, mu = [ 0.0665 0.0506 0.0413 0.0768 0.0979 ]
+       cls[4]: # of pts: 1411, meanNorm = 0.185, kappa = 45.87, mu = [ -0.0024 0.0526 0.0273 -0.0001 -0.0272 ]
+       cls[5]: # of pts: 3173, meanNorm = 0.202, kappa = 50.49, mu = [ -0.0400 -0.0235 -0.0605 -0.1104 -0.1555 ]
+sub 4: 
+       cls[1]: # of pts: 3475, meanNorm = 0.180, kappa = 44.60, mu = [ -0.0319 -0.0675 0.0027 -0.0586 -0.0716 ]
+       cls[2]: # of pts: 3229, meanNorm = 0.175, kappa = 43.21, mu = [ 0.0547 0.0471 0.0476 0.0775 0.1010 ]
+       cls[3]: # of pts: 2785, meanNorm = 0.183, kappa = 45.30, mu = [ 0.0388 -0.0616 -0.1643 -0.1028 0.0159 ]
+       cls[4]: # of pts: 1852, meanNorm = 0.171, kappa = 42.15, mu = [ -0.0029 0.0490 0.0390 0.0173 0.0107 ]
+       cls[5]: # of pts: 4684, meanNorm = 0.159, kappa = 39.27, mu = [ 0.0133 -0.0143 0.0323 0.0464 0.0244 ]
+sub 5: 
+       cls[1]: # of pts: 2880, meanNorm = 0.193, kappa = 48.17, mu = [ -0.0560 -0.0717 -0.0750 -0.1066 -0.1595 ]
+       cls[2]: # of pts: 2445, meanNorm = 0.174, kappa = 43.07, mu = [ -0.0174 -0.0207 -0.0870 -0.0642 -0.0373 ]
+       cls[3]: # of pts: 3700, meanNorm = 0.165, kappa = 40.75, mu = [ 0.0465 -0.0661 0.0371 0.0593 0.0172 ]
+       cls[4]: # of pts: 3840, meanNorm = 0.173, kappa = 42.77, mu = [ 0.0752 0.0773 0.0259 0.0794 0.1099 ]
+       cls[5]: # of pts: 3160, meanNorm = 0.182, kappa = 45.26, mu = [ -0.0109 -0.0211 -0.0852 -0.0654 -0.0275 ]
+sub 6: 
+       cls[1]: # of pts: 3872, meanNorm = 0.165, kappa = 40.82, mu = [ 0.0172 -0.0340 0.0187 0.0393 0.0094 ]
+       cls[2]: # of pts: 2310, meanNorm = 0.188, kappa = 46.73, mu = [ 0.0425 0.0952 0.0050 0.0258 0.0822 ]
+       cls[3]: # of pts: 4040, meanNorm = 0.170, kappa = 42.03, mu = [ 0.0162 -0.0619 -0.0937 -0.0774 -0.0458 ]
+       cls[4]: # of pts: 3150, meanNorm = 0.194, kappa = 48.42, mu = [ -0.0170 -0.0527 -0.0719 -0.1071 -0.1452 ]
+       cls[5]: # of pts: 2653, meanNorm = 0.190, kappa = 47.32, mu = [ 0.0698 0.0422 0.0537 0.0988 0.0648 ]
+sub 7: 
+       cls[1]: # of pts: 4043, meanNorm = 0.165, kappa = 40.59, mu = [ 0.0233 -0.0238 0.0151 0.0460 -0.0060 ]
+       cls[2]: # of pts: 3070, meanNorm = 0.183, kappa = 45.39, mu = [ 0.0350 0.0761 0.0073 0.0817 0.0911 ]
+       cls[3]: # of pts: 2584, meanNorm = 0.189, kappa = 47.06, mu = [ 0.0458 0.0323 0.0037 0.0698 0.0570 ]
+       cls[4]: # of pts: 3198, meanNorm = 0.171, kappa = 42.25, mu = [ -0.0051 -0.0585 -0.1009 -0.0758 -0.0121 ]
+       cls[5]: # of pts: 3130, meanNorm = 0.176, kappa = 43.53, mu = [ -0.0159 0.0042 0.0749 0.0209 -0.0336 ]
+sub 8: 
+       cls[1]: # of pts: 2722, meanNorm = 0.165, kappa = 40.83, mu = [ 0.0185 -0.0646 0.0294 0.0622 0.0075 ]
+       cls[2]: # of pts: 3321, meanNorm = 0.193, kappa = 48.21, mu = [ -0.0364 -0.0415 -0.0570 -0.1173 -0.1436 ]
+       cls[3]: # of pts: 2303, meanNorm = 0.166, kappa = 40.99, mu = [ -0.0041 -0.0225 -0.0979 -0.0826 0.0123 ]
+       cls[4]: # of pts: 3408, meanNorm = 0.184, kappa = 45.61, mu = [ 0.0545 0.0465 0.0426 0.0808 0.1109 ]
+       cls[5]: # of pts: 4271, meanNorm = 0.186, kappa = 46.35, mu = [ 0.0713 0.0732 0.0260 0.0907 0.0706 ]
+sub 9: 
+       cls[1]: # of pts: 2160, meanNorm = 0.198, kappa = 49.34, mu = [ -0.0282 -0.0511 -0.0396 -0.0958 -0.1607 ]
+       cls[2]: # of pts: 4720, meanNorm = 0.172, kappa = 42.56, mu = [ 0.0696 0.0571 0.0270 0.0849 0.0963 ]
+       cls[3]: # of pts: 3515, meanNorm = 0.173, kappa = 42.69, mu = [ 0.0123 -0.0624 -0.1079 -0.0859 -0.0373 ]
+       cls[4]: # of pts: 3014, meanNorm = 0.166, kappa = 41.08, mu = [ 0.0261 -0.0298 0.0280 0.0286 0.0065 ]
+       cls[5]: # of pts: 2616, meanNorm = 0.179, kappa = 44.39, mu = [ -0.0246 0.0369 0.0400 -0.0013 -0.0537 ]
+sub 10: 
+       cls[1]: # of pts: 2242, meanNorm = 0.177, kappa = 43.77, mu = [ 0.0098 0.0155 0.0443 0.0236 -0.0036 ]
+       cls[2]: # of pts: 3245, meanNorm = 0.175, kappa = 43.34, mu = [ 0.0053 -0.0429 -0.1130 -0.0718 -0.0105 ]
+       cls[3]: # of pts: 4547, meanNorm = 0.176, kappa = 43.60, mu = [ 0.0397 0.0538 0.0529 0.1018 0.1004 ]
+       cls[4]: # of pts: 2661, meanNorm = 0.192, kappa = 47.86, mu = [ -0.0627 -0.0908 -0.0726 -0.0975 -0.1469 ]
+       cls[5]: # of pts: 3330, meanNorm = 0.167, kappa = 41.32, mu = [ -0.0128 -0.0391 -0.0300 0.0534 -0.0208 ]
+sub 11: 
+       cls[1]: # of pts: 3461, meanNorm = 0.172, kappa = 42.57, mu = [ 0.0147 -0.0468 -0.0732 -0.0496 -0.0519 ]
+       cls[2]: # of pts: 4625, meanNorm = 0.171, kappa = 42.36, mu = [ 0.0552 0.0758 0.0360 0.0807 0.0865 ]
+       cls[3]: # of pts: 2455, meanNorm = 0.167, kappa = 41.29, mu = [ 0.0105 -0.0281 0.0006 0.0508 0.0231 ]
+       cls[4]: # of pts: 2000, meanNorm = 0.191, kappa = 47.54, mu = [ -0.0446 -0.0690 -0.0519 -0.1093 -0.1117 ]
+       cls[5]: # of pts: 3484, meanNorm = 0.182, kappa = 45.12, mu = [ -0.0129 0.0273 0.0591 0.0102 -0.0038 ]
+sub 12: 
+       cls[1]: # of pts: 5630, meanNorm = 0.172, kappa = 42.57, mu = [ -0.0002 -0.0612 -0.1227 -0.0902 -0.0210 ]
+       cls[2]: # of pts: 1928, meanNorm = 0.176, kappa = 43.51, mu = [ -0.0293 0.0258 0.0616 0.0082 -0.0413 ]
+       cls[3]: # of pts: 1411, meanNorm = 0.175, kappa = 43.29, mu = [ -0.0142 -0.1006 -0.0417 -0.0400 -0.1225 ]
+       cls[4]: # of pts: 4116, meanNorm = 0.173, kappa = 42.80, mu = [ 0.0584 0.0803 0.0299 0.0906 0.1013 ]
+       cls[5]: # of pts: 2940, meanNorm = 0.171, kappa = 42.26, mu = [ 0.0013 0.0035 0.0245 0.0512 -0.0039 ]
+sub 13: 
+       cls[1]: # of pts: 1795, meanNorm = 0.193, kappa = 48.11, mu = [ -0.0763 -0.0624 -0.0808 -0.1015 -0.1347 ]
+       cls[2]: # of pts: 1904, meanNorm = 0.181, kappa = 45.02, mu = [ 0.0047 -0.0009 0.0645 -0.0122 0.0233 ]
+       cls[3]: # of pts: 5096, meanNorm = 0.177, kappa = 43.88, mu = [ 0.0664 0.0651 0.0322 0.0754 0.1259 ]
+       cls[4]: # of pts: 4560, meanNorm = 0.167, kappa = 41.21, mu = [ 0.0199 -0.0275 0.0228 0.0399 0.0075 ]
+       cls[5]: # of pts: 2670, meanNorm = 0.173, kappa = 42.69, mu = [ -0.0133 -0.0620 -0.1225 -0.0562 -0.0401 ]
+sub 14: 
+       cls[1]: # of pts: 3708, meanNorm = 0.160, kappa = 39.41, mu = [ 0.0608 -0.0334 0.0002 0.0362 0.0111 ]
+       cls[2]: # of pts: 3463, meanNorm = 0.190, kappa = 47.19, mu = [ 0.0720 0.0846 0.0467 0.0472 0.0530 ]
+       cls[3]: # of pts: 3380, meanNorm = 0.191, kappa = 47.63, mu = [ 0.0580 0.0705 0.0551 0.0784 0.1300 ]
+       cls[4]: # of pts: 3700, meanNorm = 0.195, kappa = 48.59, mu = [ -0.0022 0.0067 -0.0151 0.1087 0.0803 ]
+       cls[5]: # of pts: 1774, meanNorm = 0.156, kappa = 38.38, mu = [ 0.0087 -0.0409 -0.0048 0.0133 -0.0433 ]
+sub 15: 
+       cls[1]: # of pts: 2952, meanNorm = 0.175, kappa = 43.26, mu = [ -0.0258 0.0265 0.0401 0.0099 0.0104 ]
+       cls[2]: # of pts: 3390, meanNorm = 0.164, kappa = 40.52, mu = [ -0.0099 -0.0823 -0.0906 -0.0414 -0.0402 ]
+       cls[3]: # of pts: 4625, meanNorm = 0.174, kappa = 42.99, mu = [ 0.0492 0.0509 0.0627 0.0674 0.1123 ]
+       cls[4]: # of pts: 2898, meanNorm = 0.176, kappa = 43.61, mu = [ 0.0670 -0.0575 0.0231 -0.0109 0.0159 ]
+       cls[5]: # of pts: 2160, meanNorm = 0.170, kappa = 41.99, mu = [ -0.0499 0.0073 -0.0495 -0.0129 -0.0316 ]
+sub 16: 
+       cls[1]: # of pts: 2786, meanNorm = 0.172, kappa = 42.53, mu = [ -0.0176 -0.0760 -0.1188 -0.0908 0.0318 ]
+       cls[2]: # of pts: 6277, meanNorm = 0.175, kappa = 43.41, mu = [ 0.0609 0.0723 0.0410 0.0894 0.1116 ]
+       cls[3]: # of pts: 3304, meanNorm = 0.165, kappa = 40.62, mu = [ 0.0338 -0.0357 0.0397 0.0530 -0.0117 ]
+       cls[4]: # of pts: 1718, meanNorm = 0.172, kappa = 42.57, mu = [ -0.0057 0.0206 0.0478 0.0401 -0.0357 ]
+       cls[5]: # of pts: 1940, meanNorm = 0.199, kappa = 49.78, mu = [ -0.0593 -0.0773 -0.0358 -0.1419 -0.1146 ]
+EM iteration 2 begin:
+mcsampling(): scan 0 done.
+mcsampling(): scan 5 done.
+mcsampling(): scan 10 done.
+mcsampling(): scan 15 done.
+mcsampling(): scan 20 done.
+EM iteration 2, sampling done. 
+Q1[mcIdx]: [ 4151.4146 4161.3853 4166.1992 4150.7295 4146.3096 ]
+Q2[mcIdx]: [ 126979.3672 126580.5391 126805.3359 126740.2969 126666.2266 ]
+Q3[mcIdx]: [ -16317830.0000 -16317371.0000 -16317719.0000 -16317709.0000 -16317652.0000 ]
+Q1/E(G)  = 4.155208E+03, Q2/E(Z|G) = 1.267544E+05, Q3/E(X|Z) = -1.631766E+07, Q2+Q3 = -1.619090E+07, Q/E(X,G,Z) = -1.618675E+07
+SaveSamples(): File with basename /home/sci/weiliu/dataset/syn2/test/samples/sub saved.
+SaveGrpSamples(): File /home/sci/weiliu/dataset/syn2/test/sample_grp.nii.gz saved.
+EM iteration 2, parameter estimation begin. 
+    beta: -0.9062 -> 3.2475. E(G,Z): 130909.563 -> 219432.136. drv1 = 318992.3174, drv2 = 8455.4252
+    alpha: 0.5055 -> 3.8341. E(G,Z): 219432.136 -> 212361.990. drv1 = 8271.8995, drv2 = 13046.5382
+beta_g = 3.2475, beta_z = 3.2475, alpha = 3.8341, Q1 (E(G)) = 23446.676, Q2 (E(Z|G) = 188915.314, (Q1+Q2) = 212361.990
+    beta: 3.2475 -> -7.5854. E(G,Z): 212361.990 -> 634622.514. drv1 = -370500.6596, drv2 = 754.5067
+alpha small than zero. Somethign is wrong. Check it.
+    alpha: 3.8341 -> 1.9171. E(G,Z): 634622.514 -> 685921.652. drv1 = -79171.9882, drv2 = 916.7449
+beta_g = -7.5854, beta_z = -7.5854, alpha = 1.9171, Q1 (E(G)) = 6210.955, Q2 (E(Z|G) = 679710.697, (Q1+Q2) = 685921.652
+    beta: -7.5854 -> 2364.0816. E(G,Z): 616546.025 -> -inf. drv1 = -nan, drv2 = -nan
+    alpha: 1.9171 ->  -nan. E(G,Z): -inf -> -nan. drv1 = -nan, drv2 = -nan
+beta_g = 2364.0816, beta_z = 2364.0816, alpha =  -nan, Q1 (E(G)) = -nan, Q2 (E(Z|G) = -nan, (Q1+Q2) = -nan
+EM iteration 2, parameter estimation done. 
+Q1[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q2[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q3[mcIdx]: [ -16323211.0000 -16323325.0000 -16323770.0000 -16323593.0000 -16323094.0000 ]
+Q1/E(G)  = -NAN, Q2/E(Z|G) = -NAN, Q3/E(X|Z) = -1.632340E+07, Q2+Q3 = -NAN, Q/E(X,G,Z) = -NAN
+alpha = -nan, beta_g = 2364.082, beta_z = 2364.082, gamma = 1.000, temp = 0.100000
+sub 1: 
+       cls[1]: # of pts: 3423, meanNorm = 0.149, kappa = 36.58, mu = [ 0.0205 -0.0511 0.0087 0.0438 0.0080 ]
+       cls[2]: # of pts: 3026, meanNorm = 0.169, kappa = 41.62, mu = [ -0.0542 -0.0539 -0.0613 -0.0794 -0.0361 ]
+       cls[3]: # of pts: 2934, meanNorm = 0.147, kappa = 36.02, mu = [ 0.0178 0.0267 0.0144 0.0543 -0.0216 ]
+       cls[4]: # of pts: 3867, meanNorm = 0.180, kappa = 44.56, mu = [ 0.0788 0.0571 0.0597 0.0674 0.0967 ]
+       cls[5]: # of pts: 2775, meanNorm = 0.166, kappa = 40.87, mu = [ 0.0484 -0.0747 -0.1052 -0.0925 0.0003 ]
+sub 2: 
+       cls[1]: # of pts: 3835, meanNorm = 0.169, kappa = 41.76, mu = [ 0.0785 0.0655 0.0355 0.1015 0.0939 ]
+       cls[2]: # of pts: 2221, meanNorm = 0.181, kappa = 44.77, mu = [ -0.0470 -0.0231 -0.0536 -0.1163 -0.1043 ]
+       cls[3]: # of pts: 2957, meanNorm = 0.147, kappa = 36.11, mu = [ 0.0231 -0.0281 -0.0395 0.0075 0.0092 ]
+       cls[4]: # of pts: 2918, meanNorm = 0.151, kappa = 37.04, mu = [ -0.0159 -0.0062 0.0530 -0.0505 -0.0043 ]
+       cls[5]: # of pts: 4094, meanNorm = 0.168, kappa = 41.40, mu = [ -0.0059 -0.0582 -0.0912 -0.0670 -0.0268 ]
+sub 3: 
+       cls[1]: # of pts: 3740, meanNorm = 0.170, kappa = 41.94, mu = [ 0.0013 -0.0778 -0.0847 -0.0683 -0.0374 ]
+       cls[2]: # of pts: 2896, meanNorm = 0.141, kappa = 34.51, mu = [ 0.0018 -0.0145 -0.0059 0.0369 0.0032 ]
+       cls[3]: # of pts: 3855, meanNorm = 0.171, kappa = 42.32, mu = [ 0.0601 0.0426 0.0443 0.0795 0.1043 ]
+       cls[4]: # of pts: 2525, meanNorm = 0.149, kappa = 36.62, mu = [ 0.0002 0.0480 0.0231 -0.0124 -0.0323 ]
+       cls[5]: # of pts: 3009, meanNorm = 0.196, kappa = 48.86, mu = [ -0.0371 -0.0304 -0.0660 -0.1083 -0.1580 ]
+sub 4: 
+       cls[1]: # of pts: 3420, meanNorm = 0.165, kappa = 40.73, mu = [ -0.0219 -0.0653 -0.0085 -0.0477 -0.0639 ]
+       cls[2]: # of pts: 2932, meanNorm = 0.171, kappa = 42.26, mu = [ 0.0518 0.0535 0.0441 0.0808 0.1004 ]
+       cls[3]: # of pts: 3167, meanNorm = 0.166, kappa = 41.08, mu = [ 0.0484 -0.0753 -0.1512 -0.1030 0.0024 ]
+       cls[4]: # of pts: 2511, meanNorm = 0.144, kappa = 35.26, mu = [ -0.0045 0.0395 0.0500 0.0115 0.0221 ]
+       cls[5]: # of pts: 3995, meanNorm = 0.160, kappa = 39.45, mu = [ 0.0034 -0.0106 0.0403 0.0493 0.0288 ]
+sub 5: 
+       cls[1]: # of pts: 2884, meanNorm = 0.183, kappa = 45.54, mu = [ -0.0193 -0.0815 -0.0654 -0.1082 -0.1479 ]
+       cls[2]: # of pts: 3037, meanNorm = 0.155, kappa = 38.02, mu = [ -0.0038 -0.0171 -0.1021 -0.0544 -0.0210 ]
+       cls[3]: # of pts: 3523, meanNorm = 0.155, kappa = 38.23, mu = [ 0.0346 -0.0615 0.0274 0.0604 0.0040 ]
+       cls[4]: # of pts: 3489, meanNorm = 0.171, kappa = 42.35, mu = [ 0.0560 0.0772 0.0314 0.0823 0.1006 ]
+       cls[5]: # of pts: 3092, meanNorm = 0.170, kappa = 42.02, mu = [ -0.0132 -0.0214 -0.0747 -0.0664 -0.0215 ]
+sub 6: 
+       cls[1]: # of pts: 3727, meanNorm = 0.160, kappa = 39.37, mu = [ 0.0059 -0.0318 0.0114 0.0254 0.0249 ]
+       cls[2]: # of pts: 2678, meanNorm = 0.170, kappa = 42.00, mu = [ 0.0544 0.0989 0.0058 0.0277 0.0664 ]
+       cls[3]: # of pts: 3774, meanNorm = 0.167, kappa = 41.17, mu = [ 0.0264 -0.0612 -0.0947 -0.0575 -0.0524 ]
+       cls[4]: # of pts: 3132, meanNorm = 0.184, kappa = 45.78, mu = [ -0.0232 -0.0565 -0.0651 -0.1060 -0.1465 ]
+       cls[5]: # of pts: 2714, meanNorm = 0.176, kappa = 43.56, mu = [ 0.0708 0.0232 0.0432 0.0778 0.0556 ]
+sub 7: 
+       cls[1]: # of pts: 3667, meanNorm = 0.161, kappa = 39.67, mu = [ 0.0231 -0.0292 0.0248 0.0478 -0.0103 ]
+       cls[2]: # of pts: 3032, meanNorm = 0.172, kappa = 42.52, mu = [ 0.0375 0.0737 -0.0036 0.0776 0.1007 ]
+       cls[3]: # of pts: 2893, meanNorm = 0.174, kappa = 43.01, mu = [ 0.0549 0.0469 -0.0017 0.0811 0.0545 ]
+       cls[4]: # of pts: 3143, meanNorm = 0.163, kappa = 40.15, mu = [ -0.0089 -0.0565 -0.0878 -0.0746 -0.0147 ]
+       cls[5]: # of pts: 3290, meanNorm = 0.160, kappa = 39.38, mu = [ -0.0194 -0.0055 0.0665 0.0175 -0.0312 ]
+sub 8: 
+       cls[1]: # of pts: 2806, meanNorm = 0.155, kappa = 37.99, mu = [ 0.0224 -0.0711 0.0103 0.0485 0.0012 ]
+       cls[2]: # of pts: 3007, meanNorm = 0.192, kappa = 47.84, mu = [ -0.0468 -0.0497 -0.0595 -0.1129 -0.1536 ]
+       cls[3]: # of pts: 2580, meanNorm = 0.148, kappa = 36.20, mu = [ 0.0041 -0.0055 -0.0920 -0.0832 0.0154 ]
+       cls[4]: # of pts: 3719, meanNorm = 0.174, kappa = 43.14, mu = [ 0.0553 0.0406 0.0483 0.0919 0.1094 ]
+       cls[5]: # of pts: 3913, meanNorm = 0.180, kappa = 44.72, mu = [ 0.0768 0.0828 0.0286 0.0853 0.0748 ]
+sub 9: 
+       cls[1]: # of pts: 2304, meanNorm = 0.183, kappa = 45.32, mu = [ -0.0185 -0.0430 -0.0349 -0.0820 -0.1615 ]
+       cls[2]: # of pts: 4136, meanNorm = 0.173, kappa = 42.66, mu = [ 0.0760 0.0460 0.0282 0.0939 0.0898 ]
+       cls[3]: # of pts: 3376, meanNorm = 0.163, kappa = 40.25, mu = [ 0.0045 -0.0449 -0.1069 -0.0951 -0.0267 ]
+       cls[4]: # of pts: 2988, meanNorm = 0.154, kappa = 37.97, mu = [ 0.0314 -0.0331 0.0190 0.0183 0.0066 ]
+       cls[5]: # of pts: 3221, meanNorm = 0.154, kappa = 37.93, mu = [ -0.0201 0.0289 0.0344 0.0024 -0.0390 ]
+sub 10: 
+       cls[1]: # of pts: 2906, meanNorm = 0.148, kappa = 36.43, mu = [ 0.0089 0.0065 0.0270 0.0159 -0.0062 ]
+       cls[2]: # of pts: 3114, meanNorm = 0.163, kappa = 40.15, mu = [ 0.0126 -0.0333 -0.1090 -0.0600 -0.0038 ]
+       cls[3]: # of pts: 4021, meanNorm = 0.177, kappa = 43.89, mu = [ 0.0496 0.0519 0.0470 0.0937 0.0972 ]
+       cls[4]: # of pts: 2677, meanNorm = 0.180, kappa = 44.70, mu = [ -0.0622 -0.0898 -0.0725 -0.0977 -0.1445 ]
+       cls[5]: # of pts: 3307, meanNorm = 0.156, kappa = 38.36, mu = [ -0.0309 -0.0445 -0.0251 0.0658 -0.0169 ]
+sub 11: 
+       cls[1]: # of pts: 3465, meanNorm = 0.163, kappa = 40.12, mu = [ 0.0246 -0.0377 -0.0629 -0.0536 -0.0391 ]
+       cls[2]: # of pts: 4123, meanNorm = 0.170, kappa = 42.11, mu = [ 0.0445 0.0723 0.0408 0.0759 0.0800 ]
+       cls[3]: # of pts: 2805, meanNorm = 0.146, kappa = 35.76, mu = [ 0.0235 -0.0248 -0.0063 0.0506 0.0130 ]
+       cls[4]: # of pts: 2203, meanNorm = 0.175, kappa = 43.22, mu = [ -0.0533 -0.0782 -0.0527 -0.1060 -0.0957 ]
+       cls[5]: # of pts: 3429, meanNorm = 0.168, kappa = 41.52, mu = [ -0.0046 0.0388 0.0563 0.0294 -0.0011 ]
+sub 12: 
+       cls[1]: # of pts: 4357, meanNorm = 0.175, kappa = 43.29, mu = [ 0.0078 -0.0540 -0.1217 -0.0848 -0.0222 ]
+       cls[2]: # of pts: 3093, meanNorm = 0.149, kappa = 36.55, mu = [ -0.0298 -0.0010 0.0231 -0.0021 -0.0351 ]
+       cls[3]: # of pts: 2154, meanNorm = 0.145, kappa = 35.49, mu = [ -0.0092 -0.1061 -0.0489 -0.0287 -0.0964 ]
+       cls[4]: # of pts: 3610, meanNorm = 0.172, kappa = 42.56, mu = [ 0.0471 0.0863 0.0219 0.0850 0.1042 ]
+       cls[5]: # of pts: 2811, meanNorm = 0.160, kappa = 39.35, mu = [ 0.0222 0.0104 0.0198 0.0388 0.0088 ]
+sub 13: 
+       cls[1]: # of pts: 2149, meanNorm = 0.172, kappa = 42.51, mu = [ -0.0657 -0.0577 -0.0878 -0.0680 -0.1354 ]
+       cls[2]: # of pts: 2744, meanNorm = 0.152, kappa = 37.21, mu = [ 0.0340 -0.0056 0.0617 0.0011 0.0492 ]
+       cls[3]: # of pts: 4326, meanNorm = 0.180, kappa = 44.68, mu = [ 0.0640 0.0686 0.0344 0.0763 0.1257 ]
+       cls[4]: # of pts: 3913, meanNorm = 0.165, kappa = 40.82, mu = [ 0.0290 -0.0206 0.0354 0.0399 0.0143 ]
+       cls[5]: # of pts: 2893, meanNorm = 0.152, kappa = 37.40, mu = [ -0.0327 -0.0661 -0.1332 -0.0624 -0.0349 ]
+sub 14: 
+       cls[1]: # of pts: 3102, meanNorm = 0.160, kappa = 39.38, mu = [ 0.0581 -0.0366 -0.0144 0.0335 0.0153 ]
+       cls[2]: # of pts: 3453, meanNorm = 0.181, kappa = 44.82, mu = [ 0.0735 0.0790 0.0487 0.0551 0.0540 ]
+       cls[3]: # of pts: 3373, meanNorm = 0.181, kappa = 45.01, mu = [ 0.0644 0.0758 0.0469 0.0809 0.1254 ]
+       cls[4]: # of pts: 3609, meanNorm = 0.190, kappa = 47.26, mu = [ -0.0030 0.0122 -0.0050 0.1064 0.0950 ]
+       cls[5]: # of pts: 2488, meanNorm = 0.133, kappa = 32.53, mu = [ 0.0292 -0.0334 0.0173 0.0356 -0.0354 ]
+sub 15: 
+       cls[1]: # of pts: 3228, meanNorm = 0.156, kappa = 38.27, mu = [ -0.0097 0.0249 0.0411 0.0024 0.0212 ]
+       cls[2]: # of pts: 3177, meanNorm = 0.155, kappa = 38.05, mu = [ -0.0109 -0.0908 -0.0834 -0.0350 -0.0230 ]
+       cls[3]: # of pts: 4094, meanNorm = 0.174, kappa = 43.15, mu = [ 0.0377 0.0471 0.0643 0.0647 0.1072 ]
+       cls[4]: # of pts: 2819, meanNorm = 0.163, kappa = 40.26, mu = [ 0.0767 -0.0392 0.0208 -0.0007 -0.0017 ]
+       cls[5]: # of pts: 2707, meanNorm = 0.152, kappa = 37.26, mu = [ -0.0374 -0.0033 -0.0507 -0.0094 -0.0129 ]
+sub 16: 
+       cls[1]: # of pts: 2916, meanNorm = 0.154, kappa = 37.80, mu = [ -0.0079 -0.0679 -0.1196 -0.0874 0.0498 ]
+       cls[2]: # of pts: 5082, meanNorm = 0.184, kappa = 45.68, mu = [ 0.0654 0.0774 0.0389 0.0924 0.1164 ]
+       cls[3]: # of pts: 3120, meanNorm = 0.156, kappa = 38.42, mu = [ 0.0443 -0.0346 0.0432 0.0562 -0.0033 ]
+       cls[4]: # of pts: 2718, meanNorm = 0.140, kappa = 34.28, mu = [ -0.0001 0.0101 0.0618 0.0387 -0.0234 ]
+       cls[5]: # of pts: 2189, meanNorm = 0.179, kappa = 44.30, mu = [ -0.0687 -0.0737 -0.0438 -0.1239 -0.1118 ]
+EM iteration 3 begin:
+mcsampling(): scan 0 done.
+mcsampling(): scan 5 done.
+mcsampling(): scan 10 done.
+mcsampling(): scan 15 done.
+mcsampling(): scan 20 done.
+EM iteration 3, sampling done. 
+Q1[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q2[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q3[mcIdx]: [ -16323094.0000 -16323094.0000 -16323094.0000 -16323094.0000 -16323094.0000 ]
+Q1/E(G)  = -NAN, Q2/E(Z|G) = -NAN, Q3/E(X|Z) = -1.632309E+07, Q2+Q3 = -NAN, Q/E(X,G,Z) = -NAN
+SaveSamples(): File with basename /home/sci/weiliu/dataset/syn2/test/samples/sub saved.
+SaveGrpSamples(): File /home/sci/weiliu/dataset/syn2/test/sample_grp.nii.gz saved.
+EM iteration 3, parameter estimation begin. 
+    beta: 2364.0816 ->  -nan. E(G,Z): -nan -> -nan. drv1 = -nan, drv2 = -nan
+    alpha:  -nan ->  -nan. E(G,Z): -nan -> -nan. drv1 = -nan, drv2 = -nan
+beta_g =  -nan, beta_z =  -nan, alpha =  -nan, Q1 (E(G)) = -nan, Q2 (E(Z|G) = -nan, (Q1+Q2) = -nan
+EM iteration 3, parameter estimation done. 
+Q1[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q2[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q3[mcIdx]: [ -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 ]
+Q1/E(G)  = -NAN, Q2/E(Z|G) = -NAN, Q3/E(X|Z) = -1.632477E+07, Q2+Q3 = -NAN, Q/E(X,G,Z) = -NAN
+alpha = -nan, beta_g = -nan, beta_z = -nan, gamma = 1.000, temp = 0.100000
+sub 1: 
+       cls[1]: # of pts: 3445, meanNorm = 0.150, kappa = 36.90, mu = [ 0.0282 -0.0483 0.0044 0.0434 0.0075 ]
+       cls[2]: # of pts: 2980, meanNorm = 0.170, kappa = 41.92, mu = [ -0.0637 -0.0487 -0.0423 -0.0960 -0.0289 ]
+       cls[3]: # of pts: 2880, meanNorm = 0.149, kappa = 36.68, mu = [ 0.0219 0.0142 0.0038 0.0598 -0.0169 ]
+       cls[4]: # of pts: 3940, meanNorm = 0.179, kappa = 44.25, mu = [ 0.0766 0.0555 0.0649 0.0672 0.0962 ]
+       cls[5]: # of pts: 2780, meanNorm = 0.168, kappa = 41.47, mu = [ 0.0466 -0.0690 -0.1193 -0.0803 -0.0129 ]
+sub 2: 
+       cls[1]: # of pts: 3790, meanNorm = 0.170, kappa = 41.96, mu = [ 0.0756 0.0602 0.0361 0.1023 0.0858 ]
+       cls[2]: # of pts: 2240, meanNorm = 0.181, kappa = 44.86, mu = [ -0.0486 -0.0200 -0.0484 -0.1072 -0.0966 ]
+       cls[3]: # of pts: 2880, meanNorm = 0.150, kappa = 36.89, mu = [ 0.0282 -0.0229 -0.0414 0.0061 0.0175 ]
+       cls[4]: # of pts: 2945, meanNorm = 0.151, kappa = 37.20, mu = [ -0.0103 -0.0093 0.0530 -0.0404 -0.0089 ]
+       cls[5]: # of pts: 4170, meanNorm = 0.167, kappa = 41.26, mu = [ -0.0080 -0.0549 -0.0922 -0.0758 -0.0243 ]
+sub 3: 
+       cls[1]: # of pts: 3725, meanNorm = 0.171, kappa = 42.24, mu = [ -0.0009 -0.0836 -0.0815 -0.0629 -0.0486 ]
+       cls[2]: # of pts: 2975, meanNorm = 0.139, kappa = 33.98, mu = [ 0.0091 0.0005 -0.0001 0.0499 0.0108 ]
+       cls[3]: # of pts: 3830, meanNorm = 0.173, kappa = 42.77, mu = [ 0.0646 0.0490 0.0551 0.0686 0.1019 ]
+       cls[4]: # of pts: 2395, meanNorm = 0.153, kappa = 37.52, mu = [ -0.0007 0.0474 0.0081 -0.0074 -0.0169 ]
+       cls[5]: # of pts: 3100, meanNorm = 0.195, kappa = 48.71, mu = [ -0.0433 -0.0393 -0.0738 -0.1118 -0.1550 ]
+sub 4: 
+       cls[1]: # of pts: 3365, meanNorm = 0.165, kappa = 40.67, mu = [ -0.0211 -0.0638 -0.0063 -0.0402 -0.0671 ]
+       cls[2]: # of pts: 2990, meanNorm = 0.168, kappa = 41.59, mu = [ 0.0542 0.0509 0.0461 0.0743 0.1022 ]
+       cls[3]: # of pts: 3175, meanNorm = 0.166, kappa = 41.06, mu = [ 0.0399 -0.0705 -0.1425 -0.0988 0.0068 ]
+       cls[4]: # of pts: 2635, meanNorm = 0.145, kappa = 35.60, mu = [ -0.0041 0.0294 0.0398 0.0019 0.0154 ]
+       cls[5]: # of pts: 3860, meanNorm = 0.163, kappa = 40.22, mu = [ 0.0073 -0.0102 0.0347 0.0497 0.0288 ]
+sub 5: 
+       cls[1]: # of pts: 2930, meanNorm = 0.182, kappa = 45.08, mu = [ -0.0166 -0.0799 -0.0583 -0.1151 -0.1416 ]
+       cls[2]: # of pts: 3035, meanNorm = 0.157, kappa = 38.74, mu = [ -0.0054 -0.0148 -0.0928 -0.0469 -0.0268 ]
+       cls[3]: # of pts: 3495, meanNorm = 0.156, kappa = 38.41, mu = [ 0.0249 -0.0603 0.0218 0.0620 0.0079 ]
+       cls[4]: # of pts: 3520, meanNorm = 0.172, kappa = 42.40, mu = [ 0.0561 0.0690 0.0313 0.0878 0.1008 ]
+       cls[5]: # of pts: 3045, meanNorm = 0.169, kappa = 41.82, mu = [ -0.0049 -0.0177 -0.0843 -0.0748 -0.0271 ]
+sub 6: 
+       cls[1]: # of pts: 3750, meanNorm = 0.160, kappa = 39.28, mu = [ -0.0031 -0.0283 0.0123 0.0258 0.0226 ]
+       cls[2]: # of pts: 2680, meanNorm = 0.171, kappa = 42.30, mu = [ 0.0603 0.0946 0.0030 0.0303 0.0688 ]
+       cls[3]: # of pts: 3755, meanNorm = 0.165, kappa = 40.82, mu = [ 0.0360 -0.0610 -0.0945 -0.0613 -0.0542 ]
+       cls[4]: # of pts: 3110, meanNorm = 0.185, kappa = 46.02, mu = [ -0.0279 -0.0526 -0.0654 -0.1054 -0.1415 ]
+       cls[5]: # of pts: 2730, meanNorm = 0.176, kappa = 43.53, mu = [ 0.0692 0.0161 0.0427 0.0769 0.0505 ]
+sub 7: 
+       cls[1]: # of pts: 3750, meanNorm = 0.160, kappa = 39.36, mu = [ 0.0264 -0.0256 0.0265 0.0477 -0.0139 ]
+       cls[2]: # of pts: 3030, meanNorm = 0.173, kappa = 42.82, mu = [ 0.0336 0.0590 0.0012 0.0922 0.0993 ]
+       cls[3]: # of pts: 2895, meanNorm = 0.175, kappa = 43.36, mu = [ 0.0620 0.0552 0.0003 0.0781 0.0526 ]
+       cls[4]: # of pts: 3185, meanNorm = 0.163, kappa = 40.21, mu = [ -0.0159 -0.0625 -0.0899 -0.0728 -0.0137 ]
+       cls[5]: # of pts: 3165, meanNorm = 0.163, kappa = 40.18, mu = [ -0.0206 0.0036 0.0622 0.0036 -0.0259 ]
+sub 8: 
+       cls[1]: # of pts: 2760, meanNorm = 0.157, kappa = 38.62, mu = [ 0.0119 -0.0722 0.0252 0.0419 0.0127 ]
+       cls[2]: # of pts: 2990, meanNorm = 0.193, kappa = 48.06, mu = [ -0.0454 -0.0473 -0.0632 -0.1120 -0.1528 ]
+       cls[3]: # of pts: 2605, meanNorm = 0.149, kappa = 36.50, mu = [ -0.0066 -0.0113 -0.0930 -0.0761 0.0065 ]
+       cls[4]: # of pts: 3650, meanNorm = 0.176, kappa = 43.55, mu = [ 0.0684 0.0421 0.0491 0.0908 0.1069 ]
+       cls[5]: # of pts: 4020, meanNorm = 0.178, kappa = 44.05, mu = [ 0.0754 0.0826 0.0233 0.0861 0.0740 ]
+sub 9: 
+       cls[1]: # of pts: 2160, meanNorm = 0.187, kappa = 46.48, mu = [ -0.0288 -0.0423 -0.0261 -0.0768 -0.1577 ]
+       cls[2]: # of pts: 4170, meanNorm = 0.173, kappa = 42.83, mu = [ 0.0701 0.0439 0.0243 0.0846 0.0944 ]
+       cls[3]: # of pts: 3470, meanNorm = 0.161, kappa = 39.77, mu = [ 0.0164 -0.0468 -0.1059 -0.0851 -0.0266 ]
+       cls[4]: # of pts: 3030, meanNorm = 0.155, kappa = 38.10, mu = [ 0.0303 -0.0326 0.0011 0.0193 -0.0037 ]
+       cls[5]: # of pts: 3195, meanNorm = 0.157, kappa = 38.58, mu = [ -0.0178 0.0318 0.0482 -0.0036 -0.0453 ]
+sub 10: 
+       cls[1]: # of pts: 2905, meanNorm = 0.152, kappa = 37.33, mu = [ -0.0020 0.0287 0.0241 0.0148 -0.0025 ]
+       cls[2]: # of pts: 3135, meanNorm = 0.164, kappa = 40.41, mu = [ 0.0209 -0.0374 -0.1203 -0.0636 -0.0038 ]
+       cls[3]: # of pts: 3975, meanNorm = 0.179, kappa = 44.24, mu = [ 0.0486 0.0473 0.0565 0.0988 0.0965 ]
+       cls[4]: # of pts: 2680, meanNorm = 0.180, kappa = 44.76, mu = [ -0.0557 -0.0969 -0.0681 -0.0916 -0.1427 ]
+       cls[5]: # of pts: 3330, meanNorm = 0.158, kappa = 38.87, mu = [ -0.0339 -0.0448 -0.0269 0.0577 -0.0191 ]
+sub 11: 
+       cls[1]: # of pts: 3485, meanNorm = 0.162, kappa = 39.97, mu = [ 0.0298 -0.0306 -0.0650 -0.0493 -0.0415 ]
+       cls[2]: # of pts: 4100, meanNorm = 0.171, kappa = 42.27, mu = [ 0.0488 0.0813 0.0344 0.0804 0.0858 ]
+       cls[3]: # of pts: 2775, meanNorm = 0.148, kappa = 36.39, mu = [ 0.0185 -0.0379 0.0028 0.0500 0.0166 ]
+       cls[4]: # of pts: 2140, meanNorm = 0.178, kappa = 44.01, mu = [ -0.0591 -0.0828 -0.0572 -0.1104 -0.0993 ]
+       cls[5]: # of pts: 3525, meanNorm = 0.168, kappa = 41.45, mu = [ -0.0078 0.0321 0.0607 0.0217 -0.0064 ]
+sub 12: 
+       cls[1]: # of pts: 4315, meanNorm = 0.175, kappa = 43.45, mu = [ 0.0078 -0.0623 -0.1142 -0.0867 -0.0202 ]
+       cls[2]: # of pts: 3210, meanNorm = 0.147, kappa = 36.17, mu = [ -0.0238 0.0017 0.0188 -0.0078 -0.0397 ]
+       cls[3]: # of pts: 2100, meanNorm = 0.148, kappa = 36.36, mu = [ -0.0285 -0.1036 -0.0513 -0.0249 -0.0965 ]
+       cls[4]: # of pts: 3585, meanNorm = 0.173, kappa = 42.82, mu = [ 0.0501 0.0924 0.0144 0.0846 0.1068 ]
+       cls[5]: # of pts: 2815, meanNorm = 0.160, kappa = 39.30, mu = [ 0.0263 0.0108 0.0218 0.0454 0.0076 ]
+sub 13: 
+       cls[1]: # of pts: 2135, meanNorm = 0.175, kappa = 43.33, mu = [ -0.0606 -0.0497 -0.0916 -0.0742 -0.1405 ]
+       cls[2]: # of pts: 2765, meanNorm = 0.151, kappa = 37.20, mu = [ 0.0314 0.0001 0.0649 0.0069 0.0416 ]
+       cls[3]: # of pts: 4310, meanNorm = 0.181, kappa = 45.00, mu = [ 0.0675 0.0654 0.0372 0.0724 0.1303 ]
+       cls[4]: # of pts: 4010, meanNorm = 0.164, kappa = 40.31, mu = [ 0.0265 -0.0353 0.0387 0.0448 0.0152 ]
+       cls[5]: # of pts: 2805, meanNorm = 0.155, kappa = 37.99, mu = [ -0.0381 -0.0510 -0.1456 -0.0644 -0.0334 ]
+sub 14: 
+       cls[1]: # of pts: 3005, meanNorm = 0.163, kappa = 40.11, mu = [ 0.0528 -0.0447 -0.0157 0.0310 0.0143 ]
+       cls[2]: # of pts: 3570, meanNorm = 0.178, kappa = 44.23, mu = [ 0.0776 0.0919 0.0541 0.0602 0.0487 ]
+       cls[3]: # of pts: 3375, meanNorm = 0.181, kappa = 44.88, mu = [ 0.0544 0.0781 0.0462 0.0651 0.1209 ]
+       cls[4]: # of pts: 3585, meanNorm = 0.192, kappa = 47.78, mu = [ 0.0011 0.0079 -0.0047 0.1136 0.0996 ]
+       cls[5]: # of pts: 2490, meanNorm = 0.133, kappa = 32.54, mu = [ 0.0377 -0.0451 0.0074 0.0417 -0.0270 ]
+sub 15: 
+       cls[1]: # of pts: 3195, meanNorm = 0.155, kappa = 38.17, mu = [ -0.0137 0.0226 0.0327 -0.0107 0.0099 ]
+       cls[2]: # of pts: 3175, meanNorm = 0.157, kappa = 38.53, mu = [ 0.0002 -0.0843 -0.0722 -0.0364 -0.0148 ]
+       cls[3]: # of pts: 4130, meanNorm = 0.175, kappa = 43.19, mu = [ 0.0329 0.0464 0.0642 0.0672 0.1083 ]
+       cls[4]: # of pts: 2810, meanNorm = 0.163, kappa = 40.13, mu = [ 0.0814 -0.0446 0.0054 0.0073 0.0084 ]
+       cls[5]: # of pts: 2715, meanNorm = 0.154, kappa = 37.95, mu = [ -0.0420 -0.0006 -0.0354 -0.0057 -0.0231 ]
+sub 16: 
+       cls[1]: # of pts: 3045, meanNorm = 0.152, kappa = 37.40, mu = [ 0.0022 -0.0612 -0.1209 -0.0864 0.0411 ]
+       cls[2]: # of pts: 4990, meanNorm = 0.185, kappa = 46.07, mu = [ 0.0659 0.0769 0.0411 0.0868 0.1165 ]
+       cls[3]: # of pts: 3155, meanNorm = 0.156, kappa = 38.43, mu = [ 0.0485 -0.0422 0.0381 0.0664 -0.0099 ]
+       cls[4]: # of pts: 2720, meanNorm = 0.140, kappa = 34.24, mu = [ -0.0220 0.0178 0.0559 0.0376 -0.0150 ]
+       cls[5]: # of pts: 2115, meanNorm = 0.183, kappa = 45.55, mu = [ -0.0649 -0.0740 -0.0306 -0.1199 -0.1013 ]
+EM iteration 4 begin:
+mcsampling(): scan 0 done.
+mcsampling(): scan 5 done.
+mcsampling(): scan 10 done.
+mcsampling(): scan 15 done.
+mcsampling(): scan 20 done.
+EM iteration 4, sampling done. 
+Q1[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q2[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q3[mcIdx]: [ -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 ]
+Q1/E(G)  = -NAN, Q2/E(Z|G) = -NAN, Q3/E(X|Z) = -1.632477E+07, Q2+Q3 = -NAN, Q/E(X,G,Z) = -NAN
+SaveSamples(): File with basename /home/sci/weiliu/dataset/syn2/test/samples/sub saved.
+SaveGrpSamples(): File /home/sci/weiliu/dataset/syn2/test/sample_grp.nii.gz saved.
+EM iteration 4, parameter estimation begin. 
+    beta:  -nan ->  -nan. E(G,Z): -nan -> -nan. drv1 = -nan, drv2 = -nan
+    alpha:  -nan ->  -nan. E(G,Z): -nan -> -nan. drv1 = -nan, drv2 = -nan
+beta_g =  -nan, beta_z =  -nan, alpha =  -nan, Q1 (E(G)) = -nan, Q2 (E(Z|G) = -nan, (Q1+Q2) = -nan
+EM iteration 4, parameter estimation done. 
+Q1[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q2[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q3[mcIdx]: [ -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 ]
+Q1/E(G)  = -NAN, Q2/E(Z|G) = -NAN, Q3/E(X|Z) = -1.632477E+07, Q2+Q3 = -NAN, Q/E(X,G,Z) = -NAN
+alpha = -nan, beta_g = -nan, beta_z = -nan, gamma = 1.000, temp = 0.100000
+sub 1: 
+       cls[1]: # of pts: 3445, meanNorm = 0.150, kappa = 36.90, mu = [ 0.0282 -0.0483 0.0044 0.0434 0.0075 ]
+       cls[2]: # of pts: 2980, meanNorm = 0.170, kappa = 41.92, mu = [ -0.0637 -0.0487 -0.0423 -0.0960 -0.0289 ]
+       cls[3]: # of pts: 2880, meanNorm = 0.149, kappa = 36.68, mu = [ 0.0219 0.0142 0.0038 0.0598 -0.0169 ]
+       cls[4]: # of pts: 3940, meanNorm = 0.179, kappa = 44.25, mu = [ 0.0766 0.0555 0.0649 0.0672 0.0962 ]
+       cls[5]: # of pts: 2780, meanNorm = 0.168, kappa = 41.47, mu = [ 0.0466 -0.0690 -0.1193 -0.0803 -0.0129 ]
+sub 2: 
+       cls[1]: # of pts: 3790, meanNorm = 0.170, kappa = 41.96, mu = [ 0.0756 0.0602 0.0361 0.1023 0.0858 ]
+       cls[2]: # of pts: 2240, meanNorm = 0.181, kappa = 44.86, mu = [ -0.0486 -0.0200 -0.0484 -0.1072 -0.0966 ]
+       cls[3]: # of pts: 2880, meanNorm = 0.150, kappa = 36.89, mu = [ 0.0282 -0.0229 -0.0414 0.0061 0.0175 ]
+       cls[4]: # of pts: 2945, meanNorm = 0.151, kappa = 37.20, mu = [ -0.0103 -0.0093 0.0530 -0.0404 -0.0089 ]
+       cls[5]: # of pts: 4170, meanNorm = 0.167, kappa = 41.26, mu = [ -0.0080 -0.0549 -0.0922 -0.0758 -0.0243 ]
+sub 3: 
+       cls[1]: # of pts: 3725, meanNorm = 0.171, kappa = 42.24, mu = [ -0.0009 -0.0836 -0.0815 -0.0629 -0.0486 ]
+       cls[2]: # of pts: 2975, meanNorm = 0.139, kappa = 33.98, mu = [ 0.0091 0.0005 -0.0001 0.0499 0.0108 ]
+       cls[3]: # of pts: 3830, meanNorm = 0.173, kappa = 42.77, mu = [ 0.0646 0.0490 0.0551 0.0686 0.1019 ]
+       cls[4]: # of pts: 2395, meanNorm = 0.153, kappa = 37.52, mu = [ -0.0007 0.0474 0.0081 -0.0074 -0.0169 ]
+       cls[5]: # of pts: 3100, meanNorm = 0.195, kappa = 48.71, mu = [ -0.0433 -0.0393 -0.0738 -0.1118 -0.1550 ]
+sub 4: 
+       cls[1]: # of pts: 3365, meanNorm = 0.165, kappa = 40.67, mu = [ -0.0211 -0.0638 -0.0063 -0.0402 -0.0671 ]
+       cls[2]: # of pts: 2990, meanNorm = 0.168, kappa = 41.59, mu = [ 0.0542 0.0509 0.0461 0.0743 0.1022 ]
+       cls[3]: # of pts: 3175, meanNorm = 0.166, kappa = 41.06, mu = [ 0.0399 -0.0705 -0.1425 -0.0988 0.0068 ]
+       cls[4]: # of pts: 2635, meanNorm = 0.145, kappa = 35.60, mu = [ -0.0041 0.0294 0.0398 0.0019 0.0154 ]
+       cls[5]: # of pts: 3860, meanNorm = 0.163, kappa = 40.22, mu = [ 0.0073 -0.0102 0.0347 0.0497 0.0288 ]
+sub 5: 
+       cls[1]: # of pts: 2930, meanNorm = 0.182, kappa = 45.08, mu = [ -0.0166 -0.0799 -0.0583 -0.1151 -0.1416 ]
+       cls[2]: # of pts: 3035, meanNorm = 0.157, kappa = 38.74, mu = [ -0.0054 -0.0148 -0.0928 -0.0469 -0.0268 ]
+       cls[3]: # of pts: 3495, meanNorm = 0.156, kappa = 38.41, mu = [ 0.0249 -0.0603 0.0218 0.0620 0.0079 ]
+       cls[4]: # of pts: 3520, meanNorm = 0.172, kappa = 42.40, mu = [ 0.0561 0.0690 0.0313 0.0878 0.1008 ]
+       cls[5]: # of pts: 3045, meanNorm = 0.169, kappa = 41.82, mu = [ -0.0049 -0.0177 -0.0843 -0.0748 -0.0271 ]
+sub 6: 
+       cls[1]: # of pts: 3750, meanNorm = 0.160, kappa = 39.28, mu = [ -0.0031 -0.0283 0.0123 0.0258 0.0226 ]
+       cls[2]: # of pts: 2680, meanNorm = 0.171, kappa = 42.30, mu = [ 0.0603 0.0946 0.0030 0.0303 0.0688 ]
+       cls[3]: # of pts: 3755, meanNorm = 0.165, kappa = 40.82, mu = [ 0.0360 -0.0610 -0.0945 -0.0613 -0.0542 ]
+       cls[4]: # of pts: 3110, meanNorm = 0.185, kappa = 46.02, mu = [ -0.0279 -0.0526 -0.0654 -0.1054 -0.1415 ]
+       cls[5]: # of pts: 2730, meanNorm = 0.176, kappa = 43.53, mu = [ 0.0692 0.0161 0.0427 0.0769 0.0505 ]
+sub 7: 
+       cls[1]: # of pts: 3750, meanNorm = 0.160, kappa = 39.36, mu = [ 0.0264 -0.0256 0.0265 0.0477 -0.0139 ]
+       cls[2]: # of pts: 3030, meanNorm = 0.173, kappa = 42.82, mu = [ 0.0336 0.0590 0.0012 0.0922 0.0993 ]
+       cls[3]: # of pts: 2895, meanNorm = 0.175, kappa = 43.36, mu = [ 0.0620 0.0552 0.0003 0.0781 0.0526 ]
+       cls[4]: # of pts: 3185, meanNorm = 0.163, kappa = 40.21, mu = [ -0.0159 -0.0625 -0.0899 -0.0728 -0.0137 ]
+       cls[5]: # of pts: 3165, meanNorm = 0.163, kappa = 40.18, mu = [ -0.0206 0.0036 0.0622 0.0036 -0.0259 ]
+sub 8: 
+       cls[1]: # of pts: 2760, meanNorm = 0.157, kappa = 38.62, mu = [ 0.0119 -0.0722 0.0252 0.0419 0.0127 ]
+       cls[2]: # of pts: 2990, meanNorm = 0.193, kappa = 48.06, mu = [ -0.0454 -0.0473 -0.0632 -0.1120 -0.1528 ]
+       cls[3]: # of pts: 2605, meanNorm = 0.149, kappa = 36.50, mu = [ -0.0066 -0.0113 -0.0930 -0.0761 0.0065 ]
+       cls[4]: # of pts: 3650, meanNorm = 0.176, kappa = 43.55, mu = [ 0.0684 0.0421 0.0491 0.0908 0.1069 ]
+       cls[5]: # of pts: 4020, meanNorm = 0.178, kappa = 44.05, mu = [ 0.0754 0.0826 0.0233 0.0861 0.0740 ]
+sub 9: 
+       cls[1]: # of pts: 2160, meanNorm = 0.187, kappa = 46.48, mu = [ -0.0288 -0.0423 -0.0261 -0.0768 -0.1577 ]
+       cls[2]: # of pts: 4170, meanNorm = 0.173, kappa = 42.83, mu = [ 0.0701 0.0439 0.0243 0.0846 0.0944 ]
+       cls[3]: # of pts: 3470, meanNorm = 0.161, kappa = 39.77, mu = [ 0.0164 -0.0468 -0.1059 -0.0851 -0.0266 ]
+       cls[4]: # of pts: 3030, meanNorm = 0.155, kappa = 38.10, mu = [ 0.0303 -0.0326 0.0011 0.0193 -0.0037 ]
+       cls[5]: # of pts: 3195, meanNorm = 0.157, kappa = 38.58, mu = [ -0.0178 0.0318 0.0482 -0.0036 -0.0453 ]
+sub 10: 
+       cls[1]: # of pts: 2905, meanNorm = 0.152, kappa = 37.33, mu = [ -0.0020 0.0287 0.0241 0.0148 -0.0025 ]
+       cls[2]: # of pts: 3135, meanNorm = 0.164, kappa = 40.41, mu = [ 0.0209 -0.0374 -0.1203 -0.0636 -0.0038 ]
+       cls[3]: # of pts: 3975, meanNorm = 0.179, kappa = 44.24, mu = [ 0.0486 0.0473 0.0565 0.0988 0.0965 ]
+       cls[4]: # of pts: 2680, meanNorm = 0.180, kappa = 44.76, mu = [ -0.0557 -0.0969 -0.0681 -0.0916 -0.1427 ]
+       cls[5]: # of pts: 3330, meanNorm = 0.158, kappa = 38.87, mu = [ -0.0339 -0.0448 -0.0269 0.0577 -0.0191 ]
+sub 11: 
+       cls[1]: # of pts: 3485, meanNorm = 0.162, kappa = 39.97, mu = [ 0.0298 -0.0306 -0.0650 -0.0493 -0.0415 ]
+       cls[2]: # of pts: 4100, meanNorm = 0.171, kappa = 42.27, mu = [ 0.0488 0.0813 0.0344 0.0804 0.0858 ]
+       cls[3]: # of pts: 2775, meanNorm = 0.148, kappa = 36.39, mu = [ 0.0185 -0.0379 0.0028 0.0500 0.0166 ]
+       cls[4]: # of pts: 2140, meanNorm = 0.178, kappa = 44.01, mu = [ -0.0591 -0.0828 -0.0572 -0.1104 -0.0993 ]
+       cls[5]: # of pts: 3525, meanNorm = 0.168, kappa = 41.45, mu = [ -0.0078 0.0321 0.0607 0.0217 -0.0064 ]
+sub 12: 
+       cls[1]: # of pts: 4315, meanNorm = 0.175, kappa = 43.45, mu = [ 0.0078 -0.0623 -0.1142 -0.0867 -0.0202 ]
+       cls[2]: # of pts: 3210, meanNorm = 0.147, kappa = 36.17, mu = [ -0.0238 0.0017 0.0188 -0.0078 -0.0397 ]
+       cls[3]: # of pts: 2100, meanNorm = 0.148, kappa = 36.36, mu = [ -0.0285 -0.1036 -0.0513 -0.0249 -0.0965 ]
+       cls[4]: # of pts: 3585, meanNorm = 0.173, kappa = 42.82, mu = [ 0.0501 0.0924 0.0144 0.0846 0.1068 ]
+       cls[5]: # of pts: 2815, meanNorm = 0.160, kappa = 39.30, mu = [ 0.0263 0.0108 0.0218 0.0454 0.0076 ]
+sub 13: 
+       cls[1]: # of pts: 2135, meanNorm = 0.175, kappa = 43.33, mu = [ -0.0606 -0.0497 -0.0916 -0.0742 -0.1405 ]
+       cls[2]: # of pts: 2765, meanNorm = 0.151, kappa = 37.20, mu = [ 0.0314 0.0001 0.0649 0.0069 0.0416 ]
+       cls[3]: # of pts: 4310, meanNorm = 0.181, kappa = 45.00, mu = [ 0.0675 0.0654 0.0372 0.0724 0.1303 ]
+       cls[4]: # of pts: 4010, meanNorm = 0.164, kappa = 40.31, mu = [ 0.0265 -0.0353 0.0387 0.0448 0.0152 ]
+       cls[5]: # of pts: 2805, meanNorm = 0.155, kappa = 37.99, mu = [ -0.0381 -0.0510 -0.1456 -0.0644 -0.0334 ]
+sub 14: 
+       cls[1]: # of pts: 3005, meanNorm = 0.163, kappa = 40.11, mu = [ 0.0528 -0.0447 -0.0157 0.0310 0.0143 ]
+       cls[2]: # of pts: 3570, meanNorm = 0.178, kappa = 44.23, mu = [ 0.0776 0.0919 0.0541 0.0602 0.0487 ]
+       cls[3]: # of pts: 3375, meanNorm = 0.181, kappa = 44.88, mu = [ 0.0544 0.0781 0.0462 0.0651 0.1209 ]
+       cls[4]: # of pts: 3585, meanNorm = 0.192, kappa = 47.78, mu = [ 0.0011 0.0079 -0.0047 0.1136 0.0996 ]
+       cls[5]: # of pts: 2490, meanNorm = 0.133, kappa = 32.54, mu = [ 0.0377 -0.0451 0.0074 0.0417 -0.0270 ]
+sub 15: 
+       cls[1]: # of pts: 3195, meanNorm = 0.155, kappa = 38.17, mu = [ -0.0137 0.0226 0.0327 -0.0107 0.0099 ]
+       cls[2]: # of pts: 3175, meanNorm = 0.157, kappa = 38.53, mu = [ 0.0002 -0.0843 -0.0722 -0.0364 -0.0148 ]
+       cls[3]: # of pts: 4130, meanNorm = 0.175, kappa = 43.19, mu = [ 0.0329 0.0464 0.0642 0.0672 0.1083 ]
+       cls[4]: # of pts: 2810, meanNorm = 0.163, kappa = 40.13, mu = [ 0.0814 -0.0446 0.0054 0.0073 0.0084 ]
+       cls[5]: # of pts: 2715, meanNorm = 0.154, kappa = 37.95, mu = [ -0.0420 -0.0006 -0.0354 -0.0057 -0.0231 ]
+sub 16: 
+       cls[1]: # of pts: 3045, meanNorm = 0.152, kappa = 37.40, mu = [ 0.0022 -0.0612 -0.1209 -0.0864 0.0411 ]
+       cls[2]: # of pts: 4990, meanNorm = 0.185, kappa = 46.07, mu = [ 0.0659 0.0769 0.0411 0.0868 0.1165 ]
+       cls[3]: # of pts: 3155, meanNorm = 0.156, kappa = 38.43, mu = [ 0.0485 -0.0422 0.0381 0.0664 -0.0099 ]
+       cls[4]: # of pts: 2720, meanNorm = 0.140, kappa = 34.24, mu = [ -0.0220 0.0178 0.0559 0.0376 -0.0150 ]
+       cls[5]: # of pts: 2115, meanNorm = 0.183, kappa = 45.55, mu = [ -0.0649 -0.0740 -0.0306 -0.1199 -0.1013 ]
+EM iteration 5 begin:
+mcsampling(): scan 0 done.
+mcsampling(): scan 5 done.
+mcsampling(): scan 10 done.
+mcsampling(): scan 15 done.
+mcsampling(): scan 20 done.
+EM iteration 5, sampling done. 
+Q1[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q2[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q3[mcIdx]: [ -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 ]
+Q1/E(G)  = -NAN, Q2/E(Z|G) = -NAN, Q3/E(X|Z) = -1.632477E+07, Q2+Q3 = -NAN, Q/E(X,G,Z) = -NAN
+SaveSamples(): File with basename /home/sci/weiliu/dataset/syn2/test/samples/sub saved.
+SaveGrpSamples(): File /home/sci/weiliu/dataset/syn2/test/sample_grp.nii.gz saved.
+EM iteration 5, parameter estimation begin. 
+    beta:  -nan ->  -nan. E(G,Z): -nan -> -nan. drv1 = -nan, drv2 = -nan
+    alpha:  -nan ->  -nan. E(G,Z): -nan -> -nan. drv1 = -nan, drv2 = -nan
+beta_g =  -nan, beta_z =  -nan, alpha =  -nan, Q1 (E(G)) = -nan, Q2 (E(Z|G) = -nan, (Q1+Q2) = -nan
+EM iteration 5, parameter estimation done. 
+Q1[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q2[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q3[mcIdx]: [ -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 ]
+Q1/E(G)  = -NAN, Q2/E(Z|G) = -NAN, Q3/E(X|Z) = -1.632477E+07, Q2+Q3 = -NAN, Q/E(X,G,Z) = -NAN
+alpha = -nan, beta_g = -nan, beta_z = -nan, gamma = 1.000, temp = 0.100000
+sub 1: 
+       cls[1]: # of pts: 3445, meanNorm = 0.150, kappa = 36.90, mu = [ 0.0282 -0.0483 0.0044 0.0434 0.0075 ]
+       cls[2]: # of pts: 2980, meanNorm = 0.170, kappa = 41.92, mu = [ -0.0637 -0.0487 -0.0423 -0.0960 -0.0289 ]
+       cls[3]: # of pts: 2880, meanNorm = 0.149, kappa = 36.68, mu = [ 0.0219 0.0142 0.0038 0.0598 -0.0169 ]
+       cls[4]: # of pts: 3940, meanNorm = 0.179, kappa = 44.25, mu = [ 0.0766 0.0555 0.0649 0.0672 0.0962 ]
+       cls[5]: # of pts: 2780, meanNorm = 0.168, kappa = 41.47, mu = [ 0.0466 -0.0690 -0.1193 -0.0803 -0.0129 ]
+sub 2: 
+       cls[1]: # of pts: 3790, meanNorm = 0.170, kappa = 41.96, mu = [ 0.0756 0.0602 0.0361 0.1023 0.0858 ]
+       cls[2]: # of pts: 2240, meanNorm = 0.181, kappa = 44.86, mu = [ -0.0486 -0.0200 -0.0484 -0.1072 -0.0966 ]
+       cls[3]: # of pts: 2880, meanNorm = 0.150, kappa = 36.89, mu = [ 0.0282 -0.0229 -0.0414 0.0061 0.0175 ]
+       cls[4]: # of pts: 2945, meanNorm = 0.151, kappa = 37.20, mu = [ -0.0103 -0.0093 0.0530 -0.0404 -0.0089 ]
+       cls[5]: # of pts: 4170, meanNorm = 0.167, kappa = 41.26, mu = [ -0.0080 -0.0549 -0.0922 -0.0758 -0.0243 ]
+sub 3: 
+       cls[1]: # of pts: 3725, meanNorm = 0.171, kappa = 42.24, mu = [ -0.0009 -0.0836 -0.0815 -0.0629 -0.0486 ]
+       cls[2]: # of pts: 2975, meanNorm = 0.139, kappa = 33.98, mu = [ 0.0091 0.0005 -0.0001 0.0499 0.0108 ]
+       cls[3]: # of pts: 3830, meanNorm = 0.173, kappa = 42.77, mu = [ 0.0646 0.0490 0.0551 0.0686 0.1019 ]
+       cls[4]: # of pts: 2395, meanNorm = 0.153, kappa = 37.52, mu = [ -0.0007 0.0474 0.0081 -0.0074 -0.0169 ]
+       cls[5]: # of pts: 3100, meanNorm = 0.195, kappa = 48.71, mu = [ -0.0433 -0.0393 -0.0738 -0.1118 -0.1550 ]
+sub 4: 
+       cls[1]: # of pts: 3365, meanNorm = 0.165, kappa = 40.67, mu = [ -0.0211 -0.0638 -0.0063 -0.0402 -0.0671 ]
+       cls[2]: # of pts: 2990, meanNorm = 0.168, kappa = 41.59, mu = [ 0.0542 0.0509 0.0461 0.0743 0.1022 ]
+       cls[3]: # of pts: 3175, meanNorm = 0.166, kappa = 41.06, mu = [ 0.0399 -0.0705 -0.1425 -0.0988 0.0068 ]
+       cls[4]: # of pts: 2635, meanNorm = 0.145, kappa = 35.60, mu = [ -0.0041 0.0294 0.0398 0.0019 0.0154 ]
+       cls[5]: # of pts: 3860, meanNorm = 0.163, kappa = 40.22, mu = [ 0.0073 -0.0102 0.0347 0.0497 0.0288 ]
+sub 5: 
+       cls[1]: # of pts: 2930, meanNorm = 0.182, kappa = 45.08, mu = [ -0.0166 -0.0799 -0.0583 -0.1151 -0.1416 ]
+       cls[2]: # of pts: 3035, meanNorm = 0.157, kappa = 38.74, mu = [ -0.0054 -0.0148 -0.0928 -0.0469 -0.0268 ]
+       cls[3]: # of pts: 3495, meanNorm = 0.156, kappa = 38.41, mu = [ 0.0249 -0.0603 0.0218 0.0620 0.0079 ]
+       cls[4]: # of pts: 3520, meanNorm = 0.172, kappa = 42.40, mu = [ 0.0561 0.0690 0.0313 0.0878 0.1008 ]
+       cls[5]: # of pts: 3045, meanNorm = 0.169, kappa = 41.82, mu = [ -0.0049 -0.0177 -0.0843 -0.0748 -0.0271 ]
+sub 6: 
+       cls[1]: # of pts: 3750, meanNorm = 0.160, kappa = 39.28, mu = [ -0.0031 -0.0283 0.0123 0.0258 0.0226 ]
+       cls[2]: # of pts: 2680, meanNorm = 0.171, kappa = 42.30, mu = [ 0.0603 0.0946 0.0030 0.0303 0.0688 ]
+       cls[3]: # of pts: 3755, meanNorm = 0.165, kappa = 40.82, mu = [ 0.0360 -0.0610 -0.0945 -0.0613 -0.0542 ]
+       cls[4]: # of pts: 3110, meanNorm = 0.185, kappa = 46.02, mu = [ -0.0279 -0.0526 -0.0654 -0.1054 -0.1415 ]
+       cls[5]: # of pts: 2730, meanNorm = 0.176, kappa = 43.53, mu = [ 0.0692 0.0161 0.0427 0.0769 0.0505 ]
+sub 7: 
+       cls[1]: # of pts: 3750, meanNorm = 0.160, kappa = 39.36, mu = [ 0.0264 -0.0256 0.0265 0.0477 -0.0139 ]
+       cls[2]: # of pts: 3030, meanNorm = 0.173, kappa = 42.82, mu = [ 0.0336 0.0590 0.0012 0.0922 0.0993 ]
+       cls[3]: # of pts: 2895, meanNorm = 0.175, kappa = 43.36, mu = [ 0.0620 0.0552 0.0003 0.0781 0.0526 ]
+       cls[4]: # of pts: 3185, meanNorm = 0.163, kappa = 40.21, mu = [ -0.0159 -0.0625 -0.0899 -0.0728 -0.0137 ]
+       cls[5]: # of pts: 3165, meanNorm = 0.163, kappa = 40.18, mu = [ -0.0206 0.0036 0.0622 0.0036 -0.0259 ]
+sub 8: 
+       cls[1]: # of pts: 2760, meanNorm = 0.157, kappa = 38.62, mu = [ 0.0119 -0.0722 0.0252 0.0419 0.0127 ]
+       cls[2]: # of pts: 2990, meanNorm = 0.193, kappa = 48.06, mu = [ -0.0454 -0.0473 -0.0632 -0.1120 -0.1528 ]
+       cls[3]: # of pts: 2605, meanNorm = 0.149, kappa = 36.50, mu = [ -0.0066 -0.0113 -0.0930 -0.0761 0.0065 ]
+       cls[4]: # of pts: 3650, meanNorm = 0.176, kappa = 43.55, mu = [ 0.0684 0.0421 0.0491 0.0908 0.1069 ]
+       cls[5]: # of pts: 4020, meanNorm = 0.178, kappa = 44.05, mu = [ 0.0754 0.0826 0.0233 0.0861 0.0740 ]
+sub 9: 
+       cls[1]: # of pts: 2160, meanNorm = 0.187, kappa = 46.48, mu = [ -0.0288 -0.0423 -0.0261 -0.0768 -0.1577 ]
+       cls[2]: # of pts: 4170, meanNorm = 0.173, kappa = 42.83, mu = [ 0.0701 0.0439 0.0243 0.0846 0.0944 ]
+       cls[3]: # of pts: 3470, meanNorm = 0.161, kappa = 39.77, mu = [ 0.0164 -0.0468 -0.1059 -0.0851 -0.0266 ]
+       cls[4]: # of pts: 3030, meanNorm = 0.155, kappa = 38.10, mu = [ 0.0303 -0.0326 0.0011 0.0193 -0.0037 ]
+       cls[5]: # of pts: 3195, meanNorm = 0.157, kappa = 38.58, mu = [ -0.0178 0.0318 0.0482 -0.0036 -0.0453 ]
+sub 10: 
+       cls[1]: # of pts: 2905, meanNorm = 0.152, kappa = 37.33, mu = [ -0.0020 0.0287 0.0241 0.0148 -0.0025 ]
+       cls[2]: # of pts: 3135, meanNorm = 0.164, kappa = 40.41, mu = [ 0.0209 -0.0374 -0.1203 -0.0636 -0.0038 ]
+       cls[3]: # of pts: 3975, meanNorm = 0.179, kappa = 44.24, mu = [ 0.0486 0.0473 0.0565 0.0988 0.0965 ]
+       cls[4]: # of pts: 2680, meanNorm = 0.180, kappa = 44.76, mu = [ -0.0557 -0.0969 -0.0681 -0.0916 -0.1427 ]
+       cls[5]: # of pts: 3330, meanNorm = 0.158, kappa = 38.87, mu = [ -0.0339 -0.0448 -0.0269 0.0577 -0.0191 ]
+sub 11: 
+       cls[1]: # of pts: 3485, meanNorm = 0.162, kappa = 39.97, mu = [ 0.0298 -0.0306 -0.0650 -0.0493 -0.0415 ]
+       cls[2]: # of pts: 4100, meanNorm = 0.171, kappa = 42.27, mu = [ 0.0488 0.0813 0.0344 0.0804 0.0858 ]
+       cls[3]: # of pts: 2775, meanNorm = 0.148, kappa = 36.39, mu = [ 0.0185 -0.0379 0.0028 0.0500 0.0166 ]
+       cls[4]: # of pts: 2140, meanNorm = 0.178, kappa = 44.01, mu = [ -0.0591 -0.0828 -0.0572 -0.1104 -0.0993 ]
+       cls[5]: # of pts: 3525, meanNorm = 0.168, kappa = 41.45, mu = [ -0.0078 0.0321 0.0607 0.0217 -0.0064 ]
+sub 12: 
+       cls[1]: # of pts: 4315, meanNorm = 0.175, kappa = 43.45, mu = [ 0.0078 -0.0623 -0.1142 -0.0867 -0.0202 ]
+       cls[2]: # of pts: 3210, meanNorm = 0.147, kappa = 36.17, mu = [ -0.0238 0.0017 0.0188 -0.0078 -0.0397 ]
+       cls[3]: # of pts: 2100, meanNorm = 0.148, kappa = 36.36, mu = [ -0.0285 -0.1036 -0.0513 -0.0249 -0.0965 ]
+       cls[4]: # of pts: 3585, meanNorm = 0.173, kappa = 42.82, mu = [ 0.0501 0.0924 0.0144 0.0846 0.1068 ]
+       cls[5]: # of pts: 2815, meanNorm = 0.160, kappa = 39.30, mu = [ 0.0263 0.0108 0.0218 0.0454 0.0076 ]
+sub 13: 
+       cls[1]: # of pts: 2135, meanNorm = 0.175, kappa = 43.33, mu = [ -0.0606 -0.0497 -0.0916 -0.0742 -0.1405 ]
+       cls[2]: # of pts: 2765, meanNorm = 0.151, kappa = 37.20, mu = [ 0.0314 0.0001 0.0649 0.0069 0.0416 ]
+       cls[3]: # of pts: 4310, meanNorm = 0.181, kappa = 45.00, mu = [ 0.0675 0.0654 0.0372 0.0724 0.1303 ]
+       cls[4]: # of pts: 4010, meanNorm = 0.164, kappa = 40.31, mu = [ 0.0265 -0.0353 0.0387 0.0448 0.0152 ]
+       cls[5]: # of pts: 2805, meanNorm = 0.155, kappa = 37.99, mu = [ -0.0381 -0.0510 -0.1456 -0.0644 -0.0334 ]
+sub 14: 
+       cls[1]: # of pts: 3005, meanNorm = 0.163, kappa = 40.11, mu = [ 0.0528 -0.0447 -0.0157 0.0310 0.0143 ]
+       cls[2]: # of pts: 3570, meanNorm = 0.178, kappa = 44.23, mu = [ 0.0776 0.0919 0.0541 0.0602 0.0487 ]
+       cls[3]: # of pts: 3375, meanNorm = 0.181, kappa = 44.88, mu = [ 0.0544 0.0781 0.0462 0.0651 0.1209 ]
+       cls[4]: # of pts: 3585, meanNorm = 0.192, kappa = 47.78, mu = [ 0.0011 0.0079 -0.0047 0.1136 0.0996 ]
+       cls[5]: # of pts: 2490, meanNorm = 0.133, kappa = 32.54, mu = [ 0.0377 -0.0451 0.0074 0.0417 -0.0270 ]
+sub 15: 
+       cls[1]: # of pts: 3195, meanNorm = 0.155, kappa = 38.17, mu = [ -0.0137 0.0226 0.0327 -0.0107 0.0099 ]
+       cls[2]: # of pts: 3175, meanNorm = 0.157, kappa = 38.53, mu = [ 0.0002 -0.0843 -0.0722 -0.0364 -0.0148 ]
+       cls[3]: # of pts: 4130, meanNorm = 0.175, kappa = 43.19, mu = [ 0.0329 0.0464 0.0642 0.0672 0.1083 ]
+       cls[4]: # of pts: 2810, meanNorm = 0.163, kappa = 40.13, mu = [ 0.0814 -0.0446 0.0054 0.0073 0.0084 ]
+       cls[5]: # of pts: 2715, meanNorm = 0.154, kappa = 37.95, mu = [ -0.0420 -0.0006 -0.0354 -0.0057 -0.0231 ]
+sub 16: 
+       cls[1]: # of pts: 3045, meanNorm = 0.152, kappa = 37.40, mu = [ 0.0022 -0.0612 -0.1209 -0.0864 0.0411 ]
+       cls[2]: # of pts: 4990, meanNorm = 0.185, kappa = 46.07, mu = [ 0.0659 0.0769 0.0411 0.0868 0.1165 ]
+       cls[3]: # of pts: 3155, meanNorm = 0.156, kappa = 38.43, mu = [ 0.0485 -0.0422 0.0381 0.0664 -0.0099 ]
+       cls[4]: # of pts: 2720, meanNorm = 0.140, kappa = 34.24, mu = [ -0.0220 0.0178 0.0559 0.0376 -0.0150 ]
+       cls[5]: # of pts: 2115, meanNorm = 0.183, kappa = 45.55, mu = [ -0.0649 -0.0740 -0.0306 -0.1199 -0.1013 ]
+EM iteration 6 begin:
+mcsampling(): scan 0 done.
+mcsampling(): scan 5 done.
+mcsampling(): scan 10 done.
+mcsampling(): scan 15 done.
+mcsampling(): scan 20 done.
+EM iteration 6, sampling done. 
+Q1[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q2[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q3[mcIdx]: [ -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 ]
+Q1/E(G)  = -NAN, Q2/E(Z|G) = -NAN, Q3/E(X|Z) = -1.632477E+07, Q2+Q3 = -NAN, Q/E(X,G,Z) = -NAN
+SaveSamples(): File with basename /home/sci/weiliu/dataset/syn2/test/samples/sub saved.
+SaveGrpSamples(): File /home/sci/weiliu/dataset/syn2/test/sample_grp.nii.gz saved.
+EM iteration 6, parameter estimation begin. 
+    beta:  -nan ->  -nan. E(G,Z): -nan -> -nan. drv1 = -nan, drv2 = -nan
+    alpha:  -nan ->  -nan. E(G,Z): -nan -> -nan. drv1 = -nan, drv2 = -nan
+beta_g =  -nan, beta_z =  -nan, alpha =  -nan, Q1 (E(G)) = -nan, Q2 (E(Z|G) = -nan, (Q1+Q2) = -nan
+EM iteration 6, parameter estimation done. 
+Q1[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q2[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q3[mcIdx]: [ -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 ]
+Q1/E(G)  = -NAN, Q2/E(Z|G) = -NAN, Q3/E(X|Z) = -1.632477E+07, Q2+Q3 = -NAN, Q/E(X,G,Z) = -NAN
+alpha = -nan, beta_g = -nan, beta_z = -nan, gamma = 1.000, temp = 0.100000
+sub 1: 
+       cls[1]: # of pts: 3445, meanNorm = 0.150, kappa = 36.90, mu = [ 0.0282 -0.0483 0.0044 0.0434 0.0075 ]
+       cls[2]: # of pts: 2980, meanNorm = 0.170, kappa = 41.92, mu = [ -0.0637 -0.0487 -0.0423 -0.0960 -0.0289 ]
+       cls[3]: # of pts: 2880, meanNorm = 0.149, kappa = 36.68, mu = [ 0.0219 0.0142 0.0038 0.0598 -0.0169 ]
+       cls[4]: # of pts: 3940, meanNorm = 0.179, kappa = 44.25, mu = [ 0.0766 0.0555 0.0649 0.0672 0.0962 ]
+       cls[5]: # of pts: 2780, meanNorm = 0.168, kappa = 41.47, mu = [ 0.0466 -0.0690 -0.1193 -0.0803 -0.0129 ]
+sub 2: 
+       cls[1]: # of pts: 3790, meanNorm = 0.170, kappa = 41.96, mu = [ 0.0756 0.0602 0.0361 0.1023 0.0858 ]
+       cls[2]: # of pts: 2240, meanNorm = 0.181, kappa = 44.86, mu = [ -0.0486 -0.0200 -0.0484 -0.1072 -0.0966 ]
+       cls[3]: # of pts: 2880, meanNorm = 0.150, kappa = 36.89, mu = [ 0.0282 -0.0229 -0.0414 0.0061 0.0175 ]
+       cls[4]: # of pts: 2945, meanNorm = 0.151, kappa = 37.20, mu = [ -0.0103 -0.0093 0.0530 -0.0404 -0.0089 ]
+       cls[5]: # of pts: 4170, meanNorm = 0.167, kappa = 41.26, mu = [ -0.0080 -0.0549 -0.0922 -0.0758 -0.0243 ]
+sub 3: 
+       cls[1]: # of pts: 3725, meanNorm = 0.171, kappa = 42.24, mu = [ -0.0009 -0.0836 -0.0815 -0.0629 -0.0486 ]
+       cls[2]: # of pts: 2975, meanNorm = 0.139, kappa = 33.98, mu = [ 0.0091 0.0005 -0.0001 0.0499 0.0108 ]
+       cls[3]: # of pts: 3830, meanNorm = 0.173, kappa = 42.77, mu = [ 0.0646 0.0490 0.0551 0.0686 0.1019 ]
+       cls[4]: # of pts: 2395, meanNorm = 0.153, kappa = 37.52, mu = [ -0.0007 0.0474 0.0081 -0.0074 -0.0169 ]
+       cls[5]: # of pts: 3100, meanNorm = 0.195, kappa = 48.71, mu = [ -0.0433 -0.0393 -0.0738 -0.1118 -0.1550 ]
+sub 4: 
+       cls[1]: # of pts: 3365, meanNorm = 0.165, kappa = 40.67, mu = [ -0.0211 -0.0638 -0.0063 -0.0402 -0.0671 ]
+       cls[2]: # of pts: 2990, meanNorm = 0.168, kappa = 41.59, mu = [ 0.0542 0.0509 0.0461 0.0743 0.1022 ]
+       cls[3]: # of pts: 3175, meanNorm = 0.166, kappa = 41.06, mu = [ 0.0399 -0.0705 -0.1425 -0.0988 0.0068 ]
+       cls[4]: # of pts: 2635, meanNorm = 0.145, kappa = 35.60, mu = [ -0.0041 0.0294 0.0398 0.0019 0.0154 ]
+       cls[5]: # of pts: 3860, meanNorm = 0.163, kappa = 40.22, mu = [ 0.0073 -0.0102 0.0347 0.0497 0.0288 ]
+sub 5: 
+       cls[1]: # of pts: 2930, meanNorm = 0.182, kappa = 45.08, mu = [ -0.0166 -0.0799 -0.0583 -0.1151 -0.1416 ]
+       cls[2]: # of pts: 3035, meanNorm = 0.157, kappa = 38.74, mu = [ -0.0054 -0.0148 -0.0928 -0.0469 -0.0268 ]
+       cls[3]: # of pts: 3495, meanNorm = 0.156, kappa = 38.41, mu = [ 0.0249 -0.0603 0.0218 0.0620 0.0079 ]
+       cls[4]: # of pts: 3520, meanNorm = 0.172, kappa = 42.40, mu = [ 0.0561 0.0690 0.0313 0.0878 0.1008 ]
+       cls[5]: # of pts: 3045, meanNorm = 0.169, kappa = 41.82, mu = [ -0.0049 -0.0177 -0.0843 -0.0748 -0.0271 ]
+sub 6: 
+       cls[1]: # of pts: 3750, meanNorm = 0.160, kappa = 39.28, mu = [ -0.0031 -0.0283 0.0123 0.0258 0.0226 ]
+       cls[2]: # of pts: 2680, meanNorm = 0.171, kappa = 42.30, mu = [ 0.0603 0.0946 0.0030 0.0303 0.0688 ]
+       cls[3]: # of pts: 3755, meanNorm = 0.165, kappa = 40.82, mu = [ 0.0360 -0.0610 -0.0945 -0.0613 -0.0542 ]
+       cls[4]: # of pts: 3110, meanNorm = 0.185, kappa = 46.02, mu = [ -0.0279 -0.0526 -0.0654 -0.1054 -0.1415 ]
+       cls[5]: # of pts: 2730, meanNorm = 0.176, kappa = 43.53, mu = [ 0.0692 0.0161 0.0427 0.0769 0.0505 ]
+sub 7: 
+       cls[1]: # of pts: 3750, meanNorm = 0.160, kappa = 39.36, mu = [ 0.0264 -0.0256 0.0265 0.0477 -0.0139 ]
+       cls[2]: # of pts: 3030, meanNorm = 0.173, kappa = 42.82, mu = [ 0.0336 0.0590 0.0012 0.0922 0.0993 ]
+       cls[3]: # of pts: 2895, meanNorm = 0.175, kappa = 43.36, mu = [ 0.0620 0.0552 0.0003 0.0781 0.0526 ]
+       cls[4]: # of pts: 3185, meanNorm = 0.163, kappa = 40.21, mu = [ -0.0159 -0.0625 -0.0899 -0.0728 -0.0137 ]
+       cls[5]: # of pts: 3165, meanNorm = 0.163, kappa = 40.18, mu = [ -0.0206 0.0036 0.0622 0.0036 -0.0259 ]
+sub 8: 
+       cls[1]: # of pts: 2760, meanNorm = 0.157, kappa = 38.62, mu = [ 0.0119 -0.0722 0.0252 0.0419 0.0127 ]
+       cls[2]: # of pts: 2990, meanNorm = 0.193, kappa = 48.06, mu = [ -0.0454 -0.0473 -0.0632 -0.1120 -0.1528 ]
+       cls[3]: # of pts: 2605, meanNorm = 0.149, kappa = 36.50, mu = [ -0.0066 -0.0113 -0.0930 -0.0761 0.0065 ]
+       cls[4]: # of pts: 3650, meanNorm = 0.176, kappa = 43.55, mu = [ 0.0684 0.0421 0.0491 0.0908 0.1069 ]
+       cls[5]: # of pts: 4020, meanNorm = 0.178, kappa = 44.05, mu = [ 0.0754 0.0826 0.0233 0.0861 0.0740 ]
+sub 9: 
+       cls[1]: # of pts: 2160, meanNorm = 0.187, kappa = 46.48, mu = [ -0.0288 -0.0423 -0.0261 -0.0768 -0.1577 ]
+       cls[2]: # of pts: 4170, meanNorm = 0.173, kappa = 42.83, mu = [ 0.0701 0.0439 0.0243 0.0846 0.0944 ]
+       cls[3]: # of pts: 3470, meanNorm = 0.161, kappa = 39.77, mu = [ 0.0164 -0.0468 -0.1059 -0.0851 -0.0266 ]
+       cls[4]: # of pts: 3030, meanNorm = 0.155, kappa = 38.10, mu = [ 0.0303 -0.0326 0.0011 0.0193 -0.0037 ]
+       cls[5]: # of pts: 3195, meanNorm = 0.157, kappa = 38.58, mu = [ -0.0178 0.0318 0.0482 -0.0036 -0.0453 ]
+sub 10: 
+       cls[1]: # of pts: 2905, meanNorm = 0.152, kappa = 37.33, mu = [ -0.0020 0.0287 0.0241 0.0148 -0.0025 ]
+       cls[2]: # of pts: 3135, meanNorm = 0.164, kappa = 40.41, mu = [ 0.0209 -0.0374 -0.1203 -0.0636 -0.0038 ]
+       cls[3]: # of pts: 3975, meanNorm = 0.179, kappa = 44.24, mu = [ 0.0486 0.0473 0.0565 0.0988 0.0965 ]
+       cls[4]: # of pts: 2680, meanNorm = 0.180, kappa = 44.76, mu = [ -0.0557 -0.0969 -0.0681 -0.0916 -0.1427 ]
+       cls[5]: # of pts: 3330, meanNorm = 0.158, kappa = 38.87, mu = [ -0.0339 -0.0448 -0.0269 0.0577 -0.0191 ]
+sub 11: 
+       cls[1]: # of pts: 3485, meanNorm = 0.162, kappa = 39.97, mu = [ 0.0298 -0.0306 -0.0650 -0.0493 -0.0415 ]
+       cls[2]: # of pts: 4100, meanNorm = 0.171, kappa = 42.27, mu = [ 0.0488 0.0813 0.0344 0.0804 0.0858 ]
+       cls[3]: # of pts: 2775, meanNorm = 0.148, kappa = 36.39, mu = [ 0.0185 -0.0379 0.0028 0.0500 0.0166 ]
+       cls[4]: # of pts: 2140, meanNorm = 0.178, kappa = 44.01, mu = [ -0.0591 -0.0828 -0.0572 -0.1104 -0.0993 ]
+       cls[5]: # of pts: 3525, meanNorm = 0.168, kappa = 41.45, mu = [ -0.0078 0.0321 0.0607 0.0217 -0.0064 ]
+sub 12: 
+       cls[1]: # of pts: 4315, meanNorm = 0.175, kappa = 43.45, mu = [ 0.0078 -0.0623 -0.1142 -0.0867 -0.0202 ]
+       cls[2]: # of pts: 3210, meanNorm = 0.147, kappa = 36.17, mu = [ -0.0238 0.0017 0.0188 -0.0078 -0.0397 ]
+       cls[3]: # of pts: 2100, meanNorm = 0.148, kappa = 36.36, mu = [ -0.0285 -0.1036 -0.0513 -0.0249 -0.0965 ]
+       cls[4]: # of pts: 3585, meanNorm = 0.173, kappa = 42.82, mu = [ 0.0501 0.0924 0.0144 0.0846 0.1068 ]
+       cls[5]: # of pts: 2815, meanNorm = 0.160, kappa = 39.30, mu = [ 0.0263 0.0108 0.0218 0.0454 0.0076 ]
+sub 13: 
+       cls[1]: # of pts: 2135, meanNorm = 0.175, kappa = 43.33, mu = [ -0.0606 -0.0497 -0.0916 -0.0742 -0.1405 ]
+       cls[2]: # of pts: 2765, meanNorm = 0.151, kappa = 37.20, mu = [ 0.0314 0.0001 0.0649 0.0069 0.0416 ]
+       cls[3]: # of pts: 4310, meanNorm = 0.181, kappa = 45.00, mu = [ 0.0675 0.0654 0.0372 0.0724 0.1303 ]
+       cls[4]: # of pts: 4010, meanNorm = 0.164, kappa = 40.31, mu = [ 0.0265 -0.0353 0.0387 0.0448 0.0152 ]
+       cls[5]: # of pts: 2805, meanNorm = 0.155, kappa = 37.99, mu = [ -0.0381 -0.0510 -0.1456 -0.0644 -0.0334 ]
+sub 14: 
+       cls[1]: # of pts: 3005, meanNorm = 0.163, kappa = 40.11, mu = [ 0.0528 -0.0447 -0.0157 0.0310 0.0143 ]
+       cls[2]: # of pts: 3570, meanNorm = 0.178, kappa = 44.23, mu = [ 0.0776 0.0919 0.0541 0.0602 0.0487 ]
+       cls[3]: # of pts: 3375, meanNorm = 0.181, kappa = 44.88, mu = [ 0.0544 0.0781 0.0462 0.0651 0.1209 ]
+       cls[4]: # of pts: 3585, meanNorm = 0.192, kappa = 47.78, mu = [ 0.0011 0.0079 -0.0047 0.1136 0.0996 ]
+       cls[5]: # of pts: 2490, meanNorm = 0.133, kappa = 32.54, mu = [ 0.0377 -0.0451 0.0074 0.0417 -0.0270 ]
+sub 15: 
+       cls[1]: # of pts: 3195, meanNorm = 0.155, kappa = 38.17, mu = [ -0.0137 0.0226 0.0327 -0.0107 0.0099 ]
+       cls[2]: # of pts: 3175, meanNorm = 0.157, kappa = 38.53, mu = [ 0.0002 -0.0843 -0.0722 -0.0364 -0.0148 ]
+       cls[3]: # of pts: 4130, meanNorm = 0.175, kappa = 43.19, mu = [ 0.0329 0.0464 0.0642 0.0672 0.1083 ]
+       cls[4]: # of pts: 2810, meanNorm = 0.163, kappa = 40.13, mu = [ 0.0814 -0.0446 0.0054 0.0073 0.0084 ]
+       cls[5]: # of pts: 2715, meanNorm = 0.154, kappa = 37.95, mu = [ -0.0420 -0.0006 -0.0354 -0.0057 -0.0231 ]
+sub 16: 
+       cls[1]: # of pts: 3045, meanNorm = 0.152, kappa = 37.40, mu = [ 0.0022 -0.0612 -0.1209 -0.0864 0.0411 ]
+       cls[2]: # of pts: 4990, meanNorm = 0.185, kappa = 46.07, mu = [ 0.0659 0.0769 0.0411 0.0868 0.1165 ]
+       cls[3]: # of pts: 3155, meanNorm = 0.156, kappa = 38.43, mu = [ 0.0485 -0.0422 0.0381 0.0664 -0.0099 ]
+       cls[4]: # of pts: 2720, meanNorm = 0.140, kappa = 34.24, mu = [ -0.0220 0.0178 0.0559 0.0376 -0.0150 ]
+       cls[5]: # of pts: 2115, meanNorm = 0.183, kappa = 45.55, mu = [ -0.0649 -0.0740 -0.0306 -0.1199 -0.1013 ]
+EM iteration 7 begin:
+mcsampling(): scan 0 done.
+mcsampling(): scan 5 done.
+mcsampling(): scan 10 done.
+mcsampling(): scan 15 done.
+mcsampling(): scan 20 done.
+EM iteration 7, sampling done. 
+Q1[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q2[mcIdx]: [ -nan -nan -nan -nan -nan ]
+Q3[mcIdx]: [ -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 -16324766.0000 ]
+Q1/E(G)  = -NAN, Q2/E(Z|G) = -NAN, Q3/E(X|Z) = -1.632477E+07, Q2+Q3 = -NAN, Q/E(X,G,Z) = -NAN
+SaveSamples(): File with basename /home/sci/weiliu/dataset/syn2/test/samples/sub saved.
+SaveGrpSamples(): File /home/sci/weiliu/dataset/syn2/test/sample_grp.nii.gz saved.
+EM iteration 7, parameter estimation begin. 
+  C-c C-c
+weiliu@wukong:~/dataset/syn2> 

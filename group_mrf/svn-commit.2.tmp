@@ -1,0 +1,12 @@
+temp save before adding posterior probability map.
+--This line, and those below, will be ignored--
+
+M    utilalt.cxx
+M    segimagealt.cxx
+M    Makefile
+M    alignlabels.cxx
+M    commonalt.h
+M    MCModel.cxx
+M    cmake_install.cmake
+M    subkmeans.cxx
+M    initmrf.cxx

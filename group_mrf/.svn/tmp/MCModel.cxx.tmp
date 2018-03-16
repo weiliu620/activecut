@@ -1,0 +1,596 @@
+#include "commonalt.h"
+#include "MCModel.h"
+#include <boost/math/distributions/students_t.hpp>
+#include <utilalt.h>
+extern twister_base_gen_type mygenerator; 
+
+MCModel::MCModel(std::vector<VnlVectorImageType::Pointer> & fmriVec,
+		 std::vector< std::vector<ImageType3DChar::Pointer> >  & sampleVec,
+		 std::vector<ImageType3DChar::Pointer> &  grpVec,
+		 ImageType3DChar::Pointer maskPtr,
+		 ParStruct par)
+{
+     unsigned subIdx = 0, clsIdx = 0;
+
+     // init members.
+     m_verbose = par.verbose;
+     m_beta_g = par.betag;
+     m_beta_z = par.betaz;
+     m_alpha = par.alpha;
+     m_gamma = par.gamma;
+     m_temperature = 1; // init to 1.
+     m_numSamples = par.numSamples;
+     m_numSubs = sampleVec.size();
+     m_numClusters = par.numClusters;
+
+     // Get time series length.
+     VnlVectorImageType::IndexType fmriIdx;
+     fmriIdx.Fill(0);
+     m_tsLength = fmriVec[0]->GetPixel(fmriIdx).size();
+
+     VnlVectorImageType::SizeType fmriSize = 
+	  fmriVec[0]->GetLargestPossibleRegion().GetSize();
+     ImageType3DChar::SizeType sampleSize = 
+	  sampleVec[0][0]->GetLargestPossibleRegion().GetSize();
+
+     // init m_vmm
+     m_vmm.resize(m_numSubs); 
+     for (subIdx = 0; subIdx < m_numSubs; subIdx++) {
+	  m_vmm[subIdx].comp.resize(m_numClusters);
+	  
+	  for (clsIdx = 0; clsIdx < m_numClusters; clsIdx ++) {
+	       m_vmm[subIdx].comp[clsIdx].mu.set_size(m_tsLength);
+	       m_vmm[subIdx].comp[clsIdx].mu.fill(0);
+	       m_vmm[subIdx].comp[clsIdx].meanNorm = 0;
+	       m_vmm[subIdx].comp[clsIdx].kappa = 0;
+	       m_vmm[subIdx].comp[clsIdx].label = 0;
+	       m_vmm[subIdx].comp[clsIdx].numPoints = 0;
+	  }
+     }
+}
+
+MCModel::~MCModel()
+{
+
+}
+
+int MCModel::printSelf(std::string format)
+{
+     unsigned int clsIdx = 0, subIdx = 0;
+
+     if (format.compare("normal") == 0) {
+
+	  printf("alpha = %.3f, beta_g = %.3f, beta_z = %.3f, gamma = %.3f, temp = %f\n",
+		 m_alpha, m_beta_g, m_beta_z, m_gamma, m_temperature);
+
+	  for (subIdx = 0; subIdx < m_numSubs; subIdx ++) {
+	       printf("sub %i: \n", subIdx + 1);
+	       for (clsIdx = 0; clsIdx < m_numClusters; clsIdx++) {
+		    printf("       cls[%i]: # of pts: %ld, meanNorm = %.3f, kappa = %4.2f, ", 
+			   clsIdx + 1, 
+			   m_vmm[subIdx].comp[clsIdx].numPoints, 
+			   m_vmm[subIdx].comp[clsIdx].meanNorm, 
+			   m_vmm[subIdx].comp[clsIdx].kappa); 
+		    printf("mu = ");
+		    printVnlVector(m_vmm[subIdx].comp[clsIdx].mu, 5);
+	       } // clsIdx
+	  } // subIdx.
+     }
+     else if (format.compare("table") == 0) {
+     }
+     
+     else if (format.compare("mu") == 0) {
+	  for (clsIdx = 0; clsIdx < m_numClusters; clsIdx++) {
+	       printVnlVector(m_vmm[3].comp[clsIdx].mu, 300);
+	  }
+     }
+	  
+     else {
+	  printf("MCModel::print(): print format not recognized.\n");
+     }
+     fflush(stdout);
+     
+     return 0;
+}
+
+
+int MCModel::mcsampling(std::vector<ImageType3DChar::Pointer> & grpVec,
+			std::vector<VnlVectorImageType::Pointer> & fmriVec,
+			ImageType3DChar::Pointer maskPtr,
+			std::vector< std::vector<ImageType3DChar::Pointer> > & sampleVec,
+ 			unsigned burnin)
+{
+     unsigned subIdx = 0;
+     unsigned scanIdx = 0;
+
+     // Destination sample
+     ImageType3DChar::IndexType sampleDestIdx;
+     sampleDestIdx.Fill(0);
+
+     for (scanIdx = 0; scanIdx < burnin + m_numSamples; scanIdx ++) {
+	  // flip between sampling of group and individual subs.
+	  // sampling Z (subject's label)
+#pragma omp parallel for
+	  for (subIdx = 0; subIdx < m_numSubs; subIdx ++) {
+	       // call subject's mcsampling fun.
+	       SamplingSub(grpVec[m_numSamples - 1], fmriVec[subIdx], sampleVec[subIdx][m_numSamples - 1], subIdx);
+
+	  } // subIdx
+
+	  // sampling G (group label)
+	  GrpSampling(grpVec[m_numSamples - 1], sampleVec, maskPtr);
+
+	  // After burnin period, save it to correct place.
+	  if (scanIdx >= burnin) {
+// #pragma omp parallel for
+	       for (subIdx = 0; subIdx < m_numSubs; subIdx ++) {
+		    // deinfe src iterator for copy mc samples.
+		    IteratorType3DChar sampleSrcIt(sampleVec[subIdx][m_numSamples - 1], 
+						   sampleVec[subIdx][m_numSamples - 1]->GetLargestPossibleRegion() );
+
+		    IteratorType3DChar sampleDestIt(sampleVec[subIdx][scanIdx - burnin], 
+						    sampleVec[subIdx][scanIdx - burnin]->GetLargestPossibleRegion() );
+
+		    for (sampleSrcIt.GoToBegin(), sampleDestIt.GoToBegin(); !sampleSrcIt.IsAtEnd(); ++ sampleSrcIt, ++ sampleDestIt) {
+			 sampleDestIt.Set(sampleSrcIt.Get());
+		    }
+	       } // end for.
+
+	       // also save grp label map.
+	       IteratorType3DChar srcGrpIt(grpVec[m_numSamples-1], grpVec[m_numSamples-1]->GetLargestPossibleRegion() );
+	       IteratorType3DChar destGrpIt(grpVec[scanIdx-burnin], grpVec[scanIdx-burnin]->GetLargestPossibleRegion() );	       
+	       for (srcGrpIt.GoToBegin(), destGrpIt.GoToBegin(); !srcGrpIt.IsAtEnd(); ++ srcGrpIt, ++ destGrpIt) {
+		    destGrpIt.Set(srcGrpIt.Get());
+	       }
+	  } // scanIdx >= burnin
+
+	  if (m_verbose >= 3) {
+	       SaveSamples(sampleVec, maskPtr, "sample_sub");
+	       SaveGrpSamples(grpVec, maskPtr, "outGrpLabel.nii.gz");
+	  }
+
+	  if (m_verbose >= 1 && (scanIdx%5 == 0) ) {
+	       printf("mcsampling(): scan %i done.\n", scanIdx);
+
+	       // for (subIdx = 0; subIdx < m_numSubs; subIdx ++) {
+	       // 	    std::string subFileNum = boost::lexical_cast<std::string> (subIdx+1);
+	       // 	    std::string thisSubFilename("lastsample_sub");
+	       // 	    // add sub number.
+	       // 	    thisSubFilename.append(subFileNum);
+	       // 	    thisSubFilename.append(".nii.gz");
+	       // 	    save3dchar(sampleVec[subIdx][m_numSamples - 1], thisSubFilename);
+	       // }
+
+	  }
+     } // scanIdx
+     return 0;
+}
+
+int MCModel::GrpSampling(ImageType3DChar::Pointer grpPtr,
+			 std::vector< std::vector<ImageType3DChar::Pointer> > & sampleVec,
+			 ImageType3DChar::Pointer maskPtr)
+{
+     double p_acpt = 0;
+     double denergy= 0;
+     int cand = 1;
+     int currentLabel = 0;
+
+     //mask
+     IteratorType3DChar maskIt(maskPtr, maskPtr->GetLargestPossibleRegion() );
+
+
+     // Define neighborhood iterator
+     MyBoundCondType constCondition;
+     constCondition.SetConstant(-1);     
+     NeighborhoodIteratorType::RadiusType radius;
+     radius.Fill(1);
+     NeighborhoodIteratorType neiGrpIt(radius, grpPtr, grpPtr->GetLargestPossibleRegion() );
+     neiGrpIt.OverrideBoundaryCondition(&constCondition);
+
+     NeighborhoodIteratorType::OffsetType xplus = {{1,0, 0}};
+     NeighborhoodIteratorType::OffsetType xminus = {{-1, 0, 0}};
+     NeighborhoodIteratorType::OffsetType yplus = {{0, 1, 0}};
+     NeighborhoodIteratorType::OffsetType yminus = {{0, -1, 0}};
+     NeighborhoodIteratorType::OffsetType zplus = {{0, 0, 1}};
+     NeighborhoodIteratorType::OffsetType zminus = {{0, 0, -1}};
+
+     ImageType3DChar::SizeType grpSize = grpPtr->GetLargestPossibleRegion().GetSize();
+
+     // create histogram data block.
+     itk::VariableLengthVector<unsigned short> histVector(m_numClusters);
+
+     ImageType3DVecUS::Pointer histPtr = ImageType3DVecUS::New();
+     ImageType3DVecUS::RegionType histRegion = grpPtr->GetLargestPossibleRegion();
+     histPtr->SetRegions(histRegion);
+     histPtr->SetNumberOfComponentsPerPixel(m_numClusters);
+     histPtr->SetVectorLength(m_numClusters);
+     histPtr->Allocate();
+
+     histVector.Fill(0);
+     histPtr->FillBuffer(histVector);
+     IteratorType3DVecUS histIt(histPtr, histRegion);
+
+     // compute histogram
+     for (unsigned short subIdx = 0; subIdx < m_numSubs; subIdx ++) {
+	  ConstIteratorType3DChar sampleIt(sampleVec[subIdx][m_numSamples - 1], 
+					   sampleVec[subIdx][m_numSamples - 1]->GetLargestPossibleRegion() );
+
+	  for (sampleIt.GoToBegin(), histIt.GoToBegin(); 
+	       !histIt.IsAtEnd(); ++ histIt, ++sampleIt) {
+	       if (sampleIt.Get() >= 0) {
+		    histVector = histIt.Get();
+		    histVector[sampleIt.Get()] ++;
+		    histIt.Set(histVector);
+	       }
+	  } // for sampelIt.
+     } // for subIdx
+
+     // Uniform integer generator.
+     boost::uniform_int<> uni_int(0, m_numClusters - 1); // Uniform distribution of integers.
+     boost::variate_generator<twister_base_gen_type&, boost::uniform_int<> > roll_die(mygenerator, uni_int);
+
+     // Uniform real random generator.
+     boost::uniform_real<> uni_dist(0,1); // uniform distribution.
+     boost::variate_generator<twister_base_gen_type&, boost::uniform_real<> > uni(mygenerator, uni_dist);
+     
+     for (neiGrpIt.GoToBegin(), histIt.GoToBegin(), maskIt.GoToBegin(); 
+	  !histIt.IsAtEnd(); ++ histIt, ++ neiGrpIt, ++ maskIt) {
+	  if (maskIt.Get() > 0) {
+	       currentLabel = neiGrpIt.GetCenterPixel();
+	       cand = roll_die();
+	       denergy = m_alpha * (histIt.Get()[currentLabel] - histIt.Get()[cand])
+
+		    + (int(cand != neiGrpIt.GetPixel(xminus))
+		    - int(currentLabel != neiGrpIt.GetPixel(xminus))
+
+		    + int(cand != neiGrpIt.GetPixel(xplus)) 
+		    - int(currentLabel != neiGrpIt.GetPixel(xplus))
+
+		    + int(cand != neiGrpIt.GetPixel(yminus)) 
+		    - int(currentLabel != neiGrpIt.GetPixel(yminus))
+
+		    + int(cand != neiGrpIt.GetPixel(yplus)) 
+		    - int(currentLabel != neiGrpIt.GetPixel(yplus))
+
+		    + int(cand != neiGrpIt.GetPixel(zminus)) 
+		    - int(currentLabel != neiGrpIt.GetPixel(zminus))
+
+		    + int(cand != neiGrpIt.GetPixel(zplus)) 
+		       - int(currentLabel != neiGrpIt.GetPixel(zplus)) ) * m_beta_g;	       
+
+	       // system temperature.
+	       denergy = denergy / m_temperature;
+	       
+	       if (denergy <= 0) {
+		    neiGrpIt.SetCenterPixel( cand );
+	       }
+	       else {
+		    p_acpt = exp(-denergy);
+		    if (uni() < p_acpt) {
+			 neiGrpIt.SetCenterPixel( cand );
+			 // printf("p_actpt=%f, denergy=%f, currentLable=%i, cand=%i\n", p_acpt, denergy, currentLabel, cand);
+		    }
+	       }
+	  } // maskIt > 0
+     } // neiGrpIt
+     return 0;
+}
+
+
+int MCModel::EstimateMuFromSample(std::vector< std::vector<ImageType3DChar::Pointer> > & sampleVec,
+				  std::vector<VnlVectorImageType::Pointer> & fmriVec,
+				  ImageType3DChar::Pointer maskPtr)
+{
+     unsigned int subIdx = 0;
+
+     // compute mu and numPoints for all sub, all clusters.
+#pragma omp parallel for
+     for (subIdx = 0; subIdx < m_numSubs; subIdx ++) {
+	  estimateMuSubSample(sampleVec[subIdx], fmriVec[subIdx], maskPtr, subIdx);	  
+	  if (m_verbose >= 2) {
+	       printf("EstimateMuFromSample(): estimabeMuSubSample() done for subject %i.\n", subIdx);
+	  }
+     } // for subIdx
+     return 0;
+}
+
+int MCModel::estimateKappa()
+{
+     unsigned clsIdx = 0, subIdx = 0;
+     float kappa = 0, kappa_new = 0;
+     double Ap = 0;
+     float RBar = 0;
+     float Dim = m_tsLength;
+
+     for (subIdx = 0; subIdx < m_numSubs; subIdx ++) {
+	  for (clsIdx = 0; clsIdx < m_numClusters; clsIdx ++) {
+
+	       RBar = m_vmm[subIdx].comp[clsIdx].meanNorm;
+	       kappa_new = RBar * (Dim - RBar * RBar) / (1 - RBar * RBar);
+	       if (kappa_new  == 0 ) {
+		    m_vmm[subIdx].comp[clsIdx].kappa = kappa_new;
+		    continue;
+	       }
+	       
+	       unsigned iter = 0;
+	       do {
+		    iter ++;
+		    kappa = kappa_new;
+		    Ap = exp(logBesselI(Dim/2, kappa) - logBesselI(Dim/2 - 1, kappa));
+		    kappa_new = kappa - ( (Ap - RBar) / (1 - Ap * Ap - (Dim - 1) * Ap / kappa)  );
+		    if (m_verbose >= 3) {
+			 printf("    sub[%i] cls[%i] kappa: %3.1f -> %3.1f\n", subIdx + 1, clsIdx + 1, kappa, kappa_new);
+		    }
+	       }
+	       while(vnl_math_abs(kappa_new - kappa) > 0.01 * kappa && iter < 5);
+	       m_vmm[subIdx].comp[clsIdx].kappa = kappa_new;
+	  } // clsIdx
+     } // subIdx
+
+     return 0;
+}
+
+
+float MCModel::GetTemperature()
+{
+     return m_temperature;
+}
+
+int MCModel::SetTemperature(float newTemp)
+{
+     m_temperature = newTemp;
+     return 0;
+}
+
+
+double MCModel::EstimatePriorPar(std::vector< std::vector<ImageType3DChar::Pointer> > & sampleVec,
+				 std::vector<ImageType3DChar::Pointer> &  grpVec,
+				 ImageType3DChar::Pointer maskPtr)
+{
+     double beta_g_old = m_beta_g, beta_z_old = m_beta_z, alpha_old = m_alpha;
+     double drv1g = 0, drv1z = 0, drv2g = 0, drv2z = 0; // for alpha.
+     IteratorType3DChar maskIt(maskPtr, maskPtr->GetLargestPossibleRegion());
+
+     // create histogram data block.
+     itk::VariableLengthVector<unsigned short> histVector(m_numClusters);
+     histVector.Fill(0);
+     std::vector <ImageType3DVecUS::Pointer> histVec(m_numSamples);
+     ImageType3DVecUS::RegionType histRegion = maskPtr->GetLargestPossibleRegion();
+     for (unsigned mcIdx = 0; mcIdx < m_numSamples; mcIdx ++) {
+	  histVec[mcIdx] = ImageType3DVecUS::New();
+	  histVec[mcIdx]->SetRegions(histRegion);
+	  histVec[mcIdx]->SetNumberOfComponentsPerPixel(m_numClusters);
+	  histVec[mcIdx]->SetVectorLength(m_numClusters);
+	  histVec[mcIdx]->Allocate();
+	  histVec[mcIdx]->FillBuffer(histVector);
+     }
+
+     // compute histogram
+     for (unsigned short mcIdx = 0; mcIdx < m_numSamples; mcIdx ++) {
+	  IteratorType3DVecUS histIt(histVec[mcIdx], histRegion);
+	  for (unsigned subIdx = 0; subIdx < m_numSubs; subIdx ++) {
+	       ConstIteratorType3DChar sampleIt(sampleVec[subIdx][mcIdx], sampleVec[subIdx][mcIdx]->GetLargestPossibleRegion() );
+
+	       for (sampleIt.GoToBegin(), histIt.GoToBegin(), maskIt.GoToBegin(); 
+		    !maskIt.IsAtEnd(); ++ histIt, ++sampleIt, ++ maskIt) {
+		    if (maskIt.Get() > 0) {
+			 histVector = histIt.Get();
+			 histVector[sampleIt.Get()] ++;
+			 histIt.Set(histVector);
+		    }
+	       } // for sampelIt.
+	  } // for subIdx
+     } // mcIdx
+
+     // Estimate alpha, beta.
+     double Q1 = 0, Q2 = 0, Q1_old = 0, Q2_old = 0;;
+     unsigned numIter = 0;
+     do {
+     	  Q1_old = GrpBetaDrv(grpVec, sampleVec, histVec, maskPtr, drv1g, drv2g);
+     	  Q2_old = SubBetaDrv(grpVec, sampleVec, maskPtr, drv1z, drv2z);
+     	  beta_g_old = m_beta_g;
+     	  m_beta_g = beta_g_old - (drv1g + drv1z)/(drv2g+drv2z);
+     	  m_beta_z = m_beta_g;
+
+     	  Q1 = GrpBetaDrv(grpVec, sampleVec, histVec, maskPtr, drv1g, drv2g);
+     	  Q2 = SubBetaDrv(grpVec, sampleVec, maskPtr, drv1z, drv2z);
+
+     	  if (m_verbose >= 1) {
+     	       printf("    beta: %5.4f -> %5.4f. E(G,Z): %.3f -> %.3f. drv1 = %.4f, drv2 = %.4f\n", beta_g_old, m_beta_g, (Q1_old+Q2_old), (Q1+Q2), (drv1g+drv1z), (drv2g+drv2z));
+     	  }
+
+     	  Q1_old = GrpAlphaDrv(grpVec, sampleVec, histVec, maskPtr, drv1g, drv2g);
+     	  Q2_old = SubAlphaDrv(grpVec, sampleVec, maskPtr, drv1z, drv2z);
+     	  alpha_old = m_alpha;
+
+     	  // the derivative of (q1+q2) is equal to the sum of their
+     	  // derivatives.
+     	  m_alpha = alpha_old - (drv1g + drv1z)/(drv2g+drv2z);
+     	  Q1 = GrpAlphaDrv(grpVec, sampleVec, histVec, maskPtr, drv1g, drv2g);
+     	  Q2 = SubAlphaDrv(grpVec, sampleVec, maskPtr, drv1z, drv2z);
+
+     	  if (m_alpha > 5 ) {
+     	       m_alpha = 5;
+     	       printf("alpha over 5. Keep it at 5.\n");
+     	  }
+     	  if (m_alpha < 0 ) {
+     	       printf("alpha small than zero. Somethign is wrong. Check it.\n");
+     	       m_alpha = alpha_old / 2;
+     	  }
+
+     	  if (m_verbose >= 1) {
+     	       printf("    alpha: %5.4f -> %5.4f. E(G,Z): %.3f -> %.3f. drv1 = %.4f, drv2 = %.4f\n", alpha_old, m_alpha, (Q1_old+Q2_old), (Q1+Q2), (drv1g+drv1z), (drv2g+drv2z));
+     	  }
+
+     	  if (m_verbose >= 0) {
+	       printf("beta_g = %5.4f, beta_z = %5.4f, alpha = %5.4f, Q1 (E(G)) = %.3f, Q2 (E(Z|G) = %.3f, (Q1+Q2) = %.3f\n", m_beta_g, m_beta_z, m_alpha, Q1, Q2,(Q1+Q2));
+	  }
+     	  numIter ++;
+     } 
+     while (fabs(m_beta_z - beta_z_old) + fabs(m_beta_g - beta_g_old) + fabs(m_alpha - alpha_old) > 1e-5 && numIter <= 2); 
+
+     if(m_verbose >= 2) {
+	  Q1_old = GrpBetaDrv(grpVec, sampleVec, histVec, maskPtr, drv1g, drv2g);
+     	  Q2_old = SubBetaDrv(grpVec, sampleVec, maskPtr, drv1z, drv2z);
+	  printf("EstimatePriorPar(), Q1 = %E, Q2 = %E\n", Q1_old, Q2_old);
+     }
+     return (Q1+Q2);
+}
+
+double MCModel::GrpBetaDrv(std::vector<ImageType3DChar::Pointer> &  grpVec,
+			std::vector< std::vector<ImageType3DChar::Pointer> > & sampleVec,
+			std::vector <ImageType3DVecUS::Pointer> & histVec,
+			ImageType3DChar::Pointer maskPtr,
+			double & drv1, double & drv2)
+{
+     // mask image.
+     IteratorType3DChar maskIt(maskPtr, maskPtr->GetLargestPossibleRegion() );
+
+     MyBoundCondType constCondition;
+     constCondition.SetConstant(-1);
+     NeighborhoodIteratorType::RadiusType radius;
+     radius.Fill(1);
+
+     NeighborhoodIteratorType::OffsetType xplus = {{1,0, 0}};
+     NeighborhoodIteratorType::OffsetType xminus = {{-1, 0, 0}};
+     NeighborhoodIteratorType::OffsetType yplus = {{0, 1, 0}};
+     NeighborhoodIteratorType::OffsetType yminus = {{0, -1, 0}};
+     NeighborhoodIteratorType::OffsetType zplus = {{0, 0, 1}};
+     NeighborhoodIteratorType::OffsetType zminus = {{0, 0, -1}};
+
+     double a = 0, b = 0, M0 = 0, M1 = 0, M2 = 0, acur = 0, bcur = 0;
+     unsigned curLabel = 0;
+     unsigned clsIdx = 0;
+     drv1 = 0, drv2 = 0;
+     double Q1 = 0;
+     for (unsigned short sampleIdx = 0; sampleIdx < m_numSamples; sampleIdx ++) {
+	  NeighborhoodIteratorType neiGrpIt(radius, grpVec[sampleIdx], grpVec[sampleIdx]->GetLargestPossibleRegion() );
+	  neiGrpIt.OverrideBoundaryCondition(&constCondition);
+	  IteratorType3DVecUS histIt(histVec[sampleIdx], histVec[sampleIdx]->GetLargestPossibleRegion() );
+
+	  for (neiGrpIt.GoToBegin(), maskIt.GoToBegin(); !maskIt.IsAtEnd(); ++ neiGrpIt, ++maskIt) {
+	       if (maskIt.Get() > 0) {
+		    curLabel = neiGrpIt.GetCenterPixel();
+		    M0 = 0, M1 = 0, M2 = 0;
+		    for (clsIdx = 0; clsIdx < m_numClusters; clsIdx ++) {
+			 a = (double)(histIt.Get()[clsIdx]) - m_numSubs;
+			 b = - (int(neiGrpIt.GetPixel(xminus) >= 0 && clsIdx != neiGrpIt.GetPixel(xminus) )
+				+ int(neiGrpIt.GetPixel(xplus) >= 0 && clsIdx != neiGrpIt.GetPixel(xplus))
+				+ int(neiGrpIt.GetPixel(yminus) >= 0 && clsIdx != neiGrpIt.GetPixel(yminus))
+				+ int(neiGrpIt.GetPixel(yplus) >= 0 && clsIdx != neiGrpIt.GetPixel(yplus))
+				+ int(neiGrpIt.GetPixel(zminus) >= 0 && clsIdx != neiGrpIt.GetPixel(zminus))
+				+ int(neiGrpIt.GetPixel(zplus) >= 0 && clsIdx != neiGrpIt.GetPixel(zplus)) );
+
+			 if (clsIdx == curLabel) {
+			      acur = a;
+			      bcur = b;
+			 }
+			 M0 += exp (a * m_alpha + b * m_beta_g);
+			 M1 += b * exp(a * m_alpha + b * m_beta_g);
+			 M2 += b * b * exp(a * m_alpha + b * m_beta_g);
+
+		    } // for clsIdx
+		    drv1 = drv1 - bcur + M1 / M0;
+		    drv2 += (M2 * M0 - M1 * M1)/ (M0 * M0);
+		    Q1 = Q1 + (- acur * m_alpha - bcur * m_beta_g + log(M0)) / m_numSamples;
+	       }  // maskIt > 0
+	  } // for maskIt
+
+     } // sampleIdx
+     
+     return Q1;
+}
+
+double MCModel::SubBetaDrv(std::vector<ImageType3DChar::Pointer> &  grpVec,
+			std::vector< std::vector<ImageType3DChar::Pointer> > & sampleVec,
+			ImageType3DChar::Pointer maskPtr,
+			double & drv1, double & drv2)
+{
+     vnl_vector<double> alldrv1(m_numSubs, 0), alldrv2(m_numSubs, 0), allQ2(m_numSubs, 0);
+#pragma omp parallel for
+     for (unsigned subIdx = 0; subIdx < m_numSubs; subIdx ++) {
+	  allQ2[subIdx] = SubBetaDrvPerSub(grpVec, sampleVec[subIdx], maskPtr, alldrv1[subIdx], alldrv2[subIdx]);
+     }
+     drv1 = alldrv1.sum();
+     drv2 = alldrv2.sum();
+     return allQ2.sum();
+}
+
+double MCModel::GrpAlphaDrv(std::vector<ImageType3DChar::Pointer> &  grpVec,
+			 std::vector< std::vector<ImageType3DChar::Pointer> > & sampleVec,
+			 std::vector <ImageType3DVecUS::Pointer> & histVec,
+			 ImageType3DChar::Pointer maskPtr,
+			 double & drv1, double & drv2)
+{
+     // mask image.
+     IteratorType3DChar maskIt(maskPtr, maskPtr->GetLargestPossibleRegion() );
+
+     MyBoundCondType constCondition;
+     constCondition.SetConstant(-1);
+     NeighborhoodIteratorType::RadiusType radius;
+     radius.Fill(1);
+
+     NeighborhoodIteratorType::OffsetType xplus = {{1,0, 0}};
+     NeighborhoodIteratorType::OffsetType xminus = {{-1, 0, 0}};
+     NeighborhoodIteratorType::OffsetType yplus = {{0, 1, 0}};
+     NeighborhoodIteratorType::OffsetType yminus = {{0, -1, 0}};
+     NeighborhoodIteratorType::OffsetType zplus = {{0, 0, 1}};
+     NeighborhoodIteratorType::OffsetType zminus = {{0, 0, -1}};
+
+     double a = 0, b = 0, M0 = 0, M1 = 0, M2 = 0, acur = 0, bcur = 0;
+     unsigned curSubLabel = 0, grpLabel = 0;
+     unsigned clsIdx = 0;
+     drv1 = 0, drv2 = 0;
+     double Q1 = 0;
+     for (unsigned short sampleIdx = 0; sampleIdx < m_numSamples; sampleIdx ++) {
+	  NeighborhoodIteratorType neiGrpIt(radius, grpVec[sampleIdx], grpVec[sampleIdx]->GetLargestPossibleRegion() );
+	  neiGrpIt.OverrideBoundaryCondition(&constCondition);
+	  IteratorType3DVecUS histIt(histVec[sampleIdx], histVec[sampleIdx]->GetLargestPossibleRegion() );
+
+	  for (neiGrpIt.GoToBegin(), maskIt.GoToBegin(); !maskIt.IsAtEnd(); ++ neiGrpIt, ++ maskIt) {
+	       if (maskIt.Get() > 0) {
+		    curSubLabel = neiGrpIt.GetCenterPixel();
+
+		    M0 = 0, M1 = 0, M2 = 0;
+		    for (clsIdx = 0; clsIdx < m_numClusters; clsIdx ++) {
+			 a = (double)(histIt.Get()[clsIdx]) - m_numSubs;
+			 b = - (int(neiGrpIt.GetPixel(xminus) >= 0 && clsIdx != neiGrpIt.GetPixel(xminus) )
+				+ int(neiGrpIt.GetPixel(xplus) >= 0 && clsIdx != neiGrpIt.GetPixel(xplus))
+				+ int(neiGrpIt.GetPixel(yminus) >= 0 && clsIdx != neiGrpIt.GetPixel(yminus))
+				+ int(neiGrpIt.GetPixel(yplus) >= 0 && clsIdx != neiGrpIt.GetPixel(yplus))
+				+ int(neiGrpIt.GetPixel(zminus) >= 0 && clsIdx != neiGrpIt.GetPixel(zminus))
+				+ int(neiGrpIt.GetPixel(zplus) >= 0 && clsIdx != neiGrpIt.GetPixel(zplus)) );
+
+			 if (clsIdx == curSubLabel) {
+			      acur = a;
+			      bcur = b;
+			 }
+			 M0 += exp (a * m_alpha + b * m_beta_g);
+			 M1 += a * exp(a * m_alpha + b * m_beta_g);
+			 M2 += a * a * exp(a * m_alpha + b * m_beta_g);
+		    } // for clsIdx
+		    drv1 += (- acur + M1 / M0);
+		    drv2 += (M2 * M0 - M1 * M1)/ (M0 * M0);
+		    Q1 = Q1 + (-acur * m_alpha - bcur * m_beta_g + log(M0)) / m_numSamples;
+	       }  // maskIt > 0
+	  } // for maskIt
+     } // sampleIdx
+
+     return Q1;
+}
+
+
+double MCModel::SubAlphaDrv(std::vector<ImageType3DChar::Pointer> &  grpVec,
+			 std::vector< std::vector<ImageType3DChar::Pointer> > & sampleVec,
+			 ImageType3DChar::Pointer maskPtr,
+			 double & drv1, double & drv2)
+{
+     vnl_vector<double> alldrv1(m_numSubs, 0), alldrv2(m_numSubs, 0), allQ2(m_numSubs, 0);
+#pragma omp parallel for
+     for (unsigned subIdx = 0; subIdx < m_numSubs; subIdx ++) {
+	  allQ2[subIdx] = SubAlphaDrvPerSub(grpVec, sampleVec[subIdx], maskPtr, alldrv1[subIdx], alldrv2[subIdx]);
+     }
+     drv1 = alldrv1.sum();
+     drv2 = alldrv2.sum();
+     return allQ2.sum();
+}
