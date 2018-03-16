@@ -1,0 +1,69 @@
+@article{boykov2001fast,
+  title={Fast approximate energy minimization via graph cuts},
+  author={Boykov, Yuri and Veksler, Olga and Zabih, Ramin},
+  journal={IEEE PAMI},
+  volume={23},
+  number={11},
+  pages={1222--1239},
+  year={2001},
+  publisher={IEEE}
+}
+
+@inproceedings{rother2004grabcut,
+  title={Grabcut: Interactive foreground extraction using iterated graph cuts},
+  author={Rother, Carsten and Kolmogorov, Vladimir and Blake, Andrew},
+  booktitle={ACM TOG},
+  volume={23},
+  number={3},
+  pages={309--314},
+  year={2004},
+  @Comment organization={ACM}
+}
+
+@incollection{top2011active,
+  title={Active learning for interactive 3D image segmentation},
+  author={Top, Andrew and Hamarneh, Ghassan and Abugharbieh, Rafeef},
+  booktitle={MICCAI 2011},
+  pages={603--610},
+  year={2011},
+  publisher={Springer}
+}
+
+@inproceedings{iglesias2011combining,
+  title={Combining generative and discriminative models for semantic segmentation of ct scans via active learning},
+  author={Iglesias, Juan Eugenio and Konukoglu, Ender and Montillo, Albert and Tu, Zhuowen and Criminisi, Antonio},
+  booktitle={IPMI},
+  pages={25--36},
+  year={2011},
+  organization={Springer}
+}
+
+@inproceedings{veeraraghavan2011active,
+  title={Active learning guided interactions for consistent image segmentation with reduced user interactions},
+  author={Veeraraghavan, Harini and Miller, James V},
+  booktitle={IEEE ISBI},
+  pages={1645--1648},
+  year={2011},
+  @Comment organization={IEEE}
+}
+
+@inproceedings{WangMBIA2013,
+author = {Wang, Bo and Prastawa, Marcel and Saha, Avishek and Awate, Suyash P
+                  and Irimia, Andrei and Chambers, Micah C and Vespa, Paul M and
+                  Van Horn, John D and Pascucci, Valerio and Gerig, Guido},
+title = {Modeling 4D Changes in Pathological Anatomy Using Domain Adaptation:
+                  Analysis of TBI Imaging Using a Tumor Database},
+booktitle = {MBIA},
+pages = {31-39},
+year = {2013},
+publisher={Springer}
+} 
+
+@article{irimia2013structural,
+  title={The structural, connectomic and network covariance of the human brain},
+  author={Irimia, Andrei and Van Horn, John D},
+  journal={NeuroImage},
+  volume={66},
+  pages={489--499},
+  year={2013}
+}

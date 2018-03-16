@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/TeX Live for opensuse.org)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: ISBI_2014_acCut.aux
+The style file: IEEEbib.bst
+Database file #1: strings.bib
+Database file #2: refs.bib
+Warning--can't use both volume and number fields in rother2004grabcut
+You've used 7 entries,
+            1838 wiz_defined-function locations,
+            502 strings with 5087 characters,
+and the built_in function-call counts, 2575 in all, are:
+= -- 235
+> -- 122
+< -- 6
++ -- 43
+- -- 36
+* -- 201
+:= -- 370
+add.period$ -- 10
+call.type$ -- 7
+change.case$ -- 7
+chr.to.int$ -- 0
+cite$ -- 8
+duplicate$ -- 120
+empty$ -- 233
+format.name$ -- 36
+if$ -- 602
+int.to.chr$ -- 0
+int.to.str$ -- 7
+missing$ -- 7
+newline$ -- 38
+num.names$ -- 7
+pop$ -- 29
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 76
+stack$ -- 0
+substring$ -- 195
+swap$ -- 56
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 25
+width$ -- 8
+write$ -- 83
+(There was 1 warning)

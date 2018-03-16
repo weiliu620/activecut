@@ -1,0 +1,101 @@
+@article{boykov2001fast,
+  title={Fast approximate energy minimization via graph cuts},
+  author={Boykov, Yuri and Veksler, Olga and Zabih, Ramin},
+  journal={Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  volume={23},
+  number={11},
+  pages={1222--1239},
+  year={2001},
+  publisher={IEEE}
+}
+
+@inproceedings{rother2004grabcut,
+  title={Grabcut: Interactive foreground extraction using iterated graph cuts},
+  author={Rother, Carsten and Kolmogorov, Vladimir and Blake, Andrew},
+  booktitle={ACM Transactions on Graphics (TOG)},
+  volume={23},
+  number={3},
+  pages={309--314},
+  year={2004},
+  organization={ACM}
+}
+
+@incollection{top2011active,
+  title={Active learning for interactive 3D image segmentation},
+  author={Top, Andrew and Hamarneh, Ghassan and Abugharbieh, Rafeef},
+  booktitle={Medical Image Computing and Computer-Assisted Intervention--MICCAI 2011},
+  pages={603--610},
+  year={2011},
+  publisher={Springer}
+}
+
+@inproceedings{iglesias2011combining,
+  title={Combining generative and discriminative models for semantic segmentation of ct scans via active learning},
+  author={Iglesias, Juan Eugenio and Konukoglu, Ender and Montillo, Albert and Tu, Zhuowen and Criminisi, Antonio},
+  booktitle={Information Processing in Medical Imaging},
+  pages={25--36},
+  year={2011},
+  organization={Springer}
+}
+
+@inproceedings{veeraraghavan2011active,
+  title={Active learning guided interactions for consistent image segmentation with reduced user interactions},
+  author={Veeraraghavan, Harini and Miller, James V},
+  booktitle={Biomedical Imaging: From Nano to Macro, 2011 IEEE International Symposium on},
+  pages={1645--1648},
+  year={2011},
+  organization={IEEE}
+}
+
+@article{achanta2010slic,
+  title={Slic superpixels},
+  author={Achanta, Radhakrishna and Shaji, Appu and Smith, Kevin and Lucchi, Aurelien and Fua, Pascal and S{\"u}sstrunk, Sabine},
+  journal={{\'E}cole Polytechnique F{\'e}d{\'e}ral de Lausssanne (EPFL), Tech. Rep},
+  volume={149300},
+  year={2010},
+  publisher={Citeseer}
+}
+
+@misc{Authors13,
+ author = {Authors},
+ title = {The frobnicatable foo filter},
+ note = {Face and Gesture  submission ID 324. Supplied as additional material {\tt fg324.pdf}},
+ year = 2013
+}
+
+@misc{Authors13b,
+ author = {Authors},
+ title = {Frobnication tutorial},
+ note = {Supplied as additional material {\tt tr.pdf}},
+ year = 2013
+}
+
+@article{Alpher02,
+author = {A. Alpher},
+title = {Frobnication},
+journal = {Journal of Foo},
+volume = 12, 
+number = 1, 
+pages = {234--778}, 
+year = 2002
+}
+
+@article{Alpher03,
+author = {A. Alpher and  J.~P.~N. Fotheringham-Smythe},
+title = {Frobnication revisited},
+journal = {Journal of Foo},
+volume = 13, 
+number = 1, 
+pages = {234--778}, 
+year = 2003
+}
+
+@article{Alpher04,
+author = {A. Alpher and J.~P.~N. Fotheringham-Smythe and G. Gamow},
+title = {Can a machine frobnicate?},
+journal = {Journal of Foo},
+volume = 14, 
+number = 1, 
+pages = {234--778}, 
+year = 2004
+}

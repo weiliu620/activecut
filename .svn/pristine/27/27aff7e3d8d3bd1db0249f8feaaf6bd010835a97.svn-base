@@ -1,0 +1,92 @@
+#include <common.h>
+#include <utility.h>
+
+namespace po = boost::program_options;
+
+int main(int argc, char* argv[])
+{
+     // std::string t1_file, t2_file, flair_file, gre_file, swi_file;
+     std::string  parcel_map_file, mask_file;
+
+     // program options.
+     po::options_description mydesc("Options can only used at commandline");
+     mydesc.add_options()
+	  ("help,h", "make fake patches map.")
+	  ("mask,m", po::value<std::string>(&mask_file),
+	   "Binary mask file. ")
+
+	  ("parcel,p", po::value<std::string>(&parcel_map_file),
+	   "A 3D volume image giving the parcellation of the brain. Values in the image is [1, N], meaning N super-pixels. This is also use as a mask image. Outside of the brain is zero.")
+	  ;
+
+     po::variables_map vm;        
+     po::store(po::parse_command_line(argc, argv, mydesc), vm);
+     po::notify(vm);    
+
+     try {
+	  if ( (vm.count("help")) | (argc == 1) ) {
+	       std::cout << "Usage: grabcut [options]\n";
+	       std::cout << mydesc << "\n";
+	       return 0;
+	  }
+     }
+     catch(std::exception& e) {
+	  std::cout << e.what() << "\n";
+	  return 1;
+     }    
+
+     // read mask. 
+     ReaderType3DU::Pointer maskReader = ReaderType3DU::New();
+     maskReader->SetFileName(mask_file);
+     maskReader->Update();
+     ImageType3DU::Pointer maskPtr = maskReader->GetOutput();
+     ImageType3DU::SizeType maskSize = maskPtr->GetLargestPossibleRegion().GetSize();
+     IteratorType3DU maskIt(maskPtr, maskPtr->GetLargestPossibleRegion());
+
+     // define some variables used for initializing output images. 
+     ImageType3DU::IndexType start;
+     start.Fill( 0 );
+     ImageType3DU::SizeType volSize = maskSize; 
+     ImageType3DU::RegionType volRegion;
+     volRegion.SetSize(volSize);
+     volRegion.SetIndex(start);
+
+     // create a parcel image
+     ImageType3DI::Pointer parcelPtr = ImageType3DI::New();
+     parcelPtr->SetRegions(volRegion);
+     parcelPtr->Allocate();
+     parcelPtr->FillBuffer( 0 ); // init to zero.
+     IteratorType3DI parcelIt(parcelPtr, parcelPtr->GetLargestPossibleRegion());
+
+     unsigned patch_id = 0;
+     for (parcelIt.GoToBegin(), maskIt.GoToBegin(); !parcelIt.IsAtEnd(); ++ parcelIt, ++ maskIt) {
+	  if (maskIt.Get() > 0 ) { 
+	       patch_id ++;
+	       parcelIt.Set(patch_id);
+	  }
+     }
+     printf("Total number of patches: %i\n", patch_id);
+
+     WriterType3DI::Pointer writer = WriterType3DI::New();
+	  
+     writer->SetInput(parcelPtr);
+     writer->SetFileName(parcel_map_file);
+     try 
+     { 
+	  writer->Update(); 
+     } 
+     catch( itk::ExceptionObject & err ) 
+     { 
+	  std::cerr << "ExceptionObject caught !" << std::endl; 
+	  std::cerr << err << std::endl; 
+	  return EXIT_FAILURE;
+     } 
+
+     std::cout << "make_fake_patches(): File " << parcel_map_file << " saved.\n";
+
+     return 0;
+
+}
+
+
+

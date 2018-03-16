@@ -1,0 +1,296 @@
+% Template for ISBI-2012 paper; to be used with:
+%          spconf.sty  - ICASSP/ICIP LaTeX style file, and
+%          IEEEbib.bst - IEEE bibliography style file.
+% --------------------------------------------------------------------------
+\documentclass{article}
+\usepackage{spconf,amsmath,graphicx}
+\usepackage{amssymb}
+
+%% % For algorithms
+%% \usepackage{algorithm}
+%% \usepackage{algorithmic}
+
+%% % For text color
+%% \usepackage{color}
+%% \usepackage{multirow}
+%% \usepackage{tabu}
+
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\mat}[1]{\text{\bf #1}}
+
+% Title.
+% ------
+\title{Active learning based Graphcuts segmentation for modeling pathological
+  anatomy: A study on TBI imaging }
+%% \title{Traumatic Brain Image Segmentation: An Active Learning Approach}
+%
+% Single address.
+% ---------------
+\name{Bo Wang$^{\dag,\ddag}$, Wei Liu$^{\dag,\ddag}$, Marcel
+  Prastawa$^{\dag,\ddag}$, Andrei Irimia$^{\S}$, \vspace*{-1.5ex}}
+
+\nameLots{Paul M. Vespa$^{\natural}$, John D. van Horn$^{\S}$, P. Thomas
+  Fletcher$^{\dag,\ddag}$, Guido Gerig$^{\dag,\ddag}$\vspace*{-1ex}\sthanks{
+    Supported by grants: National Alliance for Medical Image Computing (NA-MIC)
+    U54 EB005149 (GG) and the Utah Science Technology and Research (USTAR)
+    initiative at the University of Utah.  }}
+%This work is part of the National Alliance for Medical Image Computing (NAMIC),
+%funded by the National Institutes of Health through the NIH %Roadmap for
+%Medical Research, Grant U54 EB005149.
+
+\address{
+\begin{tabular}{cc}
+$^{\dag}$ Scientific Computing and Imaging Institute, &
+$^{\S}$ Institute for Neuroimaging and Informatics, USC \\
+$^{\ddag}$ School of Computing, University of Utah & $^{\natural}$ Brain Injury Research Center, UCLA
+\end{tabular}
+}
+
+\begin{document}
+
+%
+\maketitle
+%
+\begin{abstract}
+% we need to rewrite the abstract so it is more concise. We just begin with 'We
+% propose a ...'.
+Recently graph cuts based image segmentation methods have been successfully
+applied to computer vision and medical imaging fields.  The user-interactive
+nature of these methods allow user to iteratively refine the current
+segmentation to improve the result. However, without any guidance or suggestion
+from the algorithm itself, the user interaction can be viewed as a passive
+process and it can take much longer time to get a user desired result. Moreover,
+most of the time, graph cuts based methods are designed to segment single object
+in the image/volume which is not appropriate to multi-object segmentation. Some
+researchers have proposed to use active learning to make suggestion to users at
+each iteration of the graph cuts based algorithm. However, the framework only
+works for single object segmentation which is difficult to extend to the
+multi-object scenario. In the paper, we propose a unified framework to integrate
+active learning to graph cuts algorithm for multi-object segmentation tasks. To
+enforce the smoothness of the segmentation, we use both MRF and spatial priors
+(in the case we have).
+\end{abstract}
+%
+\begin{keywords}
+active learning, graph cuts, longitudinal MRI, Markov Random Fields,
+semi-supervised learning, \end{keywords}
+%
+
+\section{Introduction}
+\label{sec:intro}
+
+Graph cuts based user-interactive image segmentation methods have been
+successfully applied to computer vision, computer graphics, and medical imaging
+fields \cite{boykov2001fast,rother2004grabcut}. For some complex images, a
+standalone computer algorithm can not achieve good segmentation without a human
+expert's involvemnet. GrabCut method [reference] is a powerful tool for
+integrating human experts' knowledge and the computer algorithm's power. In
+GrabCut, one typically gives an initial guess of the region of interest, for
+example a bounding box. The algorithm estimates an globally optimal boundary
+between the foreground and background regions. The user then inspects the
+segmentation results, and adjust the boundary by drawing a region as a hard
+constraint. Such process works well on two dimensional natural images, as human
+being can usually quickly find the incorrectly classified regions. However, the
+process will be a significant burden in 3D volume image since the user has to
+visually inspect each slice and correct it.
+
+% issues of grabcuts, 2d->3d, passive-->active.
+One reason of such a burdening interaction process is the process is entirely
+based on user's active inspection and correction. The algorithm is in a
+\emph{passive learning} state, taking whatever the user gives as
+input. Therefore, the user has to take the responsibility of looking for
+possible multiple objects, and the GrabCut algorithm refines the boundaries of
+the candidate objects. This passive learning process is the bottle network of
+the GrabCut algorithm when applied in 3D data.
+
+% existing algorithm's issue: large false positive. 
+
+% Motivate our methods. active learning, multiple objects, MRF prior, query
+% score, low false positive, low user interaction workload. Global optimum
+% (graphcuts).
+
+In this work we propose a new method that uses active learning technique for
+interactive segmentation of the Traumatic brain injury (TBI) images. We observe
+the TBI image segmentation is a complex task due to its multiple lesion regions,
+multi-modality, and lack of prior knowledge of lesions' location. The
+state-of-art image segmentation algorithms often fail to find the true lesion
+regions, with high false-positive rate for single lesion detection, and high
+% why semi-supervised approach is necessary.
+false-negative rate in multiple lesion detection. We therefore use a
+semi-supervised approach based on graph cuts. We note a little user input at the
+right time and right place can significantly improve the algorithm's
+performance, and we adopt a
+% hmm here may need revision.
+minimalist's philosophy such that out algorithm need the least amount of user's
+involvement. We make it possible by using the \emph{active learning} concept. By
+active learning, the algorithm sends query to user on the most important data
+point. As a result, he user's response to such query will be the most
+informative, therefore the number of user interaction is minimized before the
+algorithm reaches certain estimation accuracy. Even better, the algorithm has
+the potential of automatically classifying the unlabeled data, and put them into
+the pool of user labeled data for re-learn the model parameters. This further
+decrease the user involvement, without losing segmentation accuracy. We refer
+the proposed algorithm as \emph{active-cut}. 
+
+Another contribution of work is the algorithm is able to detect multiple lesion
+objects. Standard graph cut and GrabCut algorithm can only detect one
+object. Our active-cut algorithm can learn the model from a simple user
+initialization, and find the candidate objects and submit to user for
+inspection. Contrary to the standard semi-supervised segmentation method such as
+GrabCut, the user is in an passive state with out method, and just choose a
+'yes' or 'no' for the candidates. The active-cut algorithm will do the remaining
+work including refining the candidate objects, re-learning model parameters and
+re-running graph cut algorithm for a globally optimal map.
+
+The last contribution of our work is the introduction of the spatial context
+constraints by Markov random field (MRF). Besides careful definition the energy
+term of the graph cut's objective function to get smooth boundary between normal
+regions and lesion regions, we also define a MRF prior within the normal regions
+and within lesion regions. By doing this, the label map of gray matter, white
+matter and CSF in the normal regions will be piecewise constant, as well as the
+edema and bleeding regions in the lesion regions. We also define the MRF on the
+candidate objects submitted to the user, so the candidates will be connected
+components with smooth boundary. These MRF prior reflect our prior knowledge of
+the TBI images' segmentation map.
+
+% Need to beiefly talk about registration. 
+
+% some related work. and compare them with ours, to show ours is better!
+Several researchers have applied active learning to image segmentation
+\cite{top2011active,iglesias2011combining,veeraraghavan2011active}.
+Veeraraghavan et al.\cite{veeraraghavan2011active} proposed an algorithm in
+which segmentation is performed by grow cut and uncertainty of segmentation is
+estimated by SVM to give suggestion to user. The drawbacks of this method are:
+the segmentation and uncertainty estimation are separated, the algorithm is for
+single object segmentation, and the suggestion for user are pixels which are not
+informative and not compact.  We propose a new objective function for both graph
+cuts segmentation and uncertainty estimation for active learning which naturally
+put both components into one unified framework.
+
+\section{Method}
+\label{sec:method}
+
+The following is an overview of the pipeline of the proposed algorithm.
+
+\begin{figure} [ht]
+\centering
+\includegraphics[width=4.5cm]{./figures/pipeline_pic}
+\caption{Flowchart of the proposed algorithm.}
+\label{fig:flowchart}
+\end{figure}
+
+\subsection{Image segmentation by GrabCut}
+Following GrabCut [reference], we build two mixture of Gaussian model for the
+normal brain regions and the lesion regions. We use the expectation maximization
+(EM) method to estimate both the class labels and the model parameters. In the
+graph cut step, the algorithm takes model parameters as input, and estimate a
+hard label $\alpha in \{0, 1\}$ that indicates if each voxel is normal or
+lesions. We are different from GrabCuts in that besides the smoothness
+constraint on the normal and lesion regions' boundary, we also apply Markov
+random field (MRF) constraints on the label map within normal and lesions. This
+soft constraint guarantee the estimated labels is smooth.
+
+\noindent \textbf{GrabCut with MRF}: Define the label map $\mat z = \{\vec z_1,
+\dots, \vec z_N\}$, where $\vec z_n$ is a K dimension binary random variable for
+voxel $n$ such that $\sum_k z_{nk} = 1$. A particular element $z_{nk} = 1$
+indicates voxel $n$ is in Gaussian component $k$. The prior distribution of
+$\mat z$ takes into account both the information from the brain atlas and the
+spatial context constraints of MRF, and is defined as
+\begin{equation*}
+  p(\mat z) = \frac{1}{C} \exp\left ( \sum_{n=1}^N \sum_{k=1}^K z_{nk} \log \pi_{nk} + \beta \sum_{(n,m)} \langle \vec z_n, \vec z_m \rangle\right ),
+\end{equation*}
+where the $\pi_{nk}$ is the atlas prior probability of voxel $n$ in class $k$,
+$(n, m)$ is pair of neighboring voxels, and $\langle, \rangle$ is the inner
+product of two vectors, representing our preference of piecewise constant label
+map, with the constraint strength given by $\beta$. Given $z_n$, the likelihood
+function is defined as multivariate Gaussian $p(\vec x_n | \vec z_n) =
+\mathcal{N}(\vec x_n; \theta(z_n))$, with $\vec x_n$ the observed data vector of
+the multi-modality images at $n$. In EM, one need to evaluate
+$\mathbb{E}_{P(\mat z |\mat x)} [\log p(\mat x, \mat z)]$, which is intractable
+due to the MRF prior on $\mat z$. In this work we use the variational inference
+method that iteratively updates $p(\vec z_n|\vec z_{\mathcal{N}(n)}, \vec x)$
+given the expected value of the $\vec z$ for $n$'s neighbors $\mathcal{N}(n)$. The update equation takes the form
+\begin{equation*}
+  \log p(z_{nk}) = z_{nk} \pi_{nk} + \sum_{m\in \mathcal{N}(n)} \langle \overline {\vec z}_m, \vec z_n \rangle + \log \mathcal{N} (\vec x_n; \theta(\vec z_n)),
+\end{equation*}
+where $\overline {\vec z}_m$ is the expected value of neighbor voxel $m$. We
+compute $\log p(z_nk)$ for all $k$ and compute $p(\vec z_n)$ by taking
+exponential and normalize. $\overline{z}_n$ is just $p(\vec z_n)$ for binary
+variables and will be used for updating $\vec z_n$'s neighbors. The variational procedure stops when no $\vec z_n$ changes. 
+
+\noindent \textbf{GrabCuts global optimization: } We follow the work of Rother's [ reference] and define the objective function of GrabCuts optimization as 
+\begin{align*}
+  &\mat E(\alpha) = \gamma \sum_{(m,n)} \psi(\alpha_n, \alpha_m) \exp \{ -\beta_0 \| \vec x_n - \vec x_m\|^2\}\\
+  &+  \sum_n^N \sum_{k=1}^K \left \{z_{nk}(\log \pi_{nk} + \log \mathcal{N}(\vec x_n; \theta(\vec z_n)) + \sum_{m \in \mathcal{N}(n)} \langle \vec z_n, \vec z_m\rangle \right \},
+\end{align*}
+where $\psi = 1$ if $\alpha_n \neq \alpha_m$, otherwise $\psi = 0$. The
+smoothness constraint depends on the data term, so it is a conditional random
+field. When building the graph, we set the T-link by the second term, and the
+N-link by the first term in the above equation. Given the first initialization
+of a bounding box by the user. we initialize the $\alpha$ map such that $\alpha
+= 1$ (lesion) within the bounding box, and $\alpha = 0$ outside. The GrabCut
+algorithm will keep outside voxels' $\alpha$ fixed, and update the $\alpha$ of
+voxels within bounding box. Such strategy guarantees tight control on the false
+positive detection. For images with multiple regions, the lesion objects outside
+of the bounding box will be detected in the following active learning algorithm.
+
+%-------------------------------------------------------------------------
+\subsection{Active learning for recommending candidates patches}
+
+% Gives a short intro of active learning with reference. Why active learning,
+% benefit. How that works in general. Then talk about our strategy. Need to
+% mention self-training (automatically add unlabeled data into labeled dataset,
+% thus decreasing user interaction/burden).
+
+% How the query score are computed. (LW will add stuff here)
+
+% how the criteria of sorting is determined. (volumes / surface )
+
+% need a figure showing all the steps. Also need one sentense + one formula for
+% the registration
+
+
+\section{Results}
+\label{sec:results}
+
+We apply our analysis to multi-modality image data of five TBI patients with
+large lesions.  Each subject was scanned at two time points, an acute scan at
+$\approx$ 5 days and another chronic scan at $\approx$ 6 months post injury.
+The image data of each subject include T1, T2, FLAIR, and GRE modalities.
+Fig.~\ref{fig:FiveSubjectsT1} illustrates T1 images of five subjects at the
+acute stage.
+
+% need to say: the number of components of the Gaussian mixture model is set to
+% 3 for normal region (GM, WM, CSF) and 2 for lesion area (edema, bleeding) to
+% reflect our prior knowledge. 
+\begin{figure} [ht]
+\centering
+\includegraphics[width=8.5cm]{./figures/five_subjects_T1}
+\caption{Axial views of acute T1 images of five subjects, showing injury at different locations.}
+\label{fig:FiveSubjectsT1}
+\end{figure}
+
+Fig.~\ref{fig:userinter} shows the iterative active learning based user interaction. 
+
+\begin{figure} [ht]
+\centering
+\includegraphics[width=8.5cm]{./figures/Algorithm_result_pic}
+\caption{Iterative active learning based user interaction.}
+\label{fig:userinter}
+\end{figure}
+
+Fig.~\ref{fig:quant} shows the quantitative comparison of the proposed algorithm against the baseline method.
+
+\begin{figure} [ht]
+\centering
+\includegraphics[width=6.5cm]{./figures/table_pic}
+\caption{Quantitative comparison of the proposed algorithm against the baseline method.}
+\label{fig:quant}
+\end{figure}
+
+\section{Conclusions}
+
+
+\bibliographystyle{IEEEbib}
+\bibliography{strings,refs}
+\end{document}

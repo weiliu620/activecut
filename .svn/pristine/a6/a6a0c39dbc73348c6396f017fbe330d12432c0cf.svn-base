@@ -1,0 +1,50 @@
+@article{boykov2001fast,
+  title={Fast approximate energy minimization via graph cuts},
+  author={Boykov, Yuri and Veksler, Olga and Zabih, Ramin},
+  journal={Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  volume={23},
+  number={11},
+  pages={1222--1239},
+  year={2001},
+  publisher={IEEE}
+}
+
+@inproceedings{rother2004grabcut,
+  title={Grabcut: Interactive foreground extraction using iterated graph cuts},
+  author={Rother, Carsten and Kolmogorov, Vladimir and Blake, Andrew},
+  booktitle={ACM Transactions on Graphics (TOG)},
+  volume={23},
+  number={3},
+  pages={309--314},
+  year={2004},
+  organization={ACM}
+}
+
+@incollection{top2011active,
+  title={Active learning for interactive 3D image segmentation},
+  author={Top, Andrew and Hamarneh, Ghassan and Abugharbieh, Rafeef},
+  booktitle={Medical Image Computing and Computer-Assisted Intervention--MICCAI 2011},
+  pages={603--610},
+  year={2011},
+  publisher={Springer}
+}
+
+@inproceedings{iglesias2011combining,
+  title={Combining generative and discriminative models for semantic segmentation of ct scans via active learning},
+  author={Iglesias, Juan Eugenio and Konukoglu, Ender and Montillo, Albert and Tu, Zhuowen and Criminisi, Antonio},
+  booktitle={Information Processing in Medical Imaging},
+  pages={25--36},
+  year={2011},
+  organization={Springer}
+}
+
+@inproceedings{veeraraghavan2011active,
+  title={Active learning guided interactions for consistent image segmentation with reduced user interactions},
+  author={Veeraraghavan, Harini and Miller, James V},
+  booktitle={Biomedical Imaging: From Nano to Macro, 2011 IEEE International Symposium on},
+  pages={1645--1648},
+  year={2011},
+  organization={IEEE}
+}
+
+

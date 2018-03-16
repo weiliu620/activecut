@@ -1,0 +1,46 @@
+\begin{thebibliography}{1}
+
+\bibitem{Irimia2012}
+A.~Irimia, B.~Wang, S.R. Aylward, M.W. Prastawa, D.F. Pace, G.~Gerig, D.A.
+  Hovda, R.~Kikinis, P.M. Vespa, and J.D. Van~Horn,
+\newblock ``Neuroimaging of structural pathology and connectomics in traumatic
+  brain injury: Toward personalized outcome prediction,''
+\newblock {\em NeuroImage: Clinical}, vol. 1, no. 1, pp. 1--17, 2012.
+
+\bibitem{boykov2001fast}
+Yuri Boykov, Olga Veksler, and Ramin Zabih,
+\newblock ``Fast approximate energy minimization via graph cuts,''
+\newblock {\em IEEE PAMI}, vol. 23, no. 11, pp. 1222--1239, 2001.
+
+\bibitem{rother2004grabcut}
+Carsten Rother, Vladimir Kolmogorov, and Andrew Blake,
+\newblock ``Grabcut: Interactive foreground extraction using iterated graph
+  cuts,''
+\newblock in {\em ACM TOG}, 2004, vol.~23, pp. 309--314.
+
+\bibitem{top2011active}
+Andrew Top, Ghassan Hamarneh, and Rafeef Abugharbieh,
+\newblock ``Active learning for interactive {3D} image segmentation,''
+\newblock in {\em MICCAI 2011}, pp. 603--610. Springer, 2011.
+
+\bibitem{iglesias2011combining}
+Juan~Eugenio Iglesias, Ender Konukoglu, Albert Montillo, Zhuowen Tu, and
+  Antonio Criminisi,
+\newblock ``Combining generative and discriminative models for semantic
+  segmentation of {CT} scans via active learning,''
+\newblock in {\em IPMI}. Springer, 2011, pp. 25--36.
+
+\bibitem{veeraraghavan2011active}
+Harini Veeraraghavan and James~V Miller,
+\newblock ``Active learning guided interactions for consistent image
+  segmentation with reduced user interactions,''
+\newblock in {\em IEEE ISBI}, 2011, pp. 1645--1648.
+
+\bibitem{WangMBIA2013}
+Bo~Wang, Marcel Prastawa, Avishek Saha, Suyash~P Awate, Andrei Irimia, Micah~C
+  Chambers, Paul~M Vespa, John~D Van~Horn, Valerio Pascucci, and Guido Gerig,
+\newblock ``Modeling {4D} changes in pathological anatomy using domain
+  adaptation: Analysis of {TBI} imaging using a tumor database,''
+\newblock in {\em MBIA}. 2013, pp. 31--39, Springer.
+
+\end{thebibliography}
