@@ -1,1 +1,0 @@
-/home/sci/weiliu/projects/actlearn/super_pixel/my_test/src/CMakeFiles/Supervoxel.dir
