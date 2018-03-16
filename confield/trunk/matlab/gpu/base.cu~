@@ -1,0 +1,113 @@
+//#undef _GLIBCXX_ATOMIC_BUILTINS
+#include "mex.h"
+#include "cuda.h"
+#include <math.h>
+/*
+#include <thrust/version.h>
+#include <thrust/random.h>
+#include <thrust/iterator/counting_iterator.h>
+#include <thrust/functional.h>
+#include <thrust/transform_reduce.h>
+#include <iostream>
+*/
+
+__constant__ float constData;
+__global__ void square_elements(float* in, float* out, int N);
+
+void base(const float* inputPtr, float* outputPtr, mwSize nRow, mwSize nCol);
+__device__ unsigned long long myrand();
+
+void mexFunction( int nlhs, mxArray *plhs[],
+                  int nrhs, const mxArray *prhs[] )
+{
+/* Check for proper number of input and output arguments */
+     if (nrhs != 1) {
+	  mexErrMsgTxt("One input argument required.");
+     }
+     if (nlhs > 1){
+	  mexErrMsgTxt("Too many output arguments.");
+     }
+/* Check data type of input argument */
+     if (!(mxIsSingle(prhs[0]))) {
+	  mexErrMsgTxt("Input array must be of type single.");
+     }
+
+     // from Matlab.
+     float* inputPtr;
+     float* outputPtr;
+ 
+     mwSize M = mxGetM(prhs[0]);
+     mwSize N = mxGetN(prhs[0]);
+
+     // Create output data.
+     plhs[0] = mxCreateNumericMatrix(M, N, mxSINGLE_CLASS, mxREAL);
+     inputPtr = (float*) mxGetPr(prhs[0]);
+     outputPtr = (float*) mxGetPr(plhs[0]);
+     // enter cuda function.
+     base(inputPtr, outputPtr, M, N);
+}
+
+void base(const float* inputPtr, float* outputPtr, mwSize M, mwSize N)
+{
+    // for GPU
+     float* inputGPUPtr;
+     float* outputGPUPtr;
+
+     /* create input and output array on GPU. */
+     cudaMalloc((void**) &inputGPUPtr, sizeof(float)*M*N);
+     cudaMalloc((void**) &outputGPUPtr, sizeof(float)*M*N);
+
+/* The input array is single precision, it can be sent directly to the
+   card */
+     cudaMemcpy(inputGPUPtr, inputPtr, sizeof(float)*M*N, cudaMemcpyHostToDevice);
+
+     /* test on constant memory. */
+
+     float mydata[256];
+     for (int n = 0; n < 256; n++)
+     {
+	  mydata[n] = 10;
+     }
+
+     cudaMemcpyToSymbol(constData, mydata, sizeof(float)); 
+     
+     /* run the kernel function. */
+     int blockSize = 512;
+     int nBlocks = (M*N)/blockSize + ((M*N)%blockSize == 0?0:1);
+     mexPrintf("blockSize: %d, nBlocks = %d\n", blockSize, nBlocks);
+     dim3 dimBlock(blockSize);
+     dim3 dimGrid(nBlocks);
+     square_elements<<<dimGrid, dimBlock>>>(inputGPUPtr, outputGPUPtr, M*N);
+     
+     /* Send results back to cpu memeory */
+     cudaMemcpy(outputPtr, outputGPUPtr, sizeof(float)*M*N, cudaMemcpyDeviceToHost);
+
+     /* clean up. */
+     cudaFree(inputGPUPtr);
+     cudaFree(outputGPUPtr);
+
+     /* test */
+     unsigned long long bigint;
+     mexPrintf("biging size: %d, %d\n", sizeof(bigint), sizeof(unsigned long long));
+
+}
+
+
+/* Kernel to square elements of the array on the GPU */
+__global__ void square_elements(float* in, float* out, int N)
+{
+     int idx = blockIdx.x*blockDim.x+threadIdx.x;
+     //if ( idx < N) out[idx]=in[idx]*in[idx];
+     if ( idx < N) out[idx]= 1;
+     //out[idx] = sin(idx);
+
+}
+
+__device__ unsigned long long myrand()
+{
+     unsigned long long int a = 1664525;
+     unsigned long long int c = 1013904223;
+     unsigned long long int m = 1;
+     return 0;
+     
+}

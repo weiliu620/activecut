@@ -1,0 +1,51 @@
+Reviewer 3 questions the clinical relevance of resting state fMRI and
+thus believes this paper is not suited for MICCAI. However, a search
+of PubMed for the phrase "resting state fMRI" returns 796 hits with
+numerous clinical applications, including Alzheimer's disease, stroke,
+epilepsy, depression, schizophrenia, and many others. Therefore, we
+believe this is an unfair and incorrect criticism of our paper.
+
+Reviewer 3 also considers our work to be only moderately innovative
+and questions the need for the added computational
+complexity. However, to the best of our knowledge, this is the first
+work to apply Markov Random Fields (MRFs) to the resting state
+connectivity problem. Previous work using MRFs has all been for
+event-related fMRI. The high-dimensional nature of the problem is
+necessary if one wants to look at pairwise connectivity. We have shown
+that a smart parallel implementation makes this analysis very fast
+(just a few minutes).
+
+All three reviewers had some concerns about the validation of our
+method.  However, validation of resting state fMRI is a very difficult
+problem, due to the fact that there is no ground truth in real
+data. Possibly the most convincing validation arguments given in the
+literature use a comparison to connectivity from DTI. This would be
+beyond the scope of our current paper.  Another possibility is to
+acquire repeated scans and test the reliability of the results. Again,
+this is beyond the scope of the current work. Given these
+difficulties, we validated our approach quantitatively on a synthetic
+example and qualitatively on real data from two different
+subjects. The synthetic example convincingly showed improvement over
+Gaussian spatial smoothing. Our result was not only more clustered, as
+Reviewer 1 points out, but it was also much more accurate. Reviewer 1
+also comments about consistency across subjects.  Our method did
+demonstrate consistency between the two individual datasets we
+tested. Furthermore, our results are consistent with previously
+reported results that found connections between posterior cingulate
+cortex and medial prefrontal cortex [Greicius 2003, 2009, Fox 2005,
+etc]. Again, our results were much more consistent and convincing than
+the results from Gaussian smoothing, which were unable to identify
+this connection.
+
+For Reviewer 2's concerns about extendability to 3D, we have already
+implemented and tested the method on a 3D volume since the submission
+of the paper. The results are consistent with 2D case, i.e., the
+connection between PCC and MFPC. Computation cost is not a problem
+with the GPU implementation. 3D results will be presented at MICCAI if
+the paper is accepted.
+
+In response to Reviewer 2's comment that "Bayesian...was used in
+previously published work...": yes, previous methods have used
+Bayesian estimation in resting state connectivity, but have not used
+MRFs. As we mentioned above, previous work using MRFs is for
+event-related fMRI.

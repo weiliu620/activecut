@@ -1,0 +1,3 @@
+function C = CudaSamplingGateway(C, R, mu, sigma2, beta, maxSAIterCount);
+% Usage: (C, R
+% Gateway function for sampling in gpu.

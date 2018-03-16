@@ -1,0 +1,138 @@
+function res = Ising(alpha, beta)
+
+N = 100;
+I = double(rand(N,N) > 0.5)*2-1;
+T0 = 1/beta;
+T = T0;
+iterCount = 1;
+figure(1); hold on;
+imshow(I > 0); title(strcat('iteration:', int2str(iterCount)));
+[maxRow, maxCol] = size(I);
+while(iterCount < 50)
+    allpos = randperm(maxRow*maxCol);
+    for n = 1:maxRow*maxCol
+        pos = allpos(n);
+        [i,j] = ind2sub([maxRow, maxCol], pos);
+        neighbors = pos + [-1 1 -maxRow maxRow];
+        neighbors([i == 1, i == maxRow, j == 1, j == maxCol]) = [];
+        nsum = sum(I(neighbors));
+        p = exp(beta*I(i,j)*nsum)/(2*cosh(beta*nsum)); % p(x = previous)
+        if rand > p
+            I(i,j) = -I(i,j);
+        end;
+    end;
+    figure(1);
+    if isoctave()
+        imshow(I);
+    else
+        imshow((I+1)/2, 'InitialMagnification', 'fit');
+    end;
+    title(strcat('iteration:', int2str(iterCount)));
+    iterCount = iterCount +1;
+    pause(0.01);
+end;
+
+% Now compute the log-likelihood given beta. suppose alpha is known.
+allBeta = (beta-2:0.05:beta+2)';
+LL = zeros(size(allBeta));
+figure(2);
+
+
+for n = 1:maxRow*maxCol
+    [i,j] = ind2sub([maxRow, maxCol], n);
+    neighbors = n + [-1 1 -maxRow maxRow];
+    neighbors([i == 1, i == maxRow, j == 1, j == maxCol]) = [];
+    nsum = sum(I(neighbors));
+    LL = LL -log(2*cosh(allBeta*nsum)) + allBeta*I(i,j)*nsum;
+end;
+
+plot(allBeta, LL, 'bo-');
+title('Log-likelihood over beta');
+llfile = 'figures/mrfest02.eps';
+if isoctave()
+    print -depsc llfile;
+else
+    saveas(2, llfile, 'epsc');
+end;
+
+% Now try mean field. Instead of compute the conditional local likelihood
+% p(x | ne), we compute p(x | <ne>). We compute this by iteration. 1)
+% compute expected value <x>, then compute p(x| <ne>).
+
+EI = I; % init value of expectatoin of all x.
+M = 5; % number of iteration for mean field.
+ELL = zeros(length(allBeta), M); % log-likelihood for all mean field.
+DELL = zeros(length(allBeta),M); % gradient of log-likelihood
+DDELL = zeros(length(allBeta), M);
+
+for m = 1:M
+    for n = 1:maxRow*maxCol
+        [i,j] = ind2sub([maxRow, maxCol], n);
+        neighbors = n + [-1 1 -maxRow maxRow];
+        neighbors([i == 1, i == maxRow, j == 1, j == maxCol]) = [];
+        nsum = sum(EI(neighbors));
+        p(1) = exp(beta*(-1)*nsum); % p(x == -1 | <ne>
+        p(2) = exp(beta*1*nsum); % p(x == 1 | <ne>)
+        p = p/sum(p); % normalize.
+        EI(i,j) = (-1)*p(1) + 1 * p(2);
+        ELL(:,m) = ELL(:,m) -log(2*cosh(allBeta*nsum)) + allBeta*EI(i,j)*nsum;
+        DELL(:,m) = DELL(:,m) + nsum * (EI(i,j) - tanh(allBeta*nsum));
+        DDELL(:,m) = DDELL(:,m) + nsum^2 * (tanh(allBeta*nsum).^2 - 1);
+        %pause(0.01);
+    end;
+    [maxLL, ind] = max(ELL(:,m));
+    fprintf('mean field iter: %i, max Beta at: %2.2f\n', m, allBeta(ind));
+    figure(2);
+    plot(allBeta, ELL(:,1:m));
+    title(strcat('Log-likelihood over beta. Mean field iter: ', int2str(m)));
+    pause(0.01);
+    figure(3);
+    plot(allBeta, DELL(:,1:m));
+    title(strcat('Derivative of Log-LL over beta. Mean field iter: ',...
+        int2str(m)));
+    figure(4);
+    pause(0.01);
+    plot(allBeta, DDELL(:,1:m));
+    title(strcat('2nd Derivative of Log-LL over beta. Mean field iter: ',...
+        int2str(m)));
+end;
+
+figure(5);
+imshow((EI+1)/2, 'InitialMagnification', 'fit');
+
+% Newton's method. compute zero-crossing of derivative of LL. ( to use this
+% we need 2nd derivative)
+beta = 0.005;
+allBeta = beta;
+epsilon = 0.001;
+step = inf;
+while (step > epsilon)
+    J = 0; DELL =0 ;
+    for n = 1:maxRow*maxCol
+        [i,j] = ind2sub([maxRow, maxCol], n);
+        neighbors = n + [-1 1 -maxRow maxRow];
+        neighbors([i == 1, i == maxRow, j == 1, j == maxCol]) = [];
+        nsum = sum(EI(neighbors));
+        J = J + nsum^2 * (tanh(beta*nsum)^2 - 1);
+        DELL = DELL + nsum*(EI(i,j) - tanh(beta*nsum));
+    end;
+    step = -DELL/J;
+    beta = beta + step;
+    fprintf('step = %d, new beta = %2.2f\n', step, beta);   
+    allBeta = [allBeta; beta];
+    figure(6);
+    plot(allBeta, 'ro-');
+end;
+    
+
+
+
+
+
+
+
+
+
+
+
+

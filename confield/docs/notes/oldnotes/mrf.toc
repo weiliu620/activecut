@@ -1,0 +1,15 @@
+\contentsline {section}{\numberline {1}Ising Model}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Generate Ising model by Gibbs Sampling}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Jan 19 Generate 1D fMRI image and compute posterior distribution}{3}{subsection.1.2}
+\contentsline {section}{\numberline {2}New Reading on Functional Connectivity}{7}{section.2}
+\contentsline {section}{\numberline {3}Apr 6 Meeting}{7}{section.3}
+\contentsline {section}{\numberline {4}Apr 20}{7}{section.4}
+\contentsline {section}{\numberline {5}GPUSampling code change memo}{8}{section.5}
+\contentsline {section}{\numberline {6}may 18}{12}{section.6}
+\contentsline {section}{\numberline {7}May 25}{13}{section.7}
+\contentsline {section}{\numberline {8}Jun 9}{14}{section.8}
+\contentsline {section}{\numberline {9}Jun 16}{15}{section.9}
+\contentsline {section}{\numberline {10}Junn 22}{15}{section.10}
+\contentsline {section}{\numberline {11}June 28: Review of ICA}{15}{section.11}
+\contentsline {section}{\numberline {12}Aug 19 fMRI clustering review}{15}{section.12}
+\contentsline {section}{\numberline {13}Scratch Pad}{15}{section.13}

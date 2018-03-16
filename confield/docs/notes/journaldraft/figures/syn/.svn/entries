@@ -1,0 +1,119 @@
+10
+
+dir
+0
+https://gforge.sci.utah.edu/svn/confield/branches/journaldraft/figures/syn
+https://gforge.sci.utah.edu/svn/confield
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+305cdda6-5ce1-45b3-a98d-dfc68c8b3305
+
+rainplot.pdf
+file
+
+
+
+add
+
+na.png
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+rainplot_big.pdf
+file
+
+
+
+add
+
+na1.png
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+smooth_ncuts
+dir
+
+
+
+add
+
+nonsmooth_groupmrf
+dir
+
+
+
+add
+
+truth
+dir
+
+
+
+add
+
+smooth_kmeans
+dir
+
+
+
+add
+
+smooth_groupmrf
+dir
+
+
+
+add
+
+na.svg
+file
+
+
+
+add
+
+nonsmooth_onelevel
+dir
+
+
+
+add
+

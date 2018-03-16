@@ -1,0 +1,129 @@
+\begin{thebibliography}{13}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Inproceedings
+\bibitem[{Arthur and Vassilvitskii(2007)}]{arthur2007k}
+\bibinfo{author}{Arthur, D.}, \bibinfo{author}{Vassilvitskii, S.},
+  \bibinfo{year}{2007}.
+\newblock \bibinfo{title}{k-means++: The advantages of careful seeding}, in:
+  \bibinfo{booktitle}{Proceedings of the eighteenth annual ACM-SIAM symposium
+  on Discrete algorithms}, \bibinfo{organization}{Society for Industrial and
+  Applied Mathematics}. pp. \bibinfo{pages}{1027--1035}.
+%Type = Article
+\bibitem[{Baumgartner et~al.(1998)Baumgartner, Windischberger and
+  Moser}]{baumgartner1998quantification}
+\bibinfo{author}{Baumgartner, R.}, \bibinfo{author}{Windischberger, C.},
+  \bibinfo{author}{Moser, E.}, \bibinfo{year}{1998}.
+\newblock \bibinfo{title}{Quantification in functional magnetic resonance
+  imaging: fuzzy clustering vs. correlation analysis}.
+\newblock \bibinfo{journal}{Magnetic Resonance Imaging} \bibinfo{volume}{16},
+  \bibinfo{pages}{115--125}.
+%Type = Article
+\bibitem[{Bellec et~al.(2010)Bellec, Rosa-Neto, Lyttelton, Benali and
+  Evans}]{bellec2010multi}
+\bibinfo{author}{Bellec, P.}, \bibinfo{author}{Rosa-Neto, P.},
+  \bibinfo{author}{Lyttelton, O.}, \bibinfo{author}{Benali, H.},
+  \bibinfo{author}{Evans, A.}, \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Multi-level bootstrap analysis of stable clusters in
+  resting-state {fMRI}}.
+\newblock \bibinfo{journal}{Neuroimage} \bibinfo{volume}{51},
+  \bibinfo{pages}{1126--1139}.
+%Type = Article
+\bibitem[{Besag(1974)}]{besag_spatial_1974}
+\bibinfo{author}{Besag, J.}, \bibinfo{year}{1974}.
+\newblock \bibinfo{title}{Spatial interaction and the statistical analysis of
+  lattice systems}.
+\newblock \bibinfo{journal}{Journal of the Royal Statistical Society. Series B
+  {(Methodological)}} \bibinfo{volume}{36}, \bibinfo{pages}{192–--236}.
+%Type = Article
+\bibitem[{Calhoun et~al.(2001a)Calhoun, Adali, Pearlson and
+  Pekar}]{calhoun2001method}
+\bibinfo{author}{Calhoun, V.}, \bibinfo{author}{Adali, T.},
+  \bibinfo{author}{Pearlson, G.}, \bibinfo{author}{Pekar, J.},
+  \bibinfo{year}{2001}a.
+\newblock \bibinfo{title}{A method for making group inferences from functional
+  mri data using independent component analysis}.
+\newblock \bibinfo{journal}{Human brain mapping} \bibinfo{volume}{14},
+  \bibinfo{pages}{140--151}.
+%Type = Article
+\bibitem[{Calhoun et~al.(2001b)Calhoun, Adali, Pearlson and
+  Pekar}]{calhoun2001spatial}
+\bibinfo{author}{Calhoun, V.}, \bibinfo{author}{Adali, T.},
+  \bibinfo{author}{Pearlson, G.}, \bibinfo{author}{Pekar, J.},
+  \bibinfo{year}{2001}b.
+\newblock \bibinfo{title}{Spatial and temporal independent component analysis
+  of functional {MRI} data containing a pair of task-related waveforms}.
+\newblock \bibinfo{journal}{HBM} \bibinfo{volume}{13}, \bibinfo{pages}{43--53}.
+%Type = Article
+\bibitem[{Craddock et~al.(2011)Craddock, James, Holtzheimer~III, Hu and
+  Mayberg}]{craddock2011whole}
+\bibinfo{author}{Craddock, R.}, \bibinfo{author}{James, G.},
+  \bibinfo{author}{Holtzheimer~III, P.}, \bibinfo{author}{Hu, X.},
+  \bibinfo{author}{Mayberg, H.}, \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{A whole brain {fMRI} atlas generated via spatially
+  constrained spectral clustering}.
+\newblock \bibinfo{journal}{Human brain mapping} .
+%Type = Article
+\bibitem[{Liu et~al.(2011)Liu, Awate, Anderson, Yurgelun-Todd and
+  Fletcher}]{liu2011monte}
+\bibinfo{author}{Liu, W.}, \bibinfo{author}{Awate, S.},
+  \bibinfo{author}{Anderson, J.}, \bibinfo{author}{Yurgelun-Todd, D.},
+  \bibinfo{author}{Fletcher, P.}, \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{Monte {C}arlo {E}xpectation {M}aximization with
+  {H}idden {M}arkov {M}odels to {D}etect {F}unctional {N}etworks in
+  {R}esting-{S}tate {fMRI}}.
+\newblock \bibinfo{journal}{Machine Learning in Medical Imaging} ,
+  \bibinfo{pages}{59--66}.
+%Type = Inproceedings
+\bibitem[{Potts(1952)}]{potts1952some}
+\bibinfo{author}{Potts, R.}, \bibinfo{year}{1952}.
+\newblock \bibinfo{title}{Some generalized order-disorder transformations}, in:
+  \bibinfo{booktitle}{Proceedings of the Cambridge Philosophical Society},
+  \bibinfo{organization}{Cambridge Univ Press}. pp. \bibinfo{pages}{106--109}.
+%Type = Article
+\bibitem[{Shi and Malik(2000)}]{shi2000normalized}
+\bibinfo{author}{Shi, J.}, \bibinfo{author}{Malik, J.}, \bibinfo{year}{2000}.
+\newblock \bibinfo{title}{Normalized cuts and image segmentation}.
+\newblock \bibinfo{journal}{IEEE PAMI} \bibinfo{volume}{22},
+  \bibinfo{pages}{888--905}.
+%Type = Article
+\bibitem[{Van Den~Heuvel et~al.(2008)Van Den~Heuvel, Mandl and
+  Pol}]{van2008normalized}
+\bibinfo{author}{Van Den~Heuvel, M.}, \bibinfo{author}{Mandl, R.},
+  \bibinfo{author}{Pol, H.}, \bibinfo{year}{2008}.
+\newblock \bibinfo{title}{Normalized cut group clustering of resting-state
+  {FMRI} data}.
+\newblock \bibinfo{journal}{PLoS One} \bibinfo{volume}{3},
+  \bibinfo{pages}{e2001}.
+%Type = Article
+\bibitem[{Yeo et~al.(2011)Yeo, Krienen, Sepulcre, Sabuncu, Lashkari,
+  Hollinshead, Roffman, Smoller, Z{\"o}llei, Polimeni
+  et~al.}]{yeo2011organization}
+\bibinfo{author}{Yeo, B.}, \bibinfo{author}{Krienen, F.},
+  \bibinfo{author}{Sepulcre, J.}, \bibinfo{author}{Sabuncu, M.},
+  \bibinfo{author}{Lashkari, D.}, \bibinfo{author}{Hollinshead, M.},
+  \bibinfo{author}{Roffman, J.}, \bibinfo{author}{Smoller, J.},
+  \bibinfo{author}{Z{\"o}llei, L.}, \bibinfo{author}{Polimeni, J.}, et~al.,
+  \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{The organization of the human cerebral cortex
+  estimated by intrinsic functional connectivity}.
+\newblock \bibinfo{journal}{Journal of Neurophysiology} \bibinfo{volume}{106},
+  \bibinfo{pages}{1125--1165}.
+%Type = Article
+\bibitem[{Zuo et~al.(2010)Zuo, Kelly, Adelstein, Klein, Castellanos and
+  Milham}]{zuo2010reliable}
+\bibinfo{author}{Zuo, X.}, \bibinfo{author}{Kelly, C.},
+  \bibinfo{author}{Adelstein, J.}, \bibinfo{author}{Klein, D.},
+  \bibinfo{author}{Castellanos, F.}, \bibinfo{author}{Milham, M.},
+  \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Reliable intrinsic connectivity networks: test-retest
+  evaluation using ica and dual regression approach}.
+\newblock \bibinfo{journal}{Neuroimage} \bibinfo{volume}{49},
+  \bibinfo{pages}{2163}.
+
+\end{thebibliography}

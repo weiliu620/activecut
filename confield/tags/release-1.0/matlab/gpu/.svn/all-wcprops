@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu
+END
+base.cu
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/base.cu
+END
+matlab.mat
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/matlab.mat
+END
+GPUInit.mexa64
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/GPUInit.mexa64
+END
+sampling.linkinfo
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/sampling.linkinfo
+END
+GPUCorr.mexa64
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/GPUCorr.mexa64
+END
+GPUInit.cu
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/GPUInit.cu
+END
+GPUCorr.cu
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/GPUCorr.cu
+END
+nvmex
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/nvmex
+END
+nvopts.sh.bak
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/nvopts.sh.bak
+END
+nvopts.sh
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/nvopts.sh
+END
+CudaSampling.cu.bak
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/CudaSampling.cu.bak
+END
+CudaSampling.mexa64
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/CudaSampling.mexa64
+END
+CudaSampling.cu
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/CudaSampling.cu
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/Makefile
+END
+base.mexa64
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/base.mexa64
+END
+temp.sh
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/confield/!svn/ver/75/tags/release-1.0/matlab/gpu/temp.sh
+END

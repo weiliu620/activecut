@@ -1,0 +1,675 @@
+Index: cppheader.h
+===================================================================
+--- cppheader.h	(revision 79)
++++ cppheader.h	(working copy)
+@@ -34,6 +34,7 @@
+      float mu2;
+      float sigma21;
+      float sigma22;
++     float alpha;
+      float beta;
+      float T;
+ } paraType;
+Index: main.cxx
+===================================================================
+--- main.cxx	(revision 80)
++++ main.cxx	(working copy)
+@@ -61,6 +61,7 @@
+ 	  }
+ 	  else{
+ 	       fprintf(stderr, "im1 is null!\n");
++	       exit(1);
+ 	  }
+ 
+ 	  if (im2 != NULL){
+@@ -74,6 +75,7 @@
+ 	  }
+ 	  else{
+ 	       fprintf(stderr, "im2 is null!\n");
++	       exit(1);
+ 	  }
+ 
+ 	  printf("fwdMap1 and bwdMap1:\n");
+Index: GPUCorr.cu
+===================================================================
+--- GPUCorr.cu	(revision 80)
++++ GPUCorr.cu	(working copy)
+@@ -64,7 +64,9 @@
+      int idx1 = blockIdx.x * blockDim.x + threadIdx.x;
+      int idx2 = blockIdx.y * blockDim.y + threadIdx.y;
+      if ((idx1 >= N1) | (idx2 >= N2)){ return; }
+-//     if ((idx1 != 4) | (idx2 != 0)) {return;}
++     if (idx1 == idx2) {
++	  *(R+idx1*N2 + idx2) = 1; 
++     }
+ 
+      // mean of first vector.
+      for (m = 0; m < M; m++){
+@@ -94,30 +96,7 @@
+ 	  }
+ 	  *(R+idx1*N2 + idx2) = r;
+      }
+-#if _EMU
+-     if((idx1 == 4) &&(idx2 == 0)){
+-	  
+-	  printf("voxels in image1:\n");
+-	  for (m = 0; m < M; m++){
+-	       lidx1 = idx1 * M + m;
+-	       printf("%3.1f ", gpuIm1[lidx1]);
+-	  }
+-	  printf("\n\n");
+-	  printf("voxels in image2:\n");
+-	  for (m = 0; m < M; m++){
+-	       lidx2 = idx2 * M + m;
+-	       printf("%3.1f ", gpuIm2[lidx2]);
+-	  }
+-	  printf("\n\n");
+-	  printf("mean1 = %f, mean2 = %f, std1 = %f, std2 = %f, r = %f\n", mean1, mean2, std1, std2, r);
+-     }
+-     if(idx1*N2 + idx2 == 4*1058 + 0){
+-	  printf("Catch one. idx1 = %d, idx2 = %d\n", idx1, idx2);
+-     }
+ 
+-#endif     
+-
+-
+ }
+      
+ void checkCUDAError(const char *msg)
+Index: core
+===================================================================
+Cannot display: file marked as a binary type.
+svn:mime-type = application/octet-stream
+Index: parameters.inp
+===================================================================
+--- parameters.inp	(revision 80)
++++ parameters.inp	(working copy)
+@@ -4,10 +4,10 @@
+ 
+ # toy example
+ toy = 0
+-snr = 0.5 # signal to noise ratio
++snr = 0.46 # signal to noise ratio
+ 
+ # relative directory of data (fmri.nii, mask.nii)
+-datadir = R1
++datadir = R2
+ 
+ # read data. 
+ sliceField = 0 # connectivity between two slices.
+@@ -20,22 +20,22 @@
+ v1_xmax = 63
+ v1_ymin = 0
+ v1_ymax = 63
+-v1_zmin = 0
+-v1_zmax = 39
++v1_zmin = 27
++v1_zmax = 27
+ # volume 2
+ v2_xmin = 0 
+ v2_xmax = 63
+ v2_ymin = 0
+ v2_ymax = 63
+-v2_zmin = 0
+-v2_zmax = 39
++v2_zmin = 27
++v2_zmax = 27
+ # seed voxel
+ seed0 = 34
+ seed1 = 18
+ seed2 = 27
+ 
+ # estimate mu1?
+-est_mu1 = 1
++est_mu1 = 0
+ 
+ # threshold for gray matter in the mask image
+ GRAYTHRESH = 0.4
+@@ -43,5 +43,7 @@
+ # if we only need to compute voxel number.
+ graymattervox = 1
+ 
++# percentage of activation, for initialization of alpha in MRF potential.
++alpha = -0
+ 
+ 
+Index: GPUSampling.cu
+===================================================================
+--- GPUSampling.cu	(revision 80)
++++ GPUSampling.cu	(working copy)
+@@ -1,5 +1,5 @@
+ #include "common.h"
+-
++ 
+ __global__ void SamplingKernel(float* C, 
+ 			       const float* R, 
+ 			       const unsigned int* fwdMap1,
+@@ -101,58 +101,60 @@
+ 	  printf("GPUSampling, block size: %dx%d\n", BLOCK_SIZE_X, BLOCK_SIZE_Y);
+ 	  printf("GPUsampling, gridsize: %dx%d\n", gridDimx, gridDimy);
+      }
++     
++     if (DOSAMPLING) {
++	  for (iter = 0; iter < GIBBSMAXITER; iter++){
++	       if (_DBG >= 1 & (iter+1)%10 == 0){
++		    printf("GPUSampling, begin iteration %d...\n", iter+1);
++	       }
++	       
++	       // Generate random number.
++	       //srand48(time(0));
++	       srand48(iter);
++	       for (i = 0; i < N1*N2; i++){
++		    randMat[i] = drand48();
++	       }
++	       
++	       // send random number to gpu.
++	       cudaMemcpy(gpuRandMat, randMat, sizeof(float)*N1*N2, cudaMemcpyHostToDevice);
++	       checkCUDAError("CudaSampling, memcpy gpuRandMat");
++	       // call kernel for even voxels.
++	       SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
++						     gpuBwdMap1, gpuBwdMap2, par, N1, N2,
++						     gpuRandMat, dimSize, 0, 0);
++	       cudaThreadSynchronize();
++	       // call kernel for odd voxels.
++	       SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
++						     gpuBwdMap1, gpuBwdMap2, par, N1, N2,
++						     gpuRandMat, dimSize, 0, 1);
+ 
+-     for (iter = 0; iter < GIBBSMAXITER; iter++){
+-	  if (_DBG >= 1 & (iter+1)%10 == 0){
+-	       printf("GPUSampling, begin iteration %d...\n", iter+1);
++	       // Send results back to cpu memeory.
++	       cudaMemcpy(C, gpuC, sizeof(float)*N1*N2, cudaMemcpyDeviceToHost);
++	       if (_DBG >= 4){
++		    printf("GPUSampling, after samplingKernel iteration %d. C: \n", iter);
++		    for (i = RMIN; i < RMAX; i++){
++			 for (j = CMIN; j < CMAX; j++){
++			      printf("[%d][%d]=%1.2f ", i, j, C[i*N2 + j]);
++			 }
++			 printf("\n");
++		    }
++	       }
+ 	  }
+-
+-	  // Generate random number.
+-//	  srand48(time(0));
+-	  srand48(iter);
+-	  for (i = 0; i < N1*N2; i++){
+-	       randMat[i] = drand48();
+-	  }
+-
+-	  // send random number to gpu.
+-	  cudaMemcpy(gpuRandMat, randMat, sizeof(float)*N1*N2, cudaMemcpyHostToDevice);
+-	  checkCUDAError("CudaSampling, memcpy gpuRandMat");
+-	  // call kernel for even voxels.
+-	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
+-						gpuBwdMap1, gpuBwdMap2, par, N1, N2,
+-						gpuRandMat, dimSize, 0, 0);
+-	  cudaThreadSynchronize();
+-	  // call kernel for odd voxels.
+-	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
+-						gpuBwdMap1, gpuBwdMap2, par, N1, N2,
+-						gpuRandMat, dimSize, 0, 1);
+-
+-	  // Send results back to cpu memeory.
+-	  cudaMemcpy(C, gpuC, sizeof(float)*N1*N2, cudaMemcpyDeviceToHost);
++	  
+ 	  if (_DBG >= 4){
+-	       printf("GPUSampling, after samplingKernel iteration %d. C: \n", iter);
++	       printf("GPUSampling, all sampling iteration done.C: \n");
+ 	       for (i = RMIN; i < RMAX; i++){
+ 		    for (j = CMIN; j < CMAX; j++){
+ 			 printf("[%d][%d]=%1.2f ", i, j, C[i*N2 + j]);
+ 		    }
+ 		    printf("\n");
+ 	       }
++	       
++	       FieldViewer(C, N1, N2, fwdMap1, fwdMap2, "GPUSampling: Sampled C");
++	       
+ 	  }
+      }
+ 
+-     if (_DBG >= 4){
+-	  printf("GPUSampling, all sampling iteration done.C: \n");
+-	  for (i = RMIN; i < RMAX; i++){
+-	       for (j = CMIN; j < CMAX; j++){
+-		    printf("[%d][%d]=%1.2f ", i, j, C[i*N2 + j]);
+-	       }
+-	       printf("\n");
+-	  }
+-	  
+-	  FieldViewer(C, N1, N2, fwdMap1, fwdMap2, "GPUSampling: Sampled C");
+-
+-     }
+-
+      // Now compute mean field.
+      for (iter = 0; iter <= MEANFIELDITER; iter++){
+ 	  iter++;
+@@ -173,7 +175,7 @@
+ 
+      }
+ 
+-     if (_DBG >= 3){
++     if (_DBG >= 4){
+ 	  printf("Mean field all iteration done. C:\n");
+ 	  for (i = RMIN; i < RMAX; i++){
+ 	       for (j = CMIN; j < CMAX; j++){
+@@ -254,6 +256,7 @@
+      float gc2 = 1/(sqrt(2*PI*par.sigma22));
+      float sum = 0, denom = 0, pr1 = 0, pr2 = 0, postsum = 0;
+      float lh1 = 0, lh2 = 0, post1 = 0, post2 = 0;
++     float upp = 0, upn = 0; // posterior energy for x = 1 (upp) and x = -1 (upn).
+ 
+      // thread fall outside of matrix C, or mask is zero.
+      if (n1 >= N1 | n2 >= N2) {return;}
+@@ -314,45 +317,21 @@
+      }
+      sum = sum - C[n1*N2 + n2];
+ 
+-
+-     denom = 2*cosh(par.beta*sum);
+-
+-     // if exponential is too big, just mannually set pr1 and pr2.
+-     if (par.beta*sum > MAXEXP){
+-	  pr1 = 0;
+-	  pr2 = 1;
+-     }
+-     else if(par.beta*sum < -MAXEXP){
+-	  pr1 = 1;
+-	  pr2 = 0;
+-     }
+-     else{
+-	  pr1 = exp(par.beta * (-1)* sum)/denom;
+-	  pr2 = exp(par.beta * sum)/denom;
+-     }
+-     // if posterior is too big. just mannualy set post1 and post2.
+-     postExp = log(par.sigma21/par.sigma22)
+-	  + 2*par.beta*sum
+-	  - pow(R[n1*N2+n2]-par.mu1, 2)
+-	  + pow(R[n1*N2+n2]-par.mu2, 2);
+-     if (postExp > MAXEXP){
++     denom = 2*cosh(par.alpha + par.beta*sum);
++     float yi = R[n1*N2+n2];
++     upn = par.alpha + par.beta*sum + (yi-par.mu1)*(yi-par.mu1)/(2*par.sigma21) + log(sqrt(par.sigma21));
++     upp = -par.alpha - par.beta*sum + (yi-par.mu2)*(yi-par.mu2)/(2*par.sigma22) + log(sqrt(par.sigma22));
++     if ((upn-upp) > MAXEXP) {
+ 	  post1 = 0;
+ 	  post2 = 1;
+      }
+-     else if(postExp < - MAXEXP){
++     else if ((upn-upp) < -MAXEXP) {
+ 	  post1 = 1;
+ 	  post2 = 0;
+      }
+-     else{
+-	  
+-	  lh1 = gc1 * exp(-pow(R[n1*N2+n2]-par.mu1, 2)/(2*par.sigma21));
+-	  lh2 = gc2 * exp(-pow(R[n1*N2+n2]-par.mu2, 2)/(2*par.sigma22));
+-          
+-	  post1 = pr1 * lh1;
+-	  post2 = pr2 * lh2;
+-	  postsum = post1 + post2;
+-	  post1 = post1/postsum;
+-	  post2 = post2/postsum;
++     else {
++	  post1 = 1/(1 + exp(upn-upp));
++	  post2 = 1 - post1;
+      }
+ 
+      if (job == 1){ // expectation. mean field.
+Index: ExtractToyData.cxx
+===================================================================
+--- ExtractToyData.cxx	(revision 80)
++++ ExtractToyData.cxx	(working copy)
+@@ -65,12 +65,11 @@
+ 	       if (label[i]){
+ 		    im1[i*D+j] = mu + 
+ 			 sigma2 * normalGenerator() + A * sin(2*PI*F*j*ts);
+-		    im2[i*D+j] = mu + 
+-			 sigma2 * normalGenerator() + A * sin(2*PI*F*j*ts);
++		    im2[i*D+j] = im1[i*D+j];
+ 	       }
+ 	       else{
+ 		    im1[i*D+j] = mu + sigma2 * normalGenerator();
+-		    im2[i*D+j] = mu + sigma2 * normalGenerator();
++		    im2[i*D+j] = im1[i*D+j];
+ 	       }
+ 	  }
+      }
+Index: ImageViewer/FieldViewer.cxx
+===================================================================
+--- ImageViewer/FieldViewer.cxx	(revision 80)
++++ ImageViewer/FieldViewer.cxx	(working copy)
+@@ -57,9 +57,9 @@
+      postWriter->SetInput(imPointer);
+      maskReader->SetFileName(grayMaskFile);
+      postWriter->SetFileName(postFile);
+-     MaskImType::SizeType size =  imPointer->GetLargestPossibleRegion().GetSize();
+      // update reader to get image data.
+      maskReader->Update();
++     MaskImType::SizeType size =  imPointer->GetLargestPossibleRegion().GetSize();
+ 
+      unsigned short n1;
+      unsigned short n2;
+Index: ImageViewer/FieldViewerGUI.cxx
+===================================================================
+--- ImageViewer/FieldViewerGUI.cxx	(revision 80)
++++ ImageViewer/FieldViewerGUI.cxx	(working copy)
+@@ -1,4 +1,4 @@
+-// generated by Fast Light User Interface Designer (fluid) version 1.0110
++// generated by Fast Light User Interface Designer (fluid) version 1.0109
+ 
+ #include "/home/sci/weiliu/projects/confield/trunk/C/ImageViewer/FieldViewerGUI.h"
+ 
+@@ -10,12 +10,12 @@
+   { tkMain = new Fl_Double_Window(520, 520, "SimpleImageViewer");
+     { tkWin = new GLSliceView<float, unsigned char>(5, 5, 512, 512, "label");
+       tkWin->box(FL_ENGRAVED_FRAME);
+-      tkWin->color((Fl_Color)FL_BACKGROUND_COLOR);
+-      tkWin->selection_color((Fl_Color)FL_BACKGROUND_COLOR);
++      tkWin->color(FL_BACKGROUND_COLOR);
++      tkWin->selection_color(FL_BACKGROUND_COLOR);
+       tkWin->labeltype(FL_NORMAL_LABEL);
+       tkWin->labelfont(0);
+       tkWin->labelsize(14);
+-      tkWin->labelcolor((Fl_Color)FL_FOREGROUND_COLOR);
++      tkWin->labelcolor(FL_FOREGROUND_COLOR);
+       tkWin->align(FL_ALIGN_CENTER);
+       tkWin->when(FL_WHEN_RELEASE);
+       Fl_Group::current()->resizable(tkWin);
+Index: EMPost.cxx
+===================================================================
+--- EMPost.cxx	(revision 80)
++++ EMPost.cxx	(working copy)
+@@ -16,23 +16,26 @@
+      paraType para;
+      paraType old_para;
+      para.mu1 = 0;
+-     para.mu2 = 0.1;
++     para.mu2 = 0.2;
+      para.sigma21 = 0.05;
+      para.sigma22 = 0.05;
+      para.T = 1;
+      para.beta = INITBETA;
++     // one pixel clique coefficient alpha.
++     float PCTAGEACT = config.read<float>("PCTAGEACT", 0.05);
++     para.alpha = config.read<float>("alpha", 0);
+ 
+      unsigned annIter = 0;
+      if (_DBG >= 1){
+ 	  printf("parameters initialized:\n");
+-	  printf("mu1 = %5.2f\nmu2 = %5.2f\nsigma21 = %2.2f\nsigma22 = %2.2f\nbeta = %f\n",
+-		 para.mu1, para.mu2, para.sigma21, para.sigma22, para.beta);
++	  printf("mu1 = %5.2f\nmu2 = %5.2f\nsigma21 = %2.2f\nsigma22 = %2.2f\nbeta = %f\nalpha = %2.2f\n",
++		 para.mu1, para.mu2, para.sigma21, para.sigma22, para.beta, para.alpha);
+      }
+      
+      int i, j;
+      unsigned int EMIter = 0;
+-          
+-     // Init correlation R.
++
++     // Init connectivity matrix C.
+      GPUInit(C, R, para, regionSize1, regionSize2);
+      if (_DBG >= 3){
+ 	  printf("EMPost.cxx. After GPUInit. C: \n");
+@@ -43,21 +46,28 @@
+ 	       printf("\n");
+ 	  }
+      }
++          
+      
+      float change = 1e10;
+-     unsigned int n = 0;
++     unsigned int n = 0, n1 = 0, n2 = 0;
+ 
+      // EM to estimate posterior and parameters.
+      // init estimate of Nk1 and Nk2
+      float  Nk1, Nk2;
+-     for (n = 0; n < regionSize1 * regionSize2; n++){
+-	  Nk2 = Nk2 + (C[n] == 1);
++     for (n1 = 0; n1 < regionSize1; n1++){
++	  for (n2 = 0; n2 < regionSize2; n2++) {
++	       if (n1 != n2) {
++		    Nk2 = Nk2 + (C[n1+regionSize2+n2] > 0);
++	       }
++	  }
+      }
+-     Nk1 = regionSize1 * regionSize2 - Nk2;
++
++     Nk1 = regionSize1 * regionSize2 - Nk2 - regionSize1;
+      
+      while (change > EPS){
+ 	  EMIter++;
+ 	  printf("-----------EM iteration %d.  E step.---------------------------------------\n", EMIter);
++
+ 	  printf("Call GPU sampling now...\n");
+ 	  // randMat used for random number when sampling, and used for 
+ 	  // posterior p(c = 1) when computing posterior, i.e. 
+@@ -78,34 +88,50 @@
+ 	  old_para = para;
+ 	  Nk1 = 0;
+ 	  Nk2 = 0;
+-	  for (n = 0; n < regionSize1 * regionSize2; n++){
+-	       Nk2 = Nk2 + post2[n];
++	  for (n1 = 0; n1 < regionSize1; n1++){
++	       for (n2 = 0; n2 < regionSize2; n2++) {
++		    if (n1 != n2) {
++			 Nk2 = Nk2 + post2[n1*regionSize2+n2];
++		    }
++	       }
+ 	  }
+-	  Nk1 = regionSize1 * regionSize2 - Nk2;
++	  Nk1 = regionSize1 * regionSize2 - Nk2 - regionSize1;
+ 	  // also estimate mu1?
+ 	  if (config.read("est_mu1", 1)) {
+ 	       para.mu1 = 0;
+-	       for (n = 0; n < regionSize1 * regionSize2; n++){
+-		    para.mu1 = para.mu1 + (1- post2[n]) * R[n]/Nk1;
++	       for (n1 = 0; n1 < regionSize1; n1++){
++		    for (n2 = 0; n2 < regionSize2; n2++) {
++			 if (n1 != n2) {
++			      para.mu1 = para.mu1 + (1- post2[n1*regionSize2+n2]) * R[n1*regionSize2+n2]/Nk1;
++			 }
++		    }
+ 	       }	  
+ 	  }
+ 
+ 	  // estimate mu2
+ 	  para.mu2 = 0;
+-	  for (n = 0; n < regionSize1 * regionSize2; n++){
+-	       para.mu2 = para.mu2 + (post2[n]) * R[n]/Nk2;
++	  for (n1 = 0; n1 < regionSize1; n1++){
++	       for (n2 = 0; n2 < regionSize2; n2++) {
++		    if (n1 != n2) {
++			 para.mu2 = para.mu2 + (post2[n1*regionSize2+n2]) * R[n1*regionSize2+n2]/Nk2;
++		    }
++	       }
+ 	  }
+ 	  // estimate sigma21 and sigma22
+ 	  para.sigma21 = 0;
+ 	  para.sigma22 = 0;
+-	  for (n = 0; n < regionSize1 * regionSize2; n++){
+-	       para.sigma21 = para.sigma21 + 
+-		    (1 - post2[n]) * (R[n] - para.mu1)*(R[n] - para.mu1)/Nk1;
+-	       para.sigma22 = para.sigma22 + 
+-		    post2[n] * (R[n] - para.mu2)*(R[n] - para.mu2)/Nk2;
++	  for (n1 = 0; n1 < regionSize1; n1++){
++	       for (n2 = 0; n2 < regionSize2; n2++) {
++		    if (n1 != n2) {
++			 para.sigma21 = para.sigma21 + 
++		    (1 - post2[n1*regionSize2+n2]) * (R[n1*regionSize2+n2] - para.mu1)*(R[n1*regionSize2+n2] - para.mu1)/Nk1;
++			 para.sigma22 = para.sigma22 + 
++			      post2[n1*regionSize2+n2] * (R[n1*regionSize2+n2] - para.mu2)*(R[n1*regionSize2+n2] - para.mu2)/Nk2;
++		    }
++	       }
+ 	  }
+ 	  if (USEMRF == 1){
+-	  // Estimate beta. This need lots of work. We begin with beta
++	  // Estimate alpha and beta. This need lots of work. We begin with beta
+ 	  // in previous iteration as initital value for Nettonw's method.
+ 	  GPUEst(C, fwdMap1, fwdMap2, bwdMap1, bwdMap2, &para, regionSize1, regionSize2, size);
+ 	  }
+@@ -113,7 +139,8 @@
+ 	       fabs(para.mu2 - old_para.mu2) + 
+ 	       fabs(para.sigma21 - old_para.sigma21) + 
+ 	       fabs(para.sigma22 - old_para.sigma22) +
+-	       fabs(para.beta - old_para.beta);
++	       fabs(para.beta - old_para.beta) + 
++	       fabs(para.alpha - old_para.alpha);
+ 	  if (_DBG >= 2){
+ 	       printf("EMPost, Nk1 = %f, Nk2 = %f, mu1 = %f, mu2 = %f,\n sigma21 = %f, sigma22 = %f\n",
+ 		      Nk1, Nk2, para.mu1, para.mu2, para.sigma21, para.sigma22);
+Index: CMakeLists.txt
+===================================================================
+--- CMakeLists.txt	(revision 79)
++++ CMakeLists.txt	(working copy)
+@@ -12,12 +12,13 @@
+   INCLUDE(${ITK_USE_FILE})
+ ENDIF(ITK_FOUND)
+ # Find Cuda. Dont have to include anything like itk?
+-FIND_PACKAGE(CUDA)
++FIND_PACKAGE(CUDA REQUIRED)
+ 
+ INCLUDE_DIRECTORIES (${PROJECT_SOURCE_DIR}/ImageViewer)
+ INCLUDE_DIRECTORIES (/home/sci/weiliu/packages/boost_1_42_0)
+ 
+ MESSAGE(STATUS "Project source dir: " ${PROJECT_SOURCE_DIR})
++MESSAGE(STATUS "CUDA_VERSION: " ${CUDA_VERSION})
+ 
+ # add library path.
+ LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/ImageViewer)
+Index: GPUEst.cu
+===================================================================
+--- GPUEst.cu	(revision 80)
++++ GPUEst.cu	(working copy)
+@@ -21,10 +21,11 @@
+ 	    unsigned int N2,
+ 	    const unsigned short* size)
+ {
+-     double Jacob = 0;
+-     double DELL = 0;
++     double Jacob = 0, Jacob_alpha = 0;
++     double DELL = 0, DELL_alpha = 0;
+      double step = 1e6;
+-     unsigned int n = 0;
++     double step_alpha = 1e6;
++     unsigned int n = 0, n1 = 0, n2 = 0;
+      double nsum = 0;
+      unsigned int mapSize = size[0]*size[1]*size[2];
+      // define simSize as argument of kernel fun.
+@@ -83,26 +84,56 @@
+      dim3 dimBlock(BLOCK_SIZE_X, BLOCK_SIZE_Y);
+      dim3 dimGrid(gridDimx, gridDimy);
+      if (_DBG >= 1){
+-	  printf("GPUEst, block size: %dx%d\n", BLOCK_SIZE_X, BLOCK_SIZE_Y);
+-	  printf("GPUEst, gridsize: %dx%d\n", gridDimx, gridDimy);
++	  printf("GPUEst, block size: %dx%d. gridsize: %dx%d\n", BLOCK_SIZE_X, BLOCK_SIZE_Y, gridDimx, gridDimy);
+      }
++     // call kernel, only to compute sum x_j for each x_i.
++     EstKernel<<<dimGrid, dimBlock>>>(gpuC, gpuFwdMap1, gpuFwdMap2,
++				      gpuBwdMap1, gpuBwdMap2, *par, N1, N2,
++				      dimSize, gpuSumMat);
++     cudaMemcpy(sumMat, gpuSumMat, sizeof(float)*N1*N2, cudaMemcpyDeviceToHost);
+ 
+-     // estimate beta by Newton's method.
+-     while((step > CUEPS) && (par->beta < CUMAXBETA)){
+-	  // call kernel, only to compute sum x_j for each x_i.
+-	  EstKernel<<<dimGrid, dimBlock>>>(gpuC, gpuFwdMap1, gpuFwdMap2,
+-					   gpuBwdMap1, gpuBwdMap2, *par, N1, N2,
+-					   dimSize, gpuSumMat);
+-	  cudaMemcpy(sumMat, gpuSumMat, sizeof(float)*N1*N2, cudaMemcpyDeviceToHost);
++     // estimate alpha and beta by Newton's method.
++     // estimate alpha
++     float alpha_temp = par->alpha;
++     while((abs(step_alpha) > CUEPS) && (abs(alpha_temp * 2) < MAXEXP)){
++	  Jacob_alpha = 0;
++	  DELL_alpha = 0;
++	  for (n1 = 0; n1 < N1; n1++){
++	       for (n2 = 0; n2 < N2; n2++) {
++		    if (n1 != n2) {
++			 nsum = sumMat[n1*N2+n2];
++			 // 2nd derivative.
++			 Jacob_alpha = Jacob_alpha + 
++			      tanh(alpha_temp + par->beta*nsum)*tanh(alpha_temp + par->beta*nsum) - 1;
++			 DELL_alpha = DELL_alpha + C[n1*N2+n2] - tanh(alpha_temp + par->beta*nsum);
++		    }
++	       }
++	  }
++	  if (Jacob_alpha != 0) {
++	       step_alpha = -DELL_alpha/Jacob_alpha;
++	       alpha_temp = alpha_temp + step_alpha;
++	       printf("GPUEst.cu: alpha = %f\n", par->alpha);
++	  }
++	  else {
++	       fprintf(stderr, "GPUEst.cu: DELL_alpha zero. alpha does not change.");
++	  }
++     }
++     par->alpha = alpha_temp;
+ 
++     // estimate beta.
++     while((abs(step) > CUEPS) && (par->beta < CUMAXBETA)){
+ 	  Jacob = 0;
+ 	  DELL = 0;
+-	  for (n = 0; n < N1*N2; n++){
+-	       nsum = sumMat[n];
+-	       // 2nd derivative.
+-	       Jacob = Jacob + 
+-		    nsum * nsum * (tanh(par->beta*nsum)*tanh(par->beta*nsum) - 1);
+-	       DELL = DELL + nsum * (C[n] - tanh(par->beta*nsum));
++	  for (n1 = 0; n1 < N1; n1++){
++	       for (n2 = 0; n2 < N2; n2++) {
++		    if (n1 != n2) {
++			 nsum = sumMat[n1*N2+n2];
++			 // 2nd derivative.
++			 Jacob = Jacob + 
++			      nsum * nsum * (tanh(par->beta*nsum)*tanh(par->alpha + par->beta*nsum) - 1);
++			 DELL = DELL + nsum * (C[n1*N2+n2] - tanh(par->alpha + par->beta*nsum));
++		    }
++	       }
+ 	  }
+ 	  if (Jacob != 0){
+ 	       step = -DELL/Jacob;
+@@ -126,6 +157,8 @@
+ 	  printf("GPUEst.cu: beta = %f\n", par->beta);
+      }
+ 
++
++
+      /* clean up. */
+      cudaFree(gpuC);
+      cudaFree(gpuFwdMap1);
+Index: common.h
+===================================================================
+--- common.h	(revision 80)
++++ common.h	(working copy)
+@@ -13,13 +13,14 @@
+      float mu2;
+      float sigma21;
+      float sigma22;
++     float alpha;
+      float beta;
+      float T;
+ } paraType;
+ #endif
+ 
+ 
+-#define _DBG 2
++#define _DBG 3
+ #define EPS 0.0001 // small number to see if parameters change.
+ 
+ //#define MAXBETA 15 // max beta.
+@@ -61,8 +62,12 @@
+ #define BLOCK_SIZE_X 16
+ #define BLOCK_SIZE_Y 16
+ #define MYTEST 1
+-//#define FORCE_ANNEALING 0
++// diagonal part of correlation.
++#define SELFCORR 1
+ 
++// Do sampling in GPUSampling?
++#define DOSAMPLING 0
++
+ void checkCUDAError(const char *msg);
+ #define _EMU 0
+ 

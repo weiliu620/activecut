@@ -1,0 +1,18 @@
+function [im1, coord1, im2, coord2] = ExtractSlice(fmriVol, coord, s1, s2)
+% Usage: ExtractSlice()
+% pick slice we're interested in from the whole volume data.
+
+[N, D] = size(fmriVol);
+[xdim, ydim, zdim] = max(coord, [], 1);
+% image 1
+coordFilter = coord(:,3 == s1);
+coord1 = coord(coordFilter,:);
+im1 = fmriVol(coordFilter,:);
+% image 2
+coordFilter = coord(:,3 == s2);
+coord2 = coord(coordFilter,:);
+im2 = fmriVol(coordFilter,:);
+
+
+
+

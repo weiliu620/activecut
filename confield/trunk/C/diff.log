@@ -1,0 +1,593 @@
+Index: cppheader.h
+===================================================================
+--- cppheader.h	(revision 88)
++++ cppheader.h	(working copy)
+@@ -64,23 +64,26 @@
+ 	     unsigned int regioinSize1, 
+ 	     unsigned int regionSize2);
+ void EMPost(float* C, 
+-	    float* R, 
++	    const float* R,
++	    const float* im,
+ 	    const unsigned int* fwdMap1,
+ 	    const unsigned int* fwdMap2,
+ 	    const unsigned short* bwdMap1,
+ 	    const unsigned short* bwdMap2,
+ 	    unsigned int regionSize1, 
+ 	    unsigned int regionSize2,
++	    unsigned short TL, // time series length.
+ 	    const unsigned short* size);
+ 
+ void GPUInit(float* C, // initial connectivity matrix.
+-	     const float* R, // correlation (or other affinity) matrix, from data.
++	     const float* im,
+ 	     paraType par,
+-	     unsigned int regioinSize1, 
+-	     unsigned int regionSize2);
++	     unsigned int regionSize1, 
++	     unsigned int regionSize2, 
++	     unsigned short TL); // time series length.
+ 
+ void GPUSampling(float* C, // initial connectivity matrix.
+-		 float* R,
++		 const float* im,
+ 		 const unsigned int* fwdMap1,
+ 		 const unsigned int* fwdMap2,
+ 		 const unsigned short* bwdMap1,
+@@ -88,8 +91,10 @@
+ 		 paraType par,
+ 		 unsigned int N1,
+ 		 unsigned int N2,
++		 unsigned short TL, // time series length.
+ 		 const unsigned short* size);
+ 
++
+ void GPUEst(const float* C,
+ 	    const unsigned int* fwdMap1,
+ 	    const unsigned int* fwdMap2,
+Index: GPUInit.cu
+===================================================================
+--- GPUInit.cu	(revision 87)
++++ GPUInit.cu	(working copy)
+@@ -2,57 +2,64 @@
+ 
+ void checkCUDAError(const char *msg);
+ __global__ void InitKernel(float* C, 
+-			   const float* R, 
++			   const float* im,
+ 			   paraType par,
+ 			   unsigned int M,  // row
+-			   unsigned int N); // col
++			   unsigned int N, // col
++			   unsigned short TL); // time series length.
+ 
++__device__ float GetCorr(const float* im, 
++			 unsigned int N, 
++			 unsigned int M,  // time series length
++			 int idx1, 
++			 int idx2);
++
+ void GPUInit(float* C, // initial connectivity matrix.
+-	     const float* R, // correlation (or other affinity) matrix, from data.
++	     const float* im,
+ 	     paraType par,
+ 	     unsigned int regionSize1, 
+-	     unsigned int regionSize2)
++	     unsigned int regionSize2, 
++	     unsigned short TL) // time series length.
+ {
++     unsigned int BN = regionSize1 * (regionSize1+1)/2;
+     // pointer to device memory.
+      float* gpuC;
+-     float* gpuR;
+-
++     float* gpuIm;
+      /* create input and output array on GPU. */
+      cudaMalloc((void**) &gpuC, sizeof(float)*regionSize1 * (regionSize1+1)/2);
+      checkCUDAError("allocate gpuC");
+-     cudaMalloc((void**) &gpuR, sizeof(float)*regionSize1 * (regionSize1+1)/2);
+-     checkCUDAError("Allocate gpuR");
++     cudaMalloc((void**) &gpuIm, sizeof(float)*BN);
++     checkCUDAError("CudaSampling, allocate gpuR");
+ 
++
+      /* host to device memory. */
+-     cudaMemcpy(gpuR, R, sizeof(float) * regionSize1 * (regionSize1+1)/2, cudaMemcpyHostToDevice);
+-     checkCUDAError("copy R to device");
+-
+      cudaMemcpy(gpuC, C, sizeof(float) * regionSize1 * (regionSize1+1)/2, cudaMemcpyHostToDevice);
+      checkCUDAError("Copy C to device");
++     cudaMemcpy(gpuIm, im, sizeof(float)*regionSize1*TL, cudaMemcpyHostToDevice);
++     checkCUDAError("CudaSampling,  copy im to gpuIm");     
+ 
+-
+      /* run the kernel function. */
+      dim3 dimBlock(BLOCK_SIZE_X, BLOCK_SIZE_Y);
+      dim3 dimGrid(ceil((float)regionSize1 / BLOCK_SIZE_X) , 
+ 		  ceil((float)regionSize2 / BLOCK_SIZE_Y));
+ 
+-     InitKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, par, regionSize1, regionSize2);
++     InitKernel<<<dimGrid, dimBlock>>>(gpuC, gpuIm, par, regionSize1, regionSize2, TL);
+      
+      /* Send results back to cpu memeory */
+      cudaMemcpy(C, gpuC, sizeof(float)*regionSize1 * (regionSize1+1)/2, cudaMemcpyDeviceToHost);
+ 
+      /* clean up. */
+      cudaFree(gpuC);
+-     cudaFree(gpuR);
+-
++     cudaFree(gpuIm);
+ }
+ 
+ /* Kernel function  */
+ __global__ void InitKernel(float* C, 
+-			   const float* R, 
++			   const float* im,
+ 			   paraType par,
+ 			   unsigned int M,  // row
+-			   unsigned int N) // col
++			   unsigned int N, // col
++			   unsigned short TL) // time series length.
+ {     
+ 
+      uint idx1 = blockIdx.x*blockDim.x + threadIdx.x;
+@@ -64,9 +71,12 @@
+      // thread fall outside of matrix C, or mask is zero.
+      if (idx1 >= M | idx2 >= N | idx1 > idx2) {return;}
+ 
+-     float lh1 = gc1 * exp(-pow(GTI(R, idx1, idx2, N)-par.mu1,2)/(2*par.sigma21));
+-     float lh2 = gc2 * exp(-pow(GTI(R, idx1, idx2, N)-par.mu2,2)/(2*par.sigma22));     
++     // compute correlation on the air.
++     float yi = GetCorr(im, M, TL, idx1, idx2);
+ 
++     float lh1 = gc1 * exp(-pow(yi-par.mu1,2)/(2*par.sigma21));
++     float lh2 = gc2 * exp(-pow(yi-par.mu2,2)/(2*par.sigma22));     
++
+      if (lh2 > lh1){
+ 	  GTI(C, idx1, idx2, N) = 1;
+      }
+@@ -74,3 +84,53 @@
+ 	  GTI(C, idx1, idx2, N) = -1;
+      }
+ }
++
++
++// compute correlation.
++__device__ float GetCorr(const float* im, 
++			 unsigned int N, 
++			 unsigned int M,  // time series length
++			 int idx1, 
++			 int idx2)
++{
++     int m = 0;
++     float mean1 = 0;
++     float mean2 = 0;
++     float std1 = 0;
++     float std2 = 0;
++     int lidx1, lidx2;
++     float r = 0; // temp variable for sample correlation.
++     if (idx1 == idx2){
++	  return DIAGCORR;
++     }
++
++     // mean of vectors.
++     for (m = 0; m < M; m++){
++	  lidx1 = idx1*M + m;
++	  lidx2 = idx2*M + m;
++	  mean1 = mean1 + *(im + lidx1)/M;
++	  mean2 = mean2 + *(im + lidx2)/M;
++     }
++     /* Standard deviation. */
++     for (m = 0; m < M; m++){
++	  lidx1 = idx1 * M + m;
++	  lidx2 = idx2 * M + m;
++	  std1 = std1 + pow((*(im+lidx1) - mean1), 2)/(M-1);
++	  std2 = std2 + pow((*(im+lidx2) - mean2), 2)/(M-1);
++     }
++     std1 = sqrt(std1);
++     std2 = sqrt(std2);
++     /* Sample Correlation. */
++     if (std1 == 0 | std2 == 0){
++	  return 0;
++     }
++     else{
++	  for (m = 0; m < M; m++){
++	       lidx1 = idx1 * M + m;
++	       lidx2 = idx2 * M + m;
++	       r = r + (*(im + lidx1) - mean1) * (*(im + lidx2)-mean2)/((M-1)*std1*std2);
++	  }
++	  return r;
++     }
++}
++
+Index: main.cxx
+===================================================================
+--- main.cxx	(revision 88)
++++ main.cxx	(working copy)
+@@ -37,10 +37,7 @@
+ 			 regionSize1, regionSize2, size, snr);
+      }
+      else{
+-	  
+ 	  // Get data from file.
+-	  // Slices to extract.
+-	  
+ 	  // im1, im2, fwdMap1...get allocated here. Need free at end of main().
+ 	  ExtractRealData(im1, im2, fwdMap1, fwdMap2, bwdMap1, bwdMap2,
+ 			regionSize1, regionSize2, size, config);
+@@ -119,8 +116,8 @@
+      volSize[1] = size[1];
+      volSize[2] = size[2];
+      printf("Original fmri volume size: %dx%dx%d\n", size[0], size[1], size[2]);
+-     EMPost(C, R, fwdMap1, fwdMap2, bwdMap1, bwdMap2,
+-	    regionSize1, regionSize2, volSize);
++     EMPost(C, R, im1, fwdMap1, fwdMap2, bwdMap1, bwdMap2,
++	    regionSize1, regionSize2, size[3], volSize);
+      printf("main. EMPost done.\n");
+      
+      // save posterior from mean field.
+Index: GPUCorr.cu
+===================================================================
+--- GPUCorr.cu	(revision 87)
++++ GPUCorr.cu	(working copy)
+@@ -1,6 +1,12 @@
+ #include "common.h"
+ 
+ __global__ void CorrKernel(const float* gpuIm1, const float* gpuIm2, float* R, int N1, int N2, int M);
++__device__ float GetCorr(const float* im, 
++			 unsigned int N, 
++			 unsigned int M,  // time series length
++			 int idx1, 
++			 int idx2);
++
+ void checkCUDAError(const char *msg);
+ 
+ void GPUCorr(float* R, const float* im1, const float* im2, int M, int N1, int N2)
+@@ -67,7 +73,7 @@
+ 	  return;
+      }
+ 
+-     // mean of first vector.
++     // mean of vectors.
+      for (m = 0; m < M; m++){
+ 	  lidx1 = idx1*M + m;
+ 	  lidx2 = idx2*M + m;
+Index: parameters.inp
+===================================================================
+--- parameters.inp	(revision 87)
++++ parameters.inp	(working copy)
+@@ -3,8 +3,8 @@
+ This is also a comment since it has no equals sign and follows a blank line.
+ 
+ # toy example
+-toy = 0
+-snr = 0.45 # signal to noise ratio
++toy = 1
++snr = 1.5 # signal to noise ratio
+ 
+ # relative directory of data (fmri.nii, mask.nii)
+ datadir = R1
+Index: GPUSampling.cu
+===================================================================
+--- GPUSampling.cu	(revision 88)
++++ GPUSampling.cu	(working copy)
+@@ -1,7 +1,7 @@
+ #include "common.h"
+ 
+ __global__ void SamplingKernel(float* C, 
+-			       const float* R, 
++			       const float* im,
+ 			       const unsigned int* fwdMap1,
+ 			       const unsigned int* fwdMap2,
+ 			       const unsigned short* bwdMap1,
+@@ -9,13 +9,19 @@
+ 			       paraType par,
+ 			       unsigned int N1,
+ 			       unsigned int N2,
++			       unsigned short TL, // time series length.
+ 			       float* gpuRandMat,
+ 			       dim3  size,
+ 			       uint job,
+ 			       uint checkerboard);
++__device__ float GetCorr(const float* im, 
++			 unsigned int N, 
++			 unsigned int M,  // time series length
++			 int idx1, 
++			 int idx2);
+ 
+ void GPUSampling(float* C, // initial connectivity matrix.
+-		 float* R,
++		 const float* im,
+ 		 const unsigned int* fwdMap1,
+ 		 const unsigned int* fwdMap2,
+ 		 const unsigned short* bwdMap1,
+@@ -23,6 +29,7 @@
+ 		 paraType par,
+ 		 unsigned int N1,
+ 		 unsigned int N2,
++		 unsigned short TL, // time series length.
+ 		 const unsigned short* size)
+ 
+ 
+@@ -41,11 +48,10 @@
+      dim3 dimSize(size[0], size[1], size[2]);
+      // random number matrix.
+      float* randMat = (float*) calloc(BN, sizeof(float));
+-     // Read in parameter file.
+      
+      // pointer to device memory.
+      float* gpuC;
+-     float* gpuR;
++     float* gpuIm;
+      unsigned int* gpuFwdMap1;
+      unsigned int* gpuFwdMap2;
+      unsigned short* gpuBwdMap1;
+@@ -57,7 +63,7 @@
+      cudaMalloc((void**) &gpuC, sizeof(float)*BN);
+      checkCUDAError("CudaSampling, allocate gpuC.");
+ 
+-     cudaMalloc((void**) &gpuR, sizeof(float)*BN);
++     cudaMalloc((void**) &gpuIm, sizeof(float)*N1*TL);
+      checkCUDAError("CudaSampling, allocate gpuR");
+ 
+      cudaMalloc((void**) &gpuFwdMap1, sizeof(unsigned int)*mapSize);
+@@ -69,9 +75,9 @@
+      cudaMalloc((void**) &gpuBwdMap2, sizeof(unsigned short)*N2*3);
+      checkCUDAError("CudaSampling, allocate bwdMap2");     
+ 
++
++
+      /* host to device memory. */
+-     cudaMemcpy(gpuR, R, sizeof(float)*BN, cudaMemcpyHostToDevice);
+-     checkCUDAError("CudaSampling, memcpy R");
+      cudaMemcpy(gpuC, C, sizeof(float)*BN, cudaMemcpyHostToDevice);
+      checkCUDAError("CudaSampling, memcpy gpuC");
+ 
+@@ -89,8 +95,9 @@
+ 		cudaMemcpyHostToDevice);
+      checkCUDAError("CudaSampling, memcpy gpuBwdMap2");
+ 
++     cudaMemcpy(gpuIm, im, sizeof(float)*N1*TL, cudaMemcpyHostToDevice);
++     checkCUDAError("CudaSampling,  copy im to gpuIm");     
+ 
+-
+      /* run the kernel function. */
+      int gridDimx = N1/BLOCK_SIZE_X + (N1%BLOCK_SIZE_X == 0?0:1);
+      int gridDimy = N2/BLOCK_SIZE_Y + (N2%BLOCK_SIZE_Y == 0?0:1);
+@@ -107,9 +114,9 @@
+ 	  cudaMalloc((void**) &gpuRandMat, sizeof(float)*BN);
+ 	  checkCUDAError("CudaSampling, allocate gpuRandMat");
+ 
+-	  for (iter = 0; iter < GIBBSMAXITER; iter++){
+-	       if (_DBG >= 1 & (iter+1)%1 == 0){
+-		    printf("GPUSampling, begin iteration %d...\n", iter+1);
++	  for (iter = 1; iter < GIBBSMAXITER; iter++){
++	       if (_DBG >= 1 & iter%1 == 0){
++		    printf("GPUSampling, begin iteration %d...\n", iter);
+ 	       }
+ 	       
+ 	       // Generate random number.
+@@ -123,13 +130,15 @@
+ 	       cudaMemcpy(gpuRandMat, randMat, sizeof(float)*BN, cudaMemcpyHostToDevice);
+ 	       checkCUDAError("CudaSampling, memcpy gpuRandMat");
+ 	       // call kernel for even voxels.
+-	       SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
++	       SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuIm, gpuFwdMap1, gpuFwdMap2,
+ 						     gpuBwdMap1, gpuBwdMap2, par, N1, N2,
++						     TL,
+ 						     gpuRandMat, dimSize, 0, 0);
+ 	       cudaThreadSynchronize();
+ 	       // call kernel for odd voxels.
+-	       SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
++	       SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuIm, gpuFwdMap1, gpuFwdMap2,
+ 						     gpuBwdMap1, gpuBwdMap2, par, N1, N2,
++						     TL, 
+ 						     gpuRandMat, dimSize, 0, 1);
+ 	       
+ 	       if (_DBG >= 4){
+@@ -149,22 +158,24 @@
+      } // end of DO_SAMPLING
+ 
+      // Now compute mean field.
+-     for (iter = 0; iter <= MEANFIELDITER; iter++){
++     for (iter = 1; iter <= MEANFIELDITER; iter++){
+ 	  if (_DBG >= 1 & iter%1 == 0){
+-	       printf("GPUSampling, mean filed iteration: %d...\n", iter+1);
++	       printf("GPUSampling, mean filed iteration: %d...\n", iter);
+ 	  }
+-	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
++	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuIm, gpuFwdMap1, gpuFwdMap2,
+ 						gpuBwdMap1, gpuBwdMap2, par, N1, N2,
++						TL,
+ 						gpuRandMat, dimSize, 1, 0);
+ 
+ 	  cudaThreadSynchronize();
+-	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
++	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuIm, gpuFwdMap1, gpuFwdMap2,
+ 						gpuBwdMap1, gpuBwdMap2, par, N1, N2,
++						TL,
+ 						gpuRandMat, dimSize, 1, 1);
+ 
+-	  /* Send results back to cpu memeory */
+-	  cudaMemcpy(C, gpuC, sizeof(float)*BN, cudaMemcpyDeviceToHost);
+ 	  if (_DBG >= 4){
++	       /* Send results back to cpu memeory */
++	       cudaMemcpy(C, gpuC, sizeof(float)*BN, cudaMemcpyDeviceToHost);
+ 	       show_mat(C, N1, "expcted value C");
+ 	       FieldViewer(C, N1, N2, fwdMap1, fwdMap2, "GPUSampling: Mean Field");
+ 	  }
+@@ -179,21 +190,21 @@
+      
+      /* clean up. */
+      cudaFree(gpuC);
+-     cudaFree(gpuR);
+      cudaFree(gpuFwdMap1);
+      cudaFree(gpuFwdMap2);
+      cudaFree(gpuBwdMap1);
+      cudaFree(gpuBwdMap2);
+-     cudaFree(gpuRandMat);
++     cudaFree(gpuIm);
++     free(randMat);
+ 
+      if (DO_SAMPLING) {
+-	  free(randMat);
++	  cudaFree(gpuRandMat);
+      }
+ }
+ 
+ /* Kernel function  */
+ __global__ void SamplingKernel(float* C, 
+-			       const float* R, 
++			       const float* im,
+ 			       const unsigned int* gpuFwdMap1,
+ 			       const unsigned int* gpuFwdMap2,
+ 			       const unsigned short* gpuBwdMap1,
+@@ -201,6 +212,7 @@
+ 			       paraType par,
+ 			       unsigned int N1,
+ 			       unsigned int N2,
++			       unsigned short TL, // time series length.
+ 			       float* gpuRandMat,
+ 			       dim3 size,
+ 			       uint job,
+@@ -212,7 +224,7 @@
+      int di, dj, dk;
+      int ti, tj, tk;
+      uint n;
+-     float postExp = 0;
++
+      uint n1 = blockIdx.x*blockDim.x + threadIdx.x;
+      uint n2 = blockIdx.y*blockDim.y + threadIdx.y;
+ 
+@@ -292,7 +304,7 @@
+      }
+      sum = sum - GTI(C, n1, n2, N2);
+ 
+-     float yi = GTI(R, n1, n2, N2);
++     float yi = GetCorr(im, N1, TL, n1, n2);
+      upn = par.beta*sum + (yi-par.mu1)*(yi-par.mu1)/(2*par.sigma21) + log(sqrt(par.sigma21));
+      upp = - par.beta*sum + (yi-par.mu2)*(yi-par.mu2)/(2*par.sigma22) + log(sqrt(par.sigma22));
+      if ((upn-upp) > MAXEXP) {
+@@ -329,3 +341,53 @@
+ 	  // something must be wrong. Just exit.
+      }
+ }
++
++
++// compute correlation.
++__device__ float GetCorr(const float* im, 
++			 unsigned int N, 
++			 unsigned int M,  // time series length
++			 int idx1, 
++			 int idx2)
++{
++     int m = 0;
++     float mean1 = 0;
++     float mean2 = 0;
++     float std1 = 0;
++     float std2 = 0;
++     int lidx1, lidx2;
++     float r = 0; // temp variable for sample correlation.
++     if (idx1 == idx2){
++	  return DIAGCORR;
++     }
++
++     // mean of vectors.
++     for (m = 0; m < M; m++){
++	  lidx1 = idx1*M + m;
++	  lidx2 = idx2*M + m;
++	  mean1 = mean1 + *(im + lidx1)/M;
++	  mean2 = mean2 + *(im + lidx2)/M;
++     }
++     /* Standard deviation. */
++     for (m = 0; m < M; m++){
++	  lidx1 = idx1 * M + m;
++	  lidx2 = idx2 * M + m;
++	  std1 = std1 + pow((*(im+lidx1) - mean1), 2)/(M-1);
++	  std2 = std2 + pow((*(im+lidx2) - mean2), 2)/(M-1);
++     }
++     std1 = sqrt(std1);
++     std2 = sqrt(std2);
++     /* Sample Correlation. */
++     if (std1 == 0 | std2 == 0){
++	  return 0;
++     }
++     else{
++	  for (m = 0; m < M; m++){
++	       lidx1 = idx1 * M + m;
++	       lidx2 = idx2 * M + m;
++	       r = r + (*(im + lidx1) - mean1) * (*(im + lidx2)-mean2)/((M-1)*std1*std2);
++	  }
++	  return r;
++     }
++}
++
+Index: EMPost.cxx
+===================================================================
+--- EMPost.cxx	(revision 88)
++++ EMPost.cxx	(working copy)
+@@ -2,13 +2,15 @@
+ #include "common.h"
+ 
+ void EMPost(float* C, 
+-	    float* R, 
++	    const float* R,
++	    const float* im,
+ 	    const unsigned int* fwdMap1,
+ 	    const unsigned int* fwdMap2,
+ 	    const unsigned short* bwdMap1,
+ 	    const unsigned short* bwdMap2,
+ 	    unsigned int regionSize1, 
+ 	    unsigned int regionSize2,
++	    unsigned short TL, // time series length.
+ 	    const unsigned short* size)
+ {
+      ConfigFile config(PARAFILE);
+@@ -34,7 +36,7 @@
+      unsigned int EMIter = 0;
+           
+      // Init connectivity matrix C.
+-     GPUInit(C, R, para, regionSize1, regionSize2);
++     GPUInit(C, im, para, regionSize1, regionSize2, TL);
+      if (_DBG >= 3){
+ 	  printf("EMPost.cxx. After GPUInit. C: \n");
+ 	  show_mat(C, regionSize1, "matrix C");
+@@ -50,7 +52,7 @@
+      for (n = 0; n < regionSize1 * (regionSize1+1)/2; n++){
+ 	  Nk2 = Nk2 + (C[n] == 1);
+      }
+-     Nk1 = regionSize1 * (regionSize1+1)/2 - Nk2;
++     Nk1 = regionSize1 * (regionSize1-1)/2 - Nk2;
+      
+      while (change > EPS){
+ 	  EMIter++;
+@@ -60,8 +62,8 @@
+ 	  // posterior p(c = 1) when computing posterior, i.e. 
+ 	  // job = "post".
+ 	  if (USEMRF == 1){
+-	  GPUSampling(C, R, fwdMap1, fwdMap2, bwdMap1, bwdMap2, 
+-		      para, regionSize1, regionSize2, size);
++	  GPUSampling(C, im, fwdMap1, fwdMap2, bwdMap1, bwdMap2, 
++		      para, regionSize1, regionSize2, TL, size);
+ 	  }
+ 	  else{
+ 
+@@ -78,7 +80,8 @@
+ 	  // estimate Nk. Do not count diag element, as they do not obey the likelihood model.
+ 	  for (n1 = 0; n1 < regionSize1; n1++) {
+ 	       for (n2 = n1+1; n2 < regionSize1; n2++) {
+-		    Nk2 = Nk2 + (GTI(C, n1, n2, regionSize1)+1)/2;
++		    post2 = (1 + GTI(C, n1, n2, regionSize1))/2;
++		    Nk2 = Nk2 + post2;
+ 	       }
+ 	  }
+ 	  // all elements in upper triangular minus Nk2.
+Index: common.h
+===================================================================
+--- common.h	(revision 87)
++++ common.h	(working copy)
+@@ -89,3 +89,4 @@
+ 
+ 
+ int show_mat(float* mat, short int N, char* mat_name);
++

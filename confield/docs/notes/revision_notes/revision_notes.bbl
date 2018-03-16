@@ -1,0 +1,32 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Benjamin et~al.(2010)Benjamin, Lieberman, Chang, Ofen,
+  Whitfield-Gabrieli, Gabrieli, and Gaab]{benjamin2010influence}
+Christopher Benjamin, Daniel~A Lieberman, Maria Chang, Noa Ofen, Sue
+  Whitfield-Gabrieli, John~DE Gabrieli, and Nadine Gaab.
+\newblock The influence of rest period instructions on the default mode
+  network.
+\newblock \emph{Frontiers in human neuroscience}, 4, 2010.
+
+\bibitem[Van~Dijk et~al.(2010)Van~Dijk, Hedden, Venkataraman, Evans, Lazar, and
+  Buckner]{van2010intrinsic}
+Koene~RA Van~Dijk, Trey Hedden, Archana Venkataraman, Karleyton~C Evans, Sara~W
+  Lazar, and Randy~L Buckner.
+\newblock Intrinsic functional connectivity as a tool for human connectomics:
+  theory, properties, and optimization.
+\newblock \emph{Journal of neurophysiology}, 103\penalty0 (1):\penalty0
+  297--321, 2010.
+
+\bibitem[Waites et~al.(2005)Waites, Stanislavsky, Abbott, and
+  Jackson]{waites2005effect}
+Anthony~B Waites, Alexandra Stanislavsky, David~F Abbott, and Graeme~D Jackson.
+\newblock Effect of prior cognitive state on resting state networks measured
+  with functional connectivity.
+\newblock \emph{Human brain mapping}, 24\penalty0 (1):\penalty0 59--68, 2005.
+
+\end{thebibliography}

@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+ 
+%\documentclass[fleqn]{article}
+%\usepackage{palatino} 
+%\usepackage{charter}
+%\usepackage[T1]{fontenc}
+%\usepackage{concmath} % pretty good
+%\usepackage{cmbright}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{/home/sci/weiliu/haldefs}
+\usepackage{/home/sci/weiliu/notes}
+\usepackage{/home/sci/weiliu/projects/lwdefs}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{textcomp}
+%\usepackage[numbers]{natbib}
+\usepackage{natbib}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage{/home/sci/weiliu/packages/breakurl/breakurl}
+%\usepackage{endfloat}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{natbib}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Indepedent Component Analysis},    % title
+    pdfauthor={Author},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Creator},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={keywords}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks= true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+
+
+\begin{document}
+\title{Notes: Indepedent Component Analysis}
+\author{Wei Liu}
+\maketitle
+
+
+\bibliographystyle{plainnat}
+\bibliography{/home/sci/weiliu/projects/zotero}
+\end{document}
+ 

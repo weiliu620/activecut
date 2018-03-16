@@ -1,0 +1,2 @@
+kmeans = read.table('kmeans.log')
+ncuts = read.table('ncuts.log')

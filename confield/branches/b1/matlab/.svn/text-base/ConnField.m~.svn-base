@@ -1,0 +1,38 @@
+function res = ConnField(dataset, method, dir)
+% Usage: ConnField(dataset, method, dir)
+% main function for posterior connectivity.
+
+s1 = 30; 
+s2 = 30; % slice number to extract.
+maskThresh = 0.5; % threshold to mask gray matter.
+
+switch(dataset)
+    case 'sin'
+        if exist(strcat(dir, 'sinSample.mat'), 'file') == 2
+            dataSaved = load(strcat(dir, 'sinSample.mat'));
+            %X = dataSaved.X;
+            R = dataSaved.R;
+            fprintf('load synthetic "sin" data file.\n');
+        else
+            error(ConnField: datafile, 'Data file not found.')
+        end;
+        EMPost(R, method, dir);
+    case 'auditory'
+        if exist(strcat(dir, 'auditoryData.mat'), 'file') == 2
+            dataSaved = load(strcat(dir, 'auditoryData.mat'));
+        else
+        %[fmriVol, coord] = ExtractVol(maskThresh);
+        %[im1, coord1, im2, coord2] = ExtractSlice(fmriVol, coord, s1, s2);
+        %R = mycorr(im1', im2');
+        %R = single(R);
+        %EMPostReal(R, coord1, corod2, dir);
+        end;
+        [R, CMask, sz1, sz2] = GetCorr(maskThresh, s1, s2);
+        C = EMPostReal(R, CMask, dir, sz1, sz2);
+        
+    case 'other'
+end;
+
+
+function CutCorr(R, T);
+R(R

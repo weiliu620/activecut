@@ -1,0 +1,67 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Barbu and Zhu(2005)]{barbu2005generalizing}
+A.~Barbu and S.C. Zhu.
+\newblock Generalizing swendsen-wang to sampling arbitrary posterior
+  probabilities.
+\newblock \emph{Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 27\penalty0 (8):\penalty0 1239--1253, 2005.
+
+\bibitem[Castellanos and Proal(2011)]{castellanos2011large}
+F.X. Castellanos and E.~Proal.
+\newblock Large-scale brain systems in adhd: beyond the prefrontal--striatal
+  model.
+\newblock \emph{Trends in cognitive sciences}, 2011.
+
+\bibitem[Deco et~al.(2010)Deco, Jirsa, and McIntosh]{deco2010emerging}
+G.~Deco, V.K. Jirsa, and A.R. McIntosh.
+\newblock Emerging concepts for the dynamical organization of resting-state
+  activity in the brain.
+\newblock \emph{Nature Reviews Neuroscience}, 12\penalty0 (1):\penalty0 43--56,
+  2010.
+
+\bibitem[Ghosh et~al.(2008)Ghosh, Rho, McIntosh, K{\"o}tter, and
+  Jirsa]{ghosh2008noise}
+A.~Ghosh, Y.~Rho, AR~McIntosh, R.~K{\"o}tter, and VK~Jirsa.
+\newblock Noise during rest enables the exploration of the brain's dynamic
+  repertoire.
+\newblock \emph{PLoS computational biology}, 4\penalty0 (10):\penalty0
+  e1000196, 2008.
+
+\bibitem[Honey et~al.(2007)Honey, K{\"o}tter, Breakspear, and
+  Sporns]{honey2007network}
+C.J. Honey, R.~K{\"o}tter, M.~Breakspear, and O.~Sporns.
+\newblock Network structure of cerebral cortex shapes functional connectivity
+  on multiple time scales.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 104\penalty0
+  (24):\penalty0 10240, 2007.
+
+\bibitem[Mortveit and Reidys(2008)]{mortveit2008introduction}
+H.S. Mortveit and C.M. Reidys.
+\newblock \emph{An introduction to sequential dynamical systems}.
+\newblock Springer Verlag, 2008.
+
+\bibitem[Yeo et~al.(2011)Yeo, Krienen, Sepulcre, Sabuncu, Lashkari,
+  Hollinshead, Roffman, Smoller, Z{\"o}llei, Polimeni,
+  et~al.]{yeo2011organization}
+B.T.T. Yeo, F.M. Krienen, J.~Sepulcre, M.R. Sabuncu, D.~Lashkari,
+  M.~Hollinshead, J.L. Roffman, J.W. Smoller, L.~Z{\"o}llei, J.R. Polimeni,
+  et~al.
+\newblock The organization of the human cerebral cortex estimated by intrinsic
+  functional connectivity.
+\newblock \emph{Journal of Neurophysiology}, 106\penalty0 (3):\penalty0
+  1125--1165, 2011.
+
+\bibitem[Zalesky et~al.(2011)Zalesky, Fornito, Egan, Pantelis, and
+  Bullmore]{zalesky2011relationship}
+A.~Zalesky, A.~Fornito, G.F. Egan, C.~Pantelis, and E.T. Bullmore.
+\newblock The relationship between regional and inter-regional functional
+  connectivity deficits in schizophrenia.
+\newblock \emph{Human Brain Mapping}, 2011.
+
+\end{thebibliography}

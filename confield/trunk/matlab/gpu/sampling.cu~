@@ -1,0 +1,73 @@
+#include "mex.h"
+#include "cuda.h"
+__global__ void square_elements(float* in, float* out, int N);
+void GPUmain(const float* inputPtr, float* outputPtr, mwSize nRow, mwSize nCol);
+void mexFunction( int nlhs, mxArray *plhs[],
+                  int nrhs, const mxArray *prhs[] )
+{
+/* Check for proper number of input and output arguments */
+     if (nrhs != 1) {
+	  mexErrMsgTxt("One input argument required.");
+     }
+     if (nlhs > 1){
+	  mexErrMsgTxt("Too many output arguments.");
+     }
+/* Check data type of input argument */
+     if (!(mxIsSingle(prhs[0]))) {
+	  mexErrMsgTxt("Input array must be of type single.");
+     }
+
+     // from Matlab.
+     float* inputPtr;
+     float* outputPtr;
+ 
+     mwSize M = mxGetM(prhs[0]);
+     mwSize N = mxGetN(prhs[0]);
+
+     // Create output data.
+     plhs[0] = mxCreateNumericMatrix(M, N, mxSINGLE_CLASS, mxREAL);
+     inputPtr = (float*) mxGetPr(prhs[0]);
+     outputPtr = (float*) mxGetPr(plhs[0]);
+     // enter cuda function.
+     GPUmain(inputPtr, outputPtr, M, N);
+}
+
+void GPUmain(const float* inputPtr, float* outputPtr, mwSize nRow, mwSize nCol)
+{
+    // for GPU
+     float* inputGPUPtr;
+     float* outputGPUPtr;
+
+     /* create input and output array on GPU. */
+     cudaMalloc((void**) &inputGPUPtr, sizeof(float)*M*N);
+     cudaMalloc((void**) &outputGPUPtr, sizeof(float)*M*N);
+
+/* The input array is single precision, it can be sent directly to the
+   card */
+     cudaMemcpy(inputGPUPtr, inputPtr, sizeof(float)*M*N, cudaMemcpyHostToDevice);
+     
+     /* run the kernel function. */
+     int blockSize = 512;
+     int nBlocks = (M*N)/blockSize + ((M*N)%blockSize == 0?0:1);
+     mexPrintf("blockSize: %d, nBlocks = %d\n", blockSize, nBlocks);
+     dim3 dimBlock(blockSize);
+     dim3 dimGrid(nBlocks);
+     square_elements<<<dimGrid, dimBlock>>>(inputGPUPtr, outputGPUPtr, M*N);
+     
+     /* Send results back to cpu memeory */
+     cudaMemcpy(outputPtr, outputGPUPtr, sizeof(float)*M*N, cudaMemcpyDeviceToHost);
+
+     /* clean up. */
+     cudaFree(inputGPUPtr);
+     cudaFree(outputGPUPtr);
+}
+
+/* Kernel to square elements of the array on the GPU */
+__global__ void square_elements(float* in, float* out, int N)
+{
+     int idx = blockIdx.x*blockDim.x+threadIdx.x;
+     if ( idx < N) out[idx]=in[idx]*in[idx];
+
+}
+
+     

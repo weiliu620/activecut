@@ -1,0 +1,46 @@
+# example.inp
+# Example configuration file for ConfigFile class
+This is also a comment since it has no equals sign and follows a blank line.
+
+# toy example
+toy = 0
+snr = 0.5 # signal to noise ratio
+
+# relative directory of data (fmri.nii, mask.nii)
+datadir = R1
+
+# read data. 
+sliceField = 0 # connectivity between two slices.
+s1 = 27
+s2 = 27
+
+
+volField = 1 # connectivity between two volumes. mutual exclusive with sliceField.
+v1_xmin = 0 
+v1_xmax = 63
+v1_ymin = 0
+v1_ymax = 63
+v1_zmin = 27
+v1_zmax = 27
+# volume 2
+v2_xmin = 0 
+v2_xmax = 63
+v2_ymin = 0
+v2_ymax = 63
+v2_zmin = 27
+v2_zmax = 27
+# seed voxel
+seed0 = 34
+seed1 = 18
+seed2 = 27
+
+# estimate mu1?
+est_mu1 = 1
+
+# debugging level
+_DEBUG = 3
+
+
+
+
+

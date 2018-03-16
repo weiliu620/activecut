@@ -1,0 +1,45 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/openSUSE)
+The top-level auxiliary file: mrf.aux
+The style file: plainnat.bst
+Database file #1: /home/sci/weiliu/projects/zotero.bib
+You've used 1 entry,
+            2773 wiz_defined-function locations,
+            599 strings with 4936 characters,
+and the built_in function-call counts, 429 in all, are:
+= -- 36
+> -- 10
+< -- 1
++ -- 4
+- -- 3
+* -- 32
+:= -- 70
+add.period$ -- 3
+call.type$ -- 1
+change.case$ -- 4
+chr.to.int$ -- 1
+cite$ -- 2
+duplicate$ -- 20
+empty$ -- 43
+format.name$ -- 4
+if$ -- 85
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 1
+newline$ -- 13
+num.names$ -- 4
+pop$ -- 7
+preamble$ -- 1
+purify$ -- 3
+quote$ -- 0
+skip$ -- 14
+stack$ -- 0
+substring$ -- 29
+swap$ -- 1
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 11
+warning$ -- 0
+while$ -- 4
+width$ -- 0
+write$ -- 20

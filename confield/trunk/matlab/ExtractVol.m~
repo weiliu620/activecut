@@ -1,0 +1,40 @@
+function [fmriVol, coord] = ExtractVol(maskThresh)
+% Input:: maskThresh, threshold of gray matter image. a value between 0 and
+% 1.
+% output: fmriVol, NxD matrix. Each row is a time course. 
+%         coord: 
+rootDir = '/scratch/data/auditory_spm_example/';
+greyMaskFile = strcat(rootDir, 'sM00223_seg_coreg/rc1sM00223_002.hdr');
+fmriFile = strcat(rootDir,...
+    'fM00223_realign_reslice/auditory_realigned.nii');
+
+
+addpath('/home/sci/weiliu/packages/nifti_to_matlab'); % tool dir.
+addpath('/scratch/data/auditory_spm_example'); % date dir
+NII = load_nii(fmriFile); % 4d nii file. already preprocessed.
+maskStruct = load_nii(greyMaskFile);
+
+fmriVol = single(NII.img);
+dim = size(fmriVol);
+maskVol = maskStruct.img;
+
+% reshape to linear index.
+fmriVol = reshape(fmriVol, dim(1)*dim(2)*dim(3), dim(4));
+maskVol = reshape(maskVol, dim(1)*dim(2)*dim(3), 1);
+
+fmriVol = fmriVol(maskVol > maskThresh, :);
+[II, JJ, KK] = ind2sub(dim(1:3), find(maskVol > maskThresh));
+coord = [II JJ KK];
+
+% check if reshaping is correct.
+NIIMasked = NII; % create a nii structure for saving masked image.
+testVol = NIIMasked.img;
+testVol = reshape(testVol, dim(1)*dim(2)*dim(3), dim(4));
+testVol(maskVol <= maskThresh, :) = 0;
+testVol = reshape(testVol, dim);
+
+NIIMasked.img = testVol;
+save_nii(NIIMasked, strcat(rootDir, 'NIIMasked.nii'));
+
+
+

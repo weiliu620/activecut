@@ -1,0 +1,5 @@
+toy 'sin' data with snr = 0.5, and had spatial smoothing after data are generated. filter size FIZE = 7, fwhm = 2.6 (match spm fwhm = 8mm and voxelsize = 3mm. because 8/3 = 2.6 voxels)
+
+Then use EM to compute posterior probability and estimate parameters. Only estimate mu and sigma, and does not estimate beta, because we did not do sampling.
+
+The prior probability, when not using mrf, is just Pik of Gaussian mixture model. We can see the parameter estimation is good, but the results image does not have spatial coherency. 

@@ -1,0 +1,45 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/openSUSE)
+The top-level auxiliary file: miccai.aux
+The style file: splncs.bst
+Database file #1: newreference.bib
+You've used 10 entries,
+            2087 wiz_defined-function locations,
+            551 strings with 5322 characters,
+and the built_in function-call counts, 3619 in all, are:
+= -- 378
+> -- 105
+< -- 9
++ -- 39
+- -- 29
+* -- 258
+:= -- 453
+add.period$ -- 11
+call.type$ -- 10
+change.case$ -- 9
+chr.to.int$ -- 0
+cite$ -- 10
+duplicate$ -- 197
+empty$ -- 318
+format.name$ -- 29
+if$ -- 881
+int.to.chr$ -- 0
+int.to.str$ -- 10
+missing$ -- 11
+newline$ -- 53
+num.names$ -- 10
+pop$ -- 25
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 160
+stack$ -- 0
+substring$ -- 313
+swap$ -- 127
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 35
+width$ -- 12
+write$ -- 117

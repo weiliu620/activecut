@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+%\usepackage{bookman}
+\usepackage{/home/sci/weiliu/haldefs}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage{enumitem}
+\usepackage{subfig}
+\usepackage{hyperref}
+%\usepackage{/home/sci/weiliu/packages/breakurl/breakurl}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{natbib}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{color}
+\usepackage{mdwlist}
+
+\hypersetup{
+  % bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Hierarchical Graphical Lasso},
+    pdfauthor={Wei Liu},     % author
+    pdfsubject={Hierarchical Graphical Lasso},   % subject of the document
+    pdfcreator={Wei Liu},   % creator of the document
+    pdfproducer={Wei Liu}, % producer of the document
+    pdfkeywords={Hierarchical Graphical Lasso, graphical model}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks= true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=blue,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{9 in}
+\setlength{\headsep}{0.5 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+
+
+\begin{document}
+\title{Hierarchical Graphical Lasso}
+\author{Wei Liu}
+\maketitle
+
+This notes is for solving the graphical Lasso problem in a hierarchical fashion. Define the population mean of the inverse covariance matrix of a multi-variate Gaussian as $\Omega$. Give $\Omega$, the subject's precision matrix is \[\Phi_j = \Omega + \Theta_j.\] The objective function is defined as
+\[
+f(\Omega, \Phi_j) = \sum_j(\log \det \Phi_j - \tr(S_j \Phi_j) - \rho\norm{\Theta_j}) + \lambda \norm{\Omega}
+\]
+It should be easy to prove this is a hierarchical Bayesian model. 
+\[
+\frac{\partial f(\Omega, \Phi_j)}{\partial \Phi_j} = \Phi\inv - S_j - \rho\Gamma_j = 0
+\]
+Define $W = \Phi\inv$ we have
+\[
+\frac{\partial f(\Omega, \Phi_j)}{\partial \Phi_j} = W - S_j - \rho\Gamma_j = 0
+\]
+This is same with equation (2.6) of \cite{friedman2008sparse}, and can be solved by a iterative Lasso method. For $\Omega$, rewrite $f$ as
+\begin{align*}
+f(\Omega) &= \sum_j(\log\det(\Omega + \Theta_j) - \tr(S_j(\Omega + \Theta_j)) - \rho\norm{\Theta_j}) + \lambda \norm{\Omega} \\
+\frac{\partial f(\Omega, \Phi_j)}{\partial \Omega} &= \sum_j((\Omega+\Theta_j)\inv - S_j) - \lambda\Gamma \\
+&=\sum_j(\Omega+\Theta_j)\inv -\sum_j S_j - \lambda\Gamma = 0.
+\end{align*}
+Define $Q = \sum_j (\Omega + \Theta_j)\inv$, we have $Q - \sum_j S_j - \lambda \Gamma = 0$, which again is same with equation (2.6) of \cite{friedman2008sparse}. so we can use \cite{friedman2008sparse} to solve $Q$, and then solve $\Omega$ from $Q = \sum_j (\Omega + \Theta_j)\inv$.
+
+A few results are available for matrix differentiation
+\begin{align*}
+\norm{X}_F^2 &= \tr(X\T X) \\
+\frac{\partial  \norm{X}_F^2}{\partial X} &= 2X \\
+\frac{\partial X\inv}{\partial X} &= -(X^{-\top} \otimes X\T)\\
+\frac{\partial X\T X}{\partial X} &= (\mat{I}_{n^2} + \mat{T}_{n,n})(\mat{I}_n\otimes X\T),
+\end{align*}
+where $\mat{T}$ is a vector permutation matrix that transform $vec \mat X$ to $vec \mat X\T$.
+\bibliographystyle{plainnat}
+\bibliography{/home/sci/weiliu/projects/centralref}
+\end{document}

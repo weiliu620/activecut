@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+%\usepackage{bookman}
+\usepackage{/home/sci/weiliu/haldefs}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage{enumitem}
+\usepackage{subfig}
+\usepackage{hyperref}
+%\usepackage{/home/sci/weiliu/packages/breakurl/breakurl}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{natbib}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{color}
+\usepackage{mdwlist}
+
+\hypersetup{
+  % bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Intraclass Correlation Reading Notes},
+    pdfauthor={Wei Liu},     % author
+    pdfsubject={Intraclass Correlation (ICC) Reading notes},   % subject of the document
+    pdfcreator={Wei Liu},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={Intraclass correlation coefficient, ICC}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks= true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=blue,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{9 in}
+\setlength{\headsep}{0.5 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+
+
+\begin{document}
+\title{Intraclass Correlation (ICC) in fMRI Testing}
+\author{Wei Liu}
+\maketitle
+
+This is a summary of the reading for the intraclass correlation (ICC) used in
+fMRI. Assuming there are $N$ samples, and each sample have $K$ measurements, the
+$NxK$ matrix $X$ is the data we have. the measurement can be obtained from
+different raters or observers (we take raters for example in the following
+text). The ICC is used to measure whether the measurement from different raters
+are consistent. There are multiple ways of computing ICC depending on the
+experiment condition
+\cite{mcgraw1996forming,weir2005quantifying,shrout1979intraclass}. Here we take
+two case of that. Before going into details of the definition, we give some
+definitions of the sum of squares ($SS$) that are often used in ANOVA. These $SS$
+will be used for estimation of ICC.
+
+\begin{align*}
+  x_{\cdot\cdot} &= \frac{1}{NK}\sum_{i=1}^N\sum_{j=1}^Kx_{ij}, \qquad x_{i\cdot} = \frac{1}{K}\sum_j x_{ij}, \qquad x_{\cdot j} = \frac{1}{N}\sum_i x_{ij} \\
+  SS_b &= K\sum_{i = 1}^N (x_{i\cdot} - x_{\cdot\cdot})^2 \\
+  SS_w &= \sum_i \sum_j (x_{ij} - x_{i\cdot})^2 \\
+  SS_t &= N\sum_j (x_{\cdot j} - x_{\cdot\cdot})^2 \\
+  SS_e &= \sum_i\sum_j (x_{ij} - x_{i\cdot} - x_{\cdot j} + x_{\cdot\cdot})^2 \\
+  SS &= \sum_i\sum_j (x_{ij} - x_{\cdot\cdot})^2 \\
+  SS &= SS_b + SS_w = SS_b + SS_t + SS_e \\
+  SS_w &= SS_t + SS_e
+\end{align*}
+$SS$ is called total variance. by variance decomposition, it can be decomposed into a few separate parts. $SS_b$ is between-subject variance, $SS_w$ is with-in subject variance. $SS_w$ can be further decomposed into two variance (in two-way ANOVA model): $SS_t$ (between-rater variance) and $SS_e$ (residual errors).
+
+\textbf{The first case} is similar to the one-way ANOVA model. Define $x_{ij} = \mu + r_i + w_{ij}$. $\mu$ is a fixed parameter for the population mean, $r_i$ is row effects, and are i.i.d from $\mathcal{N}(0, \sigma_b^2)$.  $w_{ij}$ is noise term and also i.i.d. from $\mathcal{N}(0, \sigma_w^2)$. The variance decomposition is $SS = SS_b + SS_w$. 
+
+The definition of ICC in this case is \[ \rho = \frac{\sigma_b^2}{\sigma_b^2 + \sigma_w^2}.\] Because
+\begin{align*}
+  MS_b &= \frac{1}{N-1}SS_b, \quad \mathbb{E}[MS_b] = K\sigma_b^2 + \sigma_w^2\\
+  MS_w &= \frac{1}{N(K-1)}SS_w, \quad \mathbb{E}[MS_w] = \sigma_w^2
+\end{align*}
+We can estimate ICC as
+\[
+ICC = \frac{MS_b - MS_w}{MS_b + (K-1) MS_w}
+\]
+
+\textbf{The second case} is the two-way ANOVA model where $x_{ij} = \mu + r_i + c_j +
+w_{ij}$. $c_j$ is i.i.d variable in $\mathcal{N}(0, \sigma_c^2)$. We call $c_j$
+a systematic error. Based on the first case, we can further decompose $SS_w =
+SS_t + SS_e$. The definition of ICC with and without systematic error taken into account are\[\rho_u = \frac{\sigma_b^2}{\sigma_b^2 + \sigma_t^2 + \sigma_e^2}, \quad \rho_c = \frac{\sigma_b^2}{\sigma_b^2 + \sigma_e^2}.\] Because
+\begin{align*}
+    MS_b &= \frac{1}{N-1}SS_b, \quad \mathbb{E}[MS_b] = K\sigma_b^2 + \sigma_e^2\\
+    MS_w &= \frac{1}{N(K-1)}SS_w, \quad \mathbb{E}[MS_w] = \sigma_c^2 + \sigma_e^2 \\
+    MS_t &= \frac{1}{K-1} SS_t, \quad \mathbb{E}[MS_t] = N \sigma_c^2 + \sigma_e^2 \\
+    MS_e &= \frac{1}{(N-1)(K-1)}SS_e, \quad \mathbb{E}[MS_e] = \sigma_e^2
+\end{align*}
+We can estimate ICC as \[ICC_u = \frac{MS_b - MS_e}{MS_b + (K-1)MS_e + (K/N)(MS_t - MS_e)}, \quad ICC_c = \frac{MS_b - MS_e}{MS_b + (K-1)MS_e}\]
+
+Most formulas are from \cite{mcgraw1996forming}. But the definition of the sum of squares (SS) are missing. The $SS_e$ is tricky and I got the definition from \cite{zuo2010reliable}'s appendix. An example in \cite{shrout1979intraclass} confirmed the variance decomposition and $SS_e$ definition is correct.
+
+\bibliographystyle{plainnat}
+\bibliography{/home/sci/weiliu/projects/centralref}
+\end{document}

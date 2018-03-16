@@ -1,0 +1,9 @@
+compute correlation on smoothed data. Gaussian smoothing kernel is (4,4,,4) fwhm
+
+
+-rw-r--r-- 1 weiliu sci 15964 2010-03-10 13:49 R1_at_0.4.png	
+-rw-r--r-- 1 weiliu sci 13376 2010-03-10 14:44 R1_at_gold.png
+-rw-r--r-- 1 weiliu sci 13647 2010-03-10 00:18 R1_threshold_at_0.15.png
+-rw-r--r-- 1 weiliu sci 16079 2010-03-10 13:53 R2_at_0.4.png
+-rw-r--r-- 1 weiliu sci 15898 2010-03-10 14:50 R2_at_gold.png	set threhold such that only 5% voxels above the threshold.
+-rw-r--r-- 1 weiliu sci 13776 2010-03-10 00:22 R2_threshold_at_0.15.png

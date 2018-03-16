@@ -1,0 +1,246 @@
+#include "mex.h"
+#include "cuda.h"
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <iostream>
+#include <thrust/version.h>
+// Forward Declaration.
+#define BLOCK_SIZE_X 16
+#define BLOCK_SIZE_Y 16
+#define PI 3.141592654
+#define MYTEST 0
+
+__global__ void SamplingKernel(float* C, 
+			       const float* R, 
+			       const unsigned short int* mask, 
+			       int M1, 
+			       int N1,
+			       int M2,
+			       int N2, 
+			       float mu1, 
+			       float mu2, 
+			       float sigma21, 
+			       float sigma22, 
+			       float beta, 
+			       float iterCount,
+			       const float* gpuRandMat);
+
+void GPUmain(float* C, // initial connectivity matrix.
+	     const float* R, // correlation (or other affinity) matrix, from data.
+	     const unsigned short int* mask,
+	     float mu1, 
+	     float mu2,
+	     float sigma21,
+	     float sigma22,
+	     float beta,
+	     float iterCount, 
+	     mwSize M1, 
+	     mwSize N1,
+	     mwSize M2,
+	     mwSize N2);
+
+void checkCUDAError(const char *msg);
+
+void mexFunction( int nlhs, mxArray *plhs[],
+                  int nrhs, const mxArray *prhs[] )
+{
+/* Check for proper number of input and output arguments */
+     if (nrhs != 13) {
+	  mexErrMsgTxt("Arguments less than required.\n");
+     }
+     if (nlhs > 1){
+	  mexErrMsgTxt("Too many output arguments.");
+     }
+
+     float* Cinit = (float*)mxGetPr(prhs[0]); 
+     float* R = (float*)mxGetPr(prhs[1]); 
+     unsigned short int *mask = (unsigned short int*)mxGetPr(prhs[2]);
+     float mu1 = mxGetScalar(prhs[3]);
+     float mu2 = mxGetScalar(prhs[4]);
+     float sigma21 = mxGetScalar(prhs[5]);
+     float sigma22 = mxGetScalar(prhs[6]);
+     float beta = mxGetScalar(prhs[7]);
+     float iterCount = mxGetScalar(prhs[8]);
+     int M1 = mxGetScalar(prhs[9]); // image1 row.
+     int N1 = mxGetScalar(prhs[10]); // image1 col.
+     int M2 = mxGetScalar(prhs[11]); // image2 row.
+     int N2 = mxGetScalar(prhs[12]); // image2 col.
+      
+     mwSize M = M1*N1; // C row.
+     mwSize N = M2*N2; // C col.
+
+     // Create output data.
+     plhs[0] = mxCreateNumericMatrix(M, N, mxSINGLE_CLASS, mxREAL);
+     float* C = (float*) mxGetPr(plhs[0]);
+     // init C.
+     memcpy(C, Cinit, M*N*sizeof(float));
+     GPUmain(C, R, mask, mu1, mu2, sigma21, sigma22,  beta, iterCount, M1, N1, M1, M2);
+}
+
+void GPUmain(float* C, // initial connectivity matrix.
+	     const float* R, // correlation (or other affinity) matrix, from data.
+	     const unsigned short int* mask,
+	     float mu1, 
+	     float mu2,
+	     float sigma21,
+	     float sigma22,
+	     float beta,
+	     float iterCount, 
+	     mwSize M1, 
+	     mwSize N1,
+	     mwSize M2,
+	     mwSize N2)
+{
+     unsigned int M = M1*N1; // C row.
+     unsigned int N = M2*N2; // C col.
+     printf("CudaSampling, GPUmain, M = %d, N = %d\n", M, N);
+    // pointer to device memory.
+     float* gpuC;
+     float* gpuR;
+     unsigned short int* gpuMask;
+     float* gpuRandMat;
+
+     /* Generate random matrix. */
+     mxArray* rprhs[3];
+     mxArray* rplhs[1];
+     rprhs[0] = mxCreateDoubleScalar(M);
+     rprhs[1] = mxCreateDoubleScalar(N);
+     rprhs[2] = mxCreateString("single");
+     mexCallMATLAB(1, rplhs, 3, rprhs, "rand");
+     /* get pointer to random matrix. */
+     float* randMat = (float*) mxGetPr(rplhs[0]);
+     
+     /* create input and output array on GPU. */
+     cudaMalloc((void**) &gpuC, sizeof(float)*M*N);
+     checkCUDAError("CudaSampling, allocate gpuC.");
+     cudaMalloc((void**) &gpuR, sizeof(float)*M*N);
+     checkCUDAError("CudaSampling, allocate gpuR");
+     cudaMalloc((void**) &gpuMask, sizeof(unsigned short int)*M*N);
+     checkCUDAError("CudaSampling, allocate gpuMask");     
+     cudaMalloc((void**) &gpuRandMat, sizeof(float)*M*N);
+     checkCUDAError("CudaSampling, allocate gpuRandMat");
+
+     /* host to device memory. */
+     cudaMemcpy(gpuR, R, sizeof(float)*M*N, cudaMemcpyHostToDevice);
+     checkCUDAError("CudaSampling, memcpy R");
+     cudaMemcpy(gpuC, C, sizeof(float)*M*N, cudaMemcpyHostToDevice);
+     checkCUDAError("CudaSampling, memcpy gpuC");
+     cudaMemcpy(gpuMask, mask, sizeof(unsigned short int)*M*N, cudaMemcpyHostToDevice);
+     checkCUDAError("CudaSampling, memcpy gpuMask");
+     cudaMemcpy(gpuRandMat, randMat, sizeof(float)*M*N, cudaMemcpyHostToDevice);
+     checkCUDAError("CudaSampling, memcpy gpuRandMat");
+     
+     /* run the kernel function. */
+     dim3 dimBlock(BLOCK_SIZE_X, BLOCK_SIZE_Y);
+     dim3 dimGrid(ceil((float)M / BLOCK_SIZE_X) , ceil((float)N / BLOCK_SIZE_Y));
+
+     SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuMask, (int)M1, (int)N1, (int)M2, (int)N2, mu1, mu2, sigma21, sigma22, beta, iterCount, gpuRandMat);
+     
+     /* Send results back to cpu memeory */
+     cudaMemcpy(C, gpuC, sizeof(float)*M*N, cudaMemcpyDeviceToHost);
+
+     /* clean up. */
+     cudaFree(gpuC);
+     cudaFree(gpuR);
+     cudaFree(gpuMask);
+     cudaFree(gpuRandMat);
+     mxDestroyArray(rprhs[0]);
+     mxDestroyArray(rprhs[1]);
+     mxDestroyArray(rprhs[2]);
+     mxDestroyArray(rplhs[0]);
+}
+
+/* Kernel function  */
+__global__ void SamplingKernel(float* C, 
+			       const float* R, 
+			       const unsigned short int* mask, 
+			       int M1, 
+			       int N1,
+			       int M2,
+			       int N2, 
+			       float mu1, 
+			       float mu2, 
+			       float sigma21, 
+			       float sigma22, 
+			       float beta, 
+			       float iterCount,
+			       const float* gpuRandMat)
+{     
+
+
+     uint idx1 = blockIdx.x*blockDim.x + threadIdx.x;
+     uint idx2 = blockIdx.y*blockDim.y + threadIdx.y;
+    
+     uint M = M1*N1;
+     uint N = M2*N2;
+
+     int idx11, idx12, idx13, idx14, idx21, idx22, idx23, idx24;
+     idx11 = idx1 - 1;
+     idx12 = idx1 + 1;
+     idx13 = idx1 - M1;
+     idx14 = idx1 + M1;
+
+     idx21 = idx2 - 1;
+     idx22 = idx2 + 1;
+     idx23 = idx2 - M2;
+     idx24 = idx2 + M2;
+
+     float gc1 = 1/(sqrt(2*PI*sigma21));
+     float gc2 = 1/(sqrt(2*PI*sigma22));
+     float sum = 0, denom = 0, pr1 = 0, pr2 = 0;
+     float lh1 = 0, lh2 = 0, post1 = 0, post2 = 0;
+     // thread fall outside of matrix C, or mask is zero.
+     if (idx1 >= M | idx2 >= N | *(mask + idx2*M+idx1) == 0) {return;}
+
+     int i1 = idx1%M1;
+     int j1 = (idx1 - i1)/M1;
+     int i2 = idx2 % M2;
+     int j2 = (idx2 - i2)/M2;
+     /* neighbors in image 1. */
+     if (i1 > 0){sum = sum + *(C + idx2*M + idx11);}
+     if (i1 < M1) { sum = sum + *(C + idx2*M + idx12);}
+     if (j1 > 0) { sum = sum + *(C + idx2*M + idx13); }
+     if (j1 < N1) { sum = sum + *(C + idx2*M + idx14); }
+     /* neighbors in image 2. */
+     if (i2 > 0){sum = sum + *(C + idx21*M + idx1);}
+     if (i2 < M2) { sum = sum + *(C + idx22*M + idx1);}
+     if (j2 > 0) { sum = sum + *(C + idx23*M + idx1); }
+     if (j2 < N2) { sum = sum + *(C + idx24*M + idx1); }
+
+     denom = 2*cosh(beta*sum);
+
+     pr1 = exp(beta * (-1)* sum)/denom;
+     pr2 = exp(beta * sum)/denom;
+
+     lh1 = gc1 * exp(-pow(R[idx2*M + idx1]-mu1,2)/(2*sigma21));
+     lh2 = gc2 * exp(-pow(R[idx1*M + idx1]-mu2,2)/(2*sigma22));
+          
+     post1 = pr1 * lh1;
+     post2 = pr2 * lh2;
+
+     post1 = post1/(post1 + post2);
+     post2 = post2/(post1 + post2);
+
+     if (gpuRandMat[idx2*M+idx1] < post1){
+	  C[idx2*M + idx1] =  -1;
+     }
+
+     else{
+	  C[idx2*M + idx1] =  1;
+     }
+}
+
+     
+void checkCUDAError(const char *msg)
+{
+     cudaError_t err = cudaGetLastError();
+     if( cudaSuccess != err) 
+     {
+	  fprintf(stderr, "Cuda error: %s: %s.\n", msg, cudaGetErrorString( err) );
+	  //exit(-1);
+     }                         
+}
+
+
+     

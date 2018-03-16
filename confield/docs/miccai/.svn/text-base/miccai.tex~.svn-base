@@ -1,0 +1,164 @@
+\documentclass[12pt]{article}
+
+%\documentclass[fleqn]{article}
+%\usepackage{palatino} 
+%\usepackage{charter}
+%\usepackage[T1]{fontenc}
+%\usepackage{concmath} % pretty good
+%\usepackage{cmbright}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{/home/sci/weiliu/haldefs}
+\usepackage{/home/sci/weiliu/notes}
+\usepackage{/home/sci/weiliu/projects/lwdefs}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{textcomp}
+%\usepackage[numbers]{natbib}
+\usepackage{natbib}
+%\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage{/home/sci/weiliu/packages/breakurl/breakurl}
+%\usepackage{endfloat}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{html}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Anistropic Diffusion },    % title
+    pdfauthor={Wei Liu},     % author
+    pdfsubject={Project for advanced Image Processing},   % subject of the document
+    pdfcreator={Wei Liu},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={blob detection, scale-space}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks= true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+
+
+\begin{document}
+\title{Anistropic Diffusion}
+\author{Wei Liu (u0614581)\\ weiliu@sci.utah.edu}
+\maketitle
+\tableofcontents
+%\newpage
+
+\section{introduction}
+In this project, I use anisotropic diffusion to smooth and keep the edges unchanged (or even sharpened). Gaussian kernel is used as conductivity function, with its parameter $\sigma^2$ derived from gradient magnitude we want to keep. Have a brief discussion about the influence of the $\kappa$ on blurring.
+
+\section{Methods}
+\textbf{Forward-in-time-centered-space: } The explicit formation begin with the heat equation (from West Virginia lecture notes):
+\begin{equation*}
+\frac{\partial I}{\partial t} = c(x, y, t) \nabla ^2 I + \nabla c \cdot I.
+\end{equation*}
+And after some approximation  the formulation can be written as
+\begin{align}
+\frac{I_{x, y}^{t+1} - I_{x,y}^{t}}{\lambda} &= g(|I_{x-1,y} - I_{x, y}|)(I_{x-1,y} - I_{x, y})\nonumber\\
+&= g(|I_{x+1,y} - I_{x, y}|)(I_{x+1,y} - I_{x, y})\nonumber\\
+ &= g(|I_{x,y-1} - I_{x, y}|)(I_{x,y-1} - I_{x, y})\nonumber\\
+ &= g(|I_{x, y+1} - I_{x, y}|)(I_{x,y+1} - I_{x, y})\label{eq1}
+\end{align}
+
+where $g$ is the conductivity function, and $\lambda$ is the step size on time scale. As required I use Gaussian kernel as the conductivity function\cite{perona_scale-space_1990}, i.e.
+\begin{equation}
+g(\nabla I) = \exp\{ -(\frac{\| \nabla I|}{\sigma^2})^2\} \label{eq2}
+\end{equation}
+$\lambda$ in \eqref{eq1} should be small enough for numerically stability. For four-neighbors, $\lambda < 0.25$, and for eight-neighbors (which is the case in my experiment), $\lambda < 1/8$. I also used $\sigma^2$ instead of $\kappa$ in the original paper of \cite{perona_scale-space_1990} because I think the $\sigma^2 $ are not equal to $\kappa$. If we plug into \eqref{eq2},  set derivative of $\phi(s)$ with respect to $s$ to zero, to compute the $\kappa$, we get 
+\begin{align*}
+\frac{d \phi(s)}{ds} &= g'(s) \cdot s + g(s)\\
+&= \exp\{-(\frac{s}{\sigma^2})^2\}\cdot (\frac{-2s^2}{\sigma^2}) + \exp\{ - (\frac{s}{\sigma^2})^2\} = 0\\
+\kappa &= \mbox{argmax } \phi(s)  = \sigma^2 / \sqrt{2}
+\end{align*}
+where $s$ is the gradient magnitude, $s = |\nabla I_{x,y}|$. That is to say, if we want to smooth edges whose $s < 100$, and sharpen those $s >= 100$, we need to choose a conductivity kernel (here Gaussian kernel) with $\sigma^2 = \sqrt{2} \kappa \approx 140$. (not sure about this. Need confirmation)
+
+
+On the image boundary, I just assume the pixels outside the boundary have same intensity value as the closet pixels on the boundary.
+
+It is worthy noting that for implicit implementation, we need to solve a over-constrained linear equation, and this is more numerically stable with same value of $\lambda$ than explicit formulation.
+
+
+\section{Experiment Results and Analysis}
+First, as a warmup we test a simple 'coins' image, as it has a few easily recognized regions (by human vision). I want to keep the edges around the coins, while smooth the details inside the coins. In this experiment, I set the step size in time domain $\lambda = 0.1$. The small step size is because of the eight-neighbor when computing gradient magnitude.  The results in figure \ref{fig1} show the algorithm works pretty well. After difussion. the edges larger than the manual-set threshold (coins' boundary) is smoothed out, and those below threshold (inside coinis) are preserved. 
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.4\textwidth]{coins.png_init.eps}
+\includegraphics[width = 0.4\textwidth]{coins.png_res.eps}\\
+\includegraphics[width = 0.4\textwidth]{coins.png_init_grad.eps}
+\includegraphics[width = 0.4\textwidth]{coins.png_final_grad.eps}\\
+\includegraphics[width = 0.4\textwidth]{coins.png_init_hist.eps}
+\includegraphics[width = 0.4\textwidth]{coins.png_final_hist.eps} \label{fig1}
+\caption{First row is the original image and the image after 50 iteration of diffusion. Second row is the gradient magnitude map of the image  before and after diffusion. Third row is the histogram of the gradient over all pixels. The $\kappa$ value is manually set to 40 as a prior knowledge. }
+\label{fig1}
+\end{figure}
+
+Then I use a 'Temple-of-Heaven' image for testing the diffusion under different $\kappa$. This image is good for testing because it has edges with different gradients. The results is figure \ref{fig2}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.4\textwidth]{temple2.png_init.eps}
+\includegraphics[width = 0.4\textwidth]{temple2.png_init_grad.eps}\\
+\includegraphics[width = 0.4\textwidth]{temple2.png_res_25.eps}
+\includegraphics[width = 0.4\textwidth]{temple2.png_final_grad_25.eps}\\
+\includegraphics[width = 0.4\textwidth]{temple2.png_res_50.eps}
+\includegraphics[width = 0.4\textwidth]{temple2.png_final_grad_50.eps}\\
+\includegraphics[width = 0.4\textwidth]{temple2.png_res_100.eps}
+\includegraphics[width = 0.4\textwidth]{temple2.png_final_grad_100.eps}\\
+\caption{First row is the original image and its gradient magnitude map.  2nd row  to 4th row are the images after diffusion with $\kappa = 25, 50, 100$ respectively. We can see in 2nd row,only clouds are blurred, also are the fences around the temple. But the temple itself mostly remains. In 3rd row, the fences are further blurred, and the last row even the temple is blurred.}
+\label{fig2}
+\end{figure}
+
+to see how more iterations have effects on diffusion, figure \ref{fig3} has the results. Although this is not a perfect example, we can still see more iteration sharpened the edges above $\kappa$ and smoothed those below $\kappa$.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.4\textwidth]{terracotta.png_init.eps}
+\includegraphics[width = 0.4\textwidth]{terracotta.png_init_grad.eps}\\
+\includegraphics[width = 0.4\textwidth]{terracotta.png_res_it10.eps}
+\includegraphics[width = 0.4\textwidth]{terracotta.png_final_grad_it10.eps}\\
+\includegraphics[width = 0.4\textwidth]{terracotta.png_res_it20.eps}
+\includegraphics[width = 0.4\textwidth]{terracotta.png_final_grad_it20.eps}\\
+\includegraphics[width = 0.4\textwidth]{terracotta.png_res_it100.eps}
+\includegraphics[width = 0.4\textwidth]{terracotta.png_final_grad_it100.eps}\\
+\caption{'Terracotta' image (\url{http://en.wikipedia.org/wiki/Terracotta_Army}. First row is the original image and its gradient magnitude map.  2nd row  to 5th row are the images after diffusion with iteration $ = 10, 20, 100$ respectively. All the diffusions have same value of $\kappa$. We can see with more and more iterations, the small textures on the man's body disappeared, but the shape of the warrior, i.e. the edges are unchanged.} 
+\label{fig3}
+\end{figure}
+
+Last we try to compare diffusion by Gaussian convolution in project one, and this explicit formation. 
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.4\textwidth]{annsacks.png_init.eps}
+\includegraphics[width = 0.4\textwidth]{annsacks.png_init_grad.eps}\\
+\includegraphics[width = 0.4\textwidth]{annsacks.png_res.eps}
+\includegraphics[width = 0.4\textwidth]{annsacks.png_final_grad.eps}\\
+\includegraphics[width = 0.4\textwidth]{annsacks.png_log.eps}\\
+\caption{Comparison between linear smoothing, and non-linear smoothing. Both use Gaussian kernel. First row is original image and gradient. Second row is after anisotropic diffusion with $\kappa$ set to a large enough value, such that it's equal to a linear smoothing. bottom is the linear Gaussian smoothing, i.e. convolution with a Gaussian kernel. The kernel's $\sigma$ is set as $\sigma = \exp\{ t\} = \exp \{ 30 \times \lambda \}$. Here $\lambda$ can be seen as the time passed in each iteration of diffusion. (comments?) }
+\label{fig4}
+\end{figure}
+\section{Discussion}
+For comparison of linear Gaussian filtering, and non-linear filtering, I noticed linear filtering can be easily implemented in frequency domain because convolution with Gaussian is indeed multiplication in frequency domain. But anisotropic diffusion, as a non-linear smoothing, does not have this nice property. However, is it possible that this anisotropic can be easily implemented in parallel algorithm, and on gpu? I think it is possible, because update of each pixel does not depend on other pixels.
+
+\textbf{For choosing parameter $\kappa$: } Parameter estimation is a important issue in statistical modeling. \cite{perona_scale-space_1990} use a global property of gradient -- the histogram to choose $\kappa$. But I wonder if there is any local statistics we can use to choose $\kappa$. Say, in a neighborhood, current pixel has large gradient and should remain unchanged, although globally its gradient may be small.
+
+To guarantee numerically stability, the step size at time scale have to be smaller, and this is a downside of anisotropic diffusion. Implicit method is a little better, but still not good enough. \cite{weickert_efficient_1998-1} has a improvement with seems use implicit method.
+\section{Conclusion}
+Anisotropic diffusion is a promising method, if we have good estimation of the $\kappa$. Besides, it is close to Markov random field, in that both use a 'minimization of energy' concept. It should be able to implement on gpu. This is a quite general method for segmentation (or clustering, depending on how we define the problem). I'll keep this method (and it's spirit) in mind.
+
+\section{Appendix}
+After I'm done with the report, I found in my program, I normalized all gradient magnitude to the range of [0, 255], which make it difficult to compare the gradient before and after diffusion. For example, I expect to see some edges are sharpened, but in my results this is not easy to see. Just keep this as notes here.
+
+\bibliographystyle{plainnat}
+\bibliography{/home/sci/weiliu/projects/zotero}
+\end{document}

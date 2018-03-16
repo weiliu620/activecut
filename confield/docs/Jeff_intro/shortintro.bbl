@@ -1,0 +1,19 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Hayasaka and Laurienti(2010)]{hayasaka_comparison_2010}
+Satoru Hayasaka and Paul~J. Laurienti.
+\newblock Comparison of characteristics between region-and voxel-based network
+  analyses in resting-state {fMRI} data.
+\newblock \emph{{NeuroImage}}, 50\penalty0 (2):\penalty0 499--508, April 2010.
+\newblock ISSN 1053-8119.
+\newblock \doi{10.1016/j.neuroimage.2009.12.051}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/B6WNP-4Y05DJ6-D/2/64b68c47%
+b7e27b59d8e2d69a56151f2f}.
+
+\end{thebibliography}

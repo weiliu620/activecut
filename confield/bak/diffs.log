@@ -1,0 +1,2466 @@
+Index: cppheader.h
+===================================================================
+--- cppheader.h	(revision 75)
++++ cppheader.h	(working copy)
+@@ -45,35 +45,25 @@
+ 			   int ymin, int ymax,
+ 			   int zmin, int zmax);
+ 
+-void ExtractGray(fmriReaderType::Pointer fmriReader,
+-		maskReaderType::Pointer maskReader,
+-		PixelType* im1,
+-		unsigned int* fwdMap,
+-		unsigned short* bwdMap,
+-		float grayThresh,
+-		 int xmin, int xmax,
+-		 int ymin, int ymax,
+-		 int zmin, int zmax);
+ 
++void GPUCorr(float* R, const float* im, int M, int N);
+ 
+-void GPUCorr(float* R, const float* im1, const float* im2, int M, int N1, int N2);
+ 
+ void GPUInit(float* C, // initial connectivity matrix.
+ 	     const float* R, // correlation (or other affinity) matrix, from data.
+ 	     paraType par,
+ 	     unsigned int regioinSize1, 
+ 	     unsigned int regionSize2);
++
+ void EMPost(float* C, 
+-	    float* R, 
++	    const float* R, 
+ 	    float* post2,
+-	    const unsigned int* fwdMap1,
+-	    const unsigned int* fwdMap2,
+-	    const unsigned short* bwdMap1,
+-	    const unsigned short* bwdMap2,
+-	    unsigned int regionSize1, 
+-	    unsigned int regionSize2,
++	    const unsigned int* fwdMap,
++	    const unsigned short* bwdMap,
++	    unsigned int regionSize, 
+ 	    const unsigned short* size);
+ 
++
+ void GPUInit(float* C, // initial connectivity matrix.
+ 	     const float* R, // correlation (or other affinity) matrix, from data.
+ 	     paraType par,
+@@ -81,68 +71,49 @@
+ 	     unsigned int regionSize2);
+ 
+ void GPUSampling(float* C, // initial connectivity matrix.
+-		 float* R,
+-		 const unsigned int* fwdMap1,
+-		 const unsigned int* fwdMap2,
+-		 const unsigned short* bwdMap1,
+-		 const unsigned short* bwdMap2,
++		 const float* R,
++		 const unsigned int* fwdMap,
++		 const unsigned short* bwdMap,
+ 		 paraType par,
+-		 unsigned int N1,
+-		 unsigned int N2,
++		 unsigned int N,
+ 		 const unsigned short* size,
+ 		 float* post2);
+ 
+ void GPUEst(const float* C,
+-	    const unsigned int* fwdMap1,
+-	    const unsigned int* fwdMap2,
+-	    const unsigned short* bwdMap1,
+-	    const unsigned short* bwdMap2,
++	    const unsigned int* fwdMap,
++	    const unsigned short* bwdMap,
+ 	    paraType* par,
+-	    unsigned int N1,
+-	    unsigned int N2,
++	    unsigned int N,
+ 	    const unsigned short* size);
+ 
+-void ExtractRealData(float* & im1,
+-		     float*  & im2,
+-		     unsigned int*  & fwdMap1,
+-		     unsigned int*  & fwdMap2,
+-		     unsigned short*  & bwdMap1,
+-		     unsigned short*  & bwdMap2,
+-		     unsigned int& regionSize1,
+-		     unsigned int& regionSize2,
++void ExtractRealData(float* & im,
++		     unsigned int*  & fwdMap,
++		     unsigned short*  & bwdMap,
++		     unsigned int& regionSize,
+ 		     unsigned short* size,
+-		     ConfigFile config);
++		     ConfigFile config); 
+ 
+-void ExtractToyData(float* & im1,
+-		    float*  & im2,
+-		    unsigned int*  & fwdMap1,
+-		    unsigned int*  & fwdMap2,
+-		    unsigned short*  & bwdMap1,
+-		    unsigned short*  & bwdMap2,
+-		    unsigned int& regionSize1,
+-		    unsigned int& regionSize2,
++void ExtractToyData(float* & im,
++		    unsigned int*  & fwdMap,
++		    unsigned short*  & bwdMap,
++		    unsigned int& regionSize,
+ 		    unsigned short* size,
+-		    float snr);
++		    ConfigFile config);
+ 
+ int fltktest();
+ 
+ int SaveResults(const float* post,
+-		unsigned short N1,
+-		unsigned short N2,
++		unsigned short N,
+ 		const unsigned int* fwdMap1,
+-		const unsigned int* fwdMap2,
+ 		ConfigFile config);
+ 
+ int GPUDetrend(float* im, unsigned int N, unsigned int D);
+ void GPUAnnealing(float* C, // initial connectivity matrix.
+ 		  float* R,
+-		  const unsigned int* fwdMap1,
+-		  const unsigned int* fwdMap2,
+-		  const unsigned short* bwdMap1,
+-		  const unsigned short* bwdMap2,
++		  const unsigned int* fwdMap,
++		  const unsigned short* bwdMap,
+ 		  paraType par,
+-		  unsigned int N1,
+-		  unsigned int N2,
++		  unsigned int N,
+ 		  const unsigned short* size,
+ 		  float* post2);
+ 
+@@ -154,7 +125,7 @@
+ 		const unsigned int* fwdMap1,
+ 		const unsigned int* fwdMap2,
+ 		const char datadir[]); // voume size. 
+-void MLEstep(float* R,
++void MLEstep(const float* R,
+ 	     paraType par,
+ 	     unsigned int N1,
+ 	     unsigned int N2,
+@@ -164,10 +135,8 @@
+ 
+ int ThreshCorr(const float*R, 
+ 	       float* post,
+-	       unsigned int N1,
+-	       unsigned int N2,
+-	       const unsigned int* fwdMap1,
+-	       const unsigned int* fwdMap2,
++	       unsigned int N,
++	       const unsigned int* fwdMap,
+ 	       unsigned short* size,
+ 	       ConfigFile config);
+ 
+Index: main.cxx
+===================================================================
+--- main.cxx	(revision 75)
++++ main.cxx	(working copy)
+@@ -6,116 +6,84 @@
+ 
+      unsigned int i, j, t, n;
+      // Two 1-D array, storing reshaped voxel data.
+-     PixelType* im1 = NULL;
+-     PixelType* im2 = NULL;
+-     // slice id to extract.
+-     float snr;
++     PixelType* im = NULL;
+ 
+      // mapping matrix.
+-     unsigned int* fwdMap1 = NULL;
+-     unsigned int* fwdMap2 = NULL;
+-     unsigned short* bwdMap1 = NULL;
+-     unsigned short* bwdMap2 = NULL;
++     unsigned int* fwdMap = NULL;
++     unsigned short* bwdMap = NULL;
+      float* R = NULL;
+      float* C = NULL;
+      float* post2 = NULL;
+      // number of voxels in two regions.
+-     unsigned int regionSize1;
+-     unsigned int regionSize2;
++     unsigned int regionSize;
+      // 4d array for x, y, z, t dim size.
+      unsigned short size[4] = {0, 0, 0, 0};
+ 
+      ConfigFile config(PARAFILE);
+-     int toy = 0;
+-     config.readInto(toy, "toy");
+-     if(toy){
++
++     if(config.read("toy", 0)){
+ 	  if (_DBG >= 1){
+ 	       printf("Generating synthetic data...\n");
+ 	  }
+-	  config.readInto(snr, "snr");
+-	  ExtractToyData(im1, im2, fwdMap1, fwdMap2, bwdMap1, bwdMap2,
+-			 regionSize1, regionSize2, size, snr);
++	  ExtractToyData(im, fwdMap, bwdMap, regionSize, size, config);
+      }
+      else{
+ 	  // compute gray matter voxel number.
+ 	  if (config.read("graymattervox", 0)) {
+ 	       graymatter(config);
+ 	  }
+-	  
+-	  // im1, im2, fwdMap1...get allocated here. Need free at end of main().
+-	  ExtractRealData(im1, im2, fwdMap1, fwdMap2, bwdMap1, bwdMap2,
+-			regionSize1, regionSize2, size, config);
++	  // im, fwdMap, bwdMap get allocated here. Need free at end of main().
++	  ExtractRealData(im, fwdMap, bwdMap,
++			regionSize, size, config);
+      }
+      // debug output.
+      unsigned int tsize = 5;
+      if(_DBG >= 3){
+ 	  printf("main. size: %d, %d, %d %d\n", size[0], size[1], size[2], size[3]);	 
+-	  if (im1 != NULL){
+-	       printf("\nim1:\n");
++	  if (im != NULL){
++	       printf("im:\n");
+ 	       for (i = 0; i < tsize; i++){
+ 		    for (j = 0; j < 10; j++){
+-			 printf("%4.2f ", im1[i*size[3] +j]);
++			 printf("%4.2f ", im[i*size[3] +j]);
+ 		    }
+ 		    printf("\n");
+ 	       }
+ 	  }
+ 	  else{
+-	       fprintf(stderr, "im1 is null!\n");
++	       fprintf(stderr, "im is null!\n");
+ 	  }
+ 
+-	  if (im2 != NULL){
+-	       printf("main. im2:\n");
+-	       for (i = 0; i < tsize; i++){
+-		    for (j = 0; j < 10; j++){
+-			 printf("%4.2f ", im2[i*size[3] +j]);
+-		    }
+-		    printf("\n");
+-	       }
+-	  }
+-	  else{
+-	       fprintf(stderr, "im2 is null!\n");
+-	  }
+-
+-	  printf("fwdMap1 and bwdMap1:\n");
++	  printf("fwdMap and bwdMap:\n");
+ 	  int xx, yy, zz;
+ 	  for (i = 0; i < tsize; i++){
+-	       printf("%d, %d, %d.   ",  bwdMap1[i*3 + 0], bwdMap1[i*3+1], bwdMap1[i*3+2]);
+-	       xx = bwdMap1[i*3+0];
+-	       yy = bwdMap1[i*3+1];
+-	       zz = bwdMap1[i*3+2];
+-	       printf("fwdMap1: %d\n", fwdMap1[xx*size[1]*size[2]+yy*size[2] + zz]);
++	       printf("%d, %d, %d.   ",  bwdMap[i*3 + 0], bwdMap[i*3+1], bwdMap[i*3+2]);
++	       xx = bwdMap[i*3+0];
++	       yy = bwdMap[i*3+1];
++	       zz = bwdMap[i*3+2];
++	       printf("fwdMap: %d\n", fwdMap[xx*size[1]*size[2]+yy*size[2] + zz]);
+ 	  }
+-	  printf("fwdMap2 and bwdMap2:\n");
+-	  for (i = 0; i < tsize; i++){
+-	       printf("%d, %d, %d.   ",  bwdMap2[i*3 + 0], bwdMap2[i*3+1], bwdMap2[i*3+2]);
+-	       xx = bwdMap2[i*3+0];
+-	       yy = bwdMap2[i*3+1];
+-	       zz = bwdMap2[i*3+2];
+-	       printf("fwdMap1: %d\n", fwdMap2[xx*size[1]*size[2]+yy*size[2] + zz]);
+-	  }
+-
+      }
+ 
+      // allocate correlation matrix. Row major.
+-     R = (float*) malloc(regionSize1 * regionSize2 * sizeof(float));
+-     C = (float*) malloc(regionSize1 * regionSize2 * sizeof(float));
+-     post2 = (float*) calloc(regionSize1*regionSize2, sizeof(float));
++     R = (float*) malloc(regionSize * regionSize * sizeof(float));
++     C = (float*) malloc(regionSize * regionSize * sizeof(float));
++     post2 = (float*) calloc(regionSize * regionSize, sizeof(float));
+      // Compute correlation. 
+-     GPUCorr(R, im1, im2, size[3], regionSize1, regionSize2);
++     GPUCorr(R, im, size[3], regionSize);
+      if (_DBG >= 4){
+ 	  printf("R:\n");
+ 	  for (i = RMIN; i <= RMAX; i++){
+ 	       for (j = CMIN; j < CMAX; j++){
+-		    printf("[%d][%d]=%1.2f ", i, j, R[i*regionSize2 + j]);
++		    printf("[%d][%d]=%1.2f ", i, j, R[i*regionSize + j]);
+ 	       }
+ 	       printf("\n");
+ 	  }
+-	  FieldViewer(R, regionSize1, regionSize2, fwdMap1, fwdMap2, "R");
++	  FieldViewer(R, regionSize, fwdMap, "R");
+      }
+ 
+      if (THCORRMAP == 1){
+-	  ThreshCorr(R, post2, regionSize1, regionSize2, fwdMap1, fwdMap2, size, config);
+-	  SaveResults(post2, regionSize1, regionSize2, fwdMap1, fwdMap2, config);
++	  ThreshCorr(R, post2, regionSize, fwdMap, size, config);
++	  SaveResults(post2, regionSize, fwdMap, config);
+ 	  return (0);
+      }
+ 
+@@ -125,20 +93,18 @@
+      volSize[1] = size[1];
+      volSize[2] = size[2];
+      printf("Original fmri volume size: %dx%dx%d\n", size[0], size[1], size[2]);
+-     EMPost(C, R, post2, fwdMap1, fwdMap2, bwdMap1, bwdMap2,
+-	    regionSize1, regionSize2, volSize);
++     EMPost(C, R, post2, fwdMap, bwdMap,
++	    regionSize, volSize);
+      printf("main. EMPost done.\n");
+-     
++
+      // save results.
+-     SaveResults(post2, regionSize1, regionSize2, fwdMap1, fwdMap2, config);
++     SaveResults(post2, regionSize, fwdMap, config);
++
+      
+      // clean up.
+-     free(im1);
+-     free(im2);
+-     free(fwdMap1);
+-     free(fwdMap2);
+-     free(bwdMap1);
+-     free(bwdMap2);
++     free(im);
++     free(fwdMap);
++     free(bwdMap);
+      free(R);
+      free(C);
+      free(post2);
+Index: GPUCorr.cu
+===================================================================
+--- GPUCorr.cu	(revision 75)
++++ GPUCorr.cu	(working copy)
+@@ -1,58 +1,53 @@
+ #include "common.h"
+ 
+-__global__ void CorrKernel(const float* gpuIm1, const float* gpuIm2, float* R, int N1, int N2, int M);
++__global__ void CorrKernel(const float* gpuIm, float* R, int N, int M);
+ void checkCUDAError(const char *msg);
+ 
+-void GPUCorr(float* R, const float* im1, const float* im2, int M, int N1, int N2)
++void GPUCorr(float* R, const float* im, int M, int N)
+ {
+     // pointer to device memory.
+      float* gpuR;
+-     float* gpuIm1;
+-     float* gpuIm2;
+-     
+-     printf("GPUCorr: N1(voxel num) = %d, N2 = %d, M (time series length)= %d\n.", 
+-	       N1, N2, M);
++     float* gpuIm;
++     if (_DBG >= 2){
++	  printf("GPUCorr: N(voxel num) = %d, M (time series length)= %d\n.", 
++	       N, M);
++     }
+           
+      /* create input and output array on GPU. */
+-     cudaMalloc((void**) &gpuR, sizeof(float)*N1*N2);
++     cudaMalloc((void**) &gpuR, sizeof(float)*N*N);
+      checkCUDAError("Allocate device gpuR");
+-     cudaMalloc((void**) &gpuIm1, sizeof(float)*N1*M);
++     cudaMalloc((void**) &gpuIm, sizeof(float)*N*M);
+      checkCUDAError("Allocate device gpuIm1");
+-     cudaMalloc((void**) &gpuIm2, sizeof(float)*N2*M);
+-     checkCUDAError("Allocate device, gpuIm2.");
+ 
+      /* host to device memory. */
+-     cudaMemcpy(gpuR, R, sizeof(float)*N1*N2, cudaMemcpyHostToDevice);
+-     cudaMemcpy(gpuIm1, im1, sizeof(float)*N1*M, cudaMemcpyHostToDevice);
+-     cudaMemcpy(gpuIm2, im2, sizeof(float)*N2*M, cudaMemcpyHostToDevice);
+-     checkCUDAError("memory copy from Host to Device");
++     cudaMemcpy(gpuR, R, sizeof(float)*N*N, cudaMemcpyHostToDevice);
++     checkCUDAError(" GPUCorr, gpuR, memory copy from Host to Device\n");
++     cudaMemcpy(gpuIm, im, sizeof(float)*N*M, cudaMemcpyHostToDevice);
++     checkCUDAError("GPUCorr, gpuIm, memory copy from Host to Device\n");
+ 
+      /* run the kernel function. */
+      int blockSize = 16;
+-     int gridDimx = N1/blockSize + (N1%blockSize == 0?0:1);
+-     int gridDimy = N2/blockSize + (N2%blockSize == 0?0:1);
++     int gridDimx = N/blockSize + (N%blockSize == 0?0:1);
++     int gridDimy = N/blockSize + (N%blockSize == 0?0:1);
+ 
+      printf("GPUCorr, blockSize: %dx%d, gridDim = %dx%d\n", blockSize, 
+ 	    blockSize, gridDimx, gridDimy);
+      dim3 dimBlock(blockSize, blockSize);
+      dim3 dimGrid(gridDimx, gridDimy);
+-     CorrKernel<<<dimGrid, dimBlock>>>(gpuIm1, gpuIm2, gpuR, N1, N2, M);
++     CorrKernel<<<dimGrid, dimBlock>>>(gpuIm, gpuR, N, M);
+      checkCUDAError(" GPUCorr, main, call Kernel.");
+ 
+      /* Send results back to cpu memeory */
+-     cudaMemcpy(R, gpuR, sizeof(float)*N1*N2, cudaMemcpyDeviceToHost);
++     cudaMemcpy(R, gpuR, sizeof(float)*N*N, cudaMemcpyDeviceToHost);
+      checkCUDAError("GPUCorr, main, memcopy from Device to Host.");
+-     
+-     printf("R[1][1] = %f\n", *(R + N1*1+1));
+ 
+      /* clean up. */
+      cudaFree(gpuR);
+-     cudaFree(gpuIm1);
+-     cudaFree(gpuIm2);
++     cudaFree(gpuIm);
+ }
+ 
+ /* Kernel function  */
+-__global__ void CorrKernel(const float* gpuIm1, const float* gpuIm2, float* R, int N1, int N2, int M)
++__global__ void CorrKernel(const float* gpuIm, float* R,int N, int M)
+ {
+      int m = 0;
+      float mean1 = 0;
+@@ -63,37 +58,37 @@
+      float r = 0; // temp variable for sample correlation.
+      int idx1 = blockIdx.x * blockDim.x + threadIdx.x;
+      int idx2 = blockIdx.y * blockDim.y + threadIdx.y;
+-     if ((idx1 >= N1) | (idx2 >= N2)){ return; }
+-//     if ((idx1 != 4) | (idx2 != 0)) {return;}
++     if ((idx1 >= N) | (idx2 >= N)){ return; }
+ 
+-     // mean of first vector.
++     // mean.
+      for (m = 0; m < M; m++){
+ 	  lidx1 = idx1*M + m;
+ 	  lidx2 = idx2*M + m;
+-	  mean1 = mean1 + *(gpuIm1 + lidx1)/M;
+-	  mean2 = mean2 + *(gpuIm2 + lidx2)/M;
++	  mean1 = mean1 + *(gpuIm + lidx1)/M;
++	  mean2 = mean2 + *(gpuIm + lidx2)/M;
+      }
+      /* Standard deviation. */
+      for (m = 0; m < M; m++){
+ 	  lidx1 = idx1 * M + m;
+ 	  lidx2 = idx2 * M + m;
+-	  std1 = std1 + pow((*(gpuIm1+lidx1) - mean1), 2)/(M-1);
+-	  std2 = std2 + pow((*(gpuIm2+lidx2) - mean2), 2)/(M-1);
++	  std1 = std1 + pow((*(gpuIm+lidx1) - mean1), 2)/(M-1);
++	  std2 = std2 + pow((*(gpuIm+lidx2) - mean2), 2)/(M-1);
+      }
+      std1 = sqrt(std1);
+      std2 = sqrt(std2);
+      /* Sample Correlation. */
+      if (std1 == 0 | std2 == 0){
+-	  *(R + idx1*N2 + idx2) = 0;
++	  *(R + idx1*N + idx2) = 0;
+      }
+      else{
+ 	  for (m = 0; m < M; m++){
+ 	       lidx1 = idx1 * M + m;
+ 	       lidx2 = idx2 * M + m;
+-	       r = r + (*(gpuIm1+lidx1) - mean1) * (*(gpuIm2 + lidx2)-mean2)/((M-1)*std1*std2);
++	       r = r + (*(gpuIm+lidx1) - mean1) * (*(gpuIm + lidx2)-mean2)/((M-1)*std1*std2);
+ 	  }
+-	  *(R+idx1*N2 + idx2) = r;
++	  *(R+idx1*N + idx2) = r;
+      }
++/*
+ #if _EMU
+      if((idx1 == 4) &&(idx2 == 0)){
+ 	  
+@@ -116,6 +111,7 @@
+      }
+ 
+ #endif     
++*/
+ 
+ 
+ }
+Index: core
+===================================================================
+Cannot display: file marked as a binary type.
+svn:mime-type = application/octet-stream
+Index: parameters.inp
+===================================================================
+--- parameters.inp	(revision 75)
++++ parameters.inp	(working copy)
+@@ -1,34 +1,23 @@
+-# example.inp
++# ConfigFile parameter file.
+ # Example configuration file for ConfigFile class
+ This is also a comment since it has no equals sign and follows a blank line.
+ 
+ # toy example
+-toy = 0
++toy = 1
+ snr = 0.5 # signal to noise ratio
+ 
+ # relative directory of data (fmri.nii, mask.nii)
+ datadir = R1
+ 
+-# read data. 
+-sliceField = 0 # connectivity between two slices.
+-s1 = 27
+-s2 = 27
+ 
+-
+ volField = 1 # connectivity between two volumes. mutual exclusive with sliceField.
+-v1_xmin = 0
+-v1_xmax = 63
+-v1_ymin = 0
+-v1_ymax = 63
+-v1_zmin = 0
+-v1_zmax = 39
+-# volume 2
+-v2_xmin = 0 
+-v2_xmax = 63
+-v2_ymin = 0
+-v2_ymax = 63
+-v2_zmin = 0
+-v2_zmax = 39
++vol_xmin = 0
++vol_xmax = 63
++vol_ymin = 0
++vol_ymax = 63
++vol_zmin = 27
++vol_zmax = 27
++
+ # seed voxel
+ seed0 = 34
+ seed1 = 18
+@@ -43,5 +32,12 @@
+ # if we only need to compute voxel number.
+ graymattervox = 1
+ 
++# init parameters for EM
++mu1 = 0
++mu2 = 0.2
++sigma21 = 0.05
++sigma22 = 0.05
++temperature = 1
++INITBETA = 0.01
+ 
+ 
+Index: GPUSampling.cu
+===================================================================
+--- GPUSampling.cu	(revision 75)
++++ GPUSampling.cu	(working copy)
+@@ -2,34 +2,28 @@
+ 
+ __global__ void SamplingKernel(float* C, 
+ 			       const float* R, 
+-			       const unsigned int* fwdMap1,
+-			       const unsigned int* fwdMap2,
+-			       const unsigned short* bwdMap1,
+-			       const unsigned short* bwdMap2,
++			       const unsigned int* fwdMap,
++			       const unsigned short* bwdMap,
+ 			       paraType par,
+-			       unsigned int N1,
+-			       unsigned int N2,
++			       unsigned int N,
+ 			       float* gpuRandMat,
+ 			       dim3  size,
+ 			       uint job,
+ 			       uint checkerboard);
+ 
+ void GPUSampling(float* C, // initial connectivity matrix.
+-		 float* R,
+-		 const unsigned int* fwdMap1,
+-		 const unsigned int* fwdMap2,
+-		 const unsigned short* bwdMap1,
+-		 const unsigned short* bwdMap2,
++		 const float* R,
++		 const unsigned int* fwdMap,
++		 const unsigned short* bwdMap,
+ 		 paraType par,
+-		 unsigned int N1,
+-		 unsigned int N2,
++		 unsigned int N,
+ 		 const unsigned short* size,
+ 		 float* post2)
+ 
+ 
+ {
+      if (_DBG >= 3){
+-	  printf("GPUSampling row and col of C: N1 = %d, N2 = %d\n", N1, N2);
++	  printf("GPUSampling size of C: %d x %d\n", N,  N);
+ 	  printf("GPUSampling, size = [%d][%d][%d]\n", size[0], size[1], size[2]);
+      }
+      uint iter; // Gibbs Sampling iteration time.
+@@ -39,62 +33,50 @@
+      // define simSize as argument of kernel fun.
+      dim3 dimSize(size[0], size[1], size[2]);
+      // random number matrix.
+-     float* randMat = (float*) calloc(N1*N2, sizeof(float));
++     float* randMat = (float*) calloc(N*N, sizeof(float));
+      // Read in parameter file.
+      
+      // pointer to device memory.
+      float* gpuC;
+      float* gpuR;
+-     unsigned int* gpuFwdMap1;
+-     unsigned int* gpuFwdMap2;
+-     unsigned short* gpuBwdMap1;
+-     unsigned short* gpuBwdMap2;
++     unsigned int* gpuFwdMap;
++     unsigned short* gpuBwdMap;
+      float* gpuRandMat;
+      
+-     /* create input and output array on GPU. */
+-     cudaMalloc((void**) &gpuC, sizeof(float)*N1*N2);
++     // create input and output array on GPU. 
++     cudaMalloc((void**) &gpuC, sizeof(float)*N*N);
+      checkCUDAError("CudaSampling, allocate gpuC.");
+ 
+-     cudaMalloc((void**) &gpuR, sizeof(float)*N1*N2);
++     cudaMalloc((void**) &gpuR, sizeof(float)*N*N);
+      checkCUDAError("CudaSampling, allocate gpuR");
+ 
+-     cudaMalloc((void**) &gpuFwdMap1, sizeof(unsigned int)*mapSize);
++     cudaMalloc((void**) &gpuFwdMap, sizeof(unsigned int)*mapSize);
+      checkCUDAError("CudaSampling, allocate fwdMap1");     
+-     cudaMalloc((void**) &gpuFwdMap2, sizeof(unsigned int)*mapSize);
+-     checkCUDAError("CudaSampling, allocate fwdMap2");     
+-     cudaMalloc((void**) &gpuBwdMap1, sizeof(unsigned short)*N1*3);
++
++     cudaMalloc((void**) &gpuBwdMap, sizeof(unsigned short)*N*3);
+      checkCUDAError("CudaSampling, allocate bwdMap1");     
+-     cudaMalloc((void**) &gpuBwdMap2, sizeof(unsigned short)*N2*3);
+-     checkCUDAError("CudaSampling, allocate bwdMap2");     
+ 
+-     cudaMalloc((void**) &gpuRandMat, sizeof(float)*N1*N2);
++     cudaMalloc((void**) &gpuRandMat, sizeof(float)*N*N);
+      checkCUDAError("CudaSampling, allocate gpuRandMat");
+ 
+-     /* host to device memory. */
+-     cudaMemcpy(gpuR, R, sizeof(float)*N1*N2, cudaMemcpyHostToDevice);
++     // host to device memory. 
++     cudaMemcpy(gpuR, R, sizeof(float)*N*N, cudaMemcpyHostToDevice);
+      checkCUDAError("CudaSampling, memcpy R");
+-     cudaMemcpy(gpuC, C, sizeof(float)*N1*N2, cudaMemcpyHostToDevice);
++     cudaMemcpy(gpuC, C, sizeof(float)*N*N, cudaMemcpyHostToDevice);
+      checkCUDAError("CudaSampling, memcpy gpuC");
+ 
+-     cudaMemcpy(gpuFwdMap1, fwdMap1, sizeof(unsigned int)*mapSize, 
++     cudaMemcpy(gpuFwdMap, fwdMap, sizeof(unsigned int)*mapSize, 
+ 		cudaMemcpyHostToDevice);
+      checkCUDAError("CudaSampling, memcpy gpuFwdMap1");
+-     cudaMemcpy(gpuFwdMap2, fwdMap2, sizeof(unsigned int)*mapSize, 
+-		cudaMemcpyHostToDevice);
+-     checkCUDAError("CudaSampling, memcpy gpuFwdMap2");
+ 
+-     cudaMemcpy(gpuBwdMap1, bwdMap1, sizeof(unsigned short)*N1*3, 
++     cudaMemcpy(gpuBwdMap, bwdMap, sizeof(unsigned short)*N*3, 
+ 		cudaMemcpyHostToDevice);
+      checkCUDAError("CudaSampling, memcpy gpuBwdMap1");
+-     cudaMemcpy(gpuBwdMap2, bwdMap2, sizeof(unsigned short)*N2*3, 
+-		cudaMemcpyHostToDevice);
+-     checkCUDAError("CudaSampling, memcpy gpuBwdMap2");
+ 
++     // run the kernel function. 
++     int gridDimx = N/BLOCK_SIZE_X + (N%BLOCK_SIZE_X == 0?0:1);
++     int gridDimy = N/BLOCK_SIZE_Y + (N%BLOCK_SIZE_Y == 0?0:1);
+ 
+-     /* run the kernel function. */
+-     int gridDimx = N1/BLOCK_SIZE_X + (N1%BLOCK_SIZE_X == 0?0:1);
+-     int gridDimy = N2/BLOCK_SIZE_Y + (N2%BLOCK_SIZE_Y == 0?0:1);
+-
+      dim3 dimBlock(BLOCK_SIZE_X, BLOCK_SIZE_Y);
+      dim3 dimGrid(gridDimx, gridDimy);
+      if(_DBG >= 3){
+@@ -102,74 +84,76 @@
+ 	  printf("GPUsampling, gridsize: %dx%d\n", gridDimx, gridDimy);
+      }
+ 
+-     for (iter = 0; iter < GIBBSMAXITER; iter++){
+-	  if (_DBG >= 1 & (iter+1)%10 == 0){
+-	       printf("GPUSampling, begin iteration %d...\n", iter+1);
++
++     for (iter = 1; iter <= GIBBSMAXITER; iter++){
++	  if (_DBG >= 1 & iter%10 == 0){
++	       printf("GPUSampling, begin iteration %d...\n", iter);
+ 	  }
+ 
+ 	  // Generate random number.
+ //	  srand48(time(0));
+ 	  srand48(iter);
+-	  for (i = 0; i < N1*N2; i++){
++	  for (i = 0; i < N*N; i++){
+ 	       randMat[i] = drand48();
+ 	  }
+ 
+ 	  // send random number to gpu.
+-	  cudaMemcpy(gpuRandMat, randMat, sizeof(float)*N1*N2, cudaMemcpyHostToDevice);
++	  cudaMemcpy(gpuRandMat, randMat, sizeof(float)*N*N, cudaMemcpyHostToDevice);
+ 	  checkCUDAError("CudaSampling, memcpy gpuRandMat");
+ 	  // call kernel for even voxels.
+-	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
+-						gpuBwdMap1, gpuBwdMap2, par, N1, N2,
++	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap,
++						gpuBwdMap, par, N,
+ 						gpuRandMat, dimSize, 0, 0);
+ 	  cudaThreadSynchronize();
+ 	  // call kernel for odd voxels.
+-	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
+-						gpuBwdMap1, gpuBwdMap2, par, N1, N2,
++	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap,
++						gpuBwdMap, par, N,
+ 						gpuRandMat, dimSize, 0, 1);
+ 
+ 	  // Send results back to cpu memeory.
+-	  cudaMemcpy(C, gpuC, sizeof(float)*N1*N2, cudaMemcpyDeviceToHost);
++	  cudaMemcpy(C, gpuC, sizeof(float)*N*N, cudaMemcpyDeviceToHost);
+ 	  if (_DBG >= 4){
+ 	       printf("GPUSampling, after samplingKernel iteration %d. C: \n", iter);
+ 	       for (i = RMIN; i < RMAX; i++){
+ 		    for (j = CMIN; j < CMAX; j++){
+-			 printf("[%d][%d]=%1.2f ", i, j, C[i*N2 + j]);
++			 printf("[%d][%d]=%1.2f ", i, j, C[i*N + j]);
+ 		    }
+ 		    printf("\n");
+ 	       }
+ 	  }
+      }
+ 
++
+      if (_DBG >= 4){
+ 	  printf("GPUSampling, all sampling iteration done.C: \n");
+ 	  for (i = RMIN; i < RMAX; i++){
+ 	       for (j = CMIN; j < CMAX; j++){
+-		    printf("[%d][%d]=%1.2f ", i, j, C[i*N2 + j]);
++		    printf("[%d][%d]=%1.2f ", i, j, C[i*N + j]);
+ 	       }
+ 	       printf("\n");
+ 	  }
+ 	  
+-	  FieldViewer(C, N1, N2, fwdMap1, fwdMap2, "GPUSampling: Sampled C");
++	  FieldViewer(C, N, fwdMap, "GPUSampling: Sampled C");
+ 
+      }
+ 
+      // Now compute mean field.
+-     for (iter = 0; iter <= MEANFIELDITER; iter++){
+-	  iter++;
++     for (iter = 1; iter <= MEANFIELDITER; iter++){
++
+ 	  if (_DBG >= 1 & iter%5 == 0){
+ 	       printf("GPUSampling, mean filed iteration: %d...\n", iter);
+ 	  }
+-	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
+-						gpuBwdMap1, gpuBwdMap2, par, N1, N2,
++	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap,
++						gpuBwdMap, par, N,
+ 						gpuRandMat, dimSize, 1, 0);
+ 
+ 	  cudaThreadSynchronize();
+-	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
+-						gpuBwdMap1, gpuBwdMap2, par, N1, N2,
++	  SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap,
++						gpuBwdMap, par, N,
+ 						gpuRandMat, dimSize, 1, 1);
+ 
+-	  /* Send results back to cpu memeory */
+-	  cudaMemcpy(C, gpuC, sizeof(float)*N1*N2, cudaMemcpyDeviceToHost);
++	  // Send results back to cpu memeory.
++	  cudaMemcpy(C, gpuC, sizeof(float)*N*N, cudaMemcpyDeviceToHost);
+ 
+      }
+ 
+@@ -177,12 +161,12 @@
+ 	  printf("Mean field all iteration done. C:\n");
+ 	  for (i = RMIN; i < RMAX; i++){
+ 	       for (j = CMIN; j < CMAX; j++){
+-		    printf("[%d][%d]=%1.2f ", i, j, C[i*N2 + j]);
++		    printf("[%d][%d]=%1.2f ", i, j, C[i*N + j]);
+ 	       }
+ 	       printf("\n");
+ 	  }
+ 
+-	  FieldViewer(C, N1, N2, fwdMap1, fwdMap2, "GPUSampling: Mean Field");
++//	  FieldViewer(C, N, fwdMap, "GPUSampling: Mean Field");
+ 
+      }
+ 
+@@ -192,35 +176,34 @@
+      // because the kernel function does not use randMat when computing 
+      // posterior, so randMat is a good choice for other usage: saving 
+      // the posterior array.
+-     SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
+-					   gpuBwdMap1, gpuBwdMap2, par, N1, N2,
++     SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap,
++					   gpuBwdMap, par, N,
+ 					   gpuRandMat, dimSize, 2, 0);     
+      cudaThreadSynchronize();
+-     SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
+-					   gpuBwdMap1, gpuBwdMap2, par, N1, N2,
++     SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap,
++					   gpuBwdMap, par, N,
+ 					   gpuRandMat, dimSize, 2, 1);     
+      // send randMat back. It contains posterior info.
+-     cudaMemcpy(post2, gpuRandMat, sizeof(float)*N1*N2, cudaMemcpyDeviceToHost);
++     cudaMemcpy(post2, gpuRandMat, sizeof(float)*N*N, cudaMemcpyDeviceToHost);
+ 
+      if (_DBG >= 4){
+ 	  printf("After computing posterior. posterior p(c = 1):\n");
+ 	  for (i = RMIN; i < RMAX; i++){
+ 	       for (j = CMIN; j < CMAX; j++){
+-		    printf("[%d][%d]=%1.2f ", i, j, post2[i*N2 + j]);
++		    printf("[%d][%d]=%1.2f ", i, j, post2[i*N + j]);
+ 	       }
+ 	       printf("\n");
+ 	  }
+ 
+-	  FieldViewer(post2, N1, N2, fwdMap1, fwdMap2, "GPUSampling: Sampled C");
++	  FieldViewer(post2, N, fwdMap, "GPUSampling: Sampled C");
+      }
++
+      
+-     /* clean up. */
++     // clean up.
+      cudaFree(gpuC);
+      cudaFree(gpuR);
+-     cudaFree(gpuFwdMap1);
+-     cudaFree(gpuFwdMap2);
+-     cudaFree(gpuBwdMap1);
+-     cudaFree(gpuBwdMap2);
++     cudaFree(gpuFwdMap);
++     cudaFree(gpuBwdMap);
+      cudaFree(gpuRandMat);
+      free(randMat);
+ }
+@@ -228,13 +211,10 @@
+ /* Kernel function  */
+ __global__ void SamplingKernel(float* C, 
+ 			       const float* R, 
+-			       const unsigned int* gpuFwdMap1,
+-			       const unsigned int* gpuFwdMap2,
+-			       const unsigned short* gpuBwdMap1,
+-			       const unsigned short* gpuBwdMap2,
++			       const unsigned int* gpuFwdMap,
++			       const unsigned short* gpuBwdMap,
+ 			       paraType par,
+-			       unsigned int N1,
+-			       unsigned int N2,
++			       unsigned int N,
+ 			       float* gpuRandMat,
+ 			       dim3 size,
+ 			       uint job,
+@@ -256,23 +236,23 @@
+      float lh1 = 0, lh2 = 0, post1 = 0, post2 = 0;
+ 
+      // thread fall outside of matrix C, or mask is zero.
+-     if (n1 >= N1 | n2 >= N2) {return;}
++     if (n1 >= N | n2 >= N) {return;}
+ 
+      // define checkerboard and update image in two steps.
+-     unsigned short checksum = gpuBwdMap1[n1*3 + 0]
+-	  + gpuBwdMap1[n1*3 + 1]
+-	  + gpuBwdMap1[n1*3 + 2]
+-	  + gpuBwdMap2[n2*3 + 0]
+-	  + gpuBwdMap2[n2*3 + 1]
+-	  + gpuBwdMap2[n2*3 + 2];
++     unsigned short checksum = gpuBwdMap[n1*3 + 0]
++	  + gpuBwdMap[n1*3 + 1]
++	  + gpuBwdMap[n1*3 + 2]
++	  + gpuBwdMap[n2*3 + 0]
++	  + gpuBwdMap[n2*3 + 1]
++	  + gpuBwdMap[n2*3 + 2];
+ 
+      if (checksum%2 != checkerboard) {return;}
+ 
+ 
+      // image one's neighbors.
+-     i = gpuBwdMap1[n1*3 + 0];
+-     j = gpuBwdMap1[n1*3 + 1];
+-     k = gpuBwdMap1[n1*3 + 2];
++     i = gpuBwdMap[n1*3 + 0];
++     j = gpuBwdMap[n1*3 + 1];
++     k = gpuBwdMap[n1*3 + 2];
+ 
+      for (di = -1; di <= 1; di ++){
+ 	  for (dj = -1; dj <= 1; dj ++){
+@@ -283,19 +263,19 @@
+ 		    if ((ti >= 0 && ti < size.x
+ 			 && tj >= 0 && tj < size.y
+ 			 && tk >= 0 && tk < size.z)
+-			 && (gpuFwdMap1[ti * size.y*size.z +  tj * size.z + tk] > 0)){
+-		    n = gpuFwdMap1[ti * size.y * size.z +  tj * size.z + tk];
+-		    sum = sum + C[n*N2 + n2];
++			 && (gpuFwdMap[ti * size.y*size.z +  tj * size.z + tk] > 0)){
++		    n = gpuFwdMap[ti * size.y * size.z +  tj * size.z + tk];
++		    sum = sum + C[n*N + n2];
+ 		    }
+ 	       }
+ 	  }
+      }
+-     sum = sum - C[n1*N2 + n2];
++     sum = sum - C[n1*N + n2];
+ 
+      // image 2's neighbors.
+-     i = gpuBwdMap2[n2*3 + 0];
+-     j = gpuBwdMap2[n2*3 + 1];
+-     k = gpuBwdMap2[n2*3 + 2];
++     i = gpuBwdMap[n2*3 + 0];
++     j = gpuBwdMap[n2*3 + 1];
++     k = gpuBwdMap[n2*3 + 2];
+      for (di = -1; di <= 1; di ++){
+ 	  for (dj = -1; dj <= 1; dj ++){
+ 	       for (dk = -1; dk <= 1; dk ++){
+@@ -305,14 +285,14 @@
+ 		    if ((ti >= 0 && ti < size.x
+ 			 && tj >= 0 && tj < size.y
+ 			 && tk >= 0 && tk < size.z)
+-			 && (gpuFwdMap2[ti * size.y*size.z +  tj * size.z + tk] > 0)){
+-		    n = gpuFwdMap2[ti * size.y * size.z +  tj * size.z + tk];
+-		    sum = sum + C[n1*N2 + n];
++			 && (gpuFwdMap[ti * size.y*size.z +  tj * size.z + tk] > 0)){
++		    n = gpuFwdMap[ti * size.y * size.z +  tj * size.z + tk];
++		    sum = sum + C[n1*N + n];
+ 		    }
+ 	       }
+ 	  }
+      }
+-     sum = sum - C[n1*N2 + n2];
++     sum = sum - C[n1*N + n2];
+ 
+ 
+      denom = 2*cosh(par.beta*sum);
+@@ -333,8 +313,8 @@
+      // if posterior is too big. just mannualy set post1 and post2.
+      postExp = log(par.sigma21/par.sigma22)
+ 	  + 2*par.beta*sum
+-	  - pow(R[n1*N2+n2]-par.mu1, 2)
+-	  + pow(R[n1*N2+n2]-par.mu2, 2);
++	  - pow(R[n1*N+n2]-par.mu1, 2)
++	  + pow(R[n1*N+n2]-par.mu2, 2);
+      if (postExp > MAXEXP){
+ 	  post1 = 0;
+ 	  post2 = 1;
+@@ -345,8 +325,8 @@
+      }
+      else{
+ 	  
+-	  lh1 = gc1 * exp(-pow(R[n1*N2+n2]-par.mu1, 2)/(2*par.sigma21));
+-	  lh2 = gc2 * exp(-pow(R[n1*N2+n2]-par.mu2, 2)/(2*par.sigma22));
++	  lh1 = gc1 * exp(-pow(R[n1*N+n2]-par.mu1, 2)/(2*par.sigma21));
++	  lh2 = gc2 * exp(-pow(R[n1*N+n2]-par.mu2, 2)/(2*par.sigma22));
+           
+ 	  post1 = pr1 * lh1;
+ 	  post2 = pr2 * lh2;
+@@ -356,19 +336,19 @@
+      }
+ 
+      if (job == 1){ // expectation. mean field.
+-	  C[n1*N2+n2] = post2 - post1;
++	  C[n1*N+n2] = post2 - post1;
+      }
+      else if (job == 0){ // sampling
+-	  if (gpuRandMat[n1*N2+n2] < post1){
+-	       C[n1*N2+n2] =  -1;
++	  if (gpuRandMat[n1*N+n2] < post1){
++	       C[n1*N+n2] =  -1;
+ 	  }
+ 
+ 	  else{
+-	       C[n1*N2+n2] =  1;
++	       C[n1*N+n2] =  1;
+ 	  }
+      }
+      else if (job == 2){ // compute posterior. p(c == -1)
+-	  gpuRandMat[n1*N2+n2] = post2;
++	  gpuRandMat[n1*N+n2] = post2;
+      }
+      else{ };
+  
+Index: ExtractToyData.cxx
+===================================================================
+--- ExtractToyData.cxx	(revision 75)
++++ ExtractToyData.cxx	(working copy)
+@@ -1,16 +1,13 @@
+ #include "cppheader.h"
+ #include "common.h"
+ 
+-void ExtractToyData(float* & im1,
+-		    float*  & im2,
+-		    unsigned int*  & fwdMap1,
+-		    unsigned int*  & fwdMap2,
+-		    unsigned short*  & bwdMap1,
+-		    unsigned short*  & bwdMap2,
+-		    unsigned int& regionSize1,
+-		    unsigned int& regionSize2,
++void ExtractToyData(float* & im,
++		    unsigned int*  & fwdMap,
++		    unsigned short*  & bwdMap,
++		    unsigned int& regionSize,
+ 		    unsigned short* size,
+-		    float snr)
++		    ConfigFile config)
++
+ {
+      const float F = 0.2; // freq of sine wave.
+      const float mu = 800;
+@@ -19,29 +16,25 @@
+      const unsigned short N = 100;
+      const unsigned short A = 20; // amplitude.
+      const float ts = 1/fs;
++     float snr = config.read("snr", 0.5);
+      const float sigma2 = A/snr;
+      unsigned short* label = (unsigned short*)calloc(N, sizeof(unsigned short));
+      unsigned int M = 0;
+      int i, j, k;
+-     // allocate memory for im1, im2, etc. will be freed at upper level.
+-     im1 = (float*) malloc(N*D*sizeof(float));
+-     im2 = (float*) malloc(N*D*sizeof(float));
++     // allocate memory for im, etc. will be freed at upper level.
++     im = (float*) malloc(N*D*sizeof(float));
+      // For this toy data, we also make a fwdmap volume with size 1 x 1 x N.
+      size[0] = 1;
+      size[1] = 1;
+-     size[2] = 100;
++     size[2] = N;
+      size[3] = D;
+-     regionSize1 = N;
+-     regionSize2 = N;
+-     fwdMap1 = (unsigned int*) 
++     regionSize = size[0] * size[1] * size[2];
++
++     fwdMap = (unsigned int*) 
+ 	  calloc(size[0]*size[1]*size[2], sizeof(unsigned int));
+-     fwdMap2 = (unsigned int*) 
+-	  calloc(size[0]*size[1]*size[2], sizeof(unsigned int));
+-     bwdMap1 = (unsigned short*) 
+-	  malloc(regionSize1 * 3 *  sizeof(unsigned short));
+-     bwdMap2 = (unsigned short*) 
+-	  malloc(regionSize2 * 3 * sizeof(unsigned short));
+ 
++     bwdMap = (unsigned short*) 
++	  malloc(regionSize * 3 *  sizeof(unsigned short));
+      // boost random number generator
+ //     base_generator_type generator(time(NULL));
+      base_generator_type generator(2010);
+@@ -58,19 +51,16 @@
+      }
+ 
+      if (_DBG >= 3){
+-	  printf("now generating im1 and im2.\n");
++	  printf("now generating im.\n");
+      } 
+      for (i = 0; i < N; i++){
+ 	  for (j = 0; j < D; j++){
+ 	       if (label[i]){
+-		    im1[i*D+j] = mu + 
++		    im[i*D+j] = mu + 
+ 			 sigma2 * normalGenerator() + A * sin(2*PI*F*j*ts);
+-		    im2[i*D+j] = mu + 
+-			 sigma2 * normalGenerator() + A * sin(2*PI*F*j*ts);
+ 	       }
+ 	       else{
+-		    im1[i*D+j] = mu + sigma2 * normalGenerator();
+-		    im2[i*D+j] = mu + sigma2 * normalGenerator();
++		    im[i*D+j] = mu + sigma2 * normalGenerator();
+ 	       }
+ 	  }
+      }
+@@ -80,21 +70,15 @@
+ 	  printf("ExtractToyData, now make fwdmap.\n");
+      }
+      for (k = 0; k < size[2]; k++){
+-	  fwdMap1[0*size[1]*size[2] + 0*size[2] + k] = k;
+-	  fwdMap2[0*size[1]*size[2] + 0*size[2] + k] = k;
++	  fwdMap[0*size[1]*size[2] + 0*size[2] + k] = k;
+      }
+-     // bamke bwdMap matrix.
++     // make bwdMap matrix.
+      for (k = 0; k < size[2]; k++){
+ 	  // backward map matrix. Nx3.
+-	  bwdMap1[k*3 + 0] = 0;
+-	  bwdMap1[k*3 + 1] = 0;
+-	  bwdMap1[k*3 + 2] = k;
+-
+-	  bwdMap2[k*3 + 0] = 0;
+-	  bwdMap2[k*3 + 1] = 0;
+-	  bwdMap2[k*3 + 2] = k;
++	  bwdMap[k*3 + 0] = 0;
++	  bwdMap[k*3 + 1] = 0;
++	  bwdMap[k*3 + 2] = k;
+      }
+-	  
+      free(label);
+ }
+ 
+Index: tools.cxx
+===================================================================
+--- tools.cxx	(revision 75)
++++ tools.cxx	(working copy)
+@@ -2,21 +2,14 @@
+ #include "cppheader.h"
+ 
+ int SaveResults(const float* post,
+-		unsigned short N1,
+-		unsigned short N2,
+-		const unsigned int* fwdMap1,
+-		const unsigned int* fwdMap2,
++		unsigned short N,
++		const unsigned int* fwdMap,
+ 		ConfigFile config)
+ 		
+ {
+-/*
+-     char grayMaskFile[100];
+-     char postFile[100];
+-     strcpy(grayMaskFile, datadir);
+-     strcpy(postFile, datadir);
+-     strcat(grayMaskFile, "/mask.nii");
+-     strcat(postFile, "/post.nii");
+-*/
++     if (config.read<int>("toy",0)) {
++	  return 0;
++     }
+ 
+      // seed voxel.
+      unsigned short seed[3] = {0, 0, 0};
+@@ -39,88 +32,47 @@
+      postWriter->SetFileName(postFile);
+      // update reader to get image data.
+      maskReader->Update();
+-     int i = 0, j = 0, k = 0;
++     unsigned int i = 0, j = 0, k = 0;
+      unsigned short n1;
+      unsigned short n2;
+ 
+      MaskImType::IndexType pixelIndex;
+-     
+      MaskImType::SizeType size =  imPointer->GetLargestPossibleRegion().GetSize();
+ 
+-     printf("SaveResults, size = [%d][%d][%d].\n", size[0], size[1], size[2]);
++     printf("SaveResults, size = [%ld][%ld][%ld].\n", size[0], size[1], size[2]);
+      imPointer->FillBuffer(0);
+-     postWriter->Update();
+ 
+      config.readInto(seed[0], "seed0");
+      config.readInto(seed[1], "seed1");
+      config.readInto(seed[2], "seed2");
+-     n1 = fwdMap1[seed[0] * (size[1]*size[2])
++     n1 = fwdMap[seed[0] * (size[1]*size[2])
+ 		  + seed[1] * size[2] + seed[2]];
+ 
+-     unsigned short s1 = 0, s2 = 0;
+-     unsigned short v1_xmin, v1_xmax, v1_ymin, v1_ymax, v1_zmin, v1_zmax;
+-     unsigned short v2_xmin, v2_xmax, v2_ymin, v2_ymax, v2_zmin, v2_zmax;
++     unsigned short vol_xmin, vol_xmax, vol_ymin, vol_ymax, vol_zmin, vol_zmax;
++     
++     config.readInto(vol_xmin, "vol_xmin");
++     config.readInto(vol_xmax, "vol_xmax");
++     config.readInto(vol_ymin, "vol_ymin");
++     config.readInto(vol_ymax, "vol_ymax");
++     config.readInto(vol_zmin, "vol_zmin");
++     config.readInto(vol_zmax, "vol_zmax");
+ 
+-     unsigned short sliceField, volField;
+-     config.readInto(sliceField, "sliceField");
+-     config.readInto(volField, "volField");
+-     if (sliceField){
+-	  config.readInto(s1, "s1");
+-	  config.readInto(s2, "s2");
+-
+-	  for (i = 0; i < size[0]; i++){
+-	       for (j = 0; j < size[1]; j++){	       
++     for (i = vol_xmin; i <= vol_xmax; i++){
++	  for (j = vol_ymin; j <= vol_ymax; j++){
++	       for (k = vol_zmin; k <= vol_zmax; k++){
+ 		    pixelIndex[0] = i;
+ 		    pixelIndex[1] = j;
+-		    pixelIndex[2] = s2;
+-		    n2 = fwdMap2[i * size[1]*size[2] + j * size[2] + s2];
++		    pixelIndex[2] = k;
++		    n2 = fwdMap[i * size[1]*size[2] + j * size[2] + k];
+ 		    if (n2 != 0){
+-			 imPointer->SetPixel(pixelIndex, post[n1*N2 + n2]);
++			 imPointer->SetPixel(pixelIndex, post[n1*N + n2]);
+ 		    }
+ 	       }
+ 	  }
+-	  postWriter->Update();
+-
+      }
+-     else if (volField){
+-     
+-	  config.readInto(v1_xmin, "v1_xmin");
+-	  config.readInto(v1_xmax, "v1_xmax");
+-	  config.readInto(v1_ymin, "v1_ymin");
+-	  config.readInto(v1_ymax, "v1_ymax");
+-	  config.readInto(v1_zmin, "v1_zmin");
+-	  config.readInto(v1_zmax, "v1_zmax");
+-
+-	  config.readInto(v2_xmin, "v2_xmin");
+-	  config.readInto(v2_xmax, "v2_xmax");
+-	  config.readInto(v2_ymin, "v2_ymin");
+-	  config.readInto(v2_ymax, "v2_ymax");
+-	  config.readInto(v2_zmin, "v2_zmin");
+-	  config.readInto(v2_zmax, "v2_zmax");
+-
+-
+-	  for (i = v2_xmin; i <= v2_xmax; i++){
+-	       for (j = v2_ymin; j <= v2_ymax; j++){
+-		    for (k = v2_zmin; k <= v2_zmax; k++){
+-			 pixelIndex[0] = i;
+-			 pixelIndex[1] = j;
+-			 pixelIndex[2] = k;
+-			 n2 = fwdMap2[i * size[1]*size[2] + j * size[2] + k];
+-			 if (n2 != 0){
+-			 imPointer->SetPixel(pixelIndex, post[n1*N2 + n2]);
+-			 }
+-		    }
+-	       }
+-	  }
+-	  postWriter->Update();
+-     }
+-     else{
+-	  fprintf(stderr, "either sliceField or volField have to be set. Check parameter file.");
+-	  exit(1);
+-     }
++     postWriter->Update();
+ }
+ 
+-
+ void MLEstep(float* R,
+ 	     paraType par,
+ 	     unsigned int N1,
+@@ -161,24 +113,18 @@
+ 
+ int ThreshCorr(const float*R, 
+ 	       float* post,
+-	       unsigned int N1,
+-	       unsigned int N2,
+-	       const unsigned int* fwdMap1,
+-	       const unsigned int* fwdMap2,
++	       unsigned int N,
++	       const unsigned int* fwdMap,
+ 	       unsigned short* size,
+ 	       ConfigFile config)
+ 
+ {
+      unsigned int n;
+-     unsigned int n1, n2;
+-     int i, j, k;
+-     // seed voxel.
+-     unsigned short seed[3] = {0, 0, 0};
+ 
+      printf("size is [%i][%i][%i]\n", size[0], size[1], size[2]);
+-     printf("N1 = %d, N2 = %d\n", N1, N2);
++     printf("N = %d\n", N);
+ 
+-     for ( n = 0; n < N1*N2; n++){
++     for ( n = 0; n < N*N; n++){
+ 	  if (R[n] > 0){
+ 	       post[n] = R[n];
+ 	  }
+@@ -186,4 +132,5 @@
+ 	       post[n] = 0;
+ 	  }
+      }
++     return 0;
+ }
+Index: ImageViewer/FieldViewer.cxx
+===================================================================
+--- ImageViewer/FieldViewer.cxx	(revision 75)
++++ ImageViewer/FieldViewer.cxx	(working copy)
+@@ -29,18 +29,16 @@
+ 
+ Fl_Window *form;
+ int FieldViewer(const float* post, 
+-		unsigned short N1, 
+-		unsigned short N2, 
+-		const unsigned int* fwdMap1,
+-		const unsigned int* fwdMap2,
++		unsigned short N, 
++		const unsigned int* fwdMap,
+ 		char* title)
+ {
+      unsigned short seed[3] = {0, 0, 0};
+ 
+      std:: string datadir;
+      ConfigFile config(PARAFILE);
+-     if (config.read("toy",0)) {
+-	  ToyViewer(post, N1, N2);
++     if (config.read<int>("toy",0)) {
++	  ToyViewer(post, N);
+ 	  return 0;
+      }
+      config.readInto(datadir, "datadir");
+@@ -52,69 +50,53 @@
+      maskReaderType::Pointer maskReader = maskReaderType::New();
+      WriterType::Pointer postWriter = WriterType::New();
+      MaskImType::Pointer imPointer = maskReader->GetOutput();
+-
+      
+      postWriter->SetInput(imPointer);
+      maskReader->SetFileName(grayMaskFile);
+      postWriter->SetFileName(postFile);
+-     MaskImType::SizeType size =  imPointer->GetLargestPossibleRegion().GetSize();
++
+      // update reader to get image data.
+      maskReader->Update();
++     MaskImType::SizeType size =  imPointer->GetLargestPossibleRegion().GetSize();
+ 
+-     unsigned short n1;
+-     unsigned short n2;
++     unsigned long n1;
++     unsigned long n2;
+      int i = 0, j = 0, k = 0;
+ 
+      config.readInto(seed[0], "seed0");
+      config.readInto(seed[1], "seed1");
+      config.readInto(seed[2], "seed2");
+      
+-     unsigned short s1, s2;
+-     unsigned short v1_xmin, v1_xmax, v1_ymin, v1_ymax, v1_zmin, v1_zmax;
+-     unsigned short v2_xmin, v2_xmax, v2_ymin, v2_ymax, v2_zmin, v2_zmax;
++     unsigned short vol_xmin, vol_xmax, vol_ymin, vol_ymax, vol_zmin, vol_zmax;
+ 
+-     if (config.read("sliceField", 0)){
+-	  v2_xmin = 0;
+-	  v2_xmax = size[0]-1;
+-	  v2_ymin = 0;
+-	  v2_ymax = size[1] - 1;
+-	  v2_zmin = config.read("s2", 0);
+-	  v2_zmax = config.read("s2", 0);
+-     }
+-     else if (config.read("volFiled", 1)){
+-	  v2_xmin = config.read("v2_xmin", 0);
+-	  v2_xmax = config.read("v2_xmax", size[0]-1);
+-	  v2_ymin = config.read("v2_ymin", 0);
+-	  v2_ymax = config.read("v2_ymax", size[1]-1);
+-	  v2_zmin = config.read("v2_zmin", 0);
+-	  v2_zmax = config.read("v2_zmax", size[2]-1);
+-     }
+-     else{
+-	  fprintf(stderr, "either sliceField or volField have to be set. Check parameter file.");
+-	  exit(1);
+-     }
+-
++     vol_xmin = config.read("vol_xmin", 0);
++     vol_xmax = config.read("vol_xmax", size[0]-1);
++     vol_ymin = config.read("vol_ymin", 0);
++     vol_ymax = config.read("vol_ymax", size[1]-1);
++     vol_zmin = config.read("vol_zmin", 0);
++     vol_zmax = config.read("vol_zmax", size[2]-1);
++     
++     
+      imPointer->FillBuffer(0);     
+      MaskImType::IndexType pixelIndex;
+ 
+-     n1 = fwdMap1[seed[0] * (size[1]*size[2])
++     n1 = fwdMap[seed[0] * (size[1]*size[2])
+ 		  + seed[1] * size[2] + seed[2]];
+ 
+-     for (i = v2_xmin; i <= v2_xmax; i++){
+-	  for (j = v2_ymin; j <= v2_ymax; j++){
+-	       for (k = v2_zmin; k <= v2_zmax; k++){
++     for (i = vol_xmin; i <= vol_xmax; i++){
++	  for (j = vol_ymin; j <= vol_ymax; j++){
++	       for (k = vol_zmin; k <= vol_zmax; k++){
+ 		    pixelIndex[0] = i;
+ 		    pixelIndex[1] = j;
+ 		    pixelIndex[2] = k;
+-		    n2 = fwdMap2[i * size[1]*size[2] + j * size[2] + k];
++		    n2 = fwdMap[i * size[1]*size[2] + j * size[2] + k];
+ 		    if (n2!=0){
+-			 imPointer->SetPixel(pixelIndex, post[n1*N2 + n2]);
++			 imPointer->SetPixel(pixelIndex, post[n1*N + n2]);
+ 		    }
+ 	       }
+ 	  }
+      }
+-     postWriter->Update(); // write back.
+-  
++//     postWriter->Update(); // write back.
+      form = make_window();
+      tkMain->label(title);
+   
+@@ -134,10 +116,7 @@
+      return 0;
+ }
+ 
+-int ToyViewer(const float* post,
+-	      unsigned short N1,
+-	      unsigned short N2)
+-	      
++int ToyViewer(const float* post, unsigned short N)
+ 		
+ {
+      int i = 0, j = 0, k = 0;
+@@ -153,8 +132,8 @@
+      start[2] = 0;
+ 
+      ImageType::SizeType  size;
+-     size[0]  = N1;  // size along X
+-     size[1]  = N2;  // size along Y
++     size[0]  = N;  // size along X
++     size[1]  = N;  // size along Y
+      size[2] = 1;
+ 
+      ImageType::RegionType region;
+@@ -168,14 +147,13 @@
+      imP->FillBuffer(0);
+ 
+      ImageType::IndexType pixelIndex;
+-     printf("N1: %d, N2: %d\n", N1, N2);
+ 
+-     for (i = 0; i < N2; i++){
+-          for (j = 0; j < N2; j++){
++     for (i = 0; i < N; i++){
++          for (j = 0; j < N; j++){
+                pixelIndex[0] = i;
+                pixelIndex[1] = j;
+ 	       pixelIndex[2] = 0;
+-               imP->SetPixel(pixelIndex, post[i*N2 + j]);
++               imP->SetPixel(pixelIndex, post[i*N + j]);
+           }
+      }
+ 
+Index: ImageViewer/FieldViewerGUI.cxx
+===================================================================
+--- ImageViewer/FieldViewerGUI.cxx	(revision 75)
++++ ImageViewer/FieldViewerGUI.cxx	(working copy)
+@@ -1,4 +1,4 @@
+-// generated by Fast Light User Interface Designer (fluid) version 1.0110
++// generated by Fast Light User Interface Designer (fluid) version 1.0109
+ 
+ #include "/home/sci/weiliu/projects/confield/trunk/C/ImageViewer/FieldViewerGUI.h"
+ 
+@@ -10,12 +10,12 @@
+   { tkMain = new Fl_Double_Window(520, 520, "SimpleImageViewer");
+     { tkWin = new GLSliceView<float, unsigned char>(5, 5, 512, 512, "label");
+       tkWin->box(FL_ENGRAVED_FRAME);
+-      tkWin->color((Fl_Color)FL_BACKGROUND_COLOR);
+-      tkWin->selection_color((Fl_Color)FL_BACKGROUND_COLOR);
++      tkWin->color(FL_BACKGROUND_COLOR);
++      tkWin->selection_color(FL_BACKGROUND_COLOR);
+       tkWin->labeltype(FL_NORMAL_LABEL);
+       tkWin->labelfont(0);
+       tkWin->labelsize(14);
+-      tkWin->labelcolor((Fl_Color)FL_FOREGROUND_COLOR);
++      tkWin->labelcolor(FL_FOREGROUND_COLOR);
+       tkWin->align(FL_ALIGN_CENTER);
+       tkWin->when(FL_WHEN_RELEASE);
+       Fl_Group::current()->resizable(tkWin);
+Index: EMPost.cxx
+===================================================================
+--- EMPost.cxx	(revision 75)
++++ EMPost.cxx	(working copy)
+@@ -2,27 +2,25 @@
+ #include "common.h"
+ 
+ void EMPost(float* C, 
+-	    float* R, 
++	    const float* R, 
+ 	    float* post2,
+-	    const unsigned int* fwdMap1,
+-	    const unsigned int* fwdMap2,
+-	    const unsigned short* bwdMap1,
+-	    const unsigned short* bwdMap2,
+-	    unsigned int regionSize1, 
+-	    unsigned int regionSize2,
++	    const unsigned int* fwdMap,
++	    const unsigned short* bwdMap,
++	    unsigned int regionSize, 
+ 	    const unsigned short* size)
+ {
+      ConfigFile config(PARAFILE);
+      paraType para;
+      paraType old_para;
+-     para.mu1 = 0;
+-     para.mu2 = 0.1;
+-     para.sigma21 = 0.05;
+-     para.sigma22 = 0.05;
+-     para.T = 1;
+-     para.beta = INITBETA;
++     para.mu1 = config.read<double>("mu1", 0);
++     para.mu2 = config.read<double>("mu2", 0);
++     para.sigma21 = config.read<double>("sigma21", 0.05);
++     para.sigma22 = config.read<double>("sigma22", 0.05);
++     para.T = config.read<double>("temperature", 1);
++     para.beta = config.read<double>("INITBETA", 0.01);
+ 
+      unsigned annIter = 0;
++
+      if (_DBG >= 1){
+ 	  printf("parameters initialized:\n");
+ 	  printf("mu1 = %5.2f\nmu2 = %5.2f\nsigma21 = %2.2f\nsigma22 = %2.2f\nbeta = %f\n",
+@@ -33,42 +31,45 @@
+      unsigned int EMIter = 0;
+           
+      // Init correlation R.
+-     GPUInit(C, R, para, regionSize1, regionSize2);
++     GPUInit(C, R, para, regionSize, regionSize);
+      if (_DBG >= 3){
+ 	  printf("EMPost.cxx. After GPUInit. C: \n");
+ 	  for (i = RMIN; i <= RMAX; i++){
+ 	       for (j = CMIN; j <= CMAX; j++){
+-		    printf("[%d][%d]=%1.1f ", i, j, C[i*regionSize2 + j]);
++		    printf("[%d][%d]=%1.1f ", i, j, C[i*regionSize + j]);
+ 	       }
+ 	       printf("\n");
+ 	  }
+      }
+-     
++
+      float change = 1e10;
+      unsigned int n = 0;
+ 
+      // EM to estimate posterior and parameters.
+      // init estimate of Nk1 and Nk2
+      float  Nk1, Nk2;
+-     for (n = 0; n < regionSize1 * regionSize2; n++){
++     for (n = 0; n < regionSize * regionSize; n++){
+ 	  Nk2 = Nk2 + (C[n] == 1);
+      }
+-     Nk1 = regionSize1 * regionSize2 - Nk2;
++     Nk1 = regionSize * regionSize - Nk2;
++
+      
+-     while (change > EPS){
++     while (change > EPS && EMIter < 3){
+ 	  EMIter++;
+ 	  printf("-----------EM iteration %d.  E step.---------------------------------------\n", EMIter);
+ 	  printf("Call GPU sampling now...\n");
+ 	  // randMat used for random number when sampling, and used for 
+ 	  // posterior p(c = 1) when computing posterior, i.e. 
+ 	  // job = "post".
++
+ 	  if (USEMRF == 1){
+-	  GPUSampling(C, R, fwdMap1, fwdMap2, bwdMap1, bwdMap2, 
+-		      para, regionSize1, regionSize2, size, post2);
++	  GPUSampling(C, R, fwdMap, bwdMap,
++		      para, regionSize, size, post2);
+ 	  }
+ 	  else{
+ 
+-	       MLEstep(R, para, regionSize1, regionSize2, Nk1, Nk2, post2);
++	       MLEstep(R, para, regionSize, regionSize, 
++		       (unsigned int) Nk1, (unsigned int) Nk2, post2);
+ 	  }
+ 
+ 
+@@ -78,27 +79,27 @@
+ 	  old_para = para;
+ 	  Nk1 = 0;
+ 	  Nk2 = 0;
+-	  for (n = 0; n < regionSize1 * regionSize2; n++){
++	  for (n = 0; n < regionSize * regionSize; n++){
+ 	       Nk2 = Nk2 + post2[n];
+ 	  }
+-	  Nk1 = regionSize1 * regionSize2 - Nk2;
++	  Nk1 = regionSize * regionSize - Nk2;
+ 	  // also estimate mu1?
+ 	  if (config.read("est_mu1", 1)) {
+ 	       para.mu1 = 0;
+-	       for (n = 0; n < regionSize1 * regionSize2; n++){
++	       for (n = 0; n < regionSize * regionSize; n++){
+ 		    para.mu1 = para.mu1 + (1- post2[n]) * R[n]/Nk1;
+ 	       }	  
+ 	  }
+ 
+ 	  // estimate mu2
+ 	  para.mu2 = 0;
+-	  for (n = 0; n < regionSize1 * regionSize2; n++){
++	  for (n = 0; n < regionSize * regionSize; n++){
+ 	       para.mu2 = para.mu2 + (post2[n]) * R[n]/Nk2;
+ 	  }
+ 	  // estimate sigma21 and sigma22
+ 	  para.sigma21 = 0;
+ 	  para.sigma22 = 0;
+-	  for (n = 0; n < regionSize1 * regionSize2; n++){
++	  for (n = 0; n < regionSize * regionSize; n++){
+ 	       para.sigma21 = para.sigma21 + 
+ 		    (1 - post2[n]) * (R[n] - para.mu1)*(R[n] - para.mu1)/Nk1;
+ 	       para.sigma22 = para.sigma22 + 
+@@ -107,7 +108,7 @@
+ 	  if (USEMRF == 1){
+ 	  // Estimate beta. This need lots of work. We begin with beta
+ 	  // in previous iteration as initital value for Nettonw's method.
+-	  GPUEst(C, fwdMap1, fwdMap2, bwdMap1, bwdMap2, &para, regionSize1, regionSize2, size);
++	       GPUEst(C, fwdMap, bwdMap, &para, regionSize, size);
+ 	  }
+ 	  change = fabs(para.mu1 - old_para.mu1) + 
+ 	       fabs(para.mu2 - old_para.mu2) + 
+@@ -124,11 +125,11 @@
+ 	       printf("EMPost, posterior p(c = 1):\n");
+ 	       for (i = RMIN; i <= RMAX; i++){
+ 		    for (j = CMIN; j <= CMAX; j++){
+-			 printf("[%d][%d]=%3.2f ", i, j, post2[i*regionSize2 + j]);
++			 printf("[%d][%d]=%3.2f ", i, j, post2[i*regionSize + j]);
+ 		    }
+ 		    printf("\n");
+ 	       }
+-	       FieldViewer(post2, regionSize1,regionSize2, fwdMap1, fwdMap2, "Posterior");
++	       FieldViewer(post2, regionSize, fwdMap, "Posterior");
+ 	  }
+ 
+      }
+@@ -137,25 +138,28 @@
+ 	  printf("EMPost, posterior p(c = 1):\n");
+ 	  for (i = RMIN; i <= RMAX; i++){
+ 	       for (j = CMIN; j <= CMAX; j++){
+-		    printf("[%d][%d]=%3.2f ", i, j, post2[i*regionSize2 + j]);
++		    printf("[%d][%d]=%3.2f ", i, j, post2[i*regionSize + j]);
+ 	       }
+ 	       printf("\n");
+ 	  }
+ 
+      }
++/*
+      if (_DBG >= 3){
+ 	  if (config.read("toy",0)){
+-	       ToyViewer(post2, regionSize1, regionSize2);
++	       ToyViewer(post2, regionSize);
+ 	  }
+ 	  else {
+-	       FieldViewer(post2, regionSize1, regionSize2, 
+-			   fwdMap1, fwdMap2, "posterior map");
++	       FieldViewer(post2, regionSize, fwdMap, "posterior map");
+ 	  }
+      }
++*/
++
++
+      
+ /*	  
+      // Annealing.
+-     GPUAnnealing(C, R, fwdMap1, fwdMap2, bwdMap1, bwdMap2, 
+-		 para, regionSize1, regionSize2, size, post2);
++     GPUAnnealing(C, R, fwdMap, bwdMap,  
++		 para, regionSize, size, post2);
+ */
+ }
+Index: ExtractRealData.cxx
+===================================================================
+--- ExtractRealData.cxx	(revision 75)
++++ ExtractRealData.cxx	(working copy)
+@@ -1,16 +1,28 @@
+ #include "cppheader.h"
+ #include "common.h"
+ 
++void ExtractGray(fmriReaderType::Pointer fmriReader,
++		 maskReaderType::Pointer maskReader,
++		 PixelType* im1,
++		 unsigned int* fwdMap,
++		 unsigned short* bwdMap,
++		 float grayThresh,
++		 unsigned short xmin, unsigned short xmax,
++		 unsigned short ymin, unsigned short ymax,
++		 unsigned short zmin, unsigned short zmax);
++
++unsigned int GetRegionSize(maskReaderType::Pointer maskReader,
++			   float grayThresh,
++			   unsigned short xmin, unsigned short xmax,
++			   unsigned short ymin, unsigned short ymax,
++			   unsigned short zmin, unsigned short zmax);
++
+ // Extract slices from fmri data file. also return forward map 
+ // and backward map and region, etc.
+-void ExtractRealData(float* & im1,
+-		     float*  & im2,
+-		     unsigned int*  & fwdMap1,
+-		     unsigned int*  & fwdMap2,
+-		     unsigned short*  & bwdMap1,
+-		     unsigned short*  & bwdMap2,
+-		     unsigned int& regionSize1,
+-		     unsigned int& regionSize2,
++void ExtractRealData(float* & im,
++		     unsigned int*  & fwdMap,
++		     unsigned short*  & bwdMap,
++		     unsigned int& regionSize,
+ 		     unsigned short* size,
+ 		     ConfigFile config)
+ 
+@@ -42,128 +54,77 @@
+      size[2] = itkSize[2];
+      size[3] = itkSize[3];
+ 
+-     unsigned short s1 = 0, s2 = 0;
+-     unsigned short v1_xmin, v1_xmax, v1_ymin, v1_ymax, v1_zmin, v1_zmax;
+-     unsigned short v2_xmin, v2_xmax, v2_ymin, v2_ymax, v2_zmin, v2_zmax;
++     unsigned short vol_xmin, vol_xmax, vol_ymin, vol_ymax, vol_zmin, vol_zmax;
+ 
+-     unsigned short sliceField, volField;
+-     config.readInto(sliceField, "sliceField");
+-     config.readInto(volField, "volField");
+-     if (sliceField){
+-	  config.readInto(s1, "s1");
+-	  config.readInto(s2, "s2");
+-	  if (_DBG >= 2) {
+-	       printf("ExtractRealData: s1=%d, s2=%d.\n", s1, s2);
+-	  }
+ 
+-	  regionSize1 = GetRegionSize(maskReader, GRAYTHRESH, 0, size[0]-1, 0, size[1]-1,
+-				      s1, s1);
+-	  regionSize2 = GetRegionSize(maskReader, GRAYTHRESH, 0, size[0]-1, 0, size[1]-1,
+-				      s2, s2);
+-     }
+-     else if (volField){
+-	  config.readInto(v1_xmin, "v1_xmin");
+-	  config.readInto(v1_xmax, "v1_xmax");
+-	  config.readInto(v1_ymin, "v1_ymin");
+-	  config.readInto(v1_ymax, "v1_ymax");
+-	  config.readInto(v1_zmin, "v1_zmin");
+-	  config.readInto(v1_zmax, "v1_zmax");
++     config.readInto(vol_xmin, "vol_xmin");
++     config.readInto(vol_xmax, "vol_xmax");
++     config.readInto(vol_ymin, "vol_ymin");
++     config.readInto(vol_ymax, "vol_ymax");
++     config.readInto(vol_zmin, "vol_zmin");
++     config.readInto(vol_zmax, "vol_zmax");
++     
++     regionSize = GetRegionSize(maskReader, GRAYTHRESH, vol_xmin, vol_xmax,
++				      vol_ymin, vol_ymax, vol_zmin, vol_zmax);
++ 
+ 
+-	  config.readInto(v2_xmin, "v2_xmin");
+-	  config.readInto(v2_xmax, "v2_xmax");
+-	  config.readInto(v2_ymin, "v2_ymin");
+-	  config.readInto(v2_ymax, "v2_ymax");
+-	  config.readInto(v2_zmin, "v2_zmin");
+-	  config.readInto(v2_zmax, "v2_zmax");
+-
+-	  regionSize1 = GetRegionSize(maskReader, GRAYTHRESH, v1_xmin, v1_xmax,
+-				      v1_ymin, v1_ymax, v1_zmin, v1_zmax);
+-	  regionSize2 = GetRegionSize(maskReader, GRAYTHRESH, v2_xmin, v2_xmax,
+-				      v2_ymin, v2_ymax, v2_zmin, v2_zmax);
+-     }
+-     else{
+-	  fprintf(stderr, "either sliceField or volField have to be set. Check parameter file.");
+-	  exit(1);
+-     }
+-
+      /* Allocate time series in a general matrix. Each row is a time course. NOTE: we assume ROW MAJOR. */
+-     im1 = (PixelType*) malloc(regionSize1 * size[3] * sizeof(PixelType));
+-     im2 = (PixelType*) malloc(regionSize2 * size[3] * sizeof(PixelType));
++     im = (PixelType*) malloc(regionSize * size[3] * sizeof(PixelType));
+ 
+      // Forward mapping matrix. We use calloc to init it to all zero. So in later
+      // functoin, only those gray matter are assigned to value. others are still
+      // zero. So this forward matrix can be used as a mask for gray matter. 
+-     fwdMap1 = (unsigned int*) 
++     fwdMap = (unsigned int*) 
+ 	  calloc(size[0]*size[1]*size[2], sizeof(unsigned int));
+-     fwdMap2 = (unsigned int*) 
+-	  calloc(size[0]*size[1]*size[2], sizeof(unsigned int));
+-     bwdMap1 = (unsigned short*) 
+-	  malloc(regionSize1 * 3 *  sizeof(unsigned short));
+-     bwdMap2 = (unsigned short*) 
+-	  malloc(regionSize2 * 3 * sizeof(unsigned short));
++     bwdMap = (unsigned short*) 
++	  malloc(regionSize * 3 *  sizeof(unsigned short));
+ 
+-     // Extract gray matter voxels into im1 and im2.
+-     if (sliceField){
+-	  ExtractGray(fmriReader, maskReader, im1, fwdMap1, bwdMap1, GRAYTHRESH,
+-		      0, size[0]-1, 0, size[1]-1, s1, s1);
+-	  ExtractGray(fmriReader, maskReader, im2, fwdMap2, bwdMap2, GRAYTHRESH,
+-		      0, size[0]-1, 0, size[1]-1, s2, s2);
+-     }
+-     else if (volField){
+-	  printf("ExtractRealData.cxx: mark.\n");
+-	  printf("v1_xmin=%d, v1_xmax=%d, v1_ymin=%d, v1_ymax=%d, v1_zmin=%d, v1_zmax=%d, v2_xmin=%d, v2_xmax=%d, v2_ymin=%d, v2_ymax=%d, v2_zmin=%d, v2_zmax=%d.\n", v1_xmin, v1_xmax, v1_ymin, v1_ymax, v1_zmin, v1_zmax, v2_xmin, v2_xmax, v2_ymin, v2_ymax, v2_zmin, v2_zmax);
+-	  ExtractGray(fmriReader, maskReader, im1, fwdMap1, bwdMap1, GRAYTHRESH,
+-		      v1_xmin, v1_xmax, v1_ymin, v1_ymax, v1_zmin, v1_zmax);
+-	  ExtractGray(fmriReader, maskReader, im2, fwdMap2, bwdMap2, GRAYTHRESH,
+-		      v2_xmin, v2_xmax, v2_ymin, v2_ymax, v2_zmin, v2_zmax);
+-     }
+-     else{
+-     }
++     // Extract gray matter voxels into im.
+ 
++     printf("vol_xmin=%d, vol_xmax=%d, vol_ymin=%d, vol_ymax=%d, vol_zmin=%d, vol_zmax=%d.\n", vol_xmin, vol_xmax, vol_ymin, vol_ymax, vol_zmin, vol_zmax);
++
++     ExtractGray(fmriReader, maskReader, im, fwdMap, bwdMap, GRAYTHRESH,
++		      vol_xmin, vol_xmax, vol_ymin, vol_ymax, vol_zmin, vol_zmax);
++
+      // debug code.
+      if (_DBG >= 3){
+ 	  int i, j;
+ 	  for (i = 0; i < 10; i++){
+-	       printf("%4.2f ", im1[i]);
++	       printf("%4.2f ", im[i]);
+ 	  }
+ 	  printf("\n");
+ 	  printf(" ExtractRealData. size: %d, %d, %d %d\n", size[0], size[1], size[2], size[3]);
+ 	  printf("extracted time series:\n");
+ 	  for (i = 0; i < 5; i++){
+ 	       for (j = 0; j < 10; j++){
+-		    printf("[%d][%d]=%4.2f ", i,j, im1[i*size[3] +j]);
++		    printf("[%d][%d]=%4.2f ", i,j, im[i*size[3] +j]);
+ 	       }
+ 	       printf("\n");
+ 	  }
+      }
+      // detrend.
+-     GPUDetrend(im1, regionSize1, size[3]);
+-     GPUDetrend(im2, regionSize2, size[3]);
+-
++     GPUDetrend(im, regionSize, size[3]);
+      if (_DBG >= 3){
+ 	  printf("ExtractRealData.cxx: detrended data\n");
+ 	  int i, j;
+ 	  for (i = 0; i < 5; i++){
+ 	       for (j = 0; j < 10; j++){
+-		    printf("[%d][%d]=%4.2f ", i, j, im1[i*size[3] +j]);
++		    printf("[%d][%d]=%4.2f ", i, j, im[i*size[3] +j]);
+ 	       }
+ 	       printf("\n");
+ 	  }
+      }
+-
+-
+ }
+ 
+-
+ void ExtractGray(fmriReaderType::Pointer fmriReader,
+-		maskReaderType::Pointer maskReader,
+-		PixelType* im1,
+-		unsigned int* fwdMap,
+-		unsigned short* bwdMap,
+-		float grayThresh,
+-		 int xmin, int xmax,
+-		 int ymin, int ymax,
+-		 int zmin, int zmax)
++		 maskReaderType::Pointer maskReader,
++		 PixelType* im1,
++		 unsigned int* fwdMap,
++		 unsigned short* bwdMap,
++		 float grayThresh,
++		 unsigned short xmin, unsigned short xmax,
++		 unsigned short ymin, unsigned short ymax,
++		 unsigned short zmin, unsigned short zmax)
+ 
+ 
+ {
+@@ -211,9 +172,9 @@
+ 
+ unsigned int GetRegionSize(maskReaderType::Pointer maskReader,
+ 			   float grayThresh,
+-			   int xmin, int xmax,
+-			   int ymin, int ymax,
+-			   int zmin, int zmax)
++			   unsigned short xmin, unsigned short xmax,
++			   unsigned short ymin, unsigned short ymax,
++			   unsigned short zmin, unsigned short zmax)
+ {
+      unsigned int x, y, z;
+      MaskImType::IndexType maskIdx;
+Index: CMakeLists.txt
+===================================================================
+--- CMakeLists.txt	(revision 75)
++++ CMakeLists.txt	(working copy)
+@@ -1,5 +1,5 @@
+ cmake_minimum_required(VERSION 2.8)
+-PROJECT(mrf)
++PROJECT(mrf) 
+ 
+ #if you don't want the full compiler output, remove the following line
+ SET(CMAKE_VERBOSE_MAKEFILE OFF)
+Index: GPUEst.cu
+===================================================================
+--- GPUEst.cu	(revision 75)
++++ GPUEst.cu	(working copy)
+@@ -1,24 +1,18 @@
+ #include "common.h"
+ 
+ __global__ void EstKernel(const float* C, 
+-			  const unsigned int* gpuFwdMap1,
+-			  const unsigned int* gpuFwdMap2,
+-			  const unsigned short* gpuBwdMap1,
+-			  const unsigned short* gpuBwdMap2,
++			  const unsigned int* gpuFwdMap,
++			  const unsigned short* gpuBwdMap,
+ 			  paraType par,
+-			  unsigned int N1,
+-			  unsigned int N2,
++			  unsigned int N,
+ 			  dim3 size,
+ 			  float* gpuSumMat);
+ 
+ void GPUEst(const float* C,
+-	    const unsigned int* fwdMap1,
+-	    const unsigned int* fwdMap2,
+-	    const unsigned short* bwdMap1,
+-	    const unsigned short* bwdMap2,
++	    const unsigned int* fwdMap,
++	    const unsigned short* bwdMap,
+ 	    paraType* par,
+-	    unsigned int N1,
+-	    unsigned int N2,
++	    unsigned int N,
+ 	    const unsigned short* size)
+ {
+      double Jacob = 0;
+@@ -30,55 +24,46 @@
+      // define simSize as argument of kernel fun.
+      dim3 dimSize(size[0], size[1], size[2]);
+      // create nsum on host. to save results from gpu.
+-     float* sumMat = (float*) malloc(N1*N2*sizeof(float));
++     float* sumMat = (float*) malloc(N*N*sizeof(float));
+ 
+      // pointer to device memory.
+      float* gpuC;
+-     unsigned int* gpuFwdMap1;
+-     unsigned int* gpuFwdMap2;
+-     unsigned short* gpuBwdMap1;
+-     unsigned short* gpuBwdMap2;
++     unsigned int* gpuFwdMap;
++     unsigned short* gpuBwdMap;
+      float* gpuSumMat;
+ 
+      /* create input and output array on GPU. */
+-     cudaMalloc((void**) &gpuC, sizeof(float)*N1*N2);
++     cudaMalloc((void**) &gpuC, sizeof(float)*N*N);
+      checkCUDAError("GPUEst, allocate gpuC.");
+ 
+-     cudaMalloc((void**) &gpuFwdMap1, sizeof(unsigned int)*mapSize);
++     cudaMalloc((void**) &gpuFwdMap, sizeof(unsigned int)*mapSize);
+      checkCUDAError("GPUEst, allocate fwdMap1");     
+-     cudaMalloc((void**) &gpuFwdMap2, sizeof(unsigned int)*mapSize);
+-     checkCUDAError("GPUEst, allocate fwdMap2");     
+-     cudaMalloc((void**) &gpuBwdMap1, sizeof(unsigned short)*N1*3);
++
++     cudaMalloc((void**) &gpuBwdMap, sizeof(unsigned short)*N*3);
+      checkCUDAError("GPUEst, allocate bwdMap1");     
+-     cudaMalloc((void**) &gpuBwdMap2, sizeof(unsigned short)*N2*3);
+-     checkCUDAError("GPUEst, allocate bwdMap2");     
+-     cudaMalloc((void**) &gpuSumMat, sizeof(float)*N1*N2);
++
++     cudaMalloc((void**) &gpuSumMat, sizeof(float)*N*N);
+      checkCUDAError("GPUEst, allocate gpuSumMat.");
+ 
+      /* host to device memory. */
+-     cudaMemcpy(gpuC, C, sizeof(float)*N1*N2, cudaMemcpyHostToDevice);
++     cudaMemcpy(gpuC, C, sizeof(float)*N*N, cudaMemcpyHostToDevice);
+      checkCUDAError("GPUEst, memcpy gpuC");
+ 
+-     cudaMemcpy(gpuFwdMap1, fwdMap1, sizeof(unsigned int)*mapSize, 
++     cudaMemcpy(gpuFwdMap, fwdMap, sizeof(unsigned int)*mapSize, 
+ 		cudaMemcpyHostToDevice);
+-     checkCUDAError("GPUEst, memcpy gpuFwdMap1");
+-     cudaMemcpy(gpuFwdMap2, fwdMap2, sizeof(unsigned int)*mapSize, 
+-		cudaMemcpyHostToDevice);
+-     checkCUDAError("GPUEst, memcpy gpuFwdMap2");
++     checkCUDAError("GPUEst, memcpy gpuFwdMap");
+ 
+-     cudaMemcpy(gpuBwdMap1, bwdMap1, sizeof(unsigned short)*N1*3, 
++     cudaMemcpy(gpuBwdMap, bwdMap, sizeof(unsigned short)*N*3, 
+ 		cudaMemcpyHostToDevice);
+      checkCUDAError("GPUEst, memcpy gpuBwdMap1");
+-     cudaMemcpy(gpuBwdMap2, bwdMap2, sizeof(unsigned short)*N2*3, 
++
++     cudaMemcpy(gpuSumMat, sumMat,  sizeof(float)*N*N, 
+ 		cudaMemcpyHostToDevice);
+-     checkCUDAError("GPUEst, memcpy gpuBwdMap2");
+-     cudaMemcpy(gpuSumMat, sumMat,  sizeof(float)*N1*N2, 
+-		cudaMemcpyHostToDevice);
+      checkCUDAError("GPUEst, memcpy gpuSumMat");
+ 
+      /* run the kernel function. */
+-     int gridDimx = N1/BLOCK_SIZE_X + (N1%BLOCK_SIZE_X == 0?0:1);
+-     int gridDimy = N2/BLOCK_SIZE_Y + (N2%BLOCK_SIZE_Y == 0?0:1);
++     int gridDimx = N/BLOCK_SIZE_X + (N%BLOCK_SIZE_X == 0?0:1);
++     int gridDimy = N/BLOCK_SIZE_Y + (N%BLOCK_SIZE_Y == 0?0:1);
+ 
+      dim3 dimBlock(BLOCK_SIZE_X, BLOCK_SIZE_Y);
+      dim3 dimGrid(gridDimx, gridDimy);
+@@ -90,14 +75,14 @@
+      // estimate beta by Newton's method.
+      while((step > CUEPS) && (par->beta < CUMAXBETA)){
+ 	  // call kernel, only to compute sum x_j for each x_i.
+-	  EstKernel<<<dimGrid, dimBlock>>>(gpuC, gpuFwdMap1, gpuFwdMap2,
+-					   gpuBwdMap1, gpuBwdMap2, *par, N1, N2,
++	  EstKernel<<<dimGrid, dimBlock>>>(gpuC, gpuFwdMap,
++					   gpuBwdMap, *par, N,
+ 					   dimSize, gpuSumMat);
+-	  cudaMemcpy(sumMat, gpuSumMat, sizeof(float)*N1*N2, cudaMemcpyDeviceToHost);
++	  cudaMemcpy(sumMat, gpuSumMat, sizeof(float)*N*N, cudaMemcpyDeviceToHost);
+ 
+ 	  Jacob = 0;
+ 	  DELL = 0;
+-	  for (n = 0; n < N1*N2; n++){
++	  for (n = 0; n < N*N; n++){
+ 	       nsum = sumMat[n];
+ 	       // 2nd derivative.
+ 	       Jacob = Jacob + 
+@@ -128,10 +113,8 @@
+ 
+      /* clean up. */
+      cudaFree(gpuC);
+-     cudaFree(gpuFwdMap1);
+-     cudaFree(gpuFwdMap2);
+-     cudaFree(gpuBwdMap1);
+-     cudaFree(gpuBwdMap2);
++     cudaFree(gpuFwdMap);
++     cudaFree(gpuBwdMap);
+      cudaFree(gpuSumMat);
+      free(sumMat);
+ 
+@@ -139,13 +122,10 @@
+ 
+ /* Kernel function  */
+ __global__ void EstKernel(const float* C, 
+-			  const unsigned int* gpuFwdMap1,
+-			  const unsigned int* gpuFwdMap2,
+-			  const unsigned short* gpuBwdMap1,
+-			  const unsigned short* gpuBwdMap2,
++			  const unsigned int* gpuFwdMap,
++			  const unsigned short* gpuBwdMap,
+ 			  paraType par,
+-			  unsigned int N1,
+-			  unsigned int N2,
++			  unsigned int N,
+ 			  dim3 size,
+ 			  float* gpuSumMat)
+ 
+@@ -164,12 +144,12 @@
+      float sum = 0;
+ 
+      // thread fall outside of matrix C, or mask is zero.
+-     if (n1 >= N1 | n2 >= N2) {return;}
++     if (n1 >= N | n2 >= N) {return;}
+ 
+      // image one's neighbors.
+-     i = gpuBwdMap1[n1*3 + 0];
+-     j = gpuBwdMap1[n1*3 + 1];
+-     k = gpuBwdMap1[n1*3 + 2];
++     i = gpuBwdMap[n1*3 + 0];
++     j = gpuBwdMap[n1*3 + 1];
++     k = gpuBwdMap[n1*3 + 2];
+ 
+      for (di = -1; di <= 1; di ++){
+ 	  for (dj = -1; dj <= 1; dj ++){
+@@ -180,18 +160,18 @@
+ 		    if ((ti >= 0 && ti < size.x
+ 			 && tj >= 0 && tj < size.y
+ 			 && tk >= 0 && tk < size.z)
+-			 && (gpuFwdMap1[ti * size.y*size.z +  tj * size.z + tk] > 0)){
+-		    n = gpuFwdMap1[ti * size.y * size.z +  tj * size.z + tk];
+-		    sum = sum + C[n*N2 + n2];
++			 && (gpuFwdMap[ti * size.y*size.z +  tj * size.z + tk] > 0)){
++			 n = gpuFwdMap[ti * size.y * size.z +  tj * size.z + tk];
++			 sum = sum + C[n*N + n2];
+ 		    }
+ 	       }
+ 	  }
+      }
+-     sum = sum - C[n1*N2 + n2];
++     sum = sum - C[n1*N + n2];
+      // image 2's neighbors.
+-     i = gpuBwdMap2[n2*3 + 0];
+-     j = gpuBwdMap2[n2*3 + 1];
+-     k = gpuBwdMap2[n2*3 + 2];
++     i = gpuBwdMap[n2*3 + 0];
++     j = gpuBwdMap[n2*3 + 1];
++     k = gpuBwdMap[n2*3 + 2];
+      for (di = -1; di <= 1; di ++){
+ 	  for (dj = -1; dj <= 1; dj ++){
+ 	       for (dk = -1; dk <= 1; dk ++){
+@@ -201,16 +181,16 @@
+ 		    if ((ti >= 0 && ti < size.x
+ 			 && tj >= 0 && tj < size.y
+ 			 && tk >= 0 && tk < size.z)
+-			 && (gpuFwdMap2[ti * size.y*size.z +  tj * size.z + tk] > 0)){
+-		    n = gpuFwdMap2[ti * size.y * size.z +  tj * size.z + tk];
+-		    sum = sum + C[n1*N2 + n];
++			 && (gpuFwdMap[ti * size.y*size.z +  tj * size.z + tk] > 0)){
++		    n = gpuFwdMap[ti * size.y * size.z +  tj * size.z + tk];
++		    sum = sum + C[n1*N + n];
+ 		    }
+ 	       }
+ 	  }
+      }
+-     sum = sum - C[n1*N2 + n2];
++     sum = sum - C[n1*N + n2];
+      
+-     gpuSumMat[n1*N2+n2] = sum;
++     gpuSumMat[n1*N+n2] = sum;
+ #if __DEVICE_EMULATION__
+      if (n1 == 0 && n2 == 0){
+ 
+Index: common.h
+===================================================================
+--- common.h	(revision 75)
++++ common.h	(working copy)
+@@ -19,7 +19,7 @@
+ #endif
+ 
+ 
+-#define _DBG 2
++#define _DBG 3
+ #define EPS 0.0001 // small number to see if parameters change.
+ 
+ //#define MAXBETA 15 // max beta.
+@@ -67,14 +67,9 @@
+ #define _EMU 0
+ 
+ int FieldViewer(const float* post, 
+-		unsigned short N1, 
+-		unsigned short N2, 
+-		const unsigned int* fwdMap1,
+-		const unsigned int* fwdmap2,
++		unsigned short N, 
++		const unsigned int* fwdMap,
+ 		char* title);
+ 
+-int ToyViewer(const float* post,
+-	      unsigned short N1,
+-	      unsigned short N2);
++int ToyViewer(const float* post, unsigned short N);
+ 
+-
+Index: GPUAnnealing.cu
+===================================================================
+--- GPUAnnealing.cu	(revision 75)
++++ GPUAnnealing.cu	(working copy)
+@@ -1,96 +1,76 @@
+ #include "common.h"
+ __global__ void AnnealingKernel(float* C, 
+ 				const float* R, 
+-				const unsigned int* gpuFwdMap1,
+-				const unsigned int* gpuFwdMap2,
+-				const unsigned short* gpuBwdMap1,
+-				const unsigned short* gpuBwdMap2,
++				const unsigned int* gpuFwdMap,
++				const unsigned short* gpuBwdMap,
+ 				paraType par,
+-				unsigned int N1,
+-				unsigned int N2,
++				unsigned int N,
+ 				float* gpuRandMat,
+ 				dim3 size,
+ 				uint job,
+ 				uint checkerboard);
+ 
+ void GPUAnnealing(float* C, // initial connectivity matrix.
+-		 float* R,
+-		 const unsigned int* fwdMap1,
+-		 const unsigned int* fwdMap2,
+-		 const unsigned short* bwdMap1,
+-		 const unsigned short* bwdMap2,
+-		 paraType par,
+-		 unsigned int N1,
+-		 unsigned int N2,
+-		 const unsigned short* size,
+-		 float* post2)
++		  float* R,
++		  const unsigned int* fwdMap,
++		  const unsigned short* bwdMap,
++		  paraType par,
++		  unsigned int N,
++		  const unsigned short* size,
++		  float* post2)
+ 
+ 
+ {
+      if (_DBG >= 2){
+-	  printf("GPUAnnealing row and col of C: N1 = %d, N2 = %d\n", N1, N2);
+-	  printf("GPUAnnealing, size = [%d][%d][%d]\n", size[0], size[1], size[2]);
++	  printf("GPUAnnealing row and col of C: %u x %u.\n", N, N);
++	  printf("GPUAnnealing, size = [%u][%u][%u]\n", size[0], size[1], size[2]);
+      }
+      uint iter; // Gibbs Sampling iteration time.
+-     uint i, j;
+      unsigned int mapSize = size[0]*size[1]*size[2];
+      // define simSize as argument of kernel fun.
+      dim3 dimSize(size[0], size[1], size[2]);
+      // random number matrix.
+-     float* randMat = (float*) calloc(N1*N2, sizeof(float));
++     float* randMat = (float*) calloc(N*N, sizeof(float));
+      
+      // pointer to device memory.
+      float* gpuC;
+      float* gpuR;
+-     unsigned int* gpuFwdMap1;
+-     unsigned int* gpuFwdMap2;
+-     unsigned short* gpuBwdMap1;
+-     unsigned short* gpuBwdMap2;
++     unsigned int* gpuFwdMap;
++     unsigned short* gpuBwdMap;
+      float* gpuRandMat;
+      
+      /* create input and output array on GPU. */
+-     cudaMalloc((void**) &gpuC, sizeof(float)*N1*N2);
++     cudaMalloc((void**) &gpuC, sizeof(float)*N*N);
+      checkCUDAError("CudaSampling, allocate gpuC.");
+ 
+-     cudaMalloc((void**) &gpuR, sizeof(float)*N1*N2);
++     cudaMalloc((void**) &gpuR, sizeof(float)*N*N);
+      checkCUDAError("CudaSampling, allocate gpuR");
+ 
+-     cudaMalloc((void**) &gpuFwdMap1, sizeof(unsigned int)*mapSize);
+-     checkCUDAError("CudaSampling, allocate fwdMap1");     
+-     cudaMalloc((void**) &gpuFwdMap2, sizeof(unsigned int)*mapSize);
+-     checkCUDAError("CudaSampling, allocate fwdMap2");     
+-     cudaMalloc((void**) &gpuBwdMap1, sizeof(unsigned short)*N1*3);
+-     checkCUDAError("CudaSampling, allocate bwdMap1");     
+-     cudaMalloc((void**) &gpuBwdMap2, sizeof(unsigned short)*N2*3);
+-     checkCUDAError("CudaSampling, allocate bwdMap2");     
++     cudaMalloc((void**) &gpuFwdMap, sizeof(unsigned int)*mapSize);
++     checkCUDAError("CudaSampling, allocate fwdMap");     
++     cudaMalloc((void**) &gpuBwdMap, sizeof(unsigned short)*N*3);
++     checkCUDAError("CudaSampling, allocate bwdMap");     
+ 
+-     cudaMalloc((void**) &gpuRandMat, sizeof(float)*N1*N2);
++     cudaMalloc((void**) &gpuRandMat, sizeof(float)*N*N);
+      checkCUDAError("CudaSampling, allocate gpuRandMat");
+ 
+      /* host to device memory. */
+-     cudaMemcpy(gpuR, R, sizeof(float)*N1*N2, cudaMemcpyHostToDevice);
++     cudaMemcpy(gpuR, R, sizeof(float)*N*N, cudaMemcpyHostToDevice);
+      checkCUDAError("CudaSampling, memcpy R");
+-     cudaMemcpy(gpuC, C, sizeof(float)*N1*N2, cudaMemcpyHostToDevice);
++     cudaMemcpy(gpuC, C, sizeof(float)*N*N, cudaMemcpyHostToDevice);
+      checkCUDAError("CudaSampling, memcpy gpuC");
+ 
+-     cudaMemcpy(gpuFwdMap1, fwdMap1, sizeof(unsigned int)*mapSize, 
++     cudaMemcpy(gpuFwdMap, fwdMap, sizeof(unsigned int)*mapSize, 
+ 		cudaMemcpyHostToDevice);
+-     checkCUDAError("CudaSampling, memcpy gpuFwdMap1");
+-     cudaMemcpy(gpuFwdMap2, fwdMap2, sizeof(unsigned int)*mapSize, 
+-		cudaMemcpyHostToDevice);
+-     checkCUDAError("CudaSampling, memcpy gpuFwdMap2");
++     checkCUDAError("CudaSampling, memcpy gpuFwdMap");
+ 
+-     cudaMemcpy(gpuBwdMap1, bwdMap1, sizeof(unsigned short)*N1*3, 
++     cudaMemcpy(gpuBwdMap, bwdMap, sizeof(unsigned short)*N*3, 
+ 		cudaMemcpyHostToDevice);
+-     checkCUDAError("CudaSampling, memcpy gpuBwdMap1");
+-     cudaMemcpy(gpuBwdMap2, bwdMap2, sizeof(unsigned short)*N2*3, 
+-		cudaMemcpyHostToDevice);
+-     checkCUDAError("CudaSampling, memcpy gpuBwdMap2");
++     checkCUDAError("CudaSampling, memcpy gpuBwdMap");
+ 
+-
+      /* run the kernel function. */
+-     int gridDimx = N1/BLOCK_SIZE_X + (N1%BLOCK_SIZE_X == 0?0:1);
+-     int gridDimy = N2/BLOCK_SIZE_Y + (N2%BLOCK_SIZE_Y == 0?0:1);
++     int gridDimx = N/BLOCK_SIZE_X + (N%BLOCK_SIZE_X == 0?0:1);
++     int gridDimy = N/BLOCK_SIZE_Y + (N%BLOCK_SIZE_Y == 0?0:1);
+ 
+      dim3 dimBlock(BLOCK_SIZE_X, BLOCK_SIZE_Y);
+      dim3 dimGrid(gridDimx, gridDimy);
+@@ -133,26 +113,24 @@
+ 	  if (_DBG >= 1 & (iter+1)%1 == 0){
+ 	       printf("GPUAnnealing, mean filed iteration: %d...\n", iter+1);
+ 	  }
+-	  AnnealingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
+-						gpuBwdMap1, gpuBwdMap2, par, N1, N2,
+-						gpuRandMat, dimSize, 1, 0);
++	  AnnealingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap,
++						 gpuBwdMap, par, N,
++						 gpuRandMat, dimSize, 1, 0);
+ 
+ 	  cudaThreadSynchronize();
+-	  AnnealingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap1, gpuFwdMap2,
+-						gpuBwdMap1, gpuBwdMap2, par, N1, N2,
+-						gpuRandMat, dimSize, 1, 1);
++	  AnnealingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, gpuFwdMap,
++						 gpuBwdMap, par, N,
++						 gpuRandMat, dimSize, 1, 1);
+ 	  /* Send results back to cpu memeory */
+-	  cudaMemcpy(C, gpuC, sizeof(float)*N1*N2, cudaMemcpyDeviceToHost);
++	  cudaMemcpy(C, gpuC, sizeof(float)*N*N, cudaMemcpyDeviceToHost);
+ 
+      }
+ 
+ 	  /* clean up. */
+ 	  cudaFree(gpuC);
+ 	  cudaFree(gpuR);
+-	  cudaFree(gpuFwdMap1);
+-	  cudaFree(gpuFwdMap2);
+-	  cudaFree(gpuBwdMap1);
+-	  cudaFree(gpuBwdMap2);
++	  cudaFree(gpuFwdMap);
++	  cudaFree(gpuBwdMap);
+ 	  cudaFree(gpuRandMat);
+ 	  free(randMat);
+ }
+@@ -160,13 +138,10 @@
+ /* Kernel function  */
+ __global__ void AnnealingKernel(float* C, 
+ 			       const float* R, 
+-			       const unsigned int* gpuFwdMap1,
+-			       const unsigned int* gpuFwdMap2,
+-			       const unsigned short* gpuBwdMap1,
+-			       const unsigned short* gpuBwdMap2,
++			       const unsigned int* gpuFwdMap,
++			       const unsigned short* gpuBwdMap,
+ 			       paraType par,
+-			       unsigned int N1,
+-			       unsigned int N2,
++			       unsigned int N,
+ 			       float* gpuRandMat,
+ 			       dim3 size,
+ 			       uint job,
+@@ -176,7 +151,7 @@
+      unsigned short j;
+      unsigned short k;
+      uint n;
+-     float postExp = 0;
++
+      uint n1 = blockIdx.x*blockDim.x + threadIdx.x;
+      uint n2 = blockIdx.y*blockDim.y + threadIdx.y;
+ 
+@@ -186,82 +161,82 @@
+      float lu1 = 0, lu2 = 0, post1 = 0, post2 = 0;
+ 
+      // define checkerboard and update image in two steps.
+-     unsigned short checksum = gpuBwdMap1[n1*3 + 0]
+-	  + gpuBwdMap1[n1*3 + 1]
+-	  + gpuBwdMap1[n1*3 + 2]
+-	  + gpuBwdMap2[n2*3 + 0]
+-	  + gpuBwdMap2[n2*3 + 1]
+-	  + gpuBwdMap2[n2*3 + 2];
++     unsigned short checksum = gpuBwdMap[n1*3 + 0]
++	  + gpuBwdMap[n1*3 + 1]
++	  + gpuBwdMap[n1*3 + 2]
++	  + gpuBwdMap[n2*3 + 0]
++	  + gpuBwdMap[n2*3 + 1]
++	  + gpuBwdMap[n2*3 + 2];
+ 
+      if (checksum%2 != checkerboard) {return;}
+      // thread fall outside of matrix C, or mask is zero.
+-     if (n1 >= N1 | n2 >= N2) {return;}
++     if (n1 >= N | n2 >= N) {return;}
+ 
+      // image one's neighbors.
+-     i = gpuBwdMap1[n1*3 + 0];
+-     j = gpuBwdMap1[n1*3 + 1];
+-     k = gpuBwdMap1[n1*3 + 2];
++     i = gpuBwdMap[n1*3 + 0];
++     j = gpuBwdMap[n1*3 + 1];
++     k = gpuBwdMap[n1*3 + 2];
+ 
+-     if ((i > 0) && (gpuFwdMap1[(i-1) * size.y*size.z +  j * size.z + k] > 0)){
+-	  n = gpuFwdMap1[(i-1) * size.y * size.z +  j * size.z + k];
+-	  sum = sum + C[n*N2 + n2];}
++     if ((i > 0) && (gpuFwdMap[(i-1) * size.y*size.z +  j * size.z + k] > 0)){
++	  n = gpuFwdMap[(i-1) * size.y * size.z +  j * size.z + k];
++	  sum = sum + C[n*N + n2];}
+ 
+-     if ((j > 0) && (gpuFwdMap1[i * size.y*size.z +  (j-1) * size.z + k] > 0)){
+-	  n = gpuFwdMap1[i * size.y*size.z +  (j-1) * size.z + k];
+-	  sum = sum + C[n*N2 + n2];}
++     if ((j > 0) && (gpuFwdMap[i * size.y*size.z +  (j-1) * size.z + k] > 0)){
++	  n = gpuFwdMap[i * size.y*size.z +  (j-1) * size.z + k];
++	  sum = sum + C[n*N + n2];}
+ 
+-     if ((k > 0) && (gpuFwdMap1[i * size.y*size.z +  j * size.z + (k-1)] > 0)){
+-	  n = gpuFwdMap1[i * size.y*size.z +  j * size.z + (k-1)];
+-	  sum = sum + C[n*N2 + n2];}
++     if ((k > 0) && (gpuFwdMap[i * size.y*size.z +  j * size.z + (k-1)] > 0)){
++	  n = gpuFwdMap[i * size.y*size.z +  j * size.z + (k-1)];
++	  sum = sum + C[n*N + n2];}
+ 
+ 
+-     if ((i < size.x-1) && (gpuFwdMap1[(i+1) * size.y*size.z +  j * size.z + k] > 0)){
+-	  n = gpuFwdMap1[(i+1) * size.y*size.z +  j * size.z + k];
+-	  sum = sum + C[n*N2 + n2];}
++     if ((i < size.x-1) && (gpuFwdMap[(i+1) * size.y*size.z +  j * size.z + k] > 0)){
++	  n = gpuFwdMap[(i+1) * size.y*size.z +  j * size.z + k];
++	  sum = sum + C[n*N + n2];}
+ 
+-     if ((j < size.y-1) && (gpuFwdMap1[i * size.y*size.z +  (j+1) * size.z + k] > 0)){
+-	  n = gpuFwdMap1[i * size.y*size.z +  (j+1) * size.z + k];
+-	  sum = sum + C[n*N2 + n2];}
++     if ((j < size.y-1) && (gpuFwdMap[i * size.y*size.z +  (j+1) * size.z + k] > 0)){
++	  n = gpuFwdMap[i * size.y*size.z +  (j+1) * size.z + k];
++	  sum = sum + C[n*N + n2];}
+ 
+-     if ((k < size.z-1) && (gpuFwdMap1[i * size.y*size.z +  j * size.z + (k+1)] > 0)){
+-	  n = gpuFwdMap1[i * size.y*size.z +  j * size.z + (k+1)];
+-	  sum = sum + C[n*N2 + n2];}
++     if ((k < size.z-1) && (gpuFwdMap[i * size.y*size.z +  j * size.z + (k+1)] > 0)){
++	  n = gpuFwdMap[i * size.y*size.z +  j * size.z + (k+1)];
++	  sum = sum + C[n*N + n2];}
+ 
+      // image 2's neighbors.
+-     i = gpuBwdMap2[n2*3 + 0];
+-     j = gpuBwdMap2[n2*3 + 1];
+-     k = gpuBwdMap2[n2*3 + 2];
++     i = gpuBwdMap[n2*3 + 0];
++     j = gpuBwdMap[n2*3 + 1];
++     k = gpuBwdMap[n2*3 + 2];
+ 
+-     if ((i > 0) && (gpuFwdMap2[(i-1) * size.y*size.z +  j * size.z + k] > 0)){
+-	  n = gpuFwdMap2[(i-1) * size.y * size.z +  j * size.z + k];
+-	  sum = sum + C[n1*N2 + n];}
++     if ((i > 0) && (gpuFwdMap[(i-1) * size.y*size.z +  j * size.z + k] > 0)){
++	  n = gpuFwdMap[(i-1) * size.y * size.z +  j * size.z + k];
++	  sum = sum + C[n1*N + n];}
+ 
+-     if ((j > 0) && (gpuFwdMap2[i * size.y*size.z +  (j-1) * size.z + k] > 0)){
+-	  n = gpuFwdMap2[i * size.y*size.z +  (j-1) * size.z + k];
+-	  sum = sum + C[n1*N2 + n];}
++     if ((j > 0) && (gpuFwdMap[i * size.y*size.z +  (j-1) * size.z + k] > 0)){
++	  n = gpuFwdMap[i * size.y*size.z +  (j-1) * size.z + k];
++	  sum = sum + C[n1*N + n];}
+ 
+ 
+-     if ((k > 0) && (gpuFwdMap2[i * size.y*size.z +  j * size.z + (k-1)] > 0)){
+-	  n = gpuFwdMap2[i * size.y*size.z +  j * size.z + (k-1)];
+-	  sum = sum + C[n1*N2 + n];}
++     if ((k > 0) && (gpuFwdMap[i * size.y*size.z +  j * size.z + (k-1)] > 0)){
++	  n = gpuFwdMap[i * size.y*size.z +  j * size.z + (k-1)];
++	  sum = sum + C[n1*N + n];}
+ 
+-     if ((i < size.x-1) && (gpuFwdMap2[(i+1) * size.y*size.z +  j * size.z + k] > 0)){
+-	  n = gpuFwdMap2[(i+1) * size.y*size.z +  j * size.z + k];
+-	  sum = sum + C[n1*N2 + n];}
++     if ((i < size.x-1) && (gpuFwdMap[(i+1) * size.y*size.z +  j * size.z + k] > 0)){
++	  n = gpuFwdMap[(i+1) * size.y*size.z +  j * size.z + k];
++	  sum = sum + C[n1*N + n];}
+ 
+-     if ((j < size.y-1) && (gpuFwdMap2[i * size.y*size.z +  (j+1) * size.z + k] > 0)){
+-	  n = gpuFwdMap2[i * size.y*size.z +  (j+1) * size.z + k];
+-	  sum = sum + C[n1*N2 + n];}
++     if ((j < size.y-1) && (gpuFwdMap[i * size.y*size.z +  (j+1) * size.z + k] > 0)){
++	  n = gpuFwdMap[i * size.y*size.z +  (j+1) * size.z + k];
++	  sum = sum + C[n1*N + n];}
+ 
+-     if ((k < size.z-1) && (gpuFwdMap2[i * size.y*size.z +  j * size.z + (k+1)] > 0)){
+-	  n = gpuFwdMap2[i * size.y*size.z +  j * size.z + (k+1)];
+-	  sum = sum + C[n1*N2 + n];}
++     if ((k < size.z-1) && (gpuFwdMap[i * size.y*size.z +  j * size.z + (k+1)] > 0)){
++	  n = gpuFwdMap[i * size.y*size.z +  j * size.z + (k+1)];
++	  sum = sum + C[n1*N + n];}
+ 
+      pu1 = par.beta * (-1)* sum;
+      pu2 = par.beta * sum;
+ 	  
+-     lu1 = pow(R[n1*N2+n2]-par.mu1, 2)/(2*par.sigma21)+ log(sqrt(par.sigma21));
+-     lu2 = pow(R[n1*N2+n2]-par.mu2, 2)/(2*par.sigma22) + log(sqrt(par.sigma22));
++     lu1 = pow(R[n1*N+n2]-par.mu1, 2)/(2*par.sigma21)+ log(sqrt(par.sigma21));
++     lu2 = pow(R[n1*N+n2]-par.mu2, 2)/(2*par.sigma22) + log(sqrt(par.sigma22));
+      // compute posterior and include annealing parameter T.
+      // May need to consider precision issue!
+      post1 = exp(-(pu1 + lu1)/par.T);
+@@ -271,19 +246,19 @@
+      post2 = post2/postsum;
+      
+      if (job == 1){ // expectation. mean field.
+-	  C[n1*N2+n2] = post2 - post1;
++	  C[n1*N+n2] = post2 - post1;
+      }
+      else if (job == 0){ // sampling
+-	  if (gpuRandMat[n1*N2+n2] < post1){
+-	       C[n1*N2+n2] =  -1;
++	  if (gpuRandMat[n1*N+n2] < post1){
++	       C[n1*N+n2] =  -1;
+ 	  }
+ 
+ 	  else{
+-	       C[n1*N2+n2] =  1;
++	       C[n1*N+n2] =  1;
+ 	  }
+      }
+      else if (job == 2){ // compute posterior. p(c == -1)
+-	  gpuRandMat[n1*N2+n2] = post2;
++	  gpuRandMat[n1*N+n2] = post2;
+      }
+      else{
+ 

@@ -1,0 +1,58 @@
+\begin{thebibliography}{10}
+
+\bibitem{worsley_analysis_1995}
+Worsley, K.J., Friston, K.J.:
+\newblock Analysis of {fMRI} time-series revisited--again.
+\newblock Neuroimage \textbf{2}(3) (1995)  173--181
+
+\bibitem{ou_spatial_2005}
+Ou, W., Golland, P.:
+\newblock From spatial regularization to anatomical priors in {fMRI} analysis.
+\newblock {I}nformation in {M}edical {I}maging (2005)  88--100
+
+\bibitem{descombes_spatio-temporal_1998}
+Descombes, X., Kruggel, F., Cramon, D.V.:
+\newblock Spatio-temporal {fMRI} analysis using {M}arkov random fields.
+\newblock Medical Imaging, {IEEE} Trans. \textbf{17}(6) (1998)  1028--1039
+
+\bibitem{descombes_fmri_1998}
+Descombes, X., Kruggel, F., von Cramon, D.Y.:
+\newblock {fMRI} signal restoration using a {spatio-temporal} {M}arkov random
+  field preserving transitions.
+\newblock {NeuroImage} \textbf{8}(4) (November 1998)  340--349
+
+\bibitem{woolrich_fully_2004}
+Woolrich, M., Jenkinson, M., Brady, J., Smith, S.:
+\newblock {F}ully {B}ayesian {spatio-temporal} modeling of {fMRI} data.
+\newblock Medical Imaging, {IEEE} Transactions on \textbf{23}(2) (2004)
+  213--231
+
+\bibitem{cosman_exact_2004}
+Cosman, E.R., Fisher, J.W., Wells, W.M.:
+\newblock Exact {MAP} activity detection in {fMRI} using a {GLM} with an
+  {I}sing spatial prior.
+\newblock In: MICCAI. (2004)  703–--710
+
+\bibitem{li_markov_2009}
+Li, S.Z.:
+\newblock Markov Random Field Modeling in Image Analysis.
+\newblock Springer (March 2009)
+
+\bibitem{besag_spatial_1974}
+Besag, J.:
+\newblock Spatial interaction and the statistical analysis of lattice systems.
+\newblock Journal of the Royal Statistical Society. Series B {(Methodological)}
+  \textbf{36}(2) (1974)  192–--236
+
+\bibitem{mller_multivariate_2001}
+M\"{u}ller, K., Lohmann, G., Bosch, V., von Cramon, D.Y.:
+\newblock On multivariate spectral analysis of {fMRI} time series.
+\newblock {NeuroImage} \textbf{14}(2) (August 2001)  347--356
+
+\bibitem{raichle2001}
+Raichle, M.E., MacLeod, A.M., Snyder, A.Z., Powers, W.J., Gusnard, D.A.,
+  Shulman, G.L.:
+\newblock A default mode of brain function.
+\newblock PNAS \textbf{98}(2)  676--682
+
+\end{thebibliography}

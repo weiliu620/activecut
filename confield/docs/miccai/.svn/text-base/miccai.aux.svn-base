@@ -1,0 +1,100 @@
+\relax 
+\citation{worsley_analysis_1995}
+\citation{ou_spatial_2005,descombes_spatio-temporal_1998,descombes_fmri_1998,woolrich_fully_2004,cosman_exact_2004}
+\@writefile{toc}{\contentsline {title}{Functional connectivity using MRF}{1}}
+\@writefile{toc}{\authcount {5}}
+\@writefile{toc}{\contentsline {author}{Wei Liu \global \advance \c@@auth \@ne \begingroup \let \@elt \global \z@ cl@@auth\endcsname \endgroup \relax \unskip , Peihong Zhu \global \advance \c@@auth \@ne \begingroup \let \@elt \global \z@ cl@@auth\endcsname \endgroup \relax \unskip , Jeffrey S. Anderson \global \advance \c@@auth \@ne \begingroup \let \@elt \global \z@ cl@@auth\endcsname \endgroup \relax \unskip , Deborah Yurgelun-Todd \global \advance \c@@auth \@ne \begingroup \let \@elt \global \z@ cl@@auth\endcsname \endgroup \relax \unskip , \newline  P. Thomas Fletcher}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}}
+\citation{li_markov_2009}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Markov Random Fields for Functional Connectivity}{2}}
+\newlabel{sec:model}{{2}{2}}
+\newlabel{eq:posterior}{{1}{2}}
+\citation{besag_spatial_1974}
+\citation{mller_multivariate_2001}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Markov Prior}{3}}
+\newlabel{eq:A1}{{3}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Likelihood Model}{3}}
+\citation{li_markov_2009,besag_spatial_1974}
+\newlabel{eq:emission}{{4}{4}}
+\newlabel{eq:likelihood}{{5}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Estimation via Expectation Maximization}{4}}
+\newlabel{sec:algorithm}{{3}{4}}
+\newlabel{eq:2}{{6}{4}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces MAP estimation by EM}}{5}}
+\newlabel{alg:1}{{1}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{5}}
+\newlabel{sec:results}{{4}{5}}
+\citation{raichle2001}
+\newlabel{fig:1a}{{1(a)}{6}}
+\newlabel{sub@fig:1a}{{(a)}{6}}
+\newlabel{fig:1b}{{1(b)}{6}}
+\newlabel{sub@fig:1b}{{(b)}{6}}
+\newlabel{fig:1c}{{1(c)}{6}}
+\newlabel{sub@fig:1c}{{(c)}{6}}
+\newlabel{fig:1d}{{1(d)}{6}}
+\newlabel{sub@fig:1d}{{(d)}{6}}
+\newlabel{fig:1e}{{1(e)}{6}}
+\newlabel{sub@fig:1e}{{(e)}{6}}
+\newlabel{fig:1f}{{1(f)}{6}}
+\newlabel{sub@fig:1f}{{(f)}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Test on synthetic data.}}{6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {}}}{6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {}}}{6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {}}}{6}}
+\newlabel{fig:1}{{1}{6}}
+\bibstyle{splncs}
+\bibdata{newreference}
+\bibcite{worsley_analysis_1995}{1}
+\newlabel{fig:3a}{{2(a)}{7}}
+\newlabel{sub@fig:3a}{{(a)}{7}}
+\newlabel{fig:3b}{{2(b)}{7}}
+\newlabel{sub@fig:3b}{{(b)}{7}}
+\newlabel{fig:3c}{{2(c)}{7}}
+\newlabel{sub@fig:3c}{{(c)}{7}}
+\newlabel{fig:3d}{{2(d)}{7}}
+\newlabel{sub@fig:3d}{{(d)}{7}}
+\newlabel{fig:3e}{{2(e)}{7}}
+\newlabel{sub@fig:3e}{{(e)}{7}}
+\newlabel{fig:3f}{{2(f)}{7}}
+\newlabel{sub@fig:3f}{{(f)}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces }}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {}}}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {}}}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {}}}{7}}
+\newlabel{fig:3}{{2}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{7}}
+\bibcite{ou_spatial_2005}{2}
+\bibcite{descombes_spatio-temporal_1998}{3}
+\bibcite{descombes_fmri_1998}{4}
+\bibcite{woolrich_fully_2004}{5}
+\bibcite{cosman_exact_2004}{6}
+\bibcite{li_markov_2009}{7}
+\bibcite{besag_spatial_1974}{8}
+\bibcite{mller_multivariate_2001}{9}
+\bibcite{raichle2001}{10}
+\newlabel{fig:2a}{{3(a)}{8}}
+\newlabel{sub@fig:2a}{{(a)}{8}}
+\newlabel{fig:2b}{{3(b)}{8}}
+\newlabel{sub@fig:2b}{{(b)}{8}}
+\newlabel{fig:2c}{{3(c)}{8}}
+\newlabel{sub@fig:2c}{{(c)}{8}}
+\newlabel{fig:2d}{{3(d)}{8}}
+\newlabel{sub@fig:2d}{{(d)}{8}}
+\newlabel{fig:2e}{{3(e)}{8}}
+\newlabel{sub@fig:2e}{{(e)}{8}}
+\newlabel{fig:2f}{{3(f)}{8}}
+\newlabel{sub@fig:2f}{{(f)}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces }}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {}}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {}}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {}}}{8}}
+\newlabel{fig:2}{{3}{8}}

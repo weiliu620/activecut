@@ -1,0 +1,21 @@
+function [fmriVol, maskVol] = TakeWholeVol(T)
+% Obtain whole volume data, without masking.
+% input: T, a scalar in (0, 1). For masking the volume.
+% output: fmriVol, 3D matrix. Single precision.
+%         maskVol: 3D mask matrix. uint8 data type.
+
+rootDir = '/scratch/data/auditory_spm_example/';
+greyMaskFile = strcat(rootDir, 'sM00223_seg_coreg/rc1sM00223_002.hdr');
+fmriFile = strcat(rootDir,...
+    'fM00223_realign_reslice/auditory_realigned.nii');
+
+
+addpath('/home/sci/weiliu/packages/nifti_to_matlab'); % tool dir.
+addpath('/scratch/data/auditory_spm_example'); % date dir
+NII = load_nii(fmriFile); % 4d nii file. already preprocessed.
+maskStruct = load_nii(greyMaskFile);
+
+fmriVol = single(NII.img);
+maskVol = single(maskStruct.img);
+maskVol(maskVol
+

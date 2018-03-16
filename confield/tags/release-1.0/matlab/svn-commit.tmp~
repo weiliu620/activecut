@@ -1,0 +1,21 @@
+
+--This line, and those below, will be ignored--
+
+M    ConnField.m.bak
+A  + EMPost.m.good
+M    ConnField.m
+M    EMPost.m
+M    mrf.log
+M    figures/trueConn.eps
+M    figures/CorrHist.eps
+M    figures/1DTimeSeries.eps
+M    figures/mrfest02.eps
+M    figures/SampleCorr.eps
+M    sinSample.mat
+M    mrf.aux
+M    mrf.tex
+M    tmp.eps
+M    mrf.pdf
+M    GenTimeSeries.m
+M    Ising.m
+M    mrf.dvi

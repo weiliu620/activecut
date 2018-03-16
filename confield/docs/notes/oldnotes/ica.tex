@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+ 
+%\documentclass[fleqn]{article}
+%\usepackage{palatino} 
+%\usepackage{charter}
+%\usepackage[T1]{fontenc}
+%\usepackage{concmath} % pretty good
+%\usepackage{cmbright}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{/home/sci/weiliu/haldefs}
+\usepackage{/home/sci/weiliu/notes}
+\usepackage{/home/sci/weiliu/projects/lwdefs}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{textcomp}
+%\usepackage[numbers]{natbib}
+\usepackage{natbib}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage{/home/sci/weiliu/packages/breakurl/breakurl}
+%\usepackage{endfloat}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{natbib}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Indepedent Component Analysis},    % title
+    pdfauthor={Author},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Creator},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={keywords}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks= true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+
+
+\begin{document}
+\title{Notes: Indepedent Component Analysis}
+\author{Wei Liu}
+\maketitle
+\section{sphering}
+This section talks about the reason that ICA use sphering as a
+preprocessing step, and if there is any relationship between this
+sphering and Riemannian Manifold.
+
+Sphering is sometimes called whitening. After sphering a zero-mean random vector $\vec x$, the components are uncorrelated and their variances equal unity.
+\begin{align}
+\vec z = \mat V \vec x \\
+\mathbb{E}[\vec z \vec z\T] = \mat I
+\end{align}
+
+Sphering transfer the mixing matrix into a new one,
+\begin{equation*}
+  \vec z = \mat V \vec x = \mat V \mat A \vec s = \widetilde {\mat A} \vec s
+\end{equation*}
+
+
+\textbf{Reason one: } Sphering is used as processing step, because after sphering the new mixing matrix $\widetilde{\mat A}$ is orthogonal, as 
+\begin{equation*}
+  \mathbb{E}[\vec z \vec z\T] = \widetilde{\mat A} \mathbb{E}[\vec s \vec s\T]\widetilde{\mat A}\T = \widetilde{\mat A}\widetilde{\mat A}\T = \mat I
+\end{equation*}
+That means we can search the space of orthogonal matrix instead of searching in the whole space. For orthogonal matrix there are $n(n-1)/2$ parameters to estimate, which is significantly less than original $n^2$ parameters.
+
+\bibliographystyle{plainnat}
+\bibliography{/home/sci/weiliu/projects/zotero}
+\end{document}
+ 

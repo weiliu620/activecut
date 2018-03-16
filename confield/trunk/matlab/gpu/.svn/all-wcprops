@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/confield/!svn/ver/2/trunk/matlab/gpu
+END
+matlab.mat
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/matlab.mat
+END
+base.cu
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/base.cu
+END
+sampling.linkinfo
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/sampling.linkinfo
+END
+GPUInit.mexa64
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/GPUInit.mexa64
+END
+GPUCorr.mexa64
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/GPUCorr.mexa64
+END
+GPUInit.cu
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/GPUInit.cu
+END
+GPUCorr.cu
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/GPUCorr.cu
+END
+nvmex
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/nvmex
+END
+nvopts.sh.bak
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/nvopts.sh.bak
+END
+nvopts.sh
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/nvopts.sh
+END
+CudaSampling.cu.bak
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/CudaSampling.cu.bak
+END
+CudaSampling.mexa64
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/CudaSampling.mexa64
+END
+base.mexa64
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/base.mexa64
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/Makefile
+END
+CudaSampling.cu
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/CudaSampling.cu
+END
+temp.sh
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/confield/!svn/ver/2/trunk/matlab/gpu/temp.sh
+END

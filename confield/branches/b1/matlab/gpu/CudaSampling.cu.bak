@@ -1,0 +1,152 @@
+#include "mex.h"
+#include "cuda.h"
+#include <stdio.h>
+// Forward Declaration.
+__global__ void SamplingKernel(float* C, const float* R, int L, 
+			       float mu1, float mu2, 
+			       float sigma21, float sigma22,
+			       float beta, float iterCount);
+
+void GPUmain(float* C, 
+	     const float* R, 
+	     const float* coord1, 
+	     const float* coord2,
+	     float mu1, 
+	     float mu2,
+	     float sigma21,
+	     float sigma22,
+	     float beta,
+	     float iterCount, 
+	     mwSize M, 
+	     mwSize N);
+/*
+__constant__ float gpuMu1;
+__constant__ float gpuMu2;
+__constant__ float gpuSigma21;
+__constant__ float gpuSigma22;
+__constant__ float gpuBeta;
+__constant__ float gpuIterCount;
+__constant__ float gpuCoord1;
+__constant__ float gpuCoord2;
+*/
+
+void mexFunction( int nlhs, mxArray *plhs[],
+                  int nrhs, const mxArray *prhs[] )
+{
+// The matlab interface, argument list:
+/*
+    C = CudaSampling(C, R,...
+        coord1, coord2,...
+        mu(1), mu(2), sigma2(1), sigma2(2),...
+        beta, maxSAIterCount);
+*/
+
+/* Check for proper number of input and output arguments */
+     if (nrhs != 10) {
+	  mexErrMsgTxt("Ten input argument required: C, R, coord1, coord2, mu(1)mu(2), sigma2(1), sigma2(2), beta, maxSAIterCount");
+     }
+     if (nlhs > 1){
+	  mexErrMsgTxt("Too many output arguments.");
+     }
+/* Check data type of input argument */
+     if (!(mxIsSingle(prhs[0]))) {
+	  mexErrMsgTxt("Input array must be of type single.");
+     }
+
+     float* Cinit = (float*)mxGetPr(prhs[0]); // initial connectivity matrix.
+     float* R = (float*)mxGetPr(prhs[1]); // correlation (or other affinity) matrix, from data.
+     float* coord1 = (float*)mxGetPr(prhs[2]);
+     float* coord2 = (float*)mxGetPr(prhs[3]); // coordinates. Nx3 matrix.
+     float mu1 = mxGetScalar(prhs[4]);
+     float mu2 = mxGetScalar(prhs[5]);
+     float sigma21 = mxGetScalar(prhs[6]);
+     float sigma22 = mxGetScalar(prhs[7]);
+     float beta = mxGetScalar(prhs[8]);
+     float iterCount = mxGetScalar(prhs[9]);
+     
+ 
+     mwSize M = mxGetM(prhs[0]);
+     mwSize N = mxGetN(prhs[0]);
+
+     // Create output data.
+     plhs[0] = mxCreateNumericMatrix(M, N, mxSINGLE_CLASS, mxREAL);
+     float* C = (float*) mxGetPr(plhs[0]);
+     // init C.
+     memcpy(C, Cinit, M*N*sizeof(float));
+
+     // test data IO.
+     printf("Cinit[1] = %f, R[1] = %f,\n coord1[1] = %f, coord[2] = %f,\n mu1 = %f, mu2 = %f,\n sigma21 = %f, sigma22 = %f,\n beta = %f, iterCount = %f\n", *(Cinit+1), *(R+1), *(coord1+2), *(coord2+1), mu1, mu2, sigma21, sigma22, beta, iterCount);
+     // enter cuda function.
+GPUmain(C, R, coord1, coord2, mu1, mu2, sigma21, sigma22,  beta, iterCount, M, N);
+}
+
+void GPUmain(float* C, 
+	     const float* R, 
+	     const float* coord1, 
+	     const float* coord2,
+	     float mu1, 
+	     float mu2,
+	     float sigma21,
+	     float sigma22,
+	     float beta,
+	     float iterCount, 
+	     mwSize M, 
+	     mwSize N)
+{
+    // pointer to device memory.
+     float* gpuC;
+     float* gpuR;
+     float* gpuCoord1;
+     float* gpuCoord2;
+     
+     /* create input and output array on GPU. */
+     cudaMalloc((void**) &gpuC, sizeof(float)*M*N);
+     cudaMalloc((void**) &gpuR, sizeof(float)*M*N);
+     cudaMalloc((void**) &gpuCoord1, sizeof(float)*M*3);
+     cudaMalloc((void**) &gpuCoord2, sizeof(float)*N*3);
+
+     /* host to device memory. */
+     cudaMemcpy(gpuR, R, sizeof(float)*M*N, cudaMemcpyHostToDevice);
+     cudaMemcpy(gpuC, C, sizeof(float)*M*N, cudaMemcpyHostToDevice);
+/*
+     cudaMemcpyToSymbol(gpuMu1, &mu1, sizeof(mu1));
+     cudaMemcpyToSymbol(gpuMu2, &mu2, sizeof(mu1));
+     cudaMemcpyToSymbol(gpuSigma21, &sigma21, sizeof(sigma21));
+     cudaMemcpyToSymbol(gpuSigma22, &sigma22, sizeof(sigma22));
+     cudaMemcpyToSymbol(gpuBeta, &beta, sizeof(beta));
+     cudaMemcpyToSymbol(gpuIterCount, &iterCount, sizeof(iterCount));
+     cudaMemcpyToSymbol(gpuCoord1, coord1, sizeof(coord1));
+*/
+     
+     /* run the kernel function. */
+     int blockSize = 256;
+     int nBlocks = (M*N)/blockSize + ((M*N)%blockSize == 0?0:1);
+     mexPrintf("blockSize: %d, nBlocks = %d\n", blockSize, nBlocks);
+     dim3 dimBlock(blockSize);
+     dim3 dimGrid(nBlocks);
+     SamplingKernel<<<dimGrid, dimBlock>>>(gpuC, gpuR, M*N,
+					   mu1, mu2, sigma21, sigma22,
+					   beta, iterCount);
+     
+     /* Send results back to cpu memeory */
+     cudaMemcpy(C, gpuC, sizeof(float)*M*N, cudaMemcpyDeviceToHost);
+
+     /* clean up. */
+     cudaFree(gpuC);
+     cudaFree(gpuR);
+     cudaFree(gpuCoord1);
+     cudaFree(gpuCoord2);
+}
+
+/* Kernel function  */
+__global__ void SamplingKernel(float* C, const float* R, int L, 
+			       float mu1, float mu2, 
+			       float sigma21, float sigma22,
+			       float beta, float iterCount)
+{
+     int idx = blockIdx.x*blockDim.x+threadIdx.x;
+     if ( idx < L) C[idx]= R[idx];
+
+}
+
+     

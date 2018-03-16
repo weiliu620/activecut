@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99d (TeX Live 2010)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: reading_notes.aux
+The style file: plainnat.bst
+Database file #1: /home/sci/weiliu/projects/centralref.bib
+Repeated entry---line 603 of file /home/sci/weiliu/projects/centralref.bib
+ : @article{barbu2005generalizing
+ :                               ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 619 of file /home/sci/weiliu/projects/centralref.bib
+ :   
+ :   volume={7},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You've used 8 entries,
+            2773 wiz_defined-function locations,
+            648 strings with 6639 characters,
+and the built_in function-call counts, 4269 in all, are:
+= -- 353
+> -- 329
+< -- 3
++ -- 110
+- -- 102
+* -- 386
+:= -- 684
+add.period$ -- 24
+call.type$ -- 8
+change.case$ -- 56
+chr.to.int$ -- 8
+cite$ -- 16
+duplicate$ -- 163
+empty$ -- 299
+format.name$ -- 116
+if$ -- 861
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 9
+newline$ -- 48
+num.names$ -- 32
+pop$ -- 107
+preamble$ -- 1
+purify$ -- 49
+quote$ -- 0
+skip$ -- 136
+stack$ -- 0
+substring$ -- 136
+swap$ -- 8
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 83
+warning$ -- 0
+while$ -- 32
+width$ -- 0
+write$ -- 108
+(There were 2 error messages)

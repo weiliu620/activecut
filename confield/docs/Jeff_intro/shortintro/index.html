@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Markov Random Field and application on fMRI Connectivity Analysis</TITLE>
+<META NAME="description" CONTENT="Markov Random Field and application on fMRI Connectivity Analysis">
+<META NAME="keywords" CONTENT="shortintro">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="shortintro.css">
+
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive"
+ SRC="file:/usr/share/latex2html/icons/nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev_g.png">   
+<BR>
+<BR><BR>
+<!--End of Navigation Panel-->
+
+<H1 ALIGN=CENTER>Markov Random Field and application on fMRI Connectivity Analysis</H1>
+<P ALIGN=CENTER><STRONG>Wei Liu</STRONG>
+<BR><I>weiliu@sci.utah.edu</I>
+</P>
+<HR>
+
+<BR>
+
+<H2><A NAME="SECTION00010000000000000000">
+Contents</A>
+</H2>
+<!--Table of Contents-->
+
+<UL>
+<LI><A NAME="tex2html10"
+  HREF="shortintro.html#SECTION00020000000000000000">Bibliography</A>
+</UL>
+<!--End of Table of Contents--><B>Goal: </B> Compute the 'connectivity' between any pair of voxels (or regions) in brain cortex. (the rigid definition of 'connectivity' is not available.)
+
+<P>
+<B>information available: </B>
+
+<UL>
+<LI>Data. fMRI (time courses), DTI(tractography)
+</LI>
+<LI>Assumption: Connectivity should be smoothly changed.
+</LI>
+</UL>
+<B>Method: </B> Bayesian Rule:
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+p(\mbox{connectivity})\propto prior(\mbox{connectivity}) \cdot \mbox{likelihood}
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="CENTER"><IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$\displaystyle p($">connectivity<IMG
+ WIDTH="74" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$\displaystyle )\propto prior($">connectivity<IMG
+ WIDTH="15" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img3.png"
+ ALT="$\displaystyle ) \cdot$">&nbsp; &nbsp;likelihood</TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(1)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+
+<P>
+<B>Prior: </B> 1) from neighbors connectivity. 2) from other voxels with DTI tract.
+<B>likelihood: </B> from data.
+
+<P>
+1) From neighbors connectivity. 
+
+<DIV ALIGN="CENTER"><A NAME="fig1"></A><A NAME="40"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 1:</STRONG>
+Without data, the connectivity value at a point depends on its neighbors.</CAPTION>
+<TR><TD><DIV ALIGN="CENTER"><IMG
+  WIDTH="484" HEIGHT="231" ALIGN="BOTTOM" BORDER="0"
+ SRC="./mrf1.png"
+ ALT="Image mrf1">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig2"></A><A NAME="45"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2:</STRONG>
+Connectivity between any voxel pairs of two 1-D image. </CAPTION>
+<TR><TD><DIV ALIGN="CENTER"><IMG
+  WIDTH="518" HEIGHT="441" ALIGN="BOTTOM" BORDER="0"
+ SRC="./1d.png"
+ ALT="Image 1d">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig3"></A><A NAME="50"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure:</STRONG>
+Connectivity between any voxel pairs of two 1-D image, with DTI tract. </CAPTION>
+<TR><TD><DIV ALIGN="CENTER"><IMG
+  WIDTH="499" HEIGHT="431" ALIGN="BOTTOM" BORDER="0"
+ SRC="./dti.png"
+ ALT="Image dti">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN="CENTER"><A NAME="fig4"></A><A NAME="58"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure:</STRONG>
+synthetic image</CAPTION>
+<TR><TD><DIV ALIGN="CENTER"><IMG
+  WIDTH="560" HEIGHT="420" ALIGN="BOTTOM" BORDER="0"
+ SRC="./sin.png"
+ ALT="Image sin">
+<IMG
+  WIDTH="560" HEIGHT="420" ALIGN="BOTTOM" BORDER="0"
+ SRC="./true.png"
+ ALT="Image true">
+<IMG
+  WIDTH="560" HEIGHT="420" ALIGN="BOTTOM" BORDER="0"
+ SRC="./correlation.png"
+ ALT="Image correlation">
+<IMG
+  WIDTH="560" HEIGHT="420" ALIGN="BOTTOM" BORDER="0"
+ SRC="./hist.png"
+ ALT="Image hist">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig5"></A><A NAME="65"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5:</STRONG>
+Use Markov Random Field to estimate connectivity.</CAPTION>
+<TR><TD><DIV ALIGN="CENTER"><IMG
+  WIDTH="560" HEIGHT="420" ALIGN="BOTTOM" BORDER="0"
+ SRC="./beta.png"
+ ALT="Image beta">
+<IMG
+  WIDTH="560" HEIGHT="420" ALIGN="BOTTOM" BORDER="0"
+ SRC="./para_est.png"
+ ALT="Image para_est">
+<IMG
+  WIDTH="560" HEIGHT="420" ALIGN="BOTTOM" BORDER="0"
+ SRC="./postP1.png"
+ ALT="Image postP1">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+A dynamic plot can be found here: <TT><A NAME="tex2html6"
+  HREF="http://www.sci.utah.edu/~weiliu/research/intro/postConn.gif">http://www.sci.utah.edu/~weiliu/research/intro/postConn.gif</A></TT>
+<P>
+<B>What questions can we answer: </B>
+
+<UL>
+<LI>Build resting state brain network?<A
+ HREF="shortintro.html#hayasaka_comparison_2010">Hayasaka and Laurienti (2010)</A>
+</LI>
+<LI>find similar connectivity among groups?<A
+ HREF="#schn_similar_???">()</A>
+</LI>
+<LI>causality?
+</LI>
+</UL>
+
+<P>
+
+<P>
+<H2><A NAME="SECTIONREF">Bibliography</A>
+</H2>
+
+<DL COMPACT>
+<DT><A NAME="hayasaka_comparison_2010">
+Satoru Hayasaka and Paul&nbsp;J. Laurienti.
+</A>
+<DD> Comparison of characteristics between region-and voxel-based network
+  analyses in resting-state fMRI data.
+<BR> <I>NeuroImage</I>, 50 (2): 499-508, April 2010.
+<BR> ISSN 1053-8119.
+<BR> doi: rm10.1016/j.neuroimage.2009.12.051.
+<BR> URL
+  <TT><A NAME="tex2html7"
+  HREF="http://www.sciencedirect.com/science/article/B6WNP-4Y05DJ6-D/2/64b68c47b7e27b59d8e2d69a56151f2f">http://www.sciencedirect.com/science/article/B6WNP-4Y05DJ6-D/2/64b68c47b7e27b59d8e2d69a56151f2f</A></TT>.
+
+<BR>
+<P>
+</DL>
+<HR>
+<!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive"
+ SRC="file:/usr/share/latex2html/icons/nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev_g.png">   
+<BR>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Wei Liu
+2010-02-17
+</ADDRESS>
+</BODY>
+</HTML>

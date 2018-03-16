@@ -1,0 +1,463 @@
+#LyX file created by tex2lyx 1.6.4
+\lyxformat 264
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+
+
+%\documentclass[fleqn]{article}
+%\usepackage{palatino} 
+%\usepackage{charter}
+%\usepackage[T1]{fontenc}
+%\usepackage{concmath} % pretty good
+%\usepackage{cmbright}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{/home/sci/weiliu/haldefs}\usepackage{/home/sci/weiliu/notes}\usepackage{/home/sci/weiliu/projects/lwdefs}%\usepackage[numbers]{natbib}
+%\usepackage{subfig}
+\usepackage{hyperref}\usepackage{/home/sci/weiliu/packages/breakurl/breakurl}%\usepackage{endfloat}
+\usepackage{algorithmic}\usepackage{algorithm}\usepackage{html}
+
+\hypersetup{bookmarks=true,% show bookmarks bar?
+unicode=false,% non-Latin characters in Acrobat’s bookmarks
+pdftoolbar=true,% show Acrobat’s toolbar?
+pdfmenubar=true,% show Acrobat’s menu?
+pdffitwindow=false,% window fit to page when opened
+pdfstartview={FitH},% fits the width of the page to the window
+pdftitle={Scale-SpaceBlobDetection},% title
+pdfauthor={WeiLiu},% author
+pdfsubject={ProjectforadvancedImageProcessing},% subject of the document
+pdfcreator={WeiLiu},% creator of the document
+pdfproducer={Producer},% producer of the document
+pdfkeywords={blobdetection,scale-space},% list of keywords
+pdfnewwindow=true,% links in new window
+colorlinks=true,% false: boxed links; true: colored links
+linkcolor=red,% color of internal links
+citecolor=green,% color of links to bibliography
+filecolor=magenta,% color of file links
+urlcolor=cyan% color of external links
+}
+
+
+
+
+\end_preamble
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\paperfontsize 12
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 2
+\use_esint 1
+\cite_engine natbib_authoryear
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+Markov Random Field and application on fMRI Connectivity Analysis
+\end_layout
+
+\begin_layout Author
+
+Wei Liu
+\newline
+ weiliu@sci.utah.edu
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset LatexCommand tableofcontents
+
+\end_inset
+
+
+\series bold
+Goal: 
+\series default
+ Compute the 'connectivity' between any pair of voxels (or regions) in brain cortex. (the rigid definition of 'connectivity' is not available.) 
+\series bold
+information available: 
+\series default
+ 
+\end_layout
+
+\begin_layout Itemize
+
+Data. fMRI (time courses), DTI(tractography) 
+\end_layout
+
+\begin_layout Itemize
+
+Assumption: Connectivity should be smoothly changed. 
+\end_layout
+
+\begin_layout Standard
+
+
+\series bold
+Method: 
+\series default
+ Bayesian Rule: 
+\begin_inset Formula \begin{equation}
+p(\mbox{connectivity})\propto prior(\mbox{connectivity}) \cdot \mbox{likelihood}
+\end{equation}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\series bold
+Prior: 
+\series default
+ 1) from neighbors connectivity. 2) from other voxels with DTI tract. 
+\series bold
+likelihood: 
+\series default
+ from data.
+\end_layout
+
+\begin_layout Standard
+
+1) From neighbors connectivity. 
+\begin_inset Float figure
+placement htb
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename mrf1.eps
+	width 80text%
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout StandardWithout data, the connectivity value at a point depends on its neighbors.
+\end_layout
+
+\end_inset
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset LatexCommand label
+name "fig1"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset Float figure
+placement htb
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename 1d.eps
+	width 80text%
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout StandardConnectivity between any voxel pairs of two 1-D image. 
+\end_layout
+
+\end_inset
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset LatexCommand label
+name "fig2"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset Float figure
+placement htb
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename dti.eps
+	width 80text%
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout StandardConnectivity between any voxel pairs of two 1-D image. 
+\end_layout
+
+\end_inset
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset LatexCommand label
+name "fig3"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset Float figure
+placement htb
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename sin.eps
+	width 50text%
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename true.eps
+	width 50text%
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename correlation.eps
+	width 80text%
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename hist.eps
+	width 80text%
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout StandardConnectivity between any voxel pairs of two 1-D image. 
+\end_layout
+
+\end_inset
+
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset LatexCommand label
+name "fig2"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+
+\series bold
+What questions can we answer: 
+\series default
+ 
+\end_layout
+
+\begin_layout Itemize
+
+Build resting state brain network?
+\begin_inset LatexCommand cite
+after ""
+before ""
+key "hayasaka_comparison_2010"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+find similar connectivity among groups? 
+\end_layout
+
+\begin_layout Itemize
+
+causality? 
+\end_layout
+
+\begin_layout Section
+
+Experiment Results and Analysis
+\end_layout
+
+\begin_layout Standard
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+bibliographystyle{plainnat}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset LatexCommand bibtex
+bibfiles "/home/sci/weiliu/projects/zotero"
+options "plainnat"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_body
+\end_document

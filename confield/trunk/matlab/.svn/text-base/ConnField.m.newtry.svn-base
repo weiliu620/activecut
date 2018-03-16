@@ -1,0 +1,214 @@
+function res = ConnField(snr)
+
+F = 0.2; % frequency of sin wave
+mu = 800;
+fs = 1; % sampling frequency.
+D = 300;    % number of time points sampled.
+N = 100;    % number of all time course.
+M = 20;     % number of sin wave signals.
+label = zeros(N, 1);
+label(1:M/2) = 1; label(N/2+1:N/2+M/2) = 1;
+A = 20;
+%snr = 2;
+if exist('sinSample.mat', 'file') == 2
+    load sinSample;
+    fprintf('load existing data file.\n');
+else
+    [X, C] = GenTimeSeries(F, mu, fs, D, N, label, A, snr);
+    save sinSample X C;
+    fprintf('Generate new data file.\n');
+end
+R = corr(X');
+B = (N*N-N)/200; % bin number.
+figure(10);
+sel = logical(ones(N,N) - diag(ones(N,1)));
+hist(R(sel),B);
+title('Sample correlation'); pause(1);
+saveas(10, 'figures/CorrHist.eps', 'eps');
+close(10);
+EMPost(R);
+
+function [X, C] = GenTimeSeries(F, mu, fs, D, N, label, A, snr)
+% Generate time series signal.
+% F: frequency of the time series. I assume this is mu + sine wave + noise.
+% mu: mean of the signal.
+% fs: sampling frequency.
+% D: number of time points.
+% N: total number of time series, including sine signal and constant
+% signal.
+% label: Nx1 vector. Each element is 1 for sigmal, 0 for noise.
+% snr: signal to noise ratio. Defined as A/sigma^2.
+%
+% output: 
+% X: NxD data matrix. Each row is time course.
+% C: true connectivity matrix. c_ij is the theoretical correlation
+% coefficient between point i and j.
+M = sum(label); % # of sin wave signal data points.
+ts = 1/fs;
+T = (1:D)*ts;
+X = zeros(N, D);
+sigma2 = A/snr;
+
+X(label==1, :) = repmat(A*sin(2*pi*F*T), M, 1);
+X = X + sigma2* randn(N, D) + ones(N, D) * mu;
+C = label * label';
+figure(21); imshow(C);
+title('Ground truth Connectivity Map.');
+pause(1);
+saveas(gcf, 'figures/trueConn.eps', 'eps');
+close(21);
+
+
+% Visualize data just for fun.
+SF = (A + 3*sqrt(sigma2))*2;
+figure(21); hold on;
+for i = 1:min([N, 30, M])
+    Y = (X(i,:) - mu)/SF + i;
+    plot(Y);
+end;
+title(strcat('Simulated time series. Total time series #:', int2str(N)));
+saveas(gcf, 'figures/1DTimeSeries.eps', 'eps'); close(21);
+fprintf('Signal: %d-- %d, %d -- %d\n', 1, M/2, 1+N/2, N/2+M/2);
+
+function res = EMPost(R)
+% Given sample correlation matrix R,
+% compute the posterior matrix C, where c_ij = p(c_ij|r_ij).
+
+% initialize
+N = size(R, 1); % number of voxels.
+C = rand(N,N) > 0.5;
+C = C - diag(diag(C)) + diag(ones(N,1));
+% init model parameters.
+mu1 = 0.8; % Bold guess
+sigma21 = 0.2; % when A^2/sigma^2 is 10. Roughly guess.
+mu0 = 0; % keep this unchanged in EM iteration.
+sigma20 = 0.2;
+
+T0 = 5; % Annealing temperature.
+Tf = 0.7;
+maxIterCount = 10;
+maxSAIterCount = 60;
+iterCount = 1;
+para = [mu0, mu1, sigma20, sigma21]; % all parameters.
+while(iterCount < maxIterCount)
+    % E step. Compute posterior probability.
+    SAIterCount = 1;
+    %T = T0*(Tf/T0)^(iterCount/maxIterCount);
+    while(SAIterCount < maxSAIterCount)
+        T = T0*(Tf/T0)^(SAIterCount/maxSAIterCount);
+        gc1 = 1/(sqrt(2*pi*sigma21)); % Gaussian constant.
+        gc0 = 1/(sqrt(2*pi*sigma20));
+        coor = randperm(N*N);
+        for n = 1:N*N
+            pos = coor(n);
+            [i,j] = ind2sub([N N], pos);
+            if i < j
+                neighbors = pos + [-1 1 -N N];
+                %neighbors(find([i==1, i==N, j==1, j==N])) = [];
+                neighbors([i==1, i==N|i==j-1, j==1|i==j-1, j==N]) = [];
+                e1 = sum(1 ~= C(neighbors));
+                e0 = sum(0 ~= C(neighbors)); % Energy.
+                % Likelihood energy
+                le1 = (R(i,j)-mu1)^2/(2*sigma21);
+                le0 = (R(i,j)-mu0)^2/(2*sigma20);
+                % Posterior energy
+                pe0 = e0 + le0;
+                pe1 = e1 + le1;
+                % Posterior probability.
+                p0 = exp(-pe0/T); p1 = exp(-pe1/T);
+                % Normalize so they sume to one.
+                sump = sum(p0+p1);
+                p0 = p0/sump;   p1 = p1/sump;
+                % Gibbs Sampling.
+                if rand > p0
+                    C(i,j) = 1;
+                else
+                    C(i,j) = 0;
+                end;
+            end;
+           
+        end;
+        C = triu(C,1) + triu(C,1)' + diag(diag(C));
+        fprintf('EM iteration: %d. SA iteration: %d, Ttemperature: %d\n'...
+            , iterCount, SAIterCount, T);
+        % show connectivity map.
+        figure(101); imshow(C); 
+        title(strcat('Post C. EM Iter:',...
+            int2str(iterCount), '. SA Iter: ', int2str(SAIterCount)));
+        SAIterCount = SAIterCount + 1;
+    end;
+
+    % M step. estimate parameters.
+    N1 = sum(C(:)) - N; % # of c = 1 in triangular matrix.
+    N0 = N*N - N - N1; % num of c = 0
+    CR = C .* R - diag(diag(C .* R));
+    mu1 = sum(CR(:))/N1;
+    % mu0 does not change.
+    RM0 = C .* (R - mu0).^2; 
+    RM0 = RM0 - diag(diag(RM0)); % remove diag elements -- useless.
+    RM1 = C .* (R - mu1).^2; 
+    RM1 = RM1 - diag(diag(RM1));
+    sigma20 = sum(RM0(:))/N0;
+    sigma21 = sum(RM1(:))/N1;    
+    
+    % show the histogram.
+    sel0 = logical(~C - diag(diag(~C))); % class 0.
+    R0 = R(sel0);
+    sel1 = logical(C - diag(diag(C))); % class 1.
+    R1 = R(sel1);
+
+    figure(102); hist(R0, N0/200);
+    title('sample correlation given c = 0');
+    figure (103); hist(R1, N1/20);
+    title('sample correlation given c = 1');
+    z0 = 0.5 * log((1+R0)./(1-R0));
+    z1 = 0.5 * log((1+R1)./(1-R1));
+    figure(104);    hist(z0(~isinf(z0)), N0/200);
+    title('Fisher transformed correlation given c = 0');
+    figure(105);  hist(z1(~isinf(z1)), N1/20);
+    title('Fisher transformed correlation given c = 1');
+    
+    % save parameters and dispaly the trend.
+    para = [para; [mu0, mu1, sigma20, sigma21]];
+    Xcoord = 1:iterCount+1;
+    figure(106);
+    plot(Xcoord, para(:,1), 'bo-',...
+        Xcoord, para(:,2), 'ro-',...
+        Xcoord, para(:,3), 'b*--',...
+        Xcoord, para(:,4),  'r*--');
+    title('trend of parameters in EM iteration.');
+    xlabel('EM iteration');
+    legend('mu0', 'mu1', 'sgima^2 0', 'sigma^2 1');
+    
+    fprintf('iteration: %d\n', iterCount);
+    iterCount = iterCount +1;
+        % Compute prior. p(c=1) and p(c=0)
+        % Todo: consider the trade-off between prior and likelihood.
+        
+        
+
+% compute likelihood
+
+% M Step
+end;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

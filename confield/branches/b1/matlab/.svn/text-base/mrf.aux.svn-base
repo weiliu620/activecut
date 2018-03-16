@@ -1,0 +1,37 @@
+\relax 
+\ifx\hyper@anchor\@undefined
+\global \let \oldcontentsline\contentsline
+\gdef \contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global \let \oldnewlabel\newlabel
+\gdef \newlabel#1#2{\newlabelxx{#1}#2}
+\gdef \newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\let \contentsline\oldcontentsline
+\let \newlabel\oldnewlabel}
+\else
+\global \let \hyper@last\relax 
+\fi
+
+\providecommand*\HyPL@Entry[1]{}
+\citation{perez_markov_1998}
+\HyPL@Entry{0<</S/D>>}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Ising Model}{1}{section.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Initial image with uniform random -1 an +1. Update eqch pixel in sequence by the conditional probability. And repeat this many 1000 times. Here is the iteration for 1st time, 300, 600 and 900.\relax }}{1}{figure.caption.2}}
+\newlabel{fig1}{{1}{1}{Initial image with uniform random -1 an +1. Update eqch pixel in sequence by the conditional probability. And repeat this many 1000 times. Here is the iteration for 1st time, 300, 600 and 900.\relax \relax }{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces $\beta $ controls how strong the prior is, compared to the conditional likelihood $P(\boldsymbol  {y} |\boldsymbol  {x})$. Greater $\beta $ means the energy function prefer prior rather than data.\relax }}{2}{figure.caption.3}}
+\newlabel{fig2}{{2}{2}{$\beta $ controls how strong the prior is, compared to the conditional likelihood $P(\vec y |\vec x)$. Greater $\beta $ means the energy function prefer prior rather than data.\relax \relax }{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Generate Ising model by Gibbs Sampling}{2}{subsection.1.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Gibbs sampling to generate Gibbs distribution. Upper-left is the random generated original 255x255 image with five gray level intensity. Upper-right is after 300 iterations of Gibbs sampling, with each iteration having raster scan through each pixel. Lower images are iterations 400 and 600 times.\relax }}{3}{figure.caption.4}}
+\newlabel{Gibbs01}{{3}{3}{Gibbs sampling to generate Gibbs distribution. Upper-left is the random generated original 255x255 image with five gray level intensity. Upper-right is after 300 iterations of Gibbs sampling, with each iteration having raster scan through each pixel. Lower images are iterations 400 and 600 times.\relax \relax }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Jan 19 Generate 1D fMRI image and compute posterior distribution}{3}{subsection.1.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Generate N time series. Some are sin wave + Gaussian noise, others are purely Gaussian noise. Visualize them in a single plot by shifting the mean of each time series according to its label (from 1 to N)\relax }}{4}{figure.caption.5}}
+\newlabel{1D}{{4}{4}{Generate N time series. Some are sin wave + Gaussian noise, others are purely Gaussian noise. Visualize them in a single plot by shifting the mean of each time series according to its label (from 1 to N)\relax \relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The empirical distribution of the correlation between pair of $x_i$ and $x_j$ given they are 'connected'. To make them connected I generate all x from same sin wave plus independent Gaussian noise with different variance. A is amplitude of sin wave, and $\sigma $ is standard deviation of the Gaussian noise. I define $A^2/\sigma ^2$ as the signal-to-noise ratio. On the bottom row is the empirical distribution of the z after Fisher Transformation. From Wikipeidia, Fisher transformation z is approximately normal only when 1) $x_i$ and $x_j$ are normal distribution, and 2) $x_i$ and $x_j$ are independent. Both conditions are not true in our case. But I just do the transformation and see the z's distribution.\relax }}{5}{figure.caption.6}}
+\newlabel{1D}{{5}{5}{The empirical distribution of the correlation between pair of $x_i$ and $x_j$ given they are 'connected'. To make them connected I generate all x from same sin wave plus independent Gaussian noise with different variance. A is amplitude of sin wave, and $\sigma $ is standard deviation of the Gaussian noise. I define $A^2/\sigma ^2$ as the signal-to-noise ratio. On the bottom row is the empirical distribution of the z after Fisher Transformation. From Wikipeidia, Fisher transformation z is approximately normal only when 1) $x_i$ and $x_j$ are normal distribution, and 2) $x_i$ and $x_j$ are independent. Both conditions are not true in our case. But I just do the transformation and see the z's distribution.\relax \relax }{figure.caption.6}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces EM-Annealing\relax }}{6}{algorithm.1}}
+\newlabel{alg1}{{1}{6}{EM-Annealing\relax \relax }{algorithm.1}{}}
+\newlabel{eq1z}{{7}{6}{EM-Annealing\relax \relax }{equation.1.7}{}}
+\newlabel{eq1}{{18}{7}{Jan 19 Generate 1D fMRI image and compute posterior distribution\relax }{equation.1.18}{}}
+\bibstyle{plainnat}
+\bibdata{/home/sci/weiliu/projects/zotero}
+\bibcite{perez_markov_1998}{{1}{1998}{{Perez}}{{}}}
+\newlabel{eq2}{{21}{8}{Jan 19 Generate 1D fMRI image and compute posterior distribution\relax }{equation.1.21}{}}
