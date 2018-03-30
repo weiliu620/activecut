@@ -1,0 +1,75 @@
+function [A, B, R, T, Xp, Yp] = mycanoncorr_dirty(X0,Y0, n_comp)
+% [A, B, R, T] = mycanoncorr_dirty(X0, Y0, n_comp)
+% [A, B, R, T, Xp, Yp] = mycanoncorr_dirty(X0, Y0, n_comp)
+%
+% CCA with PCA as preprocessing. 
+%
+% X0, Y0: data matrix.
+% n_comp: num of principal componnets that will be kept in preprocessing.
+% A, B: projection matrix. Columns are orthogonal. Also includes the PCA's
+% projection matrix.
+% R: correlation between projected variates.
+% T: explained variance. T = C*R.^2, where C is the variance of principal
+% components, and D is the correlation between projected variates.
+% Xp, Yp: projected data.
+% 
+
+[n,p1] = size(X0);
+if size(Y0,1) ~= n
+    error(message('stats:canoncorr:InputSizeMismatch'));
+elseif n == 1
+    error(message('stats:canoncorr:NotEnoughData'));
+end
+p2 = size(Y0,2);
+
+tstart = tic;
+% Center the variables
+X0 = X0 - repmat(mean(X0,1), n, 1);
+Y0 = Y0 - repmat(mean(Y0,1), n, 1);
+
+% First do a PCA preprocessing.
+[U0_x, S0_x, V0_x] = svd(X0, 0);
+fprintf('svd of X0 done. Time elapsed: %f\n', toc(tstart));
+[U0_y, S0_y, V0_y] = svd(Y0, 0);
+fprintf('svd of Y0 done. Time elapsed: %f\n', toc(tstart));
+
+% project data to principal comp.
+X1 = X0 * V0_x(:, 1:n_comp);
+Y1 = Y0 * V0_y(:, 1:n_comp);
+
+[U1_x, S1_x, V1_x] = svd(X1, 0);
+[U1_y, S1_y, V1_y] = svd(Y1, 0);
+[U, S, V] = svd(U1_x' * U1_y);
+R = diag(S);
+A = V1_x / S1_x * U;
+B = V1_y / S1_y * V;
+
+% compute the explained variance.
+var_x = sum(diag(S1_x).^2);
+var_y = sum(diag(S1_y).^2);
+fprintf('total variance of PCA-preprocessed X: %f\n', var_x);
+fprintf('total variance of PCA-preprocessed Y: %f\n', var_y);
+C_x = zeros(n_comp, 1);
+for i = 1:n_comp
+    C_x(i) = sum((diag(S1_x) .* U(:,i)).^2);
+end;
+fprintf('data X: variance explained by canonical variates (percentage): %f\n', sum(C_x) / var_x );
+
+C_y = zeros(n_comp, 1);
+for i = 1:n_comp
+    C_y(i) = sum((diag(S1_y) .* V(:,i)).^2);
+end;
+fprintf('data Y: variance explained by canonical variates (percentage): %f\n', sum(C_y) / var_y );
+
+% percentage of variance explained by each componenent.
+T1 = C_x .* diag(S).^2 / var_x; % explained by Y.
+T2 = C_y .* diag(S).^2 / var_y; % explained by X.
+T = [T1, T2];
+
+% Compute the canonical variates
+A = V0_x(:, 1:n_comp) * A;
+B = V0_y(:, 1:n_comp) * B;
+if nargout > 4
+    Xp = X0 * A;
+    Yp = Y0 * B;
+end
